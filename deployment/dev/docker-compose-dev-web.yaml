@@ -5,9 +5,3 @@ services:
     restart: always
     ports:
       - 3000:3000
-    networks:
-      - next-app
-
-networks:
-  next-app:
-    external: true
