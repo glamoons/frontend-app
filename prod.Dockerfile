@@ -16,6 +16,8 @@ COPY src ./src
 COPY public ./public
 COPY next.config.js .
 COPY tsconfig.json .
+COPY postcss.config.js .
+COPY tailwind.config.ts .
 
 RUN \
   if [ -f yarn.lock ]; then yarn build; \
