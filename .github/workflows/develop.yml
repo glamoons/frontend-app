@@ -43,7 +43,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: deployment-configuration
-          path: deployment/docker-compose-dev.yaml
+          path: deployment/dev/docker-compose-dev-web.yaml
           retention-days: 1
   deploy:
     needs: build
