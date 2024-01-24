@@ -1,13 +1,13 @@
 services:
   next-app:
     image: 242912/next-app:latest
-    container_name: glamoons-app-dev
+    container_name: next-app
     restart: always
     ports:
-      - "3000:3000"
+      - 3000:3000
     networks:
-      - frontend
+      - next-app
 
 networks:
-  frontend:
+  next-app:
     external: true
