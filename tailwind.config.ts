@@ -28,8 +28,20 @@ const config = {
 				primary: {
 					DEFAULT: "hsl(var(--primary))",
 				},
+				primaryLight: {
+					DEFAULT: "hsl(var(--primary-light))",
+				},
+				primaryDark: {
+					DEFAULT: "hsl(var(--primary-dark))",
+				},
 				secondary: {
 					DEFAULT: "hsl(var(--secondary))",
+				},
+				slate50: {
+					DEFAULT: "hsl(var(--slate-50))",
+				},
+				slate100: {
+					DEFAULT: "hsl(var(--slate-100))",
 				},
 			},
 			borderRadius: {
