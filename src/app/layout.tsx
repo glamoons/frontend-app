@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { cn } from "@/lib/utils";
 
 const proximanova = localFont({
 	variable: "--font-proximanova",
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang="en">
-			<body className={proximanova.variable}>{children}</body>
+			<body className={cn(proximanova.variable, "font-sans antialiased")}>{children}</body>
 		</html>
 	);
 }

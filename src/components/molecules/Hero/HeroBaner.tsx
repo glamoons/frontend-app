@@ -1,6 +1,5 @@
 import NextImage from "next/image";
 import { HeroBox } from "./HeroBox";
-import { Header } from "@/components/molecules/Header/Header";
 
 type HeroBanerProps = {
 	src: string;
@@ -10,8 +9,7 @@ type HeroBanerProps = {
 
 export const HeroBaner = ({ src, alt, desktopSrcSet }: HeroBanerProps) => {
 	return (
-		<div className="relative flex h-[712px] flex-col justify-between overflow-hidden bg-secondary">
-			<Header />
+		<div className="relative flex h-[712px] w-screen flex-col justify-between overflow-hidden bg-secondary">
 			<picture>
 				<source media="(min-width: 768px)" srcSet={desktopSrcSet} />
 				<NextImage

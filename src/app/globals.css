@@ -4,18 +4,19 @@
 
 @layer base {
 	:root {
-		--background: 0 0% 100%;
+		--background: 0, 0%, 100%;
 
 		--primary: 60, 10%, 80%;
 		--primary-light: 60, 9%, 81%;
+		--primary-dark: 60, 10%, 60%;
 
 		--slate-50: 60, 10%, 96%;
 		--slate-100: 60, 10%, 92%;
 
-		--secondary: 219 18% 19%;
+		--secondary: 219, 18%, 19%;
 
-		--border: 60 10% 60%;
-		--input: 60 10% 80%;
+		--border: 60, 10%, 60%;
+		--input: 60, 10%, 80%;
 
 		--radius: 1.563rem;
 	}
