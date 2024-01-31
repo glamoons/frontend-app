@@ -1,12 +1,14 @@
 import { LinkProps } from "next/link";
 import { DefaultButton } from "./DefaultButton";
+import { cn } from "@/lib/utils";
+import { BaseProps } from "@/interfaces/base";
 
-export const SecondaryButton = ({
-	children,
-	...props
-}: LinkProps & { children: React.ReactNode }) => {
+export const SecondaryButton = ({ children, className, ...props }: LinkProps & BaseProps) => {
 	return (
-		<DefaultButton {...props} className="max-w-44 border-secondary bg-secondary text-slate-50">
+		<DefaultButton
+			{...props}
+			className={cn("max-w-44 border-secondary bg-secondary text-slate-50", className)}
+		>
 			{children}
 		</DefaultButton>
 	);
