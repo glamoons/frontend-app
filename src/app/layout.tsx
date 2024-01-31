@@ -14,7 +14,7 @@ const proximanova = localFont({
 		},
 		{
 			path: "../assets/fonts/proximanova_regular.woff2",
-			weight: "700",
+			weight: "400",
 		},
 		{
 			path: "../assets/fonts/proximanova_semibold.woff2",
