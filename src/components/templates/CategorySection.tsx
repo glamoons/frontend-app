@@ -10,7 +10,7 @@ export const CategorySection = () => {
 			<SectionHeading
 				title="Co możemy dla Ciebie zrobić"
 				description="A paragraph or two with information on your product/service or describes a problem your product/service is designed to solve."
-				containerStyle="text-center items-center"
+				subHeading="Kategorie"
 			/>
 			<div className="mx-[-1.563rem] mt-[50px] flex flex-row">
 				<div className="relative h-[270px] w-1/2">
