@@ -1,6 +1,6 @@
 import { Section } from "@/components/atoms/Section";
 import { SectionHeading } from "@/components/molecules/SectionHeading";
-import { SectionBenefitsWithIcon } from "../molecules/SectionBenefitsWithIcon";
+import { SectionBenefitsWithIcon } from "../organisms/SectionBenefitsWithIcon";
 import { PrimaryButton } from "../atoms/PrimaryButton";
 
 export const BenefitSection = () => {

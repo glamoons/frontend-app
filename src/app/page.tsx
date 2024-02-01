@@ -1,9 +1,12 @@
-import { Header } from "@/components/molecules/Header/Header";
-import { HeroBaner } from "@/components/molecules/Hero/HeroBaner";
-import { BenefitSection } from "@/components/organisms/BenefitSection";
-import { CategorySection } from "@/components/organisms/CategorySection";
-import { ConfiguratorSection } from "@/components/organisms/ConfiguratorSection";
-import { NewsletterSection } from "@/components/organisms/NewsletterSection";
+import { Header } from "@/components/organisms/Header";
+import { HeroBaner } from "@/components/organisms/HeroBaner";
+import { BenefitSection } from "@/components/templates/BenefitSection";
+import { CategorySection } from "@/components/templates/CategorySection";
+import { ConfiguratorSection } from "@/components/templates/ConfiguratorSection";
+import { ContactSection } from "@/components/templates/ContactSection";
+import { NewsSection } from "@/components/templates/NewsSections";
+import { NewsletterSection } from "@/components/templates/NewsletterSection";
+import { ReviewsSection } from "@/components/templates/ReviewsSection";
 
 export default function Home() {
 	return (
@@ -19,6 +22,9 @@ export default function Home() {
 				<ConfiguratorSection />
 				<BenefitSection />
 				<NewsletterSection />
+				<ReviewsSection />
+				<NewsSection />
+				<ContactSection />
 			</main>
 		</>
 	);

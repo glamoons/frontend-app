@@ -1,5 +1,5 @@
 import { HeroTitle } from "@/components/atoms/HeroTitle";
-import { GroupButton } from "../GroupButton";
+import { GroupButton } from "./GroupButton";
 
 export const HeroBox = () => {
 	return (

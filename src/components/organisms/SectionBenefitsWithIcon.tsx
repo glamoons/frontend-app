@@ -9,7 +9,7 @@ type SectionBenefitsWithIconProps = {
 
 export const SectionBenefitsWithIcon = ({ className }: SectionBenefitsWithIconProps) => {
 	return (
-		<div className={cn("flex flex-col space-y-10", className)}>
+		<article className={cn("flex flex-col space-y-10", className)}>
 			<BoxWithIcon
 				icon={<IconShieldChevron size={50} className="text-primaryDark" />}
 				title="2 lata"
@@ -28,6 +28,6 @@ export const SectionBenefitsWithIcon = ({ className }: SectionBenefitsWithIconPr
 				subTitle="zawsze darmowa"
 				desctiption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 			/>
-		</div>
+		</article>
 	);
 };

@@ -1,5 +1,5 @@
 import NextImage from "next/image";
-import { HeroBox } from "./HeroBox";
+import { HeroBox } from "../molecules/HeroBox";
 
 type HeroBanerProps = {
 	src: string;
