@@ -1,3 +1,4 @@
+import { Footer } from "@/components/organisms/Footer";
 import { Header } from "@/components/organisms/Header";
 import { HeroBaner } from "@/components/organisms/HeroBaner";
 import { BenefitSection } from "@/components/templates/BenefitSection";
@@ -26,6 +27,7 @@ export default function Home() {
 				<NewsSection />
 				<ContactSection />
 			</main>
+			<Footer />
 		</>
 	);
 }

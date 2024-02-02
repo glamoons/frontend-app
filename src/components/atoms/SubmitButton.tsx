@@ -1,8 +1,12 @@
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { Button, ButtonProps } from "@/components/ui/button";
 import { BaseProps } from "@/interfaces/base";
 
-export const SubmitButton = ({ children, className, ...props }: BaseProps) => {
+export const SubmitButton = ({
+	children,
+	className,
+	...props
+}: BaseProps & React.RefAttributes<HTMLButtonElement> & ButtonProps) => {
 	return (
 		<Button
 			type="submit"

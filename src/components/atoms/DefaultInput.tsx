@@ -9,7 +9,7 @@ export const DefaultInput = ({
 		<Input
 			{...props}
 			className={cn(
-				"min-h-12 rounded-full border border-border bg-white/60 px-3 py-3 font-serif text-sm font-normal text-secondary placeholder:font-light placeholder:text-secondary focus-visible:ring-primaryDark",
+				"min-h-12 rounded-full border border-border bg-[#D1D1C7]/10 px-3 py-3 font-serif text-sm font-normal text-secondary placeholder:font-light placeholder:text-secondary focus-visible:ring-primaryDark",
 				className,
 			)}
 		/>
