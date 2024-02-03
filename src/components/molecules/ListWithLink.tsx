@@ -1,10 +1,14 @@
-import Link from "next/link";
+import Link, { LinkProps } from "next/link";
 
 type ListWithLinkProps = {
 	href: string;
 	linkName: string;
 };
-export const ListWithLink = ({ href, linkName }: ListWithLinkProps) => {
+export const ListWithLink = ({
+	href,
+	linkName,
+	...props
+}: ListWithLinkProps & LinkProps) => {
 	return (
 		<li
 			className="
@@ -27,7 +31,9 @@ export const ListWithLink = ({ href, linkName }: ListWithLinkProps) => {
             before:hover:translate-x-0 
             before:hover:opacity-100"
 		>
-			<Link href={href}>{linkName}</Link>
+			<Link href={href} {...props}>
+				{linkName}
+			</Link>
 		</li>
 	);
 };

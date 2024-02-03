@@ -11,12 +11,15 @@ export const ContactInformation = ({
 }: ContactInformationProps) => {
 	return (
 		<div className="flex flex-row space-x-3">
-			<AddressBox icon={<IconMapPin size={50} className="text-primary" />} address={address} />
+			<AddressBox
+				icon={<IconMapPin size={50} className="text-primary" />}
+				address={address}
+			/>
 			<ContactBox
 				icon={<IconPhoneCall size={50} className="text-primary" />}
 				phone={phone}
 				email={email}
-				workingHouers={workingHours}
+				workingHours={workingHours}
 			/>
 		</div>
 	);
