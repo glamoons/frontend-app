@@ -11,6 +11,7 @@ type SectionHeadingProps = {
 	descriptionClassName?: string;
 	containerStyle?: string;
 	subHeading?: string;
+	containerHeadingStyle?: string;
 };
 
 export const SectionHeading = ({
@@ -21,14 +22,26 @@ export const SectionHeading = ({
 	descriptionClassName,
 	containerStyle,
 	subHeading,
+	containerHeadingStyle,
 }: SectionHeadingProps) => {
 	return (
-		<div className={cn("flex flex-col items-start space-y-4 text-left", containerStyle)}>
-			<div className="flex flex-col items-start">
-				{subHeading && <SubHeading className={cn(subHeadingClassName)}>{subHeading}</SubHeading>}
+		<div
+			className={cn(
+				"mx-auto flex max-w-[500px] flex-col items-start space-y-4 text-left",
+				containerStyle,
+			)}
+		>
+			<div className={cn("flex flex-col items-start", containerHeadingStyle)}>
+				{subHeading && (
+					<SubHeading className={cn(subHeadingClassName)}>
+						{subHeading}
+					</SubHeading>
+				)}
 				<Heading className={headingClassName}>{title}</Heading>
 			</div>
-			<DefaultText className={cn(descriptionClassName)}>{description}</DefaultText>
+			<DefaultText className={cn(descriptionClassName)}>
+				{description}
+			</DefaultText>
 		</div>
 	);
 };

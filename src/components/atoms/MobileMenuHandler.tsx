@@ -5,15 +5,20 @@ import { cn } from "@/lib/utils";
 type MobileMenuHandlerProps = {
 	icon?: JSX.Element;
 	menuName?: string;
+	className?: string;
 };
 export const MobileMenuHandler = ({
 	icon = <IconMenuDeep />,
 	menuName = "menu",
+	className,
 	...props
 }: MobileMenuHandlerProps & ButtonProps) => {
 	return (
 		<button
-			className={cn("flex h-12 flex-row items-center space-x-3 text-slate-50")}
+			className={cn(
+				"flex h-12 flex-row items-center space-x-3 text-slate-50",
+				className,
+			)}
 			{...props}
 		>
 			{icon ? icon : <IconMenuDeep />}

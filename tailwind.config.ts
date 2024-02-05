@@ -17,6 +17,11 @@ const config = {
 				"2xl": "1440px",
 			},
 		},
+		screens: {
+			tablet: "601px",
+			laptop: "1024px",
+			desktop: "1280px",
+		},
 		extend: {
 			fontFamily: {
 				serif: ["var(--font-proximanova)"],

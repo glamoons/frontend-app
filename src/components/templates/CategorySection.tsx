@@ -6,14 +6,17 @@ import Link from "next/link";
 
 export const CategorySection = () => {
 	return (
-		<Section className="container mx-auto ">
+		<Section className="container mx-auto">
 			<SectionHeading
 				title="Co możemy dla Ciebie zrobić"
 				description="A paragraph or two with information on your product/service or describes a problem your product/service is designed to solve."
 				subHeading="Kategorie"
+				containerStyle="tablet:text-center tablet:items-center"
+				containerHeadingStyle="tablet:text-center tablet:items-center"
+				descriptionClassName="tablet:text-center "
 			/>
 			<div className="mx-[-1.563rem] mt-[50px] flex flex-row">
-				<div className="relative h-[270px] w-1/2">
+				<div className="tablet:h-[360px] relative h-[270px] w-1/2">
 					<Link href="/">
 						<ResponsiveImage
 							mobileSrc="https://res.cloudinary.com/dstimijog/image/upload/v1706596875/table-mobile_zbtmux.jpg"
@@ -24,7 +27,7 @@ export const CategorySection = () => {
 						<CategoryHolder title="Stoliki" btnName="zobacz więcej" />
 					</Link>
 				</div>
-				<div className="relative h-[270px] w-1/2">
+				<div className="tablet:h-[360px] relative h-[270px] w-1/2">
 					<Link href="/">
 						<ResponsiveImage
 							mobileSrc="https://res.cloudinary.com/dstimijog/image/upload/v1706596875/clock-mobile_revov9.jpg"

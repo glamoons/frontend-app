@@ -1,21 +1,14 @@
 import Link from "next/link";
+import { NavLink } from "../atoms/NavLink";
 
 export const Navigation = () => {
 	return (
 		<nav>
 			<ul className="flex flex-col space-y-4 py-6">
-				<li className="text-3xl font-light uppercase text-secondary">
-					<Link href="/">O produkcie</Link>
-				</li>
-				<li className="text-3xl font-light uppercase text-secondary">
-					<Link href="/">Konfigurator</Link>
-				</li>
-				<li className="text-3xl font-light uppercase text-secondary">
-					<Link href="/">Blog</Link>
-				</li>
-				<li className="text-3xl font-light uppercase text-secondary">
-					<Link href="/">Kontakt</Link>
-				</li>
+				<NavLink href="/">O produkcie</NavLink>
+				<NavLink href="/">Konfigurator</NavLink>
+				<NavLink href="/">Blog</NavLink>
+				<NavLink href="/">Kontakt</NavLink>
 			</ul>
 		</nav>
 	);
