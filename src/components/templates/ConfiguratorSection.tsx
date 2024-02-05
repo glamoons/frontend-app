@@ -6,8 +6,8 @@ import { SecondaryButton } from "../atoms/SecondaryButton";
 export const ConfiguratorSection = () => {
 	return (
 		<Section className="bg-primaryLight">
-			<div className="container mx-auto">
-				<div className="mt-[-50px] flex min-h-[390px] flex-col items-center justify-center space-y-6">
+			<div className="tablet:flex tablet:flex-row container mx-auto">
+				<div className="tablet:w-1/2 tablet:min-h-max tablet:mr-[1.563rem] tablet:mt-0 mt-[-50px] flex min-h-[390px] flex-col items-center justify-center space-y-6">
 					<SectionHeading
 						subHeading="konfigurator"
 						title="Dostosuj swój stolik"
@@ -18,7 +18,7 @@ export const ConfiguratorSection = () => {
 						skonfiguruj
 					</SecondaryButton>
 				</div>
-				<div className="relative mx-[-1.563rem] mb-[-50px] h-[390px]">
+				<div className="tablet:w-1/2 tablet:mx-0 tablet:mt-[-50px] tablet:h-auto tablet:mr-[-1.563rem] relative mx-[-1.563rem] mb-[-50px] h-[390px]">
 					<div className="absolute bottom-0 left-0 right-0 top-0 z-10 bg-black/15" />
 					<ResponsiveImage
 						mobileSrc="https://res.cloudinary.com/dstimijog/image/upload/v1706681759/informational_mobile_nphus5.jpg"

@@ -27,7 +27,7 @@ export const SectionHeading = ({
 	return (
 		<div
 			className={cn(
-				"mx-auto flex max-w-[500px] flex-col items-start space-y-4 text-left",
+				"flex max-w-[500px] flex-col items-start space-y-4 text-left",
 				containerStyle,
 			)}
 		>

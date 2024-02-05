@@ -1,15 +1,26 @@
 import { BoxWithIcon } from "@/components/atoms/IconBox";
 import { BaseProps } from "@/interfaces/base";
 import { cn } from "@/lib/utils";
-import { IconPackageImport, IconShieldChevron, IconTruckDelivery } from "@tabler/icons-react";
+import {
+	IconPackageImport,
+	IconShieldChevron,
+	IconTruckDelivery,
+} from "@tabler/icons-react";
 
 type SectionBenefitsWithIconProps = {
 	className?: BaseProps["className"];
 };
 
-export const SectionBenefitsWithIcon = ({ className }: SectionBenefitsWithIconProps) => {
+export const SectionBenefitsWithIcon = ({
+	className,
+}: SectionBenefitsWithIconProps) => {
 	return (
-		<article className={cn("flex flex-col space-y-10", className)}>
+		<article
+			className={cn(
+				"tablet:flex-row tablet:space-y-0 flex flex-col flex-wrap space-y-10",
+				className,
+			)}
+		>
 			<BoxWithIcon
 				icon={<IconShieldChevron size={50} className="text-primaryDark" />}
 				title="2 lata"
