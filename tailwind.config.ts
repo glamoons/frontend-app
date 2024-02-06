@@ -12,15 +12,24 @@ const config = {
 	theme: {
 		container: {
 			center: true,
-			padding: "1.563rem",
+			padding: {
+				DEFAULT: "1.563rem",
+				desktop: "3.125rem",
+				"2xl": "8.75rem",
+			},
 			screens: {
+				desktop: "1280px",
 				"2xl": "1440px",
 			},
 		},
 		screens: {
 			tablet: "601px",
+			tabletLg: "768px",
 			laptop: "1024px",
 			desktop: "1280px",
+			xl: "1366px",
+			"2xl": "1440px",
+			"3xl": "1536px",
 		},
 		extend: {
 			fontFamily: {

@@ -24,11 +24,11 @@ export const ContactBox = ({
 			{icon ? icon : null}
 			<div
 				className={cn(
-					"flex max-w-36 flex-col space-y-3 text-slate-50",
+					"flex max-w-36 flex-col space-y-3 text-slate50",
 					textClassName,
 				)}
 			>
-				<div className="flex flex-col">
+				<div className="laptop:text-lg flex flex-col">
 					<a href={`tel:${phone}`} className="block">
 						{phone}
 					</a>
@@ -36,7 +36,7 @@ export const ContactBox = ({
 						{email}
 					</a>
 				</div>
-				<DefaultText className={cn("text-sm text-slate-50", textClassName)}>
+				<DefaultText className={cn("text-sm text-slate50", textClassName)}>
 					{workingHours}
 				</DefaultText>
 			</div>

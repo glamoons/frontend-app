@@ -10,9 +10,15 @@ type NewsArticleProps = {
 	href: string;
 };
 
-export const NewsArticle = ({ src, alt, title, date, href = "/" }: NewsArticleProps) => {
+export const NewsArticle = ({
+	src,
+	alt,
+	title,
+	date,
+	href = "/",
+}: NewsArticleProps) => {
 	return (
-		<article className="flex flex-col space-y-6">
+		<article className="laptop:even:pl-0 laptop:odd:pr-0 laptop:pb-0 tablet:even:pl-6 tablet:odd:pr-6 tablet:pb-6 tablet:w-1/2 flex flex-col space-y-6">
 			<figure>
 				<NextImage
 					src={src}

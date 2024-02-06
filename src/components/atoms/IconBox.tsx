@@ -15,7 +15,7 @@ export const BoxWithIcon = ({
 	desctiption,
 }: BoxWithIconProps) => {
 	return (
-		<div className="tablet:even:pl-6 tablet:odd:pr-6 tablet:pb-6 tablet:w-1/2 flex flex-col space-y-3">
+		<div className="laptop:even:pl-0 laptop:odd:pr-0 laptop:pb-0 laptop:w-auto tablet:even:pl-6 tablet:odd:pr-6 tablet:pb-6 tablet:w-1/2 flex flex-col space-y-3">
 			<div className="flex flex-col space-y-3">
 				{icon}
 				<Heading>{title}</Heading>

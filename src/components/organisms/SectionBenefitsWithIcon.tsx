@@ -17,7 +17,7 @@ export const SectionBenefitsWithIcon = ({
 	return (
 		<article
 			className={cn(
-				"tablet:flex-row tablet:space-y-0 flex flex-col flex-wrap space-y-10",
+				"laptop:flex-nowrap laptop:space-x-10 tablet:flex-row tablet:space-y-0 flex flex-col flex-wrap space-y-10",
 				className,
 			)}
 		>

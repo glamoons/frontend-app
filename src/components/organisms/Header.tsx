@@ -26,7 +26,7 @@ export const Header = () => {
 			<Link href="/">{!isOpen ? <LogoLight /> : null}</Link>
 			<MobileMenuHandler
 				onClick={handleOpenMenu}
-				className={cn(isOpen ? "text-secondary" : "")}
+				className={cn(isOpen ? "text-secondary" : "", "laptop:hidden")}
 				menuName={isOpen ? "close" : "menu"}
 				icon={isOpen ? <IconX /> : <IconMenuDeep />}
 			/>

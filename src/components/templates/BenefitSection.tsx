@@ -12,7 +12,10 @@ export const BenefitSection = () => {
 				description="Wybierz stolik, który sprosta Twoim największym wymaganiom"
 			/>
 			<SectionBenefitsWithIcon />
-			<PrimaryButton href={"/"} className="tablet:w-1/2 mx-auto flex w-full">
+			<PrimaryButton
+				href={"/"}
+				className="tablet:w-1/2 tabletLg:w-auto tabletLg:max-w-40 mx-auto flex w-full"
+			>
 				sprawdź
 			</PrimaryButton>
 		</Section>

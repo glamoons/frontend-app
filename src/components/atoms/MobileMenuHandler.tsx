@@ -16,7 +16,7 @@ export const MobileMenuHandler = ({
 	return (
 		<button
 			className={cn(
-				"flex h-12 flex-row items-center space-x-3 text-slate-50",
+				"flex h-12 flex-row items-center space-x-3 text-slate50",
 				className,
 			)}
 			{...props}
