@@ -9,15 +9,17 @@ type NewsletterFormProps = {
 	inputClassName?: BaseProps["className"];
 	butttonClassName?: BaseProps["className"];
 	newsletterContainerClassName?: BaseProps["className"];
+	newsletterWrapperClassName?: BaseProps["className"];
 };
 export const NewsletterForm = ({
 	title,
 	inputClassName,
 	butttonClassName,
 	newsletterContainerClassName,
+	newsletterWrapperClassName,
 }: NewsletterFormProps) => {
 	return (
-		<div className="flex flex-col space-y-6">
+		<div className={cn("flex flex-col space-y-6", newsletterWrapperClassName)}>
 			{title && <FooterHeading>{title}</FooterHeading>}
 			<div className={cn("space-y-4", newsletterContainerClassName)}>
 				<DefaultInput

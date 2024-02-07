@@ -3,15 +3,22 @@ import { HeroBox } from "../molecules/HeroBox";
 
 type HeroBanerProps = {
 	src: string;
+	laptopSrcSet: string;
 	desktopSrcSet: string;
 	alt: string;
 };
 
-export const HeroBaner = ({ src, alt, desktopSrcSet }: HeroBanerProps) => {
+export const HeroBaner = ({
+	src,
+	alt,
+	laptopSrcSet,
+	desktopSrcSet,
+}: HeroBanerProps) => {
 	return (
-		<div className="relative flex h-screen max-h-[712px] min-h-[640px] w-full flex-col justify-between overflow-hidden bg-secondary 2xl:max-h-[836px]">
+		<div className="laptop:max-h-max relative flex h-screen max-h-[712px] min-h-[640px] w-full flex-col justify-between overflow-hidden bg-secondary">
 			<picture>
-				<source media="(min-width: 768px)" srcSet={desktopSrcSet} />
+				<source media="(min-width: 1536px)" srcSet={desktopSrcSet} />
+				<source media="(min-width: 768px)" srcSet={laptopSrcSet} />
 				<NextImage
 					src={src}
 					alt={alt}

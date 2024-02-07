@@ -2,6 +2,7 @@ import { BoxWithIcon } from "@/components/atoms/IconBox";
 import { BaseProps } from "@/interfaces/base";
 import { cn } from "@/lib/utils";
 import {
+	IconDeviceMobileCharging,
 	IconPackageImport,
 	IconShieldChevron,
 	IconTruckDelivery,
@@ -17,7 +18,7 @@ export const SectionBenefitsWithIcon = ({
 	return (
 		<article
 			className={cn(
-				"laptop:flex-nowrap laptop:space-x-10 tablet:flex-row tablet:space-y-0 flex flex-col flex-wrap space-y-10",
+				"tablet:flex-row tablet:space-y-0 flex flex-col flex-wrap space-y-10",
 				className,
 			)}
 		>
@@ -34,9 +35,11 @@ export const SectionBenefitsWithIcon = ({
 				desctiption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 			/>
 			<BoxWithIcon
-				icon={<IconTruckDelivery size={50} className="text-primaryDark" />}
-				title="Dostawa"
-				subTitle="zawsze darmowa"
+				icon={
+					<IconDeviceMobileCharging size={50} className="text-primaryDark" />
+				}
+				title="1"
+				subTitle="ładowanie indykcyjne"
 				desctiption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 			/>
 		</article>

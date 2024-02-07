@@ -1,13 +1,14 @@
 "use client";
 
 import { useNavigationContext } from "@/app/providers/navigation-provider";
-import LogoDark from "@/assets/logo/LogoDark";
 import LogoLight from "@/assets/logo/LogoLight";
 import { MobileMenuHandler } from "@/components/atoms/MobileMenuHandler";
 import { cn } from "@/lib/utils";
 import { IconMenuDeep, IconX } from "@tabler/icons-react";
 import Link from "next/link";
 import { useCallback } from "react";
+import { ShoppingActionsNavLinks } from "@/components/molecules/ShoppingActionsNavLinks";
+import { Navigation } from "./Navigation";
 
 export const Header = () => {
 	const { setIsOpen, isOpen } = useNavigationContext();
@@ -23,7 +24,9 @@ export const Header = () => {
 				isOpen ? "py-9" : "py-5",
 			)}
 		>
+			<Navigation className="laptop:flex hidden" />
 			<Link href="/">{!isOpen ? <LogoLight /> : null}</Link>
+			<ShoppingActionsNavLinks favoritesHref="/" userHref="/" cartHref="/" />
 			<MobileMenuHandler
 				onClick={handleOpenMenu}
 				className={cn(isOpen ? "text-secondary" : "", "laptop:hidden")}
