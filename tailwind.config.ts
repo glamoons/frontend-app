@@ -12,45 +12,50 @@ const config = {
 	theme: {
 		container: {
 			center: true,
-			padding: "2rem",
+			padding: {
+				DEFAULT: "1.563rem",
+				desktop: "3.125rem",
+				"2xl": "8.75rem",
+			},
 			screens: {
-				"2xl": "1400px",
+				desktop: "1280px",
+				"2xl": "1440px",
 			},
 		},
+		screens: {
+			tablet: "601px",
+			tabletLg: "768px",
+			laptop: "1024px",
+			desktop: "1280px",
+			xl: "1366px",
+			"2xl": "1440px",
+			"3xl": "1536px",
+		},
 		extend: {
+			fontFamily: {
+				serif: ["var(--font-proximanova)"],
+			},
 			colors: {
 				border: "hsl(var(--border))",
 				input: "hsl(var(--input))",
-				ring: "hsl(var(--ring))",
 				background: "hsl(var(--background))",
-				foreground: "hsl(var(--foreground))",
 				primary: {
 					DEFAULT: "hsl(var(--primary))",
-					foreground: "hsl(var(--primary-foreground))",
+				},
+				primaryLight: {
+					DEFAULT: "hsl(var(--primary-light))",
+				},
+				primaryDark: {
+					DEFAULT: "hsl(var(--primary-dark))",
 				},
 				secondary: {
 					DEFAULT: "hsl(var(--secondary))",
-					foreground: "hsl(var(--secondary-foreground))",
 				},
-				destructive: {
-					DEFAULT: "hsl(var(--destructive))",
-					foreground: "hsl(var(--destructive-foreground))",
+				slate50: {
+					DEFAULT: "hsl(var(--slate-50))",
 				},
-				muted: {
-					DEFAULT: "hsl(var(--muted))",
-					foreground: "hsl(var(--muted-foreground))",
-				},
-				accent: {
-					DEFAULT: "hsl(var(--accent))",
-					foreground: "hsl(var(--accent-foreground))",
-				},
-				popover: {
-					DEFAULT: "hsl(var(--popover))",
-					foreground: "hsl(var(--popover-foreground))",
-				},
-				card: {
-					DEFAULT: "hsl(var(--card))",
-					foreground: "hsl(var(--card-foreground))",
+				slate100: {
+					DEFAULT: "hsl(var(--slate-100))",
 				},
 			},
 			borderRadius: {
