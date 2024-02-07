@@ -21,23 +21,26 @@ export default function RootLayout({
 		<html lang="pl">
 			<head>
 				<link
-					rel="icon"
-					href="/favicon-16x16.png"
-					type="image/png"
-					sizes="16x16"
+					rel="apple-touch-icon"
+					sizes="180x180"
+					href="/apple-touch-icon.png"
 				/>
 				<link
 					rel="icon"
-					href="/favicon-32x32.png"
 					type="image/png"
 					sizes="32x32"
+					href="/favicon-32x32.png"
 				/>
 				<link
-					rel="apple-touch-icon"
-					href="/apple-touch-icon.png"
+					rel="icon"
 					type="image/png"
-					sizes="180x180"
+					sizes="16x16"
+					href="/favicon-16x16.png"
 				/>
+				<link rel="manifest" href="/site.webmanifest" />
+				<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#2d2d2d" />
+				<meta name="msapplication-TileColor" content="#2d2d2d" />
+				<meta name="theme-color" content="#ffffff" />
 			</head>
 			<NavigationProvider>
 				<Body>
