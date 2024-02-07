@@ -4,8 +4,8 @@ import { ContactInformation } from "../organisms/ContactInformation";
 
 export const ContactSection = () => {
 	return (
-		<Section className="desktop:py-0 desktop:pt-[100px] laptop:pt-[50px] container mx-auto py-0">
-			<article className="desktop:container laptop:mx-0 laptop:rounded-3xl mx-[-1.563rem] flex flex-col space-y-6 bg-secondary px-[1.563rem] py-[50px] 2xl:py-[100px]">
+		<Section className="container mx-auto py-0 laptop:pt-[50px] desktop:py-0 desktop:pt-[100px]">
+			<article className="mx-[-1.563rem] flex flex-col space-y-6 bg-secondary px-[1.563rem] py-[50px] desktop:container laptop:mx-0 laptop:rounded-3xl 2xl:py-[100px]">
 				<SectionHeading
 					title="Skontaktuj się z nami"
 					subHeading="Kontakt"
@@ -14,7 +14,7 @@ export const ContactSection = () => {
 				/>
 				<ContactInformation
 					address="Glamoons Sp. z o.o. Poręba Wielka 31 34-735 Niedźwiedź"
-					phone="784 525 956"
+					phone="+48784525956"
 					email="sklep@glamoons.com"
 					workingHours="Pon-Pt 8:00-16:00 CET"
 				/>

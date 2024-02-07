@@ -1,11 +1,12 @@
 "use client";
 
+import { useNavigationContext } from "@/app/providers/navigation-provider";
 import { ListWithLink } from "@/components/molecules/ListWithLink";
 import { UnorderedList } from "@/components/molecules/UnorderedList";
 import { Navigation } from "@/components/organisms/Navigation";
-import { ContactBox } from "../molecules/ContactBox";
-import { useNavigationContext } from "@/app/providers/navigation-provider";
 import { cn } from "@/lib/utils";
+import { FooterHeading } from "../atoms/FooterHeading";
+import { ContactBox } from "../molecules/ContactBox";
 
 export const Menu = () => {
 	const { isOpen } = useNavigationContext();
@@ -49,15 +50,16 @@ export const Menu = () => {
 							passHref={true}
 						/>
 					</UnorderedList>
-					<UnorderedList title="Kontak" className="mt-6 w-1/2 pl-3">
+					<div className="mt-6 flex w-1/2 flex-col space-y-3 pl-3">
+						<FooterHeading>Kontak</FooterHeading>
 						<ContactBox
-							phone="784 525 956"
+							phone="+48784525956"
 							email="sklep@glamoons.com"
 							workingHours="Pon-Pt 8:00-16:00 CET"
 							textClassName="text-secondary max-w-none"
 							wrapperClassName="w-auto"
 						/>
-					</UnorderedList>
+					</div>
 				</div>
 			</div>
 		</div>
