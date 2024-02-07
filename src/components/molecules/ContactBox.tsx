@@ -28,7 +28,7 @@ export const ContactBox = ({
 					textClassName,
 				)}
 			>
-				<div className="laptop:text-lg flex flex-col">
+				<div className="flex flex-col laptop:text-lg">
 					<a href={`tel:${phone}`} className="block">
 						{phone}
 					</a>

@@ -38,18 +38,6 @@ export default function RootLayout({
 					type="image/png"
 					sizes="180x180"
 				/>
-				<link
-					rel="android-chrome"
-					href="/android-chrome-512x512.png"
-					type="image/png"
-					sizes="512x512"
-				/>
-				<link
-					rel="android-chrome"
-					href="/android-chrome-192x192.png"
-					type="image/png"
-					sizes="192x192"
-				/>
 			</head>
 			<NavigationProvider>
 				<Body>
