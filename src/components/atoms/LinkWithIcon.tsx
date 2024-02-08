@@ -1,6 +1,6 @@
 import { BaseProps } from "@/interfaces/base";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
+import Link, { LinkProps } from "next/link";
 
 type LinkWithIconProps = {
 	href: string;
@@ -8,7 +8,12 @@ type LinkWithIconProps = {
 	className?: BaseProps["className"];
 };
 
-export const LinkWithIcon = ({ href, icon, className }: LinkWithIconProps) => {
+export const LinkWithIcon = ({
+	href,
+	icon,
+	className,
+	...props
+}: LinkWithIconProps & LinkProps) => {
 	return (
 		<Link
 			href={href}
@@ -16,6 +21,7 @@ export const LinkWithIcon = ({ href, icon, className }: LinkWithIconProps) => {
 				"opacity-80 transition-opacity duration-500 hover:opacity-100",
 				className,
 			)}
+			{...props}
 		>
 			{icon}
 		</Link>
