@@ -27,7 +27,6 @@ export const ConfiguratorSection = () => {
 						mobileSrc="https://res.cloudinary.com/dstimijog/image/upload/v1706681759/informational_mobile_nphus5.jpg"
 						alt="Konfigurator"
 						desktopSrc="https://res.cloudinary.com/dstimijog/image/upload/v1706681759/informational_desktop_icxcw9.jpg"
-						style={{ objectFit: "cover" }}
 					/>
 				</div>
 			</div>

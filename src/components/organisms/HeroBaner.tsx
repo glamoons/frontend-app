@@ -16,9 +16,25 @@ export const HeroBaner = ({
 }: HeroBanerProps) => {
 	return (
 		<div className="relative flex h-screen max-h-[712px] min-h-[640px] w-full flex-col justify-between overflow-hidden bg-secondary laptop:max-h-screen">
-			<picture>
-				<source media="(min-width: 1536px)" srcSet={desktopSrcSet} />
-				<source media="(min-width: 768px)" srcSet={laptopSrcSet} />
+			<div>
+				<NextImage
+					src={desktopSrcSet}
+					alt={alt}
+					quality={100}
+					fill
+					sizes="100vw"
+					style={{ objectFit: "cover", opacity: 0.7 }}
+					className="hidden 3xl:block"
+				/>
+				<NextImage
+					src={laptopSrcSet}
+					alt={alt}
+					quality={100}
+					fill
+					sizes="100vw"
+					style={{ objectFit: "cover", opacity: 0.7 }}
+					className="hidden tabletLg:block 3xl:hidden"
+				/>
 				<NextImage
 					src={src}
 					alt={alt}
@@ -26,8 +42,9 @@ export const HeroBaner = ({
 					fill
 					sizes="100vw"
 					style={{ objectFit: "cover", opacity: 0.7 }}
+					className="tabletLg:hidden"
 				/>
-			</picture>
+			</div>
 			<HeroBox />
 		</div>
 	);

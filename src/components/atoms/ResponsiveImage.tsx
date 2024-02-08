@@ -1,4 +1,5 @@
 import { ResponsiveImageProps } from "@/interfaces/base";
+import { cn } from "@/lib/utils";
 import NextImage from "next/image";
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 
@@ -11,8 +12,16 @@ export const ResponsiveImage = ({
 }: ResponsiveImageProps &
 	DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>) => {
 	return (
-		<picture>
-			<source media="(min-width: 601px)" srcSet={desktopSrc} />
+		<>
+			<NextImage
+				src={desktopSrc}
+				alt={alt}
+				quality={100}
+				fill
+				sizes="100vw"
+				style={style}
+				className={cn("hidden object-cover tablet:block", className)}
+			/>
 			<NextImage
 				src={mobileSrc}
 				alt={alt}
@@ -20,8 +29,8 @@ export const ResponsiveImage = ({
 				fill
 				sizes="100vw"
 				style={style}
-				className={className}
+				className={cn("object-cover tablet:hidden", className)}
 			/>
-		</picture>
+		</>
 	);
 };

@@ -26,7 +26,7 @@ export const Category = ({
 					mobileSrc={mobileSrc}
 					alt={alt}
 					desktopSrc={desktopSrc}
-					className="block h-full w-full transform object-cover transition-transform duration-500 group-hover:scale-[1.05]"
+					className="h-full w-full transform transition-transform duration-500 group-hover:scale-[1.05]"
 				/>
 				<CategoryHolder title={title} btnName={btnName || "zobacz więcej"} />
 			</Link>
