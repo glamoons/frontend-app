@@ -25,13 +25,16 @@ export const Header = () => {
 			)}
 		>
 			<Navigation className="hidden laptop:flex" />
-			<Link href="/">{!isOpen ? <LogoLight /> : null}</Link>
+			<Link href="/" aria-label="Logo Glamoons">
+				{!isOpen ? <LogoLight /> : null}
+			</Link>
 			<ShoppingActionsNavLinks favoritesHref="/" userHref="/" cartHref="/" />
 			<MobileMenuHandler
 				onClick={handleOpenMenu}
 				className={cn(isOpen ? "text-secondary" : "", "laptop:hidden")}
 				menuName={isOpen ? "close" : "menu"}
 				icon={isOpen ? <IconX /> : <IconMenuDeep />}
+				aria-label="Menu"
 			/>
 		</header>
 	);

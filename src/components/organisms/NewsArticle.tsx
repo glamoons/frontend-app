@@ -1,5 +1,5 @@
 import { DefaultText } from "@/components/atoms/DefaultText";
-import Link from "next/link";
+import Link, { LinkProps } from "next/link";
 import NextImage from "next/image";
 
 type NewsArticleProps = {
@@ -16,11 +16,13 @@ export const NewsArticle = ({
 	title,
 	date,
 	href = "/",
-}: NewsArticleProps) => {
+	...props
+}: NewsArticleProps & LinkProps) => {
 	return (
 		<Link
 			href={href}
 			className="group flex flex-col space-y-6 tablet:w-1/2 tablet:pb-6 tablet:odd:pr-6 tablet:even:pl-6 laptop:pb-0 laptop:odd:pr-0 laptop:even:pl-0"
+			{...props}
 		>
 			<figure className="overflow-hidden">
 				<NextImage

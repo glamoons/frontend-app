@@ -18,6 +18,7 @@ export const NewsSection = () => {
 						title="Think of a catchy title for your blog post. Be concise and creative, Think of a catchy title for your blog post. Be concise and creative, Think of a catchy title for your blog post. Be concise and creative, Think of a catchy title for your blog post."
 						date={"May 31, 11:10"}
 						href={"/"}
+						aria-label="Prosty stolik kawowy w 5 krokach"
 					/>
 					<NewsArticle
 						src="https://res.cloudinary.com/dstimijog/image/upload/v1707385343/blog-post_qjswfl_imrvqp.webp"
@@ -25,6 +26,7 @@ export const NewsSection = () => {
 						title="Think of a catchy title for your blog post. Be concise and creative"
 						date={"May 31, 11:10"}
 						href={"/"}
+						aria-label="Prosty stolik kawowy w 5 krokach"
 					/>
 					<NewsArticle
 						src="https://res.cloudinary.com/dstimijog/image/upload/v1707385343/blog-post_qjswfl_imrvqp.webp"
@@ -32,6 +34,7 @@ export const NewsSection = () => {
 						title="Think of a catchy title for your blog post. Be concise and creative"
 						date={"May 31, 11:10"}
 						href={"/"}
+						aria-label="Prosty stolik kawowy w 5 krokach"
 					/>
 				</div>
 			</div>

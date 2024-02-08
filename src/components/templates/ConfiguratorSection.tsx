@@ -17,6 +17,7 @@ export const ConfiguratorSection = () => {
 					<SecondaryButton
 						className="w-full max-w-none tabletLg:w-auto"
 						href={"/"}
+						aria-label="skonfiguruj"
 					>
 						skonfiguruj
 					</SecondaryButton>

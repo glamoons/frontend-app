@@ -17,14 +17,17 @@ export const ShoppingActionsNavLinks = ({
 			<LinkWithIcon
 				href={favoritesHref}
 				icon={<IconHeart className="text-slate50" />}
+				aria-label="Ulubione"
 			/>
 			<LinkWithIcon
 				href={userHref}
 				icon={<IconUser className="text-slate50" />}
+				aria-label="Moje konto"
 			/>
 			<LinkWithIcon
 				href={cartHref}
 				icon={<IconShoppingCart className="text-slate50" />}
+				aria-label="Koszyk"
 			/>
 		</div>
 	);

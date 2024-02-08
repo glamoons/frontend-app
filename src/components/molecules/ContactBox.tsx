@@ -30,8 +30,16 @@ export const ContactBox = ({
 				)}
 			>
 				<div className="flex flex-col laptop:text-lg">
-					<ActionLink actionHref={`tel:${phone}`} actionText={phone} />
-					<ActionLink actionHref={`mailto:${email}`} actionText={email} />
+					<ActionLink
+						actionHref={`tel:${phone}`}
+						actionText={phone}
+						aria-label={phone}
+					/>
+					<ActionLink
+						actionHref={`mailto:${email}`}
+						actionText={email}
+						aria-label={email}
+					/>
 				</div>
 				<DefaultText className={cn("text-sm text-slate50", textClassName)}>
 					{workingHours}

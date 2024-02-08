@@ -11,13 +11,21 @@ export const Navigation = ({ className }: NavigationProps) => {
 		<nav className={className}>
 			<ul
 				className={cn(
-					"laptop:flex-row laptop:space-y-0 lap laptop:space-x-5 flex flex-col space-y-4 py-6",
+					"lap flex flex-col space-y-4 py-6 laptop:flex-row laptop:space-x-5 laptop:space-y-0",
 				)}
 			>
-				<NavLink href="/">O produkcie</NavLink>
-				<NavLink href="/">Konfigurator</NavLink>
-				<NavLink href="/">Blog</NavLink>
-				<NavLink href="/">Kontakt</NavLink>
+				<NavLink href="/" aria-label="O produkcie">
+					O produkcie
+				</NavLink>
+				<NavLink href="/" aria-label="Konfigurator">
+					Konfigurator
+				</NavLink>
+				<NavLink href="/" aria-label="Blog">
+					Blog
+				</NavLink>
+				<NavLink href="/" aria-label="Kontakt">
+					Kontakt
+				</NavLink>
 			</ul>
 		</nav>
 	);

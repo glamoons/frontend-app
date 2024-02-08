@@ -32,6 +32,7 @@ export const NewsletterForm = ({
 						"w-full border-secondary bg-secondary text-slate50",
 						butttonClassName,
 					)}
+					aria-label="Subskrybuj newsletter"
 				>
 					subskrybuj
 				</SubmitButton>

@@ -21,33 +21,64 @@ export const Menu = () => {
 				<Navigation />
 				<div className="flex flex-row flex-wrap justify-between">
 					<UnorderedList title="Glamoons" className="mb-6 w-1/2 pr-3">
-						<ListWithLink href={"/"} linkName={"Koszyk"} />
-						<ListWithLink href={"/"} linkName={"Moje konto"} />
-						<ListWithLink href={"/"} linkName={"Ulubione"} />
-						<ListWithLink href={"/"} linkName={"Dla biznesu"} />
-						<ListWithLink href={"/"} linkName={"FAQ"} />
+						<ListWithLink href={"/"} linkName={"Koszyk"} aria-label="Koszyk" />
+						<ListWithLink
+							href={"/"}
+							linkName={"Moje konto"}
+							aria-label="Moje konto"
+						/>
+						<ListWithLink
+							href={"/"}
+							linkName={"Ulubione"}
+							aria-label="Ulubione"
+						/>
+						<ListWithLink
+							href={"/"}
+							linkName={"Dla biznesu"}
+							aria-label="Dla biznesu"
+						/>
+						<ListWithLink href={"/"} linkName={"FAQ"} aria-label="FAQ" />
 					</UnorderedList>
 					<UnorderedList title="Informacje" className="mb-6 w-1/2 pl-3">
-						<ListWithLink href={"/"} linkName={"Regulamin"} />
-						<ListWithLink href={"/"} linkName={"Polityka prywatności"} />
-						<ListWithLink href={"/"} linkName={"Dostawa i zwroty"} />
-						<ListWithLink href={"/"} linkName={"Reklamacje"} />
+						<ListWithLink
+							href={"/"}
+							linkName={"Regulamin"}
+							aria-label="Regulamin"
+						/>
+						<ListWithLink
+							href={"/"}
+							linkName={"Polityka prywatności"}
+							aria-label="Polityka prywatności"
+						/>
+						<ListWithLink
+							href={"/"}
+							linkName={"Dostawa i zwroty"}
+							aria-label="Dostawa i zwroty"
+						/>
+						<ListWithLink
+							href={"/"}
+							linkName={"Reklamacje"}
+							aria-label="Reklamacje"
+						/>
 					</UnorderedList>
 					<UnorderedList title="Social" className="mt-6 w-1/2 pr-3">
 						<ListWithLink
 							href="https://www.facebook.com/glamoons"
 							linkName={"Facebook"}
 							passHref={true}
+							aria-label="Facebook Glamoons"
 						/>
 						<ListWithLink
 							href="https://www.instagram.com/glamoons_com/"
 							linkName={"Instagram"}
 							passHref={true}
+							aria-label="Instagram Glamoons"
 						/>
 						<ListWithLink
 							href="https://www.pinterest.com/"
 							linkName={"Pinterest"}
 							passHref={true}
+							aria-label="Pinterest Glamoons"
 						/>
 					</UnorderedList>
 					<div className="mt-6 flex w-1/2 flex-col space-y-3 pl-3">

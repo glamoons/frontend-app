@@ -1,8 +1,12 @@
 import { BaseProps } from "@/interfaces/base";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { Button, ButtonProps } from "@/components/ui/button";
 
-export const RoundedButton = ({ children, className, ...props }: BaseProps) => {
+export const RoundedButton = ({
+	children,
+	className,
+	...props
+}: BaseProps & ButtonProps) => {
 	return (
 		<Button
 			{...props}

@@ -15,16 +15,40 @@ export const Footer = () => {
 			<div className="flex w-full flex-col space-y-10 tablet:flex-row tablet:justify-between tablet:space-x-10 tablet:space-y-0">
 				<div className="flex flex-row justify-between space-x-10 tablet:w-2/3">
 					<UnorderedList title="O firmie" className="w-1/2">
-						<ListWithLink href={"/"} linkName={"Konfigurator"} />
-						<ListWithLink href={"/"} linkName={"FAQ"} />
-						<ListWithLink href={"/"} linkName={"Dla biznesu"} />
-						<ListWithLink href={"/"} linkName={"Blog"} />
+						<ListWithLink
+							href={"/"}
+							linkName={"Konfigurator"}
+							aria-label="Konfigurator"
+						/>
+						<ListWithLink href={"/"} linkName={"FAQ"} aria-label="FAQ" />
+						<ListWithLink
+							href={"/"}
+							linkName={"Dla biznesu"}
+							aria-label="Dla biznesu"
+						/>
+						<ListWithLink href={"/"} linkName={"Blog"} aria-label="Blog" />
 					</UnorderedList>
 					<UnorderedList title="Informacje" className="w-1/2">
-						<ListWithLink href={"/"} linkName={"Regulamin"} />
-						<ListWithLink href={"/"} linkName={"Polityka prywatności"} />
-						<ListWithLink href={"/"} linkName={"Dostawa i zwroty"} />
-						<ListWithLink href={"/"} linkName={"Reklamacje"} />
+						<ListWithLink
+							href={"/"}
+							linkName={"Regulamin"}
+							aria-label="Regulamin"
+						/>
+						<ListWithLink
+							href={"/"}
+							linkName={"Polityka prywatności"}
+							aria-label="Polityka prywatności"
+						/>
+						<ListWithLink
+							href={"/"}
+							linkName={"Dostawa i zwroty"}
+							aria-label="Dostawa i zwroty"
+						/>
+						<ListWithLink
+							href={"/"}
+							linkName={"Reklamacje"}
+							aria-label="Reklamacje"
+						/>
 					</UnorderedList>
 				</div>
 				<NewsletterForm
@@ -40,16 +64,19 @@ export const Footer = () => {
 						href="https://www.facebook.com/glamoons"
 						icon={<IconBrandFacebook />}
 						name="Facebook"
+						aria-label="Facebook Glamoons"
 					/>
 					<SocialLink
 						href="https://www.instagram.com/glamoons_com/"
 						icon={<IconBrandInstagram />}
 						name="Instagram"
+						aria-label="Instagram Glamoons"
 					/>
 					<SocialLink
 						href="https://www.pinterest.com/"
 						icon={<IconBrandPinterest />}
 						name="Pinterest"
+						aria-label="Pinterest Glamoons"
 					/>
 				</div>
 				<p className="text-sm font-light text-secondary">
