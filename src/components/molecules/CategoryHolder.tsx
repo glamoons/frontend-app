@@ -1,7 +1,4 @@
-type CategoryHolderProps = {
-	title: string;
-	btnName: string;
-};
+import { CategoryHolderProps } from "@/interfaces/base";
 
 export const CategoryHolder = ({ title, btnName }: CategoryHolderProps) => {
 	return (
