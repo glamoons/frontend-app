@@ -16,16 +16,16 @@ export const CategorySection = () => {
 			<div className="mx-[-1.563rem] mt-[50px] flex flex-row laptop:mx-0 laptop:space-x-10">
 				<Category
 					href="/"
-					mobileSrc="https://res.cloudinary.com/dstimijog/image/upload/v1706596875/table-mobile_zbtmux.jpg"
+					mobileSrc="https://res.cloudinary.com/dstimijog/image/upload/v1707385347/table-mobile_zbtmux_azge19.webp"
 					alt="Stoliki"
-					desktopSrc="https://res.cloudinary.com/dstimijog/image/upload/v1706596875/table-desktop_jlpwqf.jpg"
+					desktopSrc="https://res.cloudinary.com/dstimijog/image/upload/v1707385347/table-desktop_jlpwqf_h1i5pz.webp"
 					title="Stoliki"
 				/>
 				<Category
 					href="/"
-					mobileSrc="https://res.cloudinary.com/dstimijog/image/upload/v1706596875/clock-mobile_revov9.jpg"
+					mobileSrc="https://res.cloudinary.com/dstimijog/image/upload/v1707385343/clock-mobile_revov9_djxphc.webp"
 					alt="Zegary"
-					desktopSrc="https://res.cloudinary.com/dstimijog/image/upload/v1706596875/clock-desktop_kisu3w.jpg"
+					desktopSrc="https://res.cloudinary.com/dstimijog/image/upload/v1707385343/clock-desktop_kisu3w_lkn1dt.webp"
 					title="Zegary"
 				/>
 			</div>
