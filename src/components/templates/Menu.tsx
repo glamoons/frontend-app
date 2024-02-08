@@ -13,7 +13,7 @@ export const Menu = () => {
 	return (
 		<div
 			className={cn(
-				"fixed left-0 right-0 top-0 z-50 mx-auto h-full w-screen translate-y-[-100%] bg-slate50 pb-16 pt-24 opacity-0 transition-all duration-500 ease-in-out",
+				"fixed left-0 right-0 top-0 z-[100] mx-auto h-full w-screen translate-y-[-100%] bg-slate50 pb-16 pt-24 opacity-0 transition-all duration-500 ease-in-out",
 				isOpen ? "translate-y-0 overflow-y-auto opacity-100" : "",
 			)}
 		>

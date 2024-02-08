@@ -1,5 +1,5 @@
-import { IconHeart, IconUser, IconShoppingCart } from "@tabler/icons-react";
-import Link from "next/link";
+import { IconHeart, IconShoppingCart, IconUser } from "@tabler/icons-react";
+import { LinkWithIcon } from "@/components/atoms/LinkWithIcon";
 
 type ShoppingActionsNavLinksProps = {
 	favoritesHref: string;
@@ -13,16 +13,19 @@ export const ShoppingActionsNavLinks = ({
 	cartHref,
 }: ShoppingActionsNavLinksProps) => {
 	return (
-		<div className="laptop:flex hidden flex-row space-x-6">
-			<Link href={favoritesHref}>
-				<IconHeart className="text-slate50" />
-			</Link>
-			<Link href={userHref}>
-				<IconUser className="text-slate50" />
-			</Link>
-			<Link href={cartHref}>
-				<IconShoppingCart className="text-slate50" />
-			</Link>
+		<div className="hidden flex-row space-x-6 laptop:flex">
+			<LinkWithIcon
+				href={favoritesHref}
+				icon={<IconHeart className="text-slate50" />}
+			/>
+			<LinkWithIcon
+				href={userHref}
+				icon={<IconUser className="text-slate50" />}
+			/>
+			<LinkWithIcon
+				href={cartHref}
+				icon={<IconShoppingCart className="text-slate50" />}
+			/>
 		</div>
 	);
 };

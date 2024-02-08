@@ -18,8 +18,11 @@ export const NewsArticle = ({
 	href = "/",
 }: NewsArticleProps) => {
 	return (
-		<article className="laptop:even:pl-0 laptop:odd:pr-0 laptop:pb-0 tablet:even:pl-6 tablet:odd:pr-6 tablet:pb-6 tablet:w-1/2 flex flex-col space-y-6">
-			<figure>
+		<Link
+			href={href}
+			className="group flex flex-col space-y-6 tablet:w-1/2 tablet:pb-6 tablet:odd:pr-6 tablet:even:pl-6 laptop:pb-0 laptop:odd:pr-0 laptop:even:pl-0"
+		>
+			<figure className="overflow-hidden">
 				<NextImage
 					src={src}
 					alt={alt}
@@ -30,16 +33,15 @@ export const NewsArticle = ({
 					}}
 					width={360}
 					height={200}
+					className="block h-full w-full transform object-cover transition-transform duration-500 group-hover:scale-[1.05]"
 				/>
 			</figure>
 			<div className="flex flex-col space-y-2">
-				<Link href={href}>
-					<span className="line-clamp-3 text-ellipsis text-base font-bold tracking-[-0.014em] text-secondary">
-						{title}
-					</span>
-				</Link>
+				<span className="line-clamp-3 text-ellipsis text-base font-bold tracking-[-0.014em] text-secondary">
+					{title}
+				</span>
 				<DefaultText className="text-primaryDark">{date}</DefaultText>
 			</div>
-		</article>
+		</Link>
 	);
 };

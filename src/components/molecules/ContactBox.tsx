@@ -1,6 +1,7 @@
 import { DefaultText } from "@/components/atoms/DefaultText";
 import { ContactInformationProps } from "@/interfaces/base";
 import { cn } from "@/lib/utils";
+import { ActionLink } from "../atoms/ActionLink";
 
 type ContactBoxProps = {
 	phone: ContactInformationProps["phone"];
@@ -29,12 +30,8 @@ export const ContactBox = ({
 				)}
 			>
 				<div className="flex flex-col laptop:text-lg">
-					<a href={`tel:${phone}`} className="block">
-						{phone}
-					</a>
-					<a href={`mailto:${email}`} className="block">
-						{email}
-					</a>
+					<ActionLink actionHref={`tel:${phone}`} actionText={phone} />
+					<ActionLink actionHref={`mailto:${email}`} actionText={email} />
 				</div>
 				<DefaultText className={cn("text-sm text-slate50", textClassName)}>
 					{workingHours}

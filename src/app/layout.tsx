@@ -5,6 +5,7 @@ import { Menu } from "@/components/templates/Menu";
 import type { Metadata } from "next";
 import "./globals.css";
 import { NavigationProvider } from "./providers/navigation-provider";
+import { MenuBar } from "@/components/organisms/MenuBar";
 
 export const metadata: Metadata = {
 	title: "Glamoons: konfigurowalne stoliki i zegary w stylu glamour.",
@@ -23,6 +24,7 @@ export default function RootLayout({
 				<Body>
 					<Header />
 					<Menu />
+					<MenuBar />
 					<main>{children}</main>
 					<Footer />
 				</Body>

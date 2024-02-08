@@ -11,9 +11,9 @@ import { NewsletterForm } from "./NewsletterForm";
 export const Footer = () => {
 	const year = new Date().getFullYear();
 	return (
-		<footer className="desktop:py-[100px] desktop:space-y-[3.125rem] container mx-auto flex w-full flex-col items-center justify-between space-y-10 py-[3.125rem]">
-			<div className="tablet:flex-row tablet:space-y-0 tablet:justify-between tablet:space-x-10 flex w-full flex-col space-y-10">
-				<div className="tablet:w-2/3 flex flex-row justify-between space-x-10">
+		<footer className="container mx-auto mb-[3.75rem] flex w-full flex-col items-center justify-between space-y-10 py-[3.125rem] tabletLg:mb-0 desktop:space-y-[3.125rem] desktop:py-[100px]">
+			<div className="flex w-full flex-col space-y-10 tablet:flex-row tablet:justify-between tablet:space-x-10 tablet:space-y-0">
+				<div className="flex flex-row justify-between space-x-10 tablet:w-2/3">
 					<UnorderedList title="O firmie" className="w-1/2">
 						<ListWithLink href={"/"} linkName={"Konfigurator"} />
 						<ListWithLink href={"/"} linkName={"FAQ"} />
@@ -34,8 +34,8 @@ export const Footer = () => {
 				/>
 			</div>
 			<hr className="w-full border-t border-primaryLight" />
-			<div className="tablet:flex-row tablet:space-y-0 tablet:justify-between tablet:items-center tablet:w-full desktop:mt-[3.125rem] mt-10 flex flex-col space-y-8">
-				<div className="tablet:w-1/3 flex flex-row justify-between">
+			<div className="mt-10 flex flex-col space-y-8 tablet:w-full tablet:flex-row tablet:items-center tablet:justify-between tablet:space-y-0 desktop:mt-[3.125rem]">
+				<div className="flex flex-row justify-between tablet:w-1/3">
 					<SocialLink
 						href="https://www.facebook.com/glamoons"
 						icon={<IconBrandFacebook />}

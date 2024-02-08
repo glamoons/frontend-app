@@ -20,11 +20,11 @@ export const Header = () => {
 	return (
 		<header
 			className={cn(
-				"container absolute left-0 right-0 top-0 z-[100] mx-auto flex w-full flex-row items-center justify-between",
+				"container absolute left-0 right-0 top-0 z-[101] mx-auto flex w-full flex-row items-center justify-between",
 				isOpen ? "py-9" : "py-5",
 			)}
 		>
-			<Navigation className="laptop:flex hidden" />
+			<Navigation className="hidden laptop:flex" />
 			<Link href="/">{!isOpen ? <LogoLight /> : null}</Link>
 			<ShoppingActionsNavLinks favoritesHref="/" userHref="/" cartHref="/" />
 			<MobileMenuHandler
