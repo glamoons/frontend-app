@@ -5,7 +5,7 @@ import { SecondaryButton } from "../atoms/SecondaryButton";
 
 export const ConfiguratorSection = () => {
 	return (
-		<Section className="overflow-hidden bg-primaryLight 3xl:container 3xl:rounded-3xl">
+		<Section className="overflow-hidden bg-slate50 3xl:container 3xl:rounded-3xl">
 			<div className="container mx-auto tablet:flex tablet:flex-row 3xl:px-0">
 				<div className="mt-[-50px] flex min-h-[390px] flex-col items-center justify-center space-y-6 tablet:mr-[1.563rem] tablet:mt-0 tablet:min-h-max tablet:w-1/2 tabletLg:items-start desktop:mr-[3.125rem]">
 					<SectionHeading

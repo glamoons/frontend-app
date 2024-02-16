@@ -4,7 +4,7 @@ import { NewsletterForm } from "../organisms/NewsletterForm";
 
 export const NewsletterSection = () => {
 	return (
-		<Section className="3xl:container 3xl:rounded-3xl bg-primaryLight">
+		<Section className="bg-slate50 3xl:container 3xl:rounded-3xl">
 			<div className="container mx-auto space-y-8">
 				<SectionHeading
 					title="Zapisz się do newslettera"

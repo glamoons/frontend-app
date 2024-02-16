@@ -4,7 +4,7 @@ import { NewsArticle } from "@/components/organisms/NewsArticle";
 
 export const NewsSection = () => {
 	return (
-		<Section className="bg-slate50">
+		<Section className="bg-slate100">
 			<div className="container mx-auto flex flex-col space-y-[50px]">
 				<SectionHeading
 					title="Najnowsze wpisy"
