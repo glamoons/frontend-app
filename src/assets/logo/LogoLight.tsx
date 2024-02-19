@@ -3,8 +3,8 @@ const LogoLight = ({
 	width = 119,
 	height = 80,
 }: {
-	width?: number;
-	height?: number;
+	width: number;
+	height: number;
 }) => (
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
