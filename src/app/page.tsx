@@ -10,9 +10,9 @@ import type { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
 	return {
-		metadataBase: new URL("https://glamoons.com"),
+		metadataBase: new URL("https://dev.glamoons.com"),
 		alternates: {
-			canonical: "https://glamoons.com",
+			canonical: "https://dev.glamoons.com",
 		},
 		title: "Glamoons: konfigurowalne stoliki i zegary w stylu glamour.",
 		description:
@@ -23,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
 				"Stoliki i zegary w stylu glamour do pełnej konfiguracji. Darmowa dostawa i zwroty do 100 dni.",
 			type: "website",
 			siteName: "Glamoons",
-			url: "https://glamoons.com/",
+			url: "https://dev.glamoons.com/",
 		},
 	};
 }
