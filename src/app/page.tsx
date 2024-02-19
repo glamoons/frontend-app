@@ -6,6 +6,27 @@ import { ContactSection } from "@/components/templates/ContactSection";
 import { NewsSection } from "@/components/templates/NewsSections";
 import { NewsletterSection } from "@/components/templates/NewsletterSection";
 import { ReviewsSection } from "@/components/templates/ReviewsSection";
+import type { Metadata } from "next";
+
+export async function generateMetadata(): Promise<Metadata> {
+	return {
+		metadataBase: new URL("https://glamoons.com"),
+		alternates: {
+			canonical: "https://glamoons.com",
+		},
+		title: "Glamoons: konfigurowalne stoliki i zegary w stylu glamour.",
+		description:
+			"Stoliki i zegary w stylu glamour do pełnej konfiguracji. Darmowa dostawa i zwroty do 100 dni.",
+		openGraph: {
+			title: "Glamoons: konfigurowalne stoliki i zegary w stylu glamour.",
+			description:
+				"Stoliki i zegary w stylu glamour do pełnej konfiguracji. Darmowa dostawa i zwroty do 100 dni.",
+			type: "website",
+			siteName: "Glamoons",
+			url: "https://glamoons.com/",
+		},
+	};
+}
 
 export default function Home() {
 	return (

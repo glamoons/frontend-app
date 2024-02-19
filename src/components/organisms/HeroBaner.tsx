@@ -26,6 +26,7 @@ export const HeroBaner = ({
 					fill
 					sizes="100vw"
 					style={{ objectFit: "cover", opacity: 0.7 }}
+					priority
 				/>
 			</picture>
 			<HeroBox />
