@@ -74,7 +74,7 @@ const ContactForm = ({ className }: ContactFormProps) => {
 				<TextArea rows={5} {...register("message", { required: true })} />
 			</div>
 			<SubmitButton className="w-full bg-secondary text-slate50">
-				Submit
+				Wyślij
 			</SubmitButton>
 		</form>
 	);
