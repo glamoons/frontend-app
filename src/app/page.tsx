@@ -14,11 +14,11 @@ export async function generateMetadata(): Promise<Metadata> {
 		alternates: {
 			canonical: "https://dev.glamoons.com",
 		},
-		title: "Glamoons: konfigurowalne stoliki i zegary w stylu glamour.",
+		title: "Glamoons - konfigurowalne stoliki i zegary w stylu glamour.",
 		description:
 			"Stoliki i zegary w stylu glamour do pełnej konfiguracji. Darmowa dostawa i zwroty do 100 dni.",
 		openGraph: {
-			title: "Glamoons: konfigurowalne stoliki i zegary w stylu glamour.",
+			title: "Glamoons - konfigurowalne stoliki i zegary w stylu glamour.",
 			description:
 				"Stoliki i zegary w stylu glamour do pełnej konfiguracji. Darmowa dostawa i zwroty do 100 dni.",
 			type: "website",

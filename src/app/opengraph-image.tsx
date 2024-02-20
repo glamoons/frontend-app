@@ -5,7 +5,8 @@ import { CSSProperties } from "react";
 // Route segment config
 export const runtime = "edge";
 
-export const alt = "Glamoons: konfigurowalne stoliki i zegary w stylu glamour.";
+export const alt =
+	"Glamoons - konfigurowalne stoliki i zegary w stylu glamour.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

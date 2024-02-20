@@ -1,10 +1,12 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import {
 	createContext,
+	useContext,
 	useState,
 	type SetStateAction,
-	useContext,
+	useEffect,
 } from "react";
 
 const NavigationContext = createContext({
@@ -18,6 +20,16 @@ export const NavigationProvider = ({
 	children: React.ReactNode;
 }) => {
 	const [isOpen, setIsOpen] = useState(false);
+	const pathname = usePathname();
+
+	useEffect(() => {
+		if (isOpen) {
+			setTimeout(() => {
+				setIsOpen(false);
+			}, 300);
+		}
+	}, [pathname]);
+
 	return (
 		<NavigationContext.Provider value={{ isOpen, setIsOpen }}>
 			{children}

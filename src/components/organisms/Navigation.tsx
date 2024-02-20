@@ -23,7 +23,7 @@ export const Navigation = ({ className }: NavigationProps) => {
 				<NavLink href="/" aria-label="Blog">
 					Blog
 				</NavLink>
-				<NavLink href="/" aria-label="Kontakt">
+				<NavLink href="/contact" aria-label="Kontakt">
 					Kontakt
 				</NavLink>
 			</ul>
