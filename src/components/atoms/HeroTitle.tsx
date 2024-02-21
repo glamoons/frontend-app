@@ -1,8 +1,8 @@
 "use client";
 
-import { BaseProps } from "@/interfaces/base";
-import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
+import { type BaseProps } from "@/interfaces/base";
+import { cn } from "@/lib/utils";
 
 export const HeroTitle = ({ children, className }: BaseProps) => {
 	const pathname = usePathname();

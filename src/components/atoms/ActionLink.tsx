@@ -1,4 +1,4 @@
-import { AnchorHTMLAttributes, DetailedHTMLProps } from "react";
+import type { AnchorHTMLAttributes, DetailedHTMLProps } from "react";
 
 type ActionLinkProps = {
 	actionHref: string;

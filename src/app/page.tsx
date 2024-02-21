@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { HeroBaner } from "@/components/organisms/HeroBaner";
 import { BenefitSection } from "@/components/templates/BenefitSection";
 import { CategorySection } from "@/components/templates/CategorySection";
@@ -6,7 +7,6 @@ import { ContactSection } from "@/components/templates/ContactSection";
 import { NewsSection } from "@/components/templates/NewsSections";
 import { NewsletterSection } from "@/components/templates/NewsletterSection";
 import { ReviewsSection } from "@/components/templates/ReviewsSection";
-import type { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
 	return {

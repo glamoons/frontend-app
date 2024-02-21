@@ -1,7 +1,7 @@
+import { ActionLink } from "@/components/atoms/ActionLink";
 import { DefaultText } from "@/components/atoms/DefaultText";
-import { ContactInformationProps } from "@/interfaces/base";
+import { type ContactInformationProps } from "@/interfaces/base";
 import { cn } from "@/lib/utils";
-import { ActionLink } from "../atoms/ActionLink";
 
 type ContactBoxProps = {
 	phone: ContactInformationProps["phone"];
@@ -41,7 +41,9 @@ export const ContactBox = ({
 						aria-label={email}
 					/>
 				</div>
-				<DefaultText className={cn("text-sm text-slate50", textClassName)}>
+				<DefaultText
+					className={cn("text-sm font-light text-slate50", textClassName)}
+				>
 					{workingHours}
 				</DefaultText>
 			</div>

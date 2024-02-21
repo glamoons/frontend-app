@@ -3,10 +3,10 @@ import {
 	IconBrandInstagram,
 	IconBrandPinterest,
 } from "@tabler/icons-react";
+import { NewsletterForm } from "./NewsletterForm";
 import { SocialLink } from "@/components/atoms/SocialLink";
 import { ListWithLink } from "@/components/molecules/ListWithLink";
 import { UnorderedList } from "@/components/molecules/UnorderedList";
-import { NewsletterForm } from "./NewsletterForm";
 
 export const Footer = () => {
 	const year = new Date().getFullYear();

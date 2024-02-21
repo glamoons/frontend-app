@@ -1,5 +1,5 @@
 import { NavLink } from "@/components/atoms/NavLink";
-import { BaseProps } from "@/interfaces/base";
+import { type BaseProps } from "@/interfaces/base";
 import { cn } from "@/lib/utils";
 
 type NavigationProps = {

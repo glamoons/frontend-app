@@ -1,6 +1,6 @@
-import { LinkProps } from "next/link";
+import { type LinkProps } from "next/link";
 import { DefaultButton } from "./DefaultButton";
-import { BaseProps } from "@/interfaces/base";
+import { type BaseProps } from "@/interfaces/base";
 import { cn } from "@/lib/utils";
 
 export const PrimaryButton = ({

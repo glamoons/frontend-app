@@ -1,6 +1,6 @@
-import { BaseProps } from "@/interfaces/base";
+import { type BaseProps } from "@/interfaces/base";
 import { cn } from "@/lib/utils";
-import { Button, ButtonProps } from "@/components/ui/button";
+import { Button, type ButtonProps } from "@/components/ui/button";
 
 export const RoundedButton = ({
 	children,

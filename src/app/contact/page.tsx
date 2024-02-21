@@ -1,8 +1,9 @@
+import type { Metadata } from "next";
 import { DefaultText } from "@/components/atoms/DefaultText";
 import { HeroTitle } from "@/components/atoms/HeroTitle";
 import { Section } from "@/components/atoms/Section";
-import ContactForm from "@/components/organisms/ContactForm";
-import type { Metadata } from "next";
+import { ContactForm } from "@/components/organisms/ContactForm";
+import { ContactInformation } from "@/components/organisms/ContactInformation";
 
 export async function generateMetadata(): Promise<Metadata> {
 	return {
@@ -26,16 +27,26 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const ContactPage = () => {
 	return (
-		<Section className="container mx-auto">
-			<div className="space-y-4">
-				<HeroTitle>Skontaktuj się z nami</HeroTitle>
-				<DefaultText>
-					Jeśli masz pytania, informację zwrotną w sprawie Twojej przesyłki lub
-					po prostu chcesz się przywitać - napisz do nas!
-				</DefaultText>
-			</div>
-			<ContactForm className="mt-10" />
-		</Section>
+		<>
+			<Section className="container mx-auto space-y-10">
+				<div className="space-y-4">
+					<HeroTitle>Skontaktuj się z nami</HeroTitle>
+					<DefaultText>
+						Jeśli masz pytania, informację zwrotną w sprawie Twojej przesyłki
+						lub po prostu chcesz się przywitać - napisz do nas!
+					</DefaultText>
+				</div>
+				<ContactForm />
+				<ContactInformation
+					address="Glamoons Sp. z o.o. Poręba Wielka 31 34-735 Niedźwiedź"
+					phone="+48784525956"
+					email="sklep@glamoons.com"
+					workingHours="Pon-Pt 8:00-16:00 CET"
+					color="text-secondary"
+				/>
+			</Section>
+			<hr className="mx-[1.563rem] border-t border-primaryLight tabletLg:hidden" />
+		</>
 	);
 };
 

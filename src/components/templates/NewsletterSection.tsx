@@ -1,6 +1,6 @@
+import { NewsletterForm } from "@/components/organisms/NewsletterForm";
 import { Section } from "@/components/atoms/Section";
 import { SectionHeading } from "@/components/molecules/SectionHeading";
-import { NewsletterForm } from "../organisms/NewsletterForm";
 
 export const NewsletterSection = () => {
 	return (

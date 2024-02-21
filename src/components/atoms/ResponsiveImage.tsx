@@ -1,6 +1,6 @@
-import { ResponsiveImageProps } from "@/interfaces/base";
 import NextImage from "next/image";
-import { DetailedHTMLProps, HTMLAttributes } from "react";
+import { type DetailedHTMLProps, type HTMLAttributes } from "react";
+import { type ResponsiveImageProps } from "@/interfaces/base";
 
 export const ResponsiveImage = ({
 	style,

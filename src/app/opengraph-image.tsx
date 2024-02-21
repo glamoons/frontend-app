@@ -1,6 +1,6 @@
-import LogoLight from "@/assets/logo/LogoLight";
+import type { CSSProperties } from "react";
 import { ImageResponse } from "next/og";
-import { CSSProperties } from "react";
+import { LogoLight } from "@/assets/logo/LogoLight";
 
 // Route segment config
 export const runtime = "edge";

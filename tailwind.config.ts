@@ -57,6 +57,12 @@ const config = {
 				slate100: {
 					DEFAULT: "hsl(var(--slate-100))",
 				},
+				error: {
+					DEFAULT: "hsl(var(--error))",
+				},
+				success: {
+					DEFAULT: "hsl(var(--success))",
+				},
 			},
 			borderRadius: {
 				lg: "var(--radius)",

@@ -1,11 +1,11 @@
+import Link from "next/link";
 import { ResponsiveImage } from "@/components/atoms/ResponsiveImage";
 import { CategoryHolder } from "@/components/molecules/CategoryHolder";
 import {
-	BaseProps,
-	CategoryHolderProps,
-	ResponsiveImageProps,
+	type BaseProps,
+	type CategoryHolderProps,
+	type ResponsiveImageProps,
 } from "@/interfaces/base";
-import Link from "next/link";
 
 interface CategoryProps extends ResponsiveImageProps, CategoryHolderProps {
 	href: BaseProps["href"];

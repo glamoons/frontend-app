@@ -3,6 +3,7 @@ export type BaseProps = {
 	className?: string;
 	href?: string;
 	icon?: JSX.Element;
+	color?: string;
 };
 
 export type ContactInformationProps = {

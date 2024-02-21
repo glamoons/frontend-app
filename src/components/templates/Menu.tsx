@@ -5,8 +5,8 @@ import { ListWithLink } from "@/components/molecules/ListWithLink";
 import { UnorderedList } from "@/components/molecules/UnorderedList";
 import { Navigation } from "@/components/organisms/Navigation";
 import { cn } from "@/lib/utils";
-import { FooterHeading } from "../atoms/FooterHeading";
-import { ContactBox } from "../molecules/ContactBox";
+import { FooterHeading } from "@/components/atoms/FooterHeading";
+import { ContactBox } from "@/components/molecules/ContactBox";
 
 export const Menu = () => {
 	const { isOpen } = useNavigationContext();
@@ -14,7 +14,9 @@ export const Menu = () => {
 		<div
 			className={cn(
 				"fixed left-0 right-0 top-0 z-[100] mx-auto h-full w-screen translate-y-[-100%] bg-slate50 pb-16 pt-24 opacity-0 transition-all duration-500 ease-in-out",
-				isOpen ? "translate-y-0 overflow-y-auto opacity-100" : "",
+				isOpen
+					? "translate-y-0 overflow-y-auto opacity-100"
+					: "pointer-events-none",
 			)}
 		>
 			<div className="container mx-auto space-y-16 max-[360px]:px-3">
@@ -67,18 +69,21 @@ export const Menu = () => {
 							linkName={"Facebook"}
 							passHref={true}
 							aria-label="Facebook Glamoons"
+							target="_blank"
 						/>
 						<ListWithLink
 							href="https://www.instagram.com/glamoons_com/"
 							linkName={"Instagram"}
 							passHref={true}
 							aria-label="Instagram Glamoons"
+							target="_blank"
 						/>
 						<ListWithLink
 							href="https://www.pinterest.com/"
 							linkName={"Pinterest"}
 							passHref={true}
 							aria-label="Pinterest Glamoons"
+							target="_blank"
 						/>
 					</UnorderedList>
 					<div className="mt-6 flex w-1/2 flex-col space-y-3 pl-3">

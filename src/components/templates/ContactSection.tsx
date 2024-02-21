@@ -1,6 +1,6 @@
 import { Section } from "@/components/atoms/Section";
 import { SectionHeading } from "@/components/molecules/SectionHeading";
-import { ContactInformation } from "../organisms/ContactInformation";
+import { ContactInformation } from "@/components/organisms/ContactInformation";
 
 export const ContactSection = () => {
 	return (

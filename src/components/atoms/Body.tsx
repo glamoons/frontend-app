@@ -1,8 +1,8 @@
 "use client";
 
+import localFont from "next/font/local";
 import { useNavigationContext } from "@/app/providers/navigation-provider";
 import { cn } from "@/lib/utils";
-import localFont from "next/font/local";
 
 const proximanova = localFont({
 	variable: "--font-proximanova",

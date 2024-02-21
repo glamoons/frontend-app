@@ -1,9 +1,9 @@
+import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
+import { RoundedButton } from "@/components/atoms/RoundedButton";
 import { DefaultText } from "@/components/atoms/DefaultText";
 import { QuotationText } from "@/components/atoms/QuotationText";
 import { Section } from "@/components/atoms/Section";
 import { SubHeading } from "@/components/atoms/SubHeading";
-import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
-import { RoundedButton } from "../atoms/RoundedButton";
 
 export const ReviewsSection = () => {
 	return (

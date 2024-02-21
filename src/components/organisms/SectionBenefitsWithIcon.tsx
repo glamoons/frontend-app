@@ -1,11 +1,11 @@
-import { BoxWithIcon } from "@/components/atoms/IconBox";
-import { BaseProps } from "@/interfaces/base";
-import { cn } from "@/lib/utils";
 import {
 	IconDeviceMobileCharging,
 	IconPackageImport,
 	IconShieldChevron,
 } from "@tabler/icons-react";
+import { BoxWithIcon } from "@/components/atoms/IconBox";
+import { type BaseProps } from "@/interfaces/base";
+import { cn } from "@/lib/utils";
 
 type SectionBenefitsWithIconProps = {
 	className?: BaseProps["className"];

@@ -1,24 +1,19 @@
 "use client";
 
-import { useNavigationContext } from "@/app/providers/navigation-provider";
-import LogoLight from "@/assets/logo/LogoLight";
-import { MobileMenuHandler } from "@/components/atoms/MobileMenuHandler";
-import { cn } from "@/lib/utils";
 import { IconMenuDeep, IconX } from "@tabler/icons-react";
 import Link from "next/link";
-import { useCallback } from "react";
-import { ShoppingActionsNavLinks } from "@/components/molecules/ShoppingActionsNavLinks";
-import { Navigation } from "./Navigation";
 import { usePathname } from "next/navigation";
-import LogoDark from "@/assets/logo/LogoDark";
+import { Navigation } from "./Navigation";
+import { useNavigationContext } from "@/app/providers/navigation-provider";
+import { LogoDark } from "@/assets/logo/LogoDark";
+import { LogoLight } from "@/assets/logo/LogoLight";
+import { MobileMenuHandler } from "@/components/atoms/MobileMenuHandler";
+import { ShoppingActionsNavLinks } from "@/components/molecules/ShoppingActionsNavLinks";
+import { cn } from "@/lib/utils";
 
 export const Header = () => {
 	const { setIsOpen, isOpen } = useNavigationContext();
 	const pathname = usePathname();
-
-	const handleOpenMenu = useCallback(() => {
-		setIsOpen(!isOpen);
-	}, [isOpen]);
 
 	return (
 		<header
@@ -34,7 +29,7 @@ export const Header = () => {
 			</Link>
 			<ShoppingActionsNavLinks favoritesHref="/" userHref="/" cartHref="/" />
 			<MobileMenuHandler
-				onClick={handleOpenMenu}
+				onClick={() => setIsOpen(!isOpen)}
 				className={cn(
 					isOpen || pathname !== "/" ? "text-secondary" : "",
 					"laptop:hidden",

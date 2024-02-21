@@ -28,7 +28,7 @@ export const NavigationProvider = ({
 				setIsOpen(false);
 			}, 300);
 		}
-	}, [pathname]);
+	}, [isOpen, pathname]);
 
 	return (
 		<NavigationContext.Provider value={{ isOpen, setIsOpen }}>

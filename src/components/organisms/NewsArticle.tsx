@@ -1,6 +1,6 @@
-import { DefaultText } from "@/components/atoms/DefaultText";
-import Link, { LinkProps } from "next/link";
+import Link, { type LinkProps } from "next/link";
 import NextImage from "next/image";
+import { DefaultText } from "@/components/atoms/DefaultText";
 
 type NewsArticleProps = {
 	src: string;

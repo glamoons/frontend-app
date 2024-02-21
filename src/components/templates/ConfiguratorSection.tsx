@@ -1,7 +1,7 @@
 import { Section } from "@/components/atoms/Section";
 import { SectionHeading } from "@/components/molecules/SectionHeading";
-import { ResponsiveImage } from "../atoms/ResponsiveImage";
-import { SecondaryButton } from "../atoms/SecondaryButton";
+import { ResponsiveImage } from "@/components/atoms/ResponsiveImage";
+import { SecondaryButton } from "@/components/atoms/SecondaryButton";
 
 export const ConfiguratorSection = () => {
 	return (
