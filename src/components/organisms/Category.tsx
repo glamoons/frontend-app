@@ -27,6 +27,7 @@ export const Category = ({
 					alt={alt}
 					desktopSrc={desktopSrc}
 					className="h-full w-full transform transition-transform duration-500 group-hover:scale-[1.05]"
+					sizes="50vw"
 				/>
 				<CategoryHolder title={title} btnName={btnName || "zobacz więcej"} />
 			</Link>

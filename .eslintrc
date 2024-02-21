@@ -96,7 +96,7 @@
 				{
 					"files": ["src/tailwind.config.ts"],
 					"rules": {
-						"import/no-default-export": "warn",
+						"import/no-default-export": "off",
 					},
 				},
 			],
@@ -105,5 +105,5 @@
 			},
 		},
 	],
-	"ignorePatterns": ["*.js", "*.jsx"],
+	"ignorePatterns": ["*.js", "*.jsx", "tailwind.config.ts"],
 }
