@@ -1,4 +1,3 @@
-import * as React from "react";
 export const LogoDark = ({
 	width = 119,
 	height = 80,

@@ -8,6 +8,7 @@ import {
 	type SetStateAction,
 	useEffect,
 } from "react";
+import { type BaseProps } from "@/interfaces/base";
 
 const NavigationContext = createContext({
 	isOpen: false,
@@ -17,7 +18,7 @@ const NavigationContext = createContext({
 export const NavigationProvider = ({
 	children,
 }: {
-	children: React.ReactNode;
+	children: BaseProps["children"];
 }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const pathname = usePathname();

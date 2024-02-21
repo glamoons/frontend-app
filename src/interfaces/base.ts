@@ -1,5 +1,7 @@
+import { type ReactNode } from "react";
+
 export type BaseProps = {
-	children: React.ReactNode;
+	children: ReactNode;
 	className?: string;
 	href?: string;
 	icon?: JSX.Element;

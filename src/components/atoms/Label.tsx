@@ -1,6 +1,7 @@
+import { type LabelHTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 
-type LabelProps = React.LabelHTMLAttributes<HTMLLabelElement> & {
+type LabelProps = LabelHTMLAttributes<HTMLLabelElement> & {
 	className?: string;
 };
 

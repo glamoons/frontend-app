@@ -1,8 +1,9 @@
+import { type ReactNode } from "react";
 import { DefaultText } from "./DefaultText";
 import { Heading } from "./Heading";
 
 type BoxWithIconProps = {
-	icon: React.ReactNode;
+	icon: ReactNode;
 	title: string;
 	subTitle: string;
 	desctiption: string;
@@ -15,7 +16,7 @@ export const BoxWithIcon = ({
 	desctiption,
 }: BoxWithIconProps) => {
 	return (
-		<div className="laptop:w-1/3 laptop:even:pl-0 laptop:odd:pl-0 laptop:odd:pr-10 tablet:even:pl-6 tablet:odd:pr-6 tablet:pb-6 tablet:w-1/2 laptop:px-10 flex flex-col space-y-3">
+		<div className="flex flex-col space-y-3 tablet:w-1/2 tablet:pb-6 tablet:odd:pr-6 tablet:even:pl-6 laptop:w-1/3 laptop:px-10 laptop:odd:pl-0 laptop:odd:pr-10 laptop:even:pl-0">
 			<div className="flex flex-col space-y-3">
 				{icon}
 				<Heading>{title}</Heading>

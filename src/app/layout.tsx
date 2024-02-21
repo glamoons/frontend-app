@@ -5,11 +5,12 @@ import { Header } from "@/components/organisms/Header";
 import { MenuBar } from "@/components/organisms/MenuBar";
 import { Menu } from "@/components/templates/Menu";
 import "./globals.css";
+import { type BaseProps } from "@/interfaces/base";
 
 export default function RootLayout({
 	children,
 }: {
-	children: React.ReactNode;
+	children: BaseProps["children"];
 }) {
 	return (
 		<html lang="pl">
