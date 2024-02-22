@@ -27,7 +27,12 @@ export const Header = () => {
 			<Link href="/" aria-label="Logo Glamoons">
 				{!isOpen ? pathname === "/" ? <LogoLight /> : <LogoDark /> : null}
 			</Link>
-			<ShoppingActionsNavLinks favoritesHref="/" userHref="/" cartHref="/" />
+			<ShoppingActionsNavLinks
+				favoritesHref="/"
+				userHref="/"
+				cartHref="/"
+				className={pathname !== "/" ? "text-secondary" : ""}
+			/>
 			<MobileMenuHandler
 				onClick={() => setIsOpen(!isOpen)}
 				className={cn(

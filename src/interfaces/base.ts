@@ -1,4 +1,8 @@
-import { type ReactNode } from "react";
+import {
+	type DetailedHTMLProps,
+	type HTMLAttributes,
+	type ReactNode,
+} from "react";
 
 export type BaseProps = {
 	children: ReactNode;
@@ -27,3 +31,5 @@ export type CategoryHolderProps = {
 	title: string;
 	btnName?: string;
 };
+
+export type HTMLElements<E> = DetailedHTMLProps<HTMLAttributes<E>, E>;

@@ -1,15 +1,16 @@
 "use client";
 
 import { useNavigationContext } from "@/app/providers/navigation-provider";
+import { FooterHeading } from "@/components/atoms/FooterHeading";
+import { ContactBox } from "@/components/molecules/ContactBox";
 import { ListWithLink } from "@/components/molecules/ListWithLink";
 import { UnorderedList } from "@/components/molecules/UnorderedList";
 import { Navigation } from "@/components/organisms/Navigation";
 import { cn } from "@/lib/utils";
-import { FooterHeading } from "@/components/atoms/FooterHeading";
-import { ContactBox } from "@/components/molecules/ContactBox";
 
 export const Menu = () => {
 	const { isOpen } = useNavigationContext();
+
 	return (
 		<div
 			className={cn(
@@ -87,7 +88,7 @@ export const Menu = () => {
 						/>
 					</UnorderedList>
 					<div className="mt-6 flex w-1/2 flex-col space-y-3 pl-3">
-						<FooterHeading>Kontak</FooterHeading>
+						<FooterHeading>Kontakt</FooterHeading>
 						<ContactBox
 							phone="+48784525956"
 							email="sklep@glamoons.com"

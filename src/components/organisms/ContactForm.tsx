@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import { SubmitButton } from "@/components/atoms/SubmitButton";
 import { TextArea } from "@/components/atoms/TextArea";
 import { ErrorText } from "@/components/atoms/ErrorText";
+import { type HTMLElements } from "@/interfaces/base";
 
 export type FormData = {
 	name: string;
@@ -19,7 +20,7 @@ export type FormData = {
 };
 
 type ContactFormProps = {
-	className?: string;
+	className?: HTMLElements<HTMLFormElement>["className"];
 };
 
 const phoneRegExp =
@@ -64,10 +65,10 @@ export const ContactForm = ({ className }: ContactFormProps) => {
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
-			className={cn("space-y-6", className)}
+			className={cn("flex flex-col space-y-6", className)}
 		>
-			<div className="flex flex-col space-y-10">
-				<div className="flex flex-col space-y-2">
+			<div className="flex flex-col space-y-10 laptop:flex-row laptop:space-x-10 laptop:space-y-0">
+				<div className="flex w-full flex-col space-y-2">
 					<Label htmlFor="name" className={errors.name ? "text-error" : ""}>
 						Imię
 					</Label>
@@ -81,7 +82,7 @@ export const ContactForm = ({ className }: ContactFormProps) => {
 					/>
 					{errors.name && <ErrorText>{errors.name.message}</ErrorText>}
 				</div>
-				<div className="flex flex-col space-y-2">
+				<div className="flex w-full flex-col space-y-2">
 					<Label
 						htmlFor="surname"
 						className={errors.surname ? "text-error" : ""}
@@ -99,8 +100,8 @@ export const ContactForm = ({ className }: ContactFormProps) => {
 					{errors.surname && <ErrorText>{errors.surname.message}</ErrorText>}
 				</div>
 			</div>
-			<div className="flex flex-col space-y-10">
-				<div className="flex flex-col space-y-2">
+			<div className="flex flex-col space-y-10 laptop:flex-row laptop:space-x-10 laptop:space-y-0">
+				<div className="flex w-full flex-col space-y-2">
 					<Label htmlFor="email" className={errors.email ? "text-error" : ""}>
 						Email
 					</Label>
@@ -114,7 +115,7 @@ export const ContactForm = ({ className }: ContactFormProps) => {
 					/>
 					{errors.email && <ErrorText>{errors.email.message}</ErrorText>}
 				</div>
-				<div className="flex flex-col space-y-2">
+				<div className="flex w-full flex-col space-y-2">
 					<div className="flex justify-between">
 						<Label
 							htmlFor="email"

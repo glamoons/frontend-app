@@ -1,17 +1,17 @@
 import { NavLink } from "@/components/atoms/NavLink";
-import { type BaseProps } from "@/interfaces/base";
+import { type HTMLElements } from "@/interfaces/base";
 import { cn } from "@/lib/utils";
 
 type NavigationProps = {
-	className?: BaseProps["className"];
+	className?: HTMLElements<HTMLElement>["className"];
 };
 
 export const Navigation = ({ className }: NavigationProps) => {
 	return (
-		<nav className={className}>
+		<nav className={cn(className)}>
 			<ul
 				className={cn(
-					"lap flex flex-col space-y-4 py-6 laptop:flex-row laptop:space-x-5 laptop:space-y-0",
+					"flex flex-col space-y-4 py-6 laptop:flex-row laptop:space-x-5 laptop:space-y-0",
 				)}
 			>
 				<NavLink href="/" aria-label="O produkcie">

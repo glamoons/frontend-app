@@ -28,22 +28,29 @@ export async function generateMetadata(): Promise<Metadata> {
 const ContactPage = () => {
 	return (
 		<>
-			<Section className="container mx-auto space-y-10">
-				<div className="space-y-4">
-					<HeroTitle>Skontaktuj się z nami</HeroTitle>
-					<DefaultText>
-						Jeśli masz pytania, informację zwrotną w sprawie Twojej przesyłki
-						lub po prostu chcesz się przywitać - napisz do nas!
-					</DefaultText>
+			<Section className="container mx-auto">
+				<div className="flex flex-col space-y-10 tablet:flex-row tablet:space-x-10">
+					<div className="space-y-10 tablet:w-2/3">
+						<div className="space-y-4 laptop:pr-[8.75rem]">
+							<HeroTitle>Skontaktuj się z nami</HeroTitle>
+							<DefaultText>
+								Jeśli masz pytania, informację zwrotną w sprawie Twojej
+								przesyłki lub po prostu chcesz się przywitać - napisz do nas!
+							</DefaultText>
+						</div>
+						<ContactForm />
+					</div>
+					<ContactInformation
+						address="Glamoons Sp. z o.o. Poręba Wielka 31 34-735 Niedźwiedź"
+						phone="+48784525956"
+						email="hello@glamoons.com"
+						workingHours="Pon-Pt 8:00-16:00 CET"
+						textClassName="text-secondary laptop:max-w-[10.25rem]"
+						className="tablet space-x-0 tablet:w-1/3 tablet:flex-col tablet:space-y-10"
+						addressBoxClassName="w-full tabletLg:flex-row tabletLg:space-y-0 tabletLg:space-x-5 tabletLg:justify-end"
+						contactBoxClassName="w-full tabletLg:flex-row tabletLg:space-y-0 tabletLg:space-x-5 tabletLg:justify-end"
+					/>
 				</div>
-				<ContactForm />
-				<ContactInformation
-					address="Glamoons Sp. z o.o. Poręba Wielka 31 34-735 Niedźwiedź"
-					phone="+48784525956"
-					email="sklep@glamoons.com"
-					workingHours="Pon-Pt 8:00-16:00 CET"
-					color="text-secondary"
-				/>
 			</Section>
 			<hr className="mx-[1.563rem] border-t border-primaryLight tabletLg:hidden" />
 		</>

@@ -1,6 +1,9 @@
 import { ActionLink } from "@/components/atoms/ActionLink";
 import { DefaultText } from "@/components/atoms/DefaultText";
-import { type ContactInformationProps } from "@/interfaces/base";
+import {
+	type HTMLElements,
+	type ContactInformationProps,
+} from "@/interfaces/base";
 import { cn } from "@/lib/utils";
 
 type ContactBoxProps = {
@@ -8,8 +11,8 @@ type ContactBoxProps = {
 	email: ContactInformationProps["email"];
 	workingHours: ContactInformationProps["workingHours"];
 	icon?: JSX.Element;
-	textClassName?: string;
-	wrapperClassName?: string;
+	textClassName?: HTMLElements<HTMLDivElement>["className"];
+	wrapperClassName?: HTMLElements<HTMLDivElement>["className"];
 };
 
 export const ContactBox = ({

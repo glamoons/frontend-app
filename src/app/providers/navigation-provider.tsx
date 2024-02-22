@@ -24,12 +24,10 @@ export const NavigationProvider = ({
 	const pathname = usePathname();
 
 	useEffect(() => {
-		if (isOpen) {
-			setTimeout(() => {
-				setIsOpen(false);
-			}, 300);
-		}
-	}, [isOpen, pathname]);
+		setTimeout(() => {
+			setIsOpen(false);
+		}, 300);
+	}, [pathname]);
 
 	return (
 		<NavigationContext.Provider value={{ isOpen, setIsOpen }}>
