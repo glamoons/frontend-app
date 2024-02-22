@@ -1,5 +1,5 @@
-import { BaseProps } from "@/interfaces/base";
-import { FooterHeading } from "../atoms/FooterHeading";
+import { FooterHeading } from "@/components/atoms/FooterHeading";
+import { type BaseProps } from "@/interfaces/base";
 import { cn } from "@/lib/utils";
 
 type UnorderedListProps = {

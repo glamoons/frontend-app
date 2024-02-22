@@ -1,15 +1,18 @@
+import { ActionLink } from "@/components/atoms/ActionLink";
 import { DefaultText } from "@/components/atoms/DefaultText";
-import { ContactInformationProps } from "@/interfaces/base";
+import {
+	type HTMLElements,
+	type ContactInformationProps,
+} from "@/interfaces/base";
 import { cn } from "@/lib/utils";
-import { ActionLink } from "../atoms/ActionLink";
 
 type ContactBoxProps = {
 	phone: ContactInformationProps["phone"];
 	email: ContactInformationProps["email"];
 	workingHours: ContactInformationProps["workingHours"];
 	icon?: JSX.Element;
-	textClassName?: string;
-	wrapperClassName?: string;
+	textClassName?: HTMLElements<HTMLDivElement>["className"];
+	wrapperClassName?: HTMLElements<HTMLDivElement>["className"];
 };
 
 export const ContactBox = ({
@@ -41,7 +44,9 @@ export const ContactBox = ({
 						aria-label={email}
 					/>
 				</div>
-				<DefaultText className={cn("text-sm text-slate50", textClassName)}>
+				<DefaultText
+					className={cn("text-sm font-light text-slate50", textClassName)}
+				>
 					{workingHours}
 				</DefaultText>
 			</div>

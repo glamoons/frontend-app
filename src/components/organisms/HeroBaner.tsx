@@ -1,4 +1,5 @@
 import NextImage from "next/image";
+import { type DetailedHTMLProps, type ImgHTMLAttributes } from "react";
 import { HeroBox } from "../molecules/HeroBox";
 
 type HeroBanerProps = {
@@ -9,19 +10,19 @@ type HeroBanerProps = {
 };
 
 export const HeroBaner = ({
-	src,
-	alt,
 	laptopSrcSet,
 	desktopSrcSet,
-}: HeroBanerProps) => {
+	...props
+}: HeroBanerProps &
+	DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>) => {
 	return (
-		<div className="relative flex h-screen max-h-[712px] min-h-[640px] w-full flex-col justify-between overflow-hidden bg-secondary laptop:max-h-screen">
-			<picture>
+		<div className="relative flex h-screen max-h-[712px] min-h-[640px] w-full flex-col justify-end overflow-hidden bg-secondary laptop:max-h-screen">
+			<picture className="absolute inset-0">
 				<source media="(min-width: 1536px)" srcSet={desktopSrcSet} />
 				<source media="(min-width: 768px)" srcSet={laptopSrcSet} />
 				<NextImage
-					src={src}
-					alt={alt}
+					src={props.src}
+					alt={props.alt}
 					quality={100}
 					fill
 					sizes="100vw"

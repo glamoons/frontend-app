@@ -1,5 +1,5 @@
 import { IconMenuDeep } from "@tabler/icons-react";
-import { ButtonProps } from "@/components/ui/button";
+import { type ButtonProps } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 type MobileMenuHandlerProps = {

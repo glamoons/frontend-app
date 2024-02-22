@@ -1,4 +1,4 @@
-import { BaseProps } from "@/interfaces/base";
+import { type BaseProps } from "@/interfaces/base";
 import { cn } from "@/lib/utils";
 
 export const Heading = ({ children, className }: BaseProps) => {

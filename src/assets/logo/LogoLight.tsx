@@ -1,5 +1,4 @@
-import * as React from "react";
-const LogoLight = ({
+export const LogoLight = ({
 	width = 119,
 	height = 80,
 }: {
@@ -161,4 +160,3 @@ const LogoLight = ({
 		/>
 	</svg>
 );
-export default LogoLight;

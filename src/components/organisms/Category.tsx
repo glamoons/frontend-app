@@ -1,11 +1,11 @@
+import Link from "next/link";
 import { ResponsiveImage } from "@/components/atoms/ResponsiveImage";
 import { CategoryHolder } from "@/components/molecules/CategoryHolder";
 import {
-	BaseProps,
-	CategoryHolderProps,
-	ResponsiveImageProps,
+	type BaseProps,
+	type CategoryHolderProps,
+	type ResponsiveImageProps,
 } from "@/interfaces/base";
-import Link from "next/link";
 
 interface CategoryProps extends ResponsiveImageProps, CategoryHolderProps {
 	href: BaseProps["href"];
@@ -27,6 +27,7 @@ export const Category = ({
 					alt={alt}
 					desktopSrc={desktopSrc}
 					className="h-full w-full transform transition-transform duration-500 group-hover:scale-[1.05]"
+					sizes="50vw"
 				/>
 				<CategoryHolder title={title} btnName={btnName || "zobacz więcej"} />
 			</Link>

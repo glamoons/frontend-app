@@ -1,6 +1,6 @@
 import { Section } from "@/components/atoms/Section";
 import { SectionHeading } from "@/components/molecules/SectionHeading";
-import { ContactInformation } from "../organisms/ContactInformation";
+import { ContactInformation } from "@/components/organisms/ContactInformation";
 
 export const ContactSection = () => {
 	return (
@@ -15,7 +15,7 @@ export const ContactSection = () => {
 				<ContactInformation
 					address="Glamoons Sp. z o.o. Poręba Wielka 31 34-735 Niedźwiedź"
 					phone="+48784525956"
-					email="sklep@glamoons.com"
+					email="hello@glamoons.com"
 					workingHours="Pon-Pt 8:00-16:00 CET"
 				/>
 			</article>

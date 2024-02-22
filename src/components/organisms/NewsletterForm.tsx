@@ -1,7 +1,7 @@
 import { SubmitButton } from "@/components/atoms/SubmitButton";
 import { DefaultInput } from "@/components/atoms/DefaultInput";
 import { FooterHeading } from "@/components/atoms/FooterHeading";
-import { BaseProps } from "@/interfaces/base";
+import { type BaseProps } from "@/interfaces/base";
 import { cn } from "@/lib/utils";
 
 type NewsletterFormProps = {

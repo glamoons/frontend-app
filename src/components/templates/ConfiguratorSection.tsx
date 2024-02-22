@@ -1,7 +1,7 @@
 import { Section } from "@/components/atoms/Section";
 import { SectionHeading } from "@/components/molecules/SectionHeading";
-import { ResponsiveImage } from "../atoms/ResponsiveImage";
-import { SecondaryButton } from "../atoms/SecondaryButton";
+import { ResponsiveImage } from "@/components/atoms/ResponsiveImage";
+import { SecondaryButton } from "@/components/atoms/SecondaryButton";
 
 export const ConfiguratorSection = () => {
 	return (
@@ -28,6 +28,7 @@ export const ConfiguratorSection = () => {
 						mobileSrc="https://res.cloudinary.com/dstimijog/image/upload/v1707385345/informational_mobile_nphus5_qfd61k.webp"
 						alt="Konfigurator"
 						desktopSrc="https://res.cloudinary.com/dstimijog/image/upload/v1707385344/informational_desktop_icxcw9_m98ljp.webp"
+						sizes="(max-width: 601px) 100vw, 50vw"
 					/>
 				</div>
 			</div>

@@ -1,5 +1,5 @@
-import { BaseProps } from "@/interfaces/base";
 import Link from "next/link";
+import { type BaseProps } from "@/interfaces/base";
 
 type MenuBarListLinkProps = {
 	href: BaseProps["href"];

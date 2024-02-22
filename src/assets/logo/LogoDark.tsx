@@ -1,5 +1,4 @@
-import * as React from "react";
-const LogoDark = ({
+export const LogoDark = ({
 	width = 119,
 	height = 80,
 }: {
@@ -161,4 +160,3 @@ const LogoDark = ({
 		/>
 	</svg>
 );
-export default LogoDark;
