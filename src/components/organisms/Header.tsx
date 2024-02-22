@@ -23,10 +23,10 @@ export const Header = () => {
 				pathname === "/" ? "absolute left-0 right-0 top-0" : "relative",
 			)}
 		>
-			<Navigation className="hidden laptop:flex" />
 			<Link href="/" aria-label="Logo Glamoons">
 				{!isOpen ? pathname === "/" ? <LogoLight /> : <LogoDark /> : null}
 			</Link>
+			<Navigation className="hidden laptop:flex" />
 			<ShoppingActionsNavLinks
 				favoritesHref="/"
 				userHref="/"
