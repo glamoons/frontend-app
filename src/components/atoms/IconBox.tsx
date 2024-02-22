@@ -22,7 +22,7 @@ export const BoxWithIcon = ({
 				<Heading>{title}</Heading>
 			</div>
 			<div className="flex flex-col space-y-1">
-				<h4 className="text-lg font-bold text-secondary">{subTitle}</h4>
+				<p className="text-lg font-bold text-secondary">{subTitle}</p>
 				<DefaultText className="text-sm text-primaryDark">
 					{desctiption}
 				</DefaultText>
