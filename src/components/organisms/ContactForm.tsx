@@ -73,6 +73,7 @@ export const ContactForm = ({ className }: ContactFormProps) => {
 						Imię
 					</Label>
 					<DefaultInput
+						id="name"
 						type="text"
 						{...register("name")}
 						aria-invalid={errors.name ? "true" : "false"}
@@ -90,6 +91,7 @@ export const ContactForm = ({ className }: ContactFormProps) => {
 						Nazwisko
 					</Label>
 					<DefaultInput
+						id="surname"
 						type="text"
 						{...register("surname")}
 						aria-invalid={errors.surname ? "true" : "false"}
@@ -106,6 +108,7 @@ export const ContactForm = ({ className }: ContactFormProps) => {
 						Email
 					</Label>
 					<DefaultInput
+						id="email"
 						type="text"
 						{...register("email")}
 						aria-invalid={errors.email ? "true" : "false"}
@@ -118,7 +121,7 @@ export const ContactForm = ({ className }: ContactFormProps) => {
 				<div className="flex w-full flex-col space-y-2">
 					<div className="flex justify-between">
 						<Label
-							htmlFor="email"
+							htmlFor="phoneNumber"
 							className={
 								errors.phoneNumber
 									? "text-error focus-visible:outline-error"
@@ -130,6 +133,7 @@ export const ContactForm = ({ className }: ContactFormProps) => {
 						<span className="text-xs text-primaryDark">opcjonalne</span>
 					</div>
 					<DefaultInput
+						id="phoneNumber"
 						type="tel"
 						{...register("phoneNumber")}
 						aria-invalid={errors.phoneNumber ? "true" : "false"}
@@ -149,6 +153,7 @@ export const ContactForm = ({ className }: ContactFormProps) => {
 					Jak moemy Ci pomóc?
 				</Label>
 				<TextArea
+					id="message"
 					rows={5}
 					{...register("message")}
 					aria-invalid={errors.message ? "true" : "false"}
