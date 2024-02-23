@@ -14,7 +14,7 @@ export const BenefitSection = () => {
 			<SectionBenefitsWithIcon />
 			<PrimaryButton
 				href={"/"}
-				className="mx-auto flex w-full tablet:w-1/2 tabletLg:w-auto tabletLg:max-w-40"
+				className="mx-auto flex w-full tablet:w-1/2 tabletLg:w-auto tabletLg:max-w-44"
 				aria-label="sprawdź korzyści"
 			>
 				sprawdź

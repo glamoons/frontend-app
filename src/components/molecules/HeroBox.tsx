@@ -4,9 +4,9 @@ import { HeroTitle } from "@/components/atoms/HeroTitle";
 export const HeroBox = () => {
 	return (
 		<div className="container relative mx-auto mb-[3.75rem] flex flex-col py-10 tabletLg:mb-0 laptop:py-[3.125rem] desktop:py-[6.25rem]">
-			<div className="max-w-[360px] laptop:max-w-[460px]">
+			<div className="max-w-[22.5rem] laptop:max-w-[35.625rem]">
 				<HeroTitle className="text-slate50">
-					Its high time you told your story
+					Meble z betonu i dekoracje na wyciągnięcie ręki
 				</HeroTitle>
 				<GroupButton />
 			</div>

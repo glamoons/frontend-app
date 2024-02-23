@@ -10,7 +10,7 @@ export const ConfiguratorSection = () => {
 				<div className="mt-[-50px] flex min-h-[390px] flex-col items-center justify-center space-y-6 tablet:mr-[1.563rem] tablet:mt-0 tablet:min-h-max tablet:w-1/2 tabletLg:items-start desktop:mr-[3.125rem]">
 					<SectionHeading
 						subHeading="konfigurator"
-						title="Dostosuj swój stolik"
+						title="Zaprojektuj swój mebel"
 						description="A paragraph or two with information on your product/service or describes a problem your product/service is designed to solve."
 						containerStyle="text-left items-start"
 					/>

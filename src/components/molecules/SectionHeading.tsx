@@ -2,16 +2,17 @@ import { Heading } from "@/components/atoms/Heading";
 import { DefaultText } from "@/components/atoms/DefaultText";
 import { cn } from "@/lib/utils";
 import { SubHeading } from "@/components/atoms/SubHeading";
+import { type BaseProps, type HTMLElements } from "@/interfaces/base";
 
 type SectionHeadingProps = {
-	title: string;
-	description?: string;
-	headingClassName?: string;
-	subHeadingClassName?: string;
-	descriptionClassName?: string;
-	containerStyle?: string;
-	subHeading?: string;
-	containerHeadingStyle?: string;
+	title: BaseProps["children"];
+	description?: HTMLElements<HTMLParagraphElement>["children"];
+	headingClassName?: HTMLElements<HTMLHeadingElement>["className"];
+	subHeadingClassName?: HTMLElements<HTMLHeadingElement>["className"];
+	descriptionClassName?: HTMLElements<HTMLParagraphElement>["className"];
+	containerStyle?: HTMLElements<HTMLDivElement>["className"];
+	subHeading?: HTMLElements<HTMLHeadingElement>["className"];
+	containerHeadingStyle?: HTMLElements<HTMLHeadingElement>["className"];
 };
 
 export const SectionHeading = ({
