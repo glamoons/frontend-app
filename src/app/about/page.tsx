@@ -25,7 +25,7 @@ const ContactPage = () => {
 						</SecondaryButton>
 					</div>
 				</div>
-				<div className="4xl:w-1/3 relative -mb-[50px] h-[390px] tablet:-mt-[50px] tablet:w-1/2 laptop:h-[560px] desktop:-mb-[100px] desktop:-mt-[100px] xl:h-[600px] 2xl:h-[700px]">
+				<div className="4xl:w-1/3 relative -mb-[50px] h-[24.375rem] tablet:-mt-[50px] tablet:w-1/2 laptop:h-[35rem] desktop:-mb-[100px] desktop:-mt-[100px] xl:h-[37.5rem] 2xl:h-[43.75rem]">
 					<div className="absolute bottom-0 left-0 right-0 top-0 z-10 bg-black/20" />
 					<ResponsiveImage
 						mobileSrc="https://res.cloudinary.com/dstimijog/image/upload/v1707385345/informational_mobile_nphus5_qfd61k.webp"
