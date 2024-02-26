@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { SubHeading } from "@/components/atoms/SubHeading";
 import { type BaseProps, type HTMLElements } from "@/interfaces/base";
 
-type SectionHeadingProps = {
+export type SectionHeadingProps = {
 	title: BaseProps["children"];
 	description?: HTMLElements<HTMLParagraphElement>["children"];
 	headingClassName?: HTMLElements<HTMLHeadingElement>["className"];

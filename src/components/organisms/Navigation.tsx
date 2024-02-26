@@ -17,10 +17,10 @@ export const Navigation = ({ className }: NavigationProps) => {
 				<NavLink href="/about" aria-label="O produkcie">
 					O produkcie
 				</NavLink>
-				<NavLink href="/" aria-label="Konfigurator">
+				<NavLink href="/configurator" aria-label="Konfigurator">
 					Konfigurator
 				</NavLink>
-				<NavLink href="/" aria-label="Blog">
+				<NavLink href="/blog" aria-label="Blog">
 					Blog
 				</NavLink>
 				<NavLink href="/contact" aria-label="Kontakt">
