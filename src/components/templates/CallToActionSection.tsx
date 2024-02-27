@@ -27,7 +27,7 @@ export const CallToActionSection = ({
 }: CallToActionSectionProps) => {
 	return (
 		<Section className="!py-0 3xl:container">
-			<div className="flex flex-col items-center space-y-8 bg-slate50 py-[50px] desktop:py-[100px] 3xl:rounded-3xl">
+			<div className="flex flex-col items-center space-y-8 bg-slate50 px-[1.563rem] py-[50px] desktop:py-[100px] 3xl:rounded-3xl">
 				<SectionHeading
 					title={title}
 					description={description}

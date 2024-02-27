@@ -1,3 +1,5 @@
+import { AboutSection } from "@/components/templates/AboutSection";
+import { BenefitSection } from "@/components/templates/BenefitSection";
 import { CallToActionSection } from "@/components/templates/CallToActionSection";
 import { ContactSection } from "@/components/templates/ContactSection";
 import { ProductSection } from "@/components/templates/ProductSection";
@@ -39,6 +41,8 @@ const ProductPage = () => {
 				right={false}
 			/>
 			<ReviewsSection />
+			<BenefitSection />
+			<AboutSection />
 			<CallToActionSection
 				title="Skonfiguruj własny stolik dokładnie tak jak chcesz"
 				btnName="Skonfiguruj"

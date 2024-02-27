@@ -7,9 +7,10 @@ import {
 	type ResponsiveImageProps,
 } from "@/interfaces/base";
 
-interface CategoryProps extends ResponsiveImageProps, CategoryHolderProps {
+type CategoryProps = {
 	href: BaseProps["href"];
-}
+} & Omit<ResponsiveImageProps, "sizes" | "style" | "className"> &
+	CategoryHolderProps;
 
 export const Category = ({
 	href,
