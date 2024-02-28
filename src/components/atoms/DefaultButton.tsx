@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 export type ButtonProps = {
 	children: BaseProps["children"];
-	className: BaseProps["className"];
+	className?: BaseProps["className"];
 } & LinkProps;
 
 export const DefaultButton = ({
