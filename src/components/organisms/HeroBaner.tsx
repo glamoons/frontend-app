@@ -16,7 +16,7 @@ export const HeroBaner = ({
 }: HeroBanerProps &
 	DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>) => {
 	return (
-		<div className="relative flex h-screen max-h-[712px] min-h-[640px] w-full flex-col justify-end overflow-hidden bg-secondary laptop:max-h-screen">
+		<div className="relative flex h-screen max-h-[44.5rem] min-h-[40rem] w-full flex-col justify-end overflow-hidden bg-secondary laptop:min-h-screen">
 			<picture className="absolute inset-0">
 				<source media="(min-width: 1536px)" srcSet={desktopSrcSet} />
 				<source media="(min-width: 768px)" srcSet={laptopSrcSet} />

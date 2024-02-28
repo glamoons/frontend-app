@@ -14,13 +14,13 @@ export const Navigation = ({ className }: NavigationProps) => {
 					"flex flex-col space-y-4 py-6 laptop:flex-row laptop:space-x-5 laptop:space-y-0",
 				)}
 			>
-				<NavLink href="/" aria-label="O produkcie">
+				<NavLink href="/about" aria-label="O produkcie">
 					O produkcie
 				</NavLink>
-				<NavLink href="/" aria-label="Konfigurator">
+				<NavLink href="/configurator" aria-label="Konfigurator">
 					Konfigurator
 				</NavLink>
-				<NavLink href="/" aria-label="Blog">
+				<NavLink href="/blog" aria-label="Blog">
 					Blog
 				</NavLink>
 				<NavLink href="/contact" aria-label="Kontakt">

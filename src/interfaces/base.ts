@@ -1,4 +1,5 @@
 import {
+	type ImgHTMLAttributes,
 	type DetailedHTMLProps,
 	type HTMLAttributes,
 	type ReactNode,
@@ -10,6 +11,8 @@ export type BaseProps = {
 	href?: string;
 	icon?: JSX.Element;
 	color?: string;
+	title?: string;
+	description?: string;
 };
 
 export type ContactInformationProps = {
@@ -25,7 +28,7 @@ export type ResponsiveImageProps = {
 	desktopSrc: string;
 	style?: Record<string, string>;
 	className?: BaseProps["className"];
-};
+} & DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>;
 
 export type CategoryHolderProps = {
 	title: string;

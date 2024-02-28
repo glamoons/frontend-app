@@ -1,7 +1,10 @@
 import {
 	IconDeviceMobileCharging,
+	IconLayoutAlignTop,
 	IconPackageImport,
 	IconShieldChevron,
+	IconTransitionTop,
+	IconWeight,
 } from "@tabler/icons-react";
 import { BoxWithIcon } from "@/components/atoms/IconBox";
 import { type BaseProps } from "@/interfaces/base";
@@ -9,10 +12,12 @@ import { cn } from "@/lib/utils";
 
 type SectionBenefitsWithIconProps = {
 	className?: BaseProps["className"];
+	isHomePage?: boolean;
 };
 
 export const SectionBenefitsWithIcon = ({
 	className,
+	isHomePage,
 }: SectionBenefitsWithIconProps) => {
 	return (
 		<article
@@ -41,6 +46,28 @@ export const SectionBenefitsWithIcon = ({
 				subTitle="ładowanie indykcyjne"
 				desctiption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 			/>
+			{!isHomePage && (
+				<>
+					<BoxWithIcon
+						icon={<IconWeight size={50} className="text-primaryDark" />}
+						title="6 kg"
+						subTitle="lekki jak piórko"
+						desctiption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+					/>
+					<BoxWithIcon
+						icon={<IconTransitionTop size={50} className="text-primaryDark" />}
+						title="30 mm"
+						subTitle="grubość blatu"
+						desctiption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+					/>
+					<BoxWithIcon
+						icon={<IconLayoutAlignTop size={50} className="text-primaryDark" />}
+						title="51-61"
+						subTitle="centymetrów wysokości"
+						desctiption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+					/>
+				</>
+			)}
 		</article>
 	);
 };

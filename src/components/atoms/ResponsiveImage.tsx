@@ -1,5 +1,4 @@
 import NextImage from "next/image";
-import { type DetailedHTMLProps, type ImgHTMLAttributes } from "react";
 import { type ResponsiveImageProps } from "@/interfaces/base";
 
 export const ResponsiveImage = ({
@@ -9,8 +8,7 @@ export const ResponsiveImage = ({
 	desktopSrc,
 	className,
 	...props
-}: ResponsiveImageProps &
-	DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>) => {
+}: ResponsiveImageProps) => {
 	return (
 		<picture className="absolute inset-0">
 			<source media="(min-width: 601px)" srcSet={desktopSrc} />

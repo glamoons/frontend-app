@@ -4,8 +4,8 @@ import { SectionHeading } from "@/components/molecules/SectionHeading";
 
 export const NewsletterSection = () => {
 	return (
-		<Section className="bg-slate50 3xl:container 3xl:rounded-3xl">
-			<div className="container mx-auto space-y-8">
+		<Section className="!py-0 3xl:container">
+			<div className="mx-auto space-y-8 bg-slate50 py-[50px] 3xl:container desktop:py-[100px] 3xl:rounded-3xl">
 				<SectionHeading
 					title="Zapisz się do newslettera"
 					description="Odbierz 10% rabatu na swoje pierwsze zamówienie w glamoons"

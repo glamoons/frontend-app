@@ -6,7 +6,7 @@ export const CategorySection = () => {
 	return (
 		<Section className="container mx-auto">
 			<SectionHeading
-				title="Co możemy dla Ciebie zrobić"
+				title="Twój dom, twój projekt"
 				description="A paragraph or two with information on your product/service or describes a problem your product/service is designed to solve."
 				subHeading="Kategorie"
 				containerStyle="tablet:text-center tablet:items-center tablet:mx-auto"
