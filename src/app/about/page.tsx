@@ -1,9 +1,19 @@
+import { type Metadata } from "next";
 import { AboutSection } from "@/components/templates/AboutSection";
 import { BenefitSection } from "@/components/templates/BenefitSection";
 import { CallToActionSection } from "@/components/templates/CallToActionSection";
 import { ContactSection } from "@/components/templates/ContactSection";
 import { ProductSection } from "@/components/templates/ProductSection";
 import { ReviewsSection } from "@/components/templates/ReviewsSection";
+
+export async function generateMetadata(): Promise<Metadata> {
+	return {
+		metadataBase: new URL("https://dev.glamoons.com"),
+		alternates: {
+			canonical: "https://dev.glamoons.com/about",
+		},
+	};
+}
 
 const ProductPage = () => {
 	return (
