@@ -74,7 +74,7 @@ export const ProductSection = ({
 						</div>
 						<div
 							className={cn(
-								"relative hidden h-[43.75rem] w-[45rem] desktop:-mb-[100px] desktop:-mt-[100px] 4xl:block",
+								"relative hidden aspect-square h-full w-[45rem] desktop:-mb-[100px] desktop:-mt-[100px] 4xl:block",
 								right ? "order-1 -ml-[3.25rem]" : "order-2 -mr-[3.25rem]",
 							)}
 						>
@@ -90,7 +90,7 @@ export const ProductSection = ({
 				</div>
 				<div
 					className={cn(
-						"relative -mb-[50px] aspect-square h-full tablet:-mt-[50px] tablet:w-1/2 laptop:h-[35rem] desktop:-mb-[100px] desktop:-mt-[100px] xl:h-[37.5rem] 2xl:h-[43.75rem] 4xl:hidden",
+						"relative -mb-[50px] aspect-square h-full tablet:-mt-[50px] tablet:w-1/2 desktop:-mb-[100px] desktop:-mt-[100px] 4xl:hidden",
 						right ? "order-1" : "order-2",
 					)}
 				>
