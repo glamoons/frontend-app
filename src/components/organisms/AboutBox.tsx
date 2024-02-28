@@ -18,7 +18,7 @@ export const AboutBox = ({
 	description,
 }: AboutBoxProps) => {
 	return (
-		<div className="relative h-[24.375rem] overflow-hidden laptop:rounded-3xl">
+		<div className="relative aspect-square h-full overflow-hidden tablet:aspect-[4/5] laptop:rounded-3xl">
 			<div className="absolute left-0 top-0 z-10 h-full w-full bg-[#282E39]/75" />
 			<ResponsiveImage
 				mobileSrc={mobileSrc}

@@ -36,7 +36,7 @@ export const ProductSection = ({
 }: ProductSectionProps) => {
 	return (
 		<Section className="overflow-hidden bg-slate50">
-			<div className="relative tablet:flex tablet:flex-row">
+			<div className="relative tablet:flex tablet:flex-row tablet:items-center">
 				<div
 					className={cn(
 						"w-full pb-[50px] tablet:w-1/2 tablet:pb-0 4xl:w-full",
@@ -90,7 +90,7 @@ export const ProductSection = ({
 				</div>
 				<div
 					className={cn(
-						"relative -mb-[50px] h-[24.375rem] tablet:-mt-[50px] tablet:w-1/2 laptop:h-[35rem] desktop:-mb-[100px] desktop:-mt-[100px] xl:h-[37.5rem] 2xl:h-[43.75rem] 4xl:hidden",
+						"relative -mb-[50px] aspect-square h-full tablet:-mt-[50px] tablet:w-1/2 laptop:h-[35rem] desktop:-mb-[100px] desktop:-mt-[100px] xl:h-[37.5rem] 2xl:h-[43.75rem] 4xl:hidden",
 						right ? "order-1" : "order-2",
 					)}
 				>

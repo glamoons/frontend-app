@@ -22,7 +22,7 @@ export const ConfiguratorSection = () => {
 						skonfiguruj
 					</SecondaryButton>
 				</div>
-				<div className="relative -mx-[1.563rem] mb-[-50px] h-[390px] tablet:mx-0 tablet:-mr-[1.563rem] tablet:-mt-[50px] tablet:w-1/2 desktop:-mb-[100px] desktop:-mr-[calc(50%+8.75rem)] desktop:-mt-[100px] desktop:h-[476px] desktop:w-[700px] 2xl:h-[576px]">
+				<div className="relative -mx-[1.563rem] mb-[-50px] aspect-square h-full max-h-[36rem] w-screen max-w-[43.75rem] tablet:mx-0 tablet:-mr-[1.563rem] tablet:-mt-[50px] tablet:h-auto desktop:-mb-[100px] desktop:-mr-[calc(50%+8.75rem)] desktop:-mt-[100px]">
 					<div className="absolute bottom-0 left-0 right-0 top-0 z-10 bg-black/15" />
 					<ResponsiveImage
 						mobileSrc="https://res.cloudinary.com/dstimijog/image/upload/v1707385345/informational_mobile_nphus5_qfd61k.webp"

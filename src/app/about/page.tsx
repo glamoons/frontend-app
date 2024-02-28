@@ -36,7 +36,7 @@ const ProductPage = () => {
 				mobileSrc="https://res.cloudinary.com/dstimijog/image/upload/v1708931194/product-image-mobile-03_qrgqqy.webp"
 				alt="Dopasuj stolik pod siebie"
 				desktopSrc="https://res.cloudinary.com/dstimijog/image/upload/v1708931014/product-image-03_mpj4r8.webp"
-				btnName="Zaprojektuj mebel"
+				btnName="Zaprojektuj"
 				href="/"
 				right={false}
 			/>

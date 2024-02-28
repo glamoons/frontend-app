@@ -9,7 +9,7 @@ export const AboutSection = () => {
 				subHeading="O nas"
 				title="Tworzymy na zamówienie i dostarczamy bezpośrednio pod Twoje drzwi"
 			/>
-			<div className="-mx-[1.563rem] flex flex-col space-y-3 overflow-hidden">
+			<div className="-mx-[1.563rem] flex flex-col space-y-3 overflow-hidden tablet:flex-row tablet:space-y-0 laptop:mx-0 laptop:space-x-10">
 				<AboutBox
 					title="Tworzymy na zamówienie"
 					mobileSrc="https://res.cloudinary.com/dstimijog/image/upload/v1709014328/about-product-mobile-01_sacrcx.webp"

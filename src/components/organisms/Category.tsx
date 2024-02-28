@@ -21,7 +21,7 @@ export const Category = ({
 	btnName,
 }: CategoryProps) => {
 	return (
-		<div className="relative h-[270px] w-1/2 overflow-hidden tablet:h-[360px] laptop:h-[460px] laptop:rounded-3xl desktop:h-[560px]">
+		<div className="relative aspect-[4/5] h-full w-full overflow-hidden tablet:aspect-square laptop:rounded-3xl">
 			<Link href={String(href)} className="group" aria-label={title}>
 				<ResponsiveImage
 					mobileSrc={mobileSrc}
