@@ -1,3 +1,4 @@
+import { type ReactNode } from "react";
 import {
 	SectionHeading,
 	type SectionHeadingProps,
@@ -21,6 +22,7 @@ type ProductSectionProps = Omit<
 		href?: ButtonProps["href"];
 		btnName?: ButtonProps["children"];
 		right: boolean;
+		picItems?: ReactNode;
 	};
 
 export const ProductSection = ({
@@ -33,6 +35,7 @@ export const ProductSection = ({
 	alt,
 	desktopSrc,
 	right = false,
+	picItems,
 }: ProductSectionProps) => {
 	return (
 		<Section className="overflow-hidden bg-slate50">
@@ -79,6 +82,7 @@ export const ProductSection = ({
 							)}
 						>
 							<div className="absolute bottom-0 left-0 right-0 top-0 z-10 bg-black/20" />
+							{picItems ?? false}
 							<ResponsiveImage
 								mobileSrc={mobileSrc}
 								alt={alt}
@@ -95,6 +99,7 @@ export const ProductSection = ({
 					)}
 				>
 					<div className="absolute bottom-0 left-0 right-0 top-0 z-10 bg-black/20" />
+					{picItems ?? false}
 					<ResponsiveImage
 						mobileSrc={mobileSrc}
 						alt={alt}
