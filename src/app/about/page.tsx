@@ -1,4 +1,5 @@
 import { type Metadata } from "next";
+import { PlayButton } from "@/components/atoms/PlayButton";
 import { AboutSection } from "@/components/templates/AboutSection";
 import { BenefitSection } from "@/components/templates/BenefitSection";
 import { CallToActionSection } from "@/components/templates/CallToActionSection";
@@ -28,6 +29,12 @@ const ProductPage = () => {
 				btnName="Skonfiguruj"
 				href="/"
 				right={false}
+				picItems={
+					<PlayButton
+						aria-label="Konfigurator Glammoons - obejrzyj krótkie video"
+						className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2"
+					/>
+				}
 			/>
 			<ProductSection
 				subHeading="Poczuj perfekcjonizm na własnej skórze"
