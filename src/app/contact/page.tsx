@@ -14,14 +14,6 @@ export async function generateMetadata(): Promise<Metadata> {
 		title: "Skontaktuj się z nami - Glamoons",
 		description:
 			"Stoliki i zegary w stylu glamour do pełnej konfiguracji. Skontaktuj się z zespołem Glamoons jeśli masz niestandardowy projekt lub pytania.",
-		openGraph: {
-			title: "Glamoons - konfigurowalne stoliki i zegary w stylu glamour.",
-			description:
-				"Stoliki i zegary w stylu glamour do pełnej konfiguracji. Darmowa dostawa i zwroty do 100 dni.",
-			type: "website",
-			siteName: "Glamoons",
-			url: "https://dev.glamoons.com/",
-		},
 	};
 }
 
