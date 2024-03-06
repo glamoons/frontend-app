@@ -38,7 +38,7 @@ export const SectionHeading = ({
 						{subHeading}
 					</SubHeading>
 				)}
-				<Heading className={headingClassName}>{title}</Heading>
+				<Heading className={cn(headingClassName)}>{title}</Heading>
 			</div>
 			<DefaultText className={cn(descriptionClassName)}>
 				{description}

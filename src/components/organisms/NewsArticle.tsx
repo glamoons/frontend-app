@@ -24,7 +24,7 @@ export const NewsArticle = ({
 			className="group flex flex-col space-y-6 tablet:w-1/2 tablet:pb-6 tablet:odd:pr-6 tablet:even:pl-6 laptop:pb-0 laptop:odd:pr-0 laptop:even:pl-0"
 			{...props}
 		>
-			<figure className="overflow-hidden">
+			<figure className="overflow-hidden rounded-2xl">
 				<NextImage
 					src={src}
 					alt={alt}
