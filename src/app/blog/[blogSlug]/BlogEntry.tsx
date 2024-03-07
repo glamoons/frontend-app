@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import Link from "next/link";
 import { blogPosts } from "@/app/blog/page";
 import { DefaultText } from "@/components/atoms/DefaultText";
 import { EntryTag } from "@/components/atoms/EntryTag";
@@ -42,7 +43,14 @@ export default async function BlogEntry({
 				</div>
 			</article>
 			<article className="prose col-span-12 laptop:col-span-9 laptop:col-start-3">
-				<MDXRemote source={blogPost.content} />
+				<MDXRemote
+					source={blogPost.content}
+					components={{
+						a: (props) => (
+							<Link href={props.href as string}>{props.children}</Link>
+						),
+					}}
+				/>
 			</article>
 		</Section>
 	);
