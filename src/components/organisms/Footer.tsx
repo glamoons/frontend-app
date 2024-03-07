@@ -11,7 +11,7 @@ import { UnorderedList } from "@/components/molecules/UnorderedList";
 export const Footer = () => {
 	const year = new Date().getFullYear();
 	return (
-		<footer className="container mx-auto mb-[3.75rem] flex w-full flex-col items-center justify-between space-y-10 py-[3.125rem] tabletLg:mb-0 desktop:space-y-[3.125rem] desktop:py-[100px]">
+		<footer className="container mx-auto mb-[3.75rem] flex w-full flex-col items-center justify-between space-y-10 py-[3.125rem] tabletLg:mb-0 desktop:space-y-[3.125rem] desktop:py-[6.25rem]">
 			<div className="flex w-full flex-col space-y-10 tablet:flex-row tablet:justify-between tablet:space-x-10 tablet:space-y-0">
 				<div className="flex flex-row justify-between space-x-10 tablet:w-2/3">
 					<UnorderedList title="O firmie" className="w-1/2">

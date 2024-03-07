@@ -33,6 +33,20 @@ const config = {
 			"4xl": "1920px",
 		},
 		extend: {
+			typography: (theme: (arg0: string) => any) => ({
+				DEFAULT: {
+					css: {
+						maxWidth: "100ch",
+						color: theme("colors.secondary.DEFAULT"),
+						"--tw-prose-body": theme("colors.secondary.DEFAULT"),
+						"--tw-prose-headings": theme("colors.secondary.DEFAULT"),
+						"--tw-prose-links": theme("colors.secondary.DEFAULT"),
+						a: {
+							fontWeight: 600,
+						},
+					},
+				},
+			}),
 			fontFamily: {
 				serif: ["var(--font-proximanova)"],
 			},
@@ -86,7 +100,7 @@ const config = {
 			},
 		},
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 } satisfies Config;
 
 export default config;

@@ -1,6 +1,6 @@
 import { type Metadata } from "next";
+import BlogEntry from "./BlogEntry";
 import { blogPosts } from "@/app/blog/page";
-import { DefaultText } from "@/components/atoms/DefaultText";
 
 export async function generateStaticParams() {
 	return blogPosts?.map((blog) => ({
@@ -25,5 +25,5 @@ export default async function ProductDetailsPage({
 }: {
 	params: { blogSlug: string };
 }) {
-	return <DefaultText>{params.blogSlug}</DefaultText>;
+	return <BlogEntry params={params} />;
 }

@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { ResponsiveImage } from "@/components/atoms/ResponsiveImage";
 import { DefaultText } from "@/components/atoms/DefaultText";
-import { Button } from "@/components/ui/button";
+import { ResponsiveImage } from "@/components/atoms/ResponsiveImage";
+import { EntryTag } from "@/components/atoms/EntryTag";
 
 type BlogListItem = {
 	title: string;
@@ -40,14 +40,9 @@ export const BlogPost = ({ blog }: BlogPostProps) => {
 					<DefaultText className="text-primaryDark">{blog.date}</DefaultText>
 					<div className="flex flex-row space-x-3">
 						{blog.tags.map((tag) => (
-							<Button
-								key={tag}
-								type="button"
-								className="h-auto cursor-pointer bg-transparent px-0 py-0 text-xs font-light uppercase text-secondary underline transition-colors duration-500 hover:text-primaryDark"
-								aria-label={tag}
-							>
+							<EntryTag key={tag} aria-label={tag}>
 								{tag}
-							</Button>
+							</EntryTag>
 						))}
 					</div>
 				</div>
