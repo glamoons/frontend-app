@@ -1,8 +1,18 @@
+import { type Metadata } from "next";
 import { ResponsiveImage } from "@/components/atoms/ResponsiveImage";
 import { Section } from "@/components/atoms/Section";
 import { TagButton } from "@/components/atoms/TagButton";
 import { SectionHeading } from "@/components/molecules/SectionHeading";
 import { BlogPost } from "@/components/organisms/BlogPost";
+
+export async function generateMetadata(): Promise<Metadata> {
+	return {
+		metadataBase: new URL("https://dev.glamoons.com"),
+		alternates: {
+			canonical: "https://dev.glamoons.com/blog",
+		},
+	};
+}
 
 export const blogPosts = [
 	{
