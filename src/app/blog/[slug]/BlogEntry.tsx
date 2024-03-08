@@ -24,7 +24,7 @@ const BlogEntry = async ({ params }: BlogEntryProps) => {
 		<>
 			<Section className="container mx-auto grid grid-cols-12 space-y-4">
 				<article className="col-span-12 space-y-4 laptop:col-span-9 laptop:col-start-3">
-					<h1 className="text-3xl font-bold text-secondary">
+					<h1 className="text-3xl font-bold text-secondary desktop:text-5xl 2xl:text-6xl">
 						{blogPost.title}
 					</h1>
 					<div className="flex flex-col gap-y-2">
