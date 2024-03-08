@@ -170,7 +170,10 @@ export const ContactForm = ({ className }: ContactFormProps) => {
 					{errors.message && <ErrorText>{errors.message.message}</ErrorText>}
 				</p>
 			</fieldset>
-			<SubmitButton className="w-full bg-secondary text-slate50 tablet:w-auto">
+			<SubmitButton
+				type="submit"
+				className="w-full bg-secondary text-slate50 tablet:w-auto"
+			>
 				Wyślij
 			</SubmitButton>
 		</form>

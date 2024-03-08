@@ -1,7 +1,11 @@
+import { type PropsWithChildren } from "react";
 import { type BaseProps } from "@/interfaces/base";
 import { cn } from "@/lib/utils";
 
-export const Heading = ({ children, className }: BaseProps) => {
+export const Heading = ({
+	children,
+	className,
+}: PropsWithChildren<BaseProps>) => {
 	return (
 		<h2
 			className={cn(

@@ -1,10 +1,14 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { type PropsWithChildren } from "react";
 import { type BaseProps } from "@/interfaces/base";
 import { cn } from "@/lib/utils";
 
-export const HeroTitle = ({ children, className }: BaseProps) => {
+export const HeroTitle = ({
+	children,
+	className,
+}: PropsWithChildren<BaseProps>) => {
 	const pathname = usePathname();
 	return (
 		<h1

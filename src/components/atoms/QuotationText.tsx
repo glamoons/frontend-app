@@ -1,7 +1,11 @@
+import { type PropsWithChildren } from "react";
 import { type BaseProps } from "@/interfaces/base";
 import { cn } from "@/lib/utils";
 
-export const QuotationText = ({ children, className }: BaseProps) => {
+export const QuotationText = ({
+	children,
+	className,
+}: PropsWithChildren<BaseProps>) => {
 	return (
 		<q
 			className={cn(

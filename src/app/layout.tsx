@@ -1,12 +1,12 @@
 import { type Metadata } from "next";
-import { NavigationProvider } from "./providers/navigation-provider";
+import { type PropsWithChildren } from "react";
 import { Body } from "@/components/atoms/Body";
 import { Footer } from "@/components/organisms/Footer";
 import { Header } from "@/components/organisms/Header";
 import { MenuBar } from "@/components/organisms/MenuBar";
 import { Menu } from "@/components/templates/Menu";
 import "./globals.css";
-import { type BaseProps } from "@/interfaces/base";
+import { NavigationProvider } from "@/app/providers/navigation-provider";
 
 export async function generateMetadata(): Promise<Metadata> {
 	return {
@@ -31,7 +31,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function RootLayout({
 	children,
 }: {
-	children: BaseProps["children"];
+	children: PropsWithChildren["children"];
 }) {
 	return (
 		<html lang="pl">

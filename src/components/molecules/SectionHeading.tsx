@@ -1,11 +1,12 @@
-import { Heading } from "@/components/atoms/Heading";
+import { type PropsWithChildren } from "react";
 import { DefaultText } from "@/components/atoms/DefaultText";
-import { cn } from "@/lib/utils";
+import { Heading } from "@/components/atoms/Heading";
 import { SubHeading } from "@/components/atoms/SubHeading";
-import { type BaseProps, type HTMLElements } from "@/interfaces/base";
+import { type HTMLElements } from "@/interfaces/base";
+import { cn } from "@/lib/utils";
 
 export type SectionHeadingProps = {
-	title: BaseProps["children"];
+	title: PropsWithChildren["children"];
 	description?: HTMLElements<HTMLParagraphElement>["children"];
 	headingClassName?: HTMLElements<HTMLHeadingElement>["className"];
 	subHeadingClassName?: HTMLElements<HTMLHeadingElement>["className"];

@@ -1,14 +1,29 @@
 import { Section } from "@/components/atoms/Section";
-import { SectionHeading } from "@/components/molecules/SectionHeading";
+import {
+	SectionHeading,
+	type SectionHeadingProps,
+} from "@/components/molecules/SectionHeading";
 import { NewsArticle } from "@/components/organisms/NewsArticle";
+import { type HTMLElements } from "@/interfaces/base";
+import { cn } from "@/lib/utils";
 
-export const NewsSection = () => {
+type NewsSectionsProps = {
+	sectionClassName?: HTMLElements<HTMLDivElement>["className"];
+	title?: SectionHeadingProps["title"];
+	subHeading?: SectionHeadingProps["subHeading"];
+};
+
+export const NewsSection = ({
+	sectionClassName,
+	title,
+	subHeading,
+}: NewsSectionsProps) => {
 	return (
-		<Section className="bg-slate100">
+		<Section className={cn("bg-slate100", sectionClassName)}>
 			<div className="container mx-auto flex flex-col space-y-[50px]">
 				<SectionHeading
-					title="Najnowsze wpisy"
-					subHeading="blog"
+					title={title || "Najnowsze wpisy"}
+					subHeading={subHeading || "blog"}
 					subHeadingClassName="text-primaryDark"
 				/>
 				<div className="flex flex-col flex-wrap space-y-10 tablet:flex-row tablet:space-y-0 laptop:flex-nowrap laptop:space-x-10">
