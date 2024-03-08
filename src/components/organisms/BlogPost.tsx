@@ -26,6 +26,7 @@ export const BlogPost = ({ blog }: BlogPostProps) => {
 						mobileSrc={blog.mobileSrc}
 						alt={blog.title}
 						desktopSrc={blog.desktopSrc}
+						sizes="100vw"
 					/>
 				</Link>
 			</div>

@@ -15,6 +15,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
 	const blogPost = blogPosts.find((blog) => blog.slug === params.slug);
 	return {
+		metadataBase: new URL("https://dev.glamoons.com"),
+		alternates: {
+			canonical: `https://dev.glamoons.com/blog/${params.slug}`,
+		},
 		title: blogPost?.title,
 		description: blogPost?.description,
 	};
