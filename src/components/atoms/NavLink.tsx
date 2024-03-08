@@ -2,12 +2,12 @@
 
 import Link, { type LinkProps } from "next/link";
 import { usePathname } from "next/navigation";
-import { type BaseProps } from "@/interfaces/base";
+import { type PropsWithChildren } from "react";
 import { cn } from "@/lib/utils";
 
 type NavLinkProps = {
 	href: string;
-	children: BaseProps["children"];
+	children: PropsWithChildren["children"];
 } & LinkProps;
 
 export const NavLink = ({ href, children, ...props }: NavLinkProps) => {

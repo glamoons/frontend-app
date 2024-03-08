@@ -1,12 +1,10 @@
 import {
-	type ImgHTMLAttributes,
 	type DetailedHTMLProps,
 	type HTMLAttributes,
-	type ReactNode,
+	type ImgHTMLAttributes,
 } from "react";
 
 export type BaseProps = {
-	children: ReactNode;
 	className?: string;
 	href?: string;
 	icon?: JSX.Element;

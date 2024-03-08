@@ -1,11 +1,9 @@
 import Link, { type LinkProps } from "next/link";
+import { type PropsWithChildren } from "react";
 import { type BaseProps } from "@/interfaces/base";
 import { cn } from "@/lib/utils";
 
-export type ButtonProps = {
-	children: BaseProps["children"];
-	className?: BaseProps["className"];
-} & LinkProps;
+export type ButtonProps = LinkProps & PropsWithChildren<BaseProps>;
 
 export const DefaultButton = ({
 	className,

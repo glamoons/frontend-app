@@ -1,8 +1,9 @@
-import { type HTMLElements, type BaseProps } from "@/interfaces/base";
+import { type PropsWithChildren } from "react";
+import { type HTMLElements } from "@/interfaces/base";
 import { cn } from "@/lib/utils";
 
 type DefaultTextProps = {
-	children: BaseProps["children"];
+	children: PropsWithChildren["children"];
 	className?: HTMLElements<HTMLParagraphElement>["className"];
 };
 

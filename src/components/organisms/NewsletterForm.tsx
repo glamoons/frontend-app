@@ -28,6 +28,7 @@ export const NewsletterForm = ({
 					className={cn(inputClassName)}
 				/>
 				<SubmitButton
+					type="submit"
 					className={cn(
 						"w-full border-secondary bg-secondary text-slate50 laptop:w-auto",
 						butttonClassName,

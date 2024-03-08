@@ -2,13 +2,13 @@
 
 import { usePathname } from "next/navigation";
 import {
+	type PropsWithChildren,
 	createContext,
 	useContext,
+	useEffect,
 	useState,
 	type SetStateAction,
-	useEffect,
 } from "react";
-import { type BaseProps } from "@/interfaces/base";
 
 const NavigationContext = createContext({
 	isOpen: false,
@@ -18,7 +18,7 @@ const NavigationContext = createContext({
 export const NavigationProvider = ({
 	children,
 }: {
-	children: BaseProps["children"];
+	children: PropsWithChildren["children"];
 }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const pathname = usePathname();

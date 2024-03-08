@@ -1,3 +1,4 @@
+import { type PropsWithChildren } from "react";
 import { FooterHeading } from "@/components/atoms/FooterHeading";
 import { type BaseProps } from "@/interfaces/base";
 import { cn } from "@/lib/utils";
@@ -10,7 +11,7 @@ export const UnorderedList = ({
 	children,
 	title,
 	className,
-}: UnorderedListProps & BaseProps) => {
+}: UnorderedListProps & PropsWithChildren<BaseProps>) => {
 	return (
 		<div className={cn("flex flex-col space-y-3", className)}>
 			<FooterHeading>{title}</FooterHeading>

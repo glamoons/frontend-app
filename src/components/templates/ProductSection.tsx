@@ -1,4 +1,4 @@
-import { type ReactNode } from "react";
+import { type PropsWithChildren, type ReactNode } from "react";
 import {
 	SectionHeading,
 	type SectionHeadingProps,
@@ -20,7 +20,7 @@ type ProductSectionProps = Omit<
 > &
 	ResponsiveImageProps & {
 		href?: ButtonProps["href"];
-		btnName?: ButtonProps["children"];
+		btnName?: PropsWithChildren["children"];
 		right: boolean;
 		picItems?: ReactNode;
 	};
