@@ -12,10 +12,10 @@ export default function Home() {
 		<>
 			<HeroBaner
 				src={
-					"https://res.cloudinary.com/dstimijog/image/upload/v1707385346/slider-image-mobile_vrefc4_neezfh.webp"
+					"https://res.cloudinary.com/dstimijog/image/upload/v1710228435/slider_image_mobile_b6f0da0bf2.webp"
 				}
-				laptopSrcSet="https://res.cloudinary.com/dstimijog/image/upload/v1707385346/slider-image-laptop_v8bksg_obkzn4.webp"
-				desktopSrcSet="https://res.cloudinary.com/dstimijog/image/upload/v1707385345/slider-image-desktop_ampklf_j6fqwz.webp"
+				laptopSrcSet="https://res.cloudinary.com/dstimijog/image/upload/v1710228446/large_slider_image_desktop_42c5131783.webp"
+				desktopSrcSet="https://res.cloudinary.com/dstimijog/image/upload/v1710228446/slider_image_desktop_42c5131783.webp"
 				alt={"Glamoons: konfigurowalne stoliki i zegary w stylu glamour."}
 			/>
 			<CategorySection />
