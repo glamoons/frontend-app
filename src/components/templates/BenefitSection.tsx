@@ -18,8 +18,8 @@ export const BenefitSection = () => {
 					title={isHomePage ? "Postaw na liczby" : "Poznaj korzyści"}
 					description={
 						isHomePage
-							? "Wybierz stolik, który sprosta Twoim największym wymaganiom"
-							: "Przyjrzyj się cechom naszych stolików i zdecyduj, czy Ci odpowiadają."
+							? "Wybierz bazę, która sprosta Twoim największym wymaganiom"
+							: "Przyjrzyj się cechom naszych baz MDF i zdecyduj, czy Ci odpowiadają."
 					}
 				/>
 				<SectionBenefitsWithIcon isHomePage={isHomePage} />

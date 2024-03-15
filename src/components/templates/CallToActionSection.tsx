@@ -1,10 +1,12 @@
+import { type ButtonProps } from "@/components/atoms/DefaultButton";
+import { SecondaryButton } from "@/components/atoms/SecondaryButton";
 import { Section } from "@/components/atoms/Section";
 import {
 	SectionHeading,
 	type SectionHeadingProps,
 } from "@/components/molecules/SectionHeading";
-import { SecondaryButton } from "@/components/atoms/SecondaryButton";
-import { type ButtonProps } from "@/components/atoms/DefaultButton";
+import { type BaseProps } from "@/interfaces/base";
+import { cn } from "@/lib/utils";
 
 type CallToActionSectionProps = Omit<
 	SectionHeadingProps,
@@ -17,6 +19,7 @@ type CallToActionSectionProps = Omit<
 > & {
 	btnName: ButtonProps["children"];
 	href: ButtonProps["href"];
+	className?: BaseProps["className"];
 };
 
 export const CallToActionSection = ({
@@ -24,9 +27,10 @@ export const CallToActionSection = ({
 	btnName,
 	href,
 	description,
+	className,
 }: CallToActionSectionProps) => {
 	return (
-		<Section className="!py-0 3xl:container">
+		<Section className={cn("!py-0 3xl:container", className)}>
 			<div className="flex flex-col items-center space-y-8 bg-slate50 px-[1.563rem] py-[50px] desktop:py-[100px] 3xl:rounded-3xl">
 				<SectionHeading
 					title={title}

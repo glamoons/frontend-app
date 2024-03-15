@@ -5,7 +5,6 @@ import { BenefitSection } from "@/components/templates/BenefitSection";
 import { CallToActionSection } from "@/components/templates/CallToActionSection";
 import { ContactSection } from "@/components/templates/ContactSection";
 import { ProductSection } from "@/components/templates/ProductSection";
-import { ReviewsSection } from "@/components/templates/ReviewsSection";
 
 export async function generateMetadata(): Promise<Metadata> {
 	return {
@@ -26,19 +25,13 @@ const ProductPage = () => {
 				mobileSrc="https://res.cloudinary.com/dstimijog/image/upload/v1707385345/informational_mobile_nphus5_qfd61k.webp"
 				alt="Konfigurator"
 				desktopSrc="https://res.cloudinary.com/dstimijog/image/upload/v1708670729/about-product_l6xxbi.webp"
-				btnName="Skonfiguruj"
+				btnName="Zamów bazę MDF"
 				href="/"
 				right={false}
-				picItems={
-					<PlayButton
-						aria-label="Konfigurator Glammoons - obejrzyj krótkie video"
-						className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2"
-					/>
-				}
 			/>
 			<ProductSection
 				subHeading="Poczuj perfekcjonizm na własnej skórze"
-				title="Stolik z solidnym blatem"
+				title="Zegar na bazie MDF"
 				description="A paragraph or two with information on your product/service or describes a problem your product/service is designed to solve. 
 				Provide your customers a story they would enjoy keeping in mind the objectives of your website. Pay special attention to the tone of voice. Try to win the customers’ trust by being positive."
 				mobileSrc="https://res.cloudinary.com/dstimijog/image/upload/v1708931194/product-image-mobile-02_bmbj4g.webp"
@@ -48,23 +41,27 @@ const ProductPage = () => {
 			/>
 			<ProductSection
 				subHeading="Ekskluzywny wygląd"
-				title="Dopasuj stolik pod siebie"
+				title="Dopasuj bazę MDF do swojego produktu"
 				description="A paragraph or two with information on your product/service or describes a problem your product/service is designed to solve."
 				mobileSrc="https://res.cloudinary.com/dstimijog/image/upload/v1708931194/product-image-mobile-03_qrgqqy.webp"
-				alt="Dopasuj stolik pod siebie"
+				alt="Dopasuj bazę MDF do swojego produktu"
 				desktopSrc="https://res.cloudinary.com/dstimijog/image/upload/v1708931014/product-image-03_mpj4r8.webp"
-				btnName="Zaprojektuj"
-				href="/"
 				right={false}
+				picItems={
+					<PlayButton
+						aria-label="Konfigurator Glammoons - obejrzyj krótkie video"
+						className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2"
+					/>
+				}
 			/>
-			<ReviewsSection />
-			<BenefitSection />
 			<AboutSection />
+			<BenefitSection />
 			<CallToActionSection
-				title="Skonfiguruj własny stolik dokładnie tak jak chcesz"
-				btnName="Skonfiguruj"
+				title="Zamów bazę MDF dokładnie taką jaką chcesz"
+				btnName="Zamów teraz"
 				href="/"
-				description="Skorzystaj z naszego intuicyjnego konfiguratora, aby stworzyć stolik na miarę Twoich oczekiwań. To tylko kilka szybkich kliknięć."
+				description="Lorem ipsum dolor sit amet elipsum perolum, kuwesum hamed kaselim gubasi tupate katet"
+				className="mt-[50px] desktop:mt-[100px]"
 			/>
 			<ContactSection />
 		</>

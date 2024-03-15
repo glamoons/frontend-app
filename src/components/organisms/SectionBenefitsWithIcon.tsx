@@ -1,7 +1,7 @@
 import {
-	IconDeviceMobileCharging,
-	IconLayoutAlignTop,
+	IconCircuitDiode,
 	IconPackageImport,
+	IconShadowOff,
 	IconShieldChevron,
 	IconTransitionTop,
 	IconWeight,
@@ -29,7 +29,7 @@ export const SectionBenefitsWithIcon = ({
 			<BoxWithIcon
 				icon={<IconShieldChevron size={50} className="text-primaryDark" />}
 				title="2 lata"
-				subTitle="gwarancji na stolik"
+				subTitle="gwarancji na bazę MDF"
 				desctiption="Gwarancja door-to-door to spokój na lata. W przypadku awarii wymieniamy część na nową na nasz koszt."
 			/>
 			<BoxWithIcon
@@ -39,11 +39,9 @@ export const SectionBenefitsWithIcon = ({
 				desctiption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 			/>
 			<BoxWithIcon
-				icon={
-					<IconDeviceMobileCharging size={50} className="text-primaryDark" />
-				}
+				icon={<IconCircuitDiode size={50} className="text-primaryDark" />}
 				title="1"
-				subTitle="ładowanie indykcyjne"
+				subTitle="oświetlenie LED"
 				desctiption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 			/>
 			{!isHomePage && (
@@ -61,9 +59,9 @@ export const SectionBenefitsWithIcon = ({
 						desctiption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 					/>
 					<BoxWithIcon
-						icon={<IconLayoutAlignTop size={50} className="text-primaryDark" />}
-						title="51-61"
-						subTitle="centymetrów wysokości"
+						icon={<IconShadowOff size={50} className="text-primaryDark" />}
+						title="30-80"
+						subTitle="centymetrów średnicy"
 						desctiption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 					/>
 				</>

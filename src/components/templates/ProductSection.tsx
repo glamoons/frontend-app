@@ -81,7 +81,7 @@ export const ProductSection = ({
 								right ? "order-1 -ml-[3.25rem]" : "order-2 -mr-[3.25rem]",
 							)}
 						>
-							<div className="absolute bottom-0 left-0 right-0 top-0 z-10 bg-black/20" />
+							<div className="absolute bottom-0 left-0 right-0 top-0 z-10 bg-black/10" />
 							{picItems ?? false}
 							<ResponsiveImage
 								mobileSrc={mobileSrc}
@@ -98,7 +98,7 @@ export const ProductSection = ({
 						right ? "order-1" : "order-2",
 					)}
 				>
-					<div className="absolute bottom-0 left-0 right-0 top-0 z-10 bg-black/20" />
+					<div className="absolute bottom-0 left-0 right-0 top-0 z-10 bg-black/10" />
 					{picItems ?? false}
 					<ResponsiveImage
 						mobileSrc={mobileSrc}

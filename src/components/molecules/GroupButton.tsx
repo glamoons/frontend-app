@@ -1,5 +1,4 @@
 import { PrimaryButton } from "../atoms/PrimaryButton";
-import { SecondaryButton } from "../atoms/SecondaryButton";
 
 export const GroupButton = () => {
 	return (
@@ -7,9 +6,6 @@ export const GroupButton = () => {
 			<PrimaryButton href="/" aria-label="sprawdź">
 				sprawdź
 			</PrimaryButton>
-			<SecondaryButton href="/" aria-label="skonfiguruj">
-				skonfiguruj
-			</SecondaryButton>
 		</div>
 	);
 };
