@@ -38,7 +38,7 @@ export default function RootLayout({
 			<NavigationProvider>
 				<Body>
 					<Header />
-					{/* <Menu /> */}
+					<Menu />
 					<MenuBar />
 					<main>{children}</main>
 					<Footer />
