@@ -14,13 +14,13 @@ export async function generateMetadata(): Promise<Metadata> {
 		alternates: {
 			canonical: "https://dev.glamoons.com",
 		},
-		title: "Glamoons - konfigurowalne stoliki i zegary w stylu glamour.",
+		title: "Glamoons - konfigurowalne bazy MDF z oświetleniem LED.",
 		description:
-			"Stoliki i zegary w stylu glamour do pełnej konfiguracji. Darmowa dostawa i zwroty do 100 dni.",
+			"Unikatowe bazy MDF z oświetleniem LED do pełnej konfiguracji. Darmowa dostawa i zwroty do 100 dni.",
 		openGraph: {
-			title: "Glamoons - konfigurowalne stoliki i zegary w stylu glamour.",
+			title: "Glamoons - konfigurowalne bazy MDF z oświetleniem LED.",
 			description:
-				"Stoliki i zegary w stylu glamour do pełnej konfiguracji. Darmowa dostawa i zwroty do 100 dni.",
+				"Unikatowe bazy MDF z oświetleniem LED do pełnej konfiguracji. Darmowa dostawa i zwroty do 100 dni.",
 			type: "website",
 			siteName: "Glamoons",
 			url: "https://dev.glamoons.com/",
