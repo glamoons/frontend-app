@@ -30,6 +30,8 @@ export type ResponsiveImageProps = {
 
 export type CategoryHolderProps = {
 	title: string;
+	size: string;
+	price: string;
 	btnName?: string;
 };
 
