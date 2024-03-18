@@ -58,7 +58,7 @@ const BlogPage = () => {
 				<div className="absolute left-0 top-0 z-10 h-full w-full bg-[#F6F6F4]/85">
 					<SectionHeading
 						subHeading="Opowieści o stolikach"
-						title="Poznaj sztukę tworzenia stolików kawowych"
+						title="Blog o bazach MDF Glammoons"
 						containerStyle="container justify-center h-full w-full tabletLg:ml-[75%] 4xl:ml-[80%] max-w-none"
 						containerHeadingStyle="space-y-4"
 						headingClassName="tabletLg:text-4xl laptop:text-5xl 3xl:text-6xl"
