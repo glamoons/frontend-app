@@ -1,7 +1,0 @@
-services:
-  next-app:
-    image: 242912/next-app:latest
-    container_name: next-app
-    restart: always
-    ports:
-      - 3000:3000

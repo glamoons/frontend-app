@@ -2,6 +2,8 @@ import { type Metadata } from "next";
 import BlogEntry from "./BlogEntry";
 import { blogPosts } from "@/app/blog/page";
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
 	return blogPosts?.map((blog) => ({
 		slug: blog.slug,
