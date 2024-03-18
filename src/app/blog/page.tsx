@@ -66,7 +66,7 @@ const BlogPage = () => {
 				</div>
 				<ResponsiveImage
 					mobileSrc="https://res.cloudinary.com/dstimijog/image/upload/v1709616751/blog-mobile_jl97j1.webp"
-					alt="Blog o meblach Glammoons"
+					alt="Blog o bazach MDF Glammoons"
 					desktopSrc="https://res.cloudinary.com/dstimijog/image/upload/v1709616751/blog-desktop_qeevgn.webp"
 					sizes="(max-width: 768px) 100vw, 50vw"
 					className="rounded-3xl rounded-tr-3xl grayscale"
