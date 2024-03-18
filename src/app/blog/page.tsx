@@ -58,7 +58,7 @@ const BlogPage = () => {
 				<div className="absolute left-0 top-0 z-10 h-full w-full bg-[#F6F6F4]/85">
 					<SectionHeading
 						subHeading="Opowieści o stolikach"
-						title="Poznaj sztukę tworzenia stolików kawowych"
+						title="Blog o bazach MDF Glammoons"
 						containerStyle="container justify-center h-full w-full tabletLg:ml-[75%] 4xl:ml-[80%] max-w-none"
 						containerHeadingStyle="space-y-4"
 						headingClassName="tabletLg:text-4xl laptop:text-5xl 3xl:text-6xl"
@@ -66,7 +66,7 @@ const BlogPage = () => {
 				</div>
 				<ResponsiveImage
 					mobileSrc="https://res.cloudinary.com/dstimijog/image/upload/v1709616751/blog-mobile_jl97j1.webp"
-					alt="Blog o meblach Glammoons"
+					alt="Blog o bazach MDF Glammoons"
 					desktopSrc="https://res.cloudinary.com/dstimijog/image/upload/v1709616751/blog-desktop_qeevgn.webp"
 					sizes="(max-width: 768px) 100vw, 50vw"
 					className="rounded-3xl rounded-tr-3xl grayscale"
