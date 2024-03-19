@@ -20,12 +20,12 @@ export const Category = ({
 }: CategoryProps) => {
 	return (
 		<div className="relative aspect-square h-full overflow-hidden tablet:aspect-square">
-			<Link href={String(href)} className="group" aria-label={title}>
+			<Link href={String(href)} aria-label={title}>
 				<ResponsiveImage
 					mobileSrc={mobileSrc}
 					alt={alt}
 					desktopSrc={desktopSrc}
-					className="h-full w-full transform transition-transform duration-500 group-hover:scale-[1.05]"
+					className="h-full w-full transform transition-transform duration-500 hover:scale-[1.05]"
 					sizes="50vw"
 				/>
 			</Link>
