@@ -19,7 +19,7 @@ export const Category = ({
 	title,
 }: CategoryProps) => {
 	return (
-		<div className="relative aspect-square h-full overflow-hidden tablet:aspect-square laptop:rounded-3xl">
+		<div className="relative aspect-square h-full overflow-hidden tablet:aspect-square">
 			<Link href={String(href)} className="group" aria-label={title}>
 				<ResponsiveImage
 					mobileSrc={mobileSrc}
