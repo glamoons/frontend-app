@@ -4,9 +4,9 @@ import { type CategoryHolderProps } from "@/interfaces/base";
 
 export const CategoryHolder = ({
 	title,
-	size,
 	price,
 	btnName,
+	productAttributes,
 }: CategoryHolderProps) => {
 	return (
 		<div className="relative flex flex-col justify-end bg-slate50 p-4 tablet:rounded-b-3xl tablet:p-6">
@@ -15,9 +15,19 @@ export const CategoryHolder = ({
 					<h3 className="text-sm font-bold text-secondary tabletLg:text-base">
 						{title}
 					</h3>
-					<p className="text-sm font-bold text-primaryDark tabletLg:text-base">
-						{size}
-					</p>
+					<div>
+						{productAttributes &&
+							productAttributes.map((attribute) => {
+								return (
+									<p
+										key={attribute.id}
+										className="text-sm font-bold text-primaryDark tabletLg:text-base"
+									>
+										{attribute.name} {attribute.value}
+									</p>
+								);
+							})}
+					</div>
 				</div>
 				<p className="text-2xl font-bold text-secondary">
 					{price} <small className="block text-xs">brutto</small>

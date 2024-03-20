@@ -1,5 +1,4 @@
 /** @type {import('next').NextConfig} */
-const path = require("path");
 const nextConfig = {
 	pageExtensions: ["ts", "tsx", "mdx"],
 	output: "standalone",

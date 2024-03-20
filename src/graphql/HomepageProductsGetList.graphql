@@ -1,0 +1,28 @@
+query HomepageProductsGetList {
+	products {
+		nodes {
+			... on VariableProduct {
+				id
+				name
+				image {
+					altText
+					mimeType
+					sourceUrl(size: LARGE)
+				}
+				variations(first: 20) {
+					nodes {
+						id
+						price(format: FORMATTED)
+						name
+						attributes {
+							nodes {
+								id
+								value
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

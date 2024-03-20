@@ -4,8 +4,12 @@ import { CategorySection } from "@/components/templates/CategorySection";
 import { ConfiguratorSection } from "@/components/templates/ConfiguratorSection";
 import { ContactSection } from "@/components/templates/ContactSection";
 import { NewsletterSection } from "@/components/templates/NewsletterSection";
+import { HomepageApi } from "@/services/homepageApi";
 
-export default function Home() {
+export default async function Home() {
+	const { getHomepageProductsList } = HomepageApi();
+	const products = await getHomepageProductsList();
+
 	return (
 		<>
 			<HeroBaner
@@ -16,7 +20,7 @@ export default function Home() {
 				desktopSrcSet="https://res.cloudinary.com/dstimijog/image/upload/v1710228446/slider_image_desktop_42c5131783.webp"
 				alt={"Glamoons: konfigurowalne bazy MDF z oświetleniem LED."}
 			/>
-			<CategorySection />
+			<CategorySection products={products} />
 			<ConfiguratorSection />
 			<BenefitSection />
 			<NewsletterSection />
