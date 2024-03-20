@@ -18,12 +18,15 @@ export const CategoryHolder = ({
 					<div>
 						{productAttributes &&
 							productAttributes.map((attribute) => {
+								const attributeOptions = attribute.options;
 								return (
 									<p
 										key={attribute.id}
 										className="text-sm font-bold text-primaryDark tabletLg:text-base"
 									>
-										{attribute.name} {attribute.value}
+										{attributeOptions?.map((option) => {
+											return `${option} `;
+										})}
 									</p>
 								);
 							})}

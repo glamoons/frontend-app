@@ -22683,7 +22683,7 @@ export type WritingSettings = {
 export type HomepageProductsGetListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type HomepageProductsGetListQuery = { products?: { nodes: Array<{ id: string, name?: string | null, image?: { altText?: string | null, mimeType?: string | null, sourceUrl?: string | null } | null, variations?: { nodes: Array<{ id: string, price?: string | null, name?: string | null, attributes?: { nodes: Array<{ id: string, value?: string | null }> } | null }> } | null } | {}> } | null };
+export type HomepageProductsGetListQuery = { products?: { nodes: Array<{ id: string, name?: string | null } | { id: string, name?: string | null } | { id: string, name?: string | null, price?: string | null, attributes?: { nodes: Array<{ id: string, options?: Array<string | null> | null } | { id: string, options?: Array<string | null> | null }> } | null } | { id: string, name?: string | null } | { id: string, name?: string | null }> } | null };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -22704,25 +22704,16 @@ export const HomepageProductsGetListDocument = new TypedDocumentString(`
     query HomepageProductsGetList {
   products {
     nodes {
-      ... on VariableProduct {
+      id
+      name
+      ... on SimpleProduct {
         id
         name
-        image {
-          altText
-          mimeType
-          sourceUrl(size: LARGE)
-        }
-        variations(first: 20) {
+        price
+        attributes {
           nodes {
             id
-            price(format: FORMATTED)
-            name
-            attributes {
-              nodes {
-                id
-                value
-              }
-            }
+            options
           }
         }
       }

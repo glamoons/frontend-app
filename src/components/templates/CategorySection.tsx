@@ -9,18 +9,14 @@ import { Section } from "@/components/atoms/Section";
 import { CategoryHolder } from "@/components/molecules/CategoryHolder";
 import { SectionHeading } from "@/components/molecules/SectionHeading";
 import { Category } from "@/components/organisms/Category";
+import { type SimpleProduct } from "@/gql/graphql";
 import { cn } from "@/lib/utils";
 import "swiper/css";
-import {
-	type VariationAttribute,
-	type ProductVariation,
-	type VariableProduct,
-} from "@/gql/graphql";
 
 export const CategorySection = ({
 	products,
 }: {
-	products: VariableProduct[];
+	products: SimpleProduct[];
 }) => {
 	const swiperRef = useRef<SwiperType>();
 	const swiperInstanceRef = useRef<SwiperType>();
@@ -62,31 +58,25 @@ export const CategorySection = ({
 						}}
 					>
 						{products.map((product) => {
-							if (!product.variations) return [];
-							const productVariations: ProductVariation[] =
-								product.variations.nodes;
-							return productVariations.map((variation) => {
-								if (!variation.attributes) return [];
-								const productAttributes: VariationAttribute[] =
-									variation.attributes.nodes;
-								return (
-									<SwiperSlide key={variation.id}>
-										<Category
-											href="/"
-											mobileSrc="https://res.cloudinary.com/dstimijog/image/upload/v1710536717/product-item_bgacz4.webp"
-											alt="Stoliki"
-											desktopSrc="https://res.cloudinary.com/dstimijog/image/upload/v1710536717/product-item_bgacz4.webp"
-											title="Stoliki"
-										/>
-										<CategoryHolder
-											title={String(product.name)}
-											price={String(variation.price)}
-											btnName="Zamów teraz"
-											productAttributes={productAttributes}
-										/>
-									</SwiperSlide>
-								);
-							});
+							if (!product) return [];
+							const productAttributes = product.attributes?.nodes;
+							return (
+								<SwiperSlide key={product.id}>
+									<Category
+										href="/"
+										mobileSrc="https://res.cloudinary.com/dstimijog/image/upload/v1710536717/product-item_bgacz4.webp"
+										alt="Stoliki"
+										desktopSrc="https://res.cloudinary.com/dstimijog/image/upload/v1710536717/product-item_bgacz4.webp"
+										title="Stoliki"
+									/>
+									<CategoryHolder
+										title={String(product.name)}
+										price={String(product.price)}
+										btnName="Zamów teraz"
+										productAttributes={productAttributes}
+									/>
+								</SwiperSlide>
+							);
 						})}
 					</Swiper>
 					<div

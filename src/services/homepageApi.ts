@@ -1,7 +1,7 @@
 import { executeQuery } from "./api/api-config";
 import {
 	HomepageProductsGetListDocument,
-	type VariableProduct,
+	type SimpleProduct,
 } from "@/gql/graphql";
 
 export const HomepageApi = () => {
@@ -16,7 +16,7 @@ export const HomepageApi = () => {
 
 		return graphqlResponse.products.nodes.map((product) => {
 			return {
-				...(product as VariableProduct),
+				...(product as SimpleProduct),
 			};
 		});
 	};

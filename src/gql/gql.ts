@@ -14,13 +14,13 @@ import * as types from './graphql';
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "query HomepageProductsGetList {\n  products {\n    nodes {\n      ... on VariableProduct {\n        id\n        name\n        image {\n          altText\n          mimeType\n          sourceUrl(size: LARGE)\n        }\n        variations(first: 20) {\n          nodes {\n            id\n            price(format: FORMATTED)\n            name\n            attributes {\n              nodes {\n                id\n                value\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n}": types.HomepageProductsGetListDocument,
+    "query HomepageProductsGetList {\n  products {\n    nodes {\n      id\n      name\n      ... on SimpleProduct {\n        id\n        name\n        price\n        attributes {\n          nodes {\n            id\n            options\n          }\n        }\n      }\n    }\n  }\n}": types.HomepageProductsGetListDocument,
 };
 
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "query HomepageProductsGetList {\n  products {\n    nodes {\n      ... on VariableProduct {\n        id\n        name\n        image {\n          altText\n          mimeType\n          sourceUrl(size: LARGE)\n        }\n        variations(first: 20) {\n          nodes {\n            id\n            price(format: FORMATTED)\n            name\n            attributes {\n              nodes {\n                id\n                value\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n}"): typeof import('./graphql').HomepageProductsGetListDocument;
+export function graphql(source: "query HomepageProductsGetList {\n  products {\n    nodes {\n      id\n      name\n      ... on SimpleProduct {\n        id\n        name\n        price\n        attributes {\n          nodes {\n            id\n            options\n          }\n        }\n      }\n    }\n  }\n}"): typeof import('./graphql').HomepageProductsGetListDocument;
 
 
 export function graphql(source: string) {
