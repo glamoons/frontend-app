@@ -1,13 +1,16 @@
 import { IconShoppingCart } from "@tabler/icons-react";
-import { SubmitButton } from "../atoms/SubmitButton";
-import { type CategoryHolderProps } from "@/interfaces/base";
+import { SecondaryButton } from "@/components/atoms/SecondaryButton";
+import { type BaseProps, type CategoryHolderProps } from "@/interfaces/base";
+
+type CategoryHolderAdditionalProps = Pick<BaseProps, "href">;
 
 export const CategoryHolder = ({
 	title,
 	price,
 	btnName,
 	productAttributes,
-}: CategoryHolderProps) => {
+	href,
+}: CategoryHolderProps & CategoryHolderAdditionalProps) => {
 	return (
 		<div className="relative flex flex-col justify-end bg-slate50 p-4 tablet:rounded-b-3xl tablet:p-6">
 			<div className="flex flex-col space-y-2 laptop:flex-row laptop:items-start laptop:space-x-2 laptop:space-y-0">
@@ -36,10 +39,13 @@ export const CategoryHolder = ({
 					{price} <small className="block text-xs">brutto</small>
 				</p>
 			</div>
-			<SubmitButton className="mt-4 bg-secondary text-slate50">
+			<SecondaryButton
+				className="mt-4 bg-secondary text-slate50"
+				href={String(href)}
+			>
 				<span className="hidden tablet:block">{btnName}</span>
 				<IconShoppingCart className="tablet:hidden" />
-			</SubmitButton>
+			</SecondaryButton>
 		</div>
 	);
 };

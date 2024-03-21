@@ -15,11 +15,6 @@ export const Footer = () => {
 			<div className="flex w-full flex-col space-y-10 tablet:flex-row tablet:justify-between tablet:space-x-10 tablet:space-y-0">
 				<div className="flex flex-row justify-between space-x-10 tablet:w-2/3">
 					<UnorderedList title="O firmie" className="w-1/2">
-						<ListWithLink
-							href={"/"}
-							linkName={"Konfigurator"}
-							aria-label="Konfigurator"
-						/>
 						<ListWithLink href={"/"} linkName={"FAQ"} aria-label="FAQ" />
 						<ListWithLink
 							href={"/"}

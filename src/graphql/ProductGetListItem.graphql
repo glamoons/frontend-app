@@ -1,0 +1,19 @@
+fragment ProductsGetListItem on Product {
+	... on SimpleProduct {
+		id
+		slug
+		name
+		price
+		image {
+			altText
+			sourceUrl
+			sizes
+		}
+		attributes {
+			nodes {
+				id
+				options
+			}
+		}
+	}
+}

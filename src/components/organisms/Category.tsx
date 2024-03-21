@@ -8,7 +8,7 @@ import {
 
 type CategoryProps = {
 	href: BaseProps["href"];
-} & Omit<ResponsiveImageProps, "sizes" | "style" | "className"> &
+} & Omit<ResponsiveImageProps, "style" | "className"> &
 	Omit<CategoryHolderProps, "size" | "price">;
 
 export const Category = ({
@@ -17,6 +17,7 @@ export const Category = ({
 	alt,
 	desktopSrc,
 	title,
+	sizes,
 }: CategoryProps) => {
 	return (
 		<div className="relative aspect-square h-full overflow-hidden tablet:aspect-square">
@@ -26,7 +27,7 @@ export const Category = ({
 					alt={alt}
 					desktopSrc={desktopSrc}
 					className="h-full w-full transform transition-transform duration-500 hover:scale-[1.05]"
-					sizes="50vw"
+					sizes={sizes}
 				/>
 			</Link>
 		</div>

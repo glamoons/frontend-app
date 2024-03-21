@@ -58,22 +58,23 @@ export const CategorySection = ({
 						}}
 					>
 						{products.map((product) => {
-							if (!product) return [];
 							const productAttributes = product.attributes?.nodes;
 							return (
 								<SwiperSlide key={product.id}>
 									<Category
-										href="/"
-										mobileSrc="https://res.cloudinary.com/dstimijog/image/upload/v1710536717/product-item_bgacz4.webp"
-										alt="Stoliki"
-										desktopSrc="https://res.cloudinary.com/dstimijog/image/upload/v1710536717/product-item_bgacz4.webp"
-										title="Stoliki"
+										href={`/product/${product.id}`}
+										mobileSrc={`${product.image?.sourceUrl}`}
+										alt={product.image?.altText ?? String(product.name)}
+										desktopSrc={`${product.image?.sourceUrl}`}
+										title={product.image?.altText ?? String(product.name)}
+										sizes={product.image?.sizes ?? "50vw"}
 									/>
 									<CategoryHolder
 										title={String(product.name)}
 										price={String(product.price)}
-										btnName="Zamów teraz"
+										btnName="Skonfiguruj"
 										productAttributes={productAttributes}
+										href={`/product/${product.id}`}
 									/>
 								</SwiperSlide>
 							);

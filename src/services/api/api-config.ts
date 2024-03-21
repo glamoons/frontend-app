@@ -28,12 +28,12 @@ export const executeQuery = async <TResult, TVariables>({
 			query,
 			variables,
 		}),
-		cache,
-		next,
 		headers: {
 			...headers,
 			"Content-Type": "application/json",
 		},
+		next,
+		cache,
 	});
 	const grapqlResponse = (await res.json()) as GraphQLResponse<TResult>;
 

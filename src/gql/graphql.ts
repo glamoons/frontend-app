@@ -22680,10 +22680,27 @@ export type WritingSettings = {
   useSmilies?: Maybe<Scalars['Boolean']['output']>;
 };
 
-export type HomepageProductsGetListQueryVariables = Exact<{ [key: string]: never; }>;
+export type ProductGetByIdQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
 
 
-export type HomepageProductsGetListQuery = { products?: { nodes: Array<{ id: string, name?: string | null } | { id: string, name?: string | null } | { id: string, name?: string | null, price?: string | null, attributes?: { nodes: Array<{ id: string, options?: Array<string | null> | null } | { id: string, options?: Array<string | null> | null }> } | null } | { id: string, name?: string | null } | { id: string, name?: string | null }> } | null };
+export type ProductGetByIdQuery = { product?: { id: string, slug?: string | null, name?: string | null, price?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null, attributes?: { nodes: Array<{ id: string, options?: Array<string | null> | null } | { id: string, options?: Array<string | null> | null }> } | null } | {} | null };
+
+type ProductsGetListItem_ExternalProduct_Fragment = {};
+
+type ProductsGetListItem_GroupProduct_Fragment = {};
+
+type ProductsGetListItem_SimpleProduct_Fragment = { id: string, slug?: string | null, name?: string | null, price?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null, attributes?: { nodes: Array<{ id: string, options?: Array<string | null> | null } | { id: string, options?: Array<string | null> | null }> } | null };
+
+type ProductsGetListItem_VariableProduct_Fragment = {};
+
+export type ProductsGetListItemFragment = ProductsGetListItem_ExternalProduct_Fragment | ProductsGetListItem_GroupProduct_Fragment | ProductsGetListItem_SimpleProduct_Fragment | ProductsGetListItem_VariableProduct_Fragment;
+
+export type ProductsGetListQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ProductsGetListQuery = { products?: { nodes: Array<{ id: string, slug?: string | null, name?: string | null, price?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null, attributes?: { nodes: Array<{ id: string, options?: Array<string | null> | null } | { id: string, options?: Array<string | null> | null }> } | null } | {}> } | null };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -22699,25 +22716,76 @@ export class TypedDocumentString<TResult, TVariables>
     return this.value;
   }
 }
-
-export const HomepageProductsGetListDocument = new TypedDocumentString(`
-    query HomepageProductsGetList {
-  products {
-    nodes {
-      id
-      name
-      ... on SimpleProduct {
+export const ProductsGetListItemFragmentDoc = new TypedDocumentString(`
+    fragment ProductsGetListItem on Product {
+  ... on SimpleProduct {
+    id
+    slug
+    name
+    price
+    image {
+      altText
+      sourceUrl
+      sizes
+    }
+    attributes {
+      nodes {
         id
-        name
-        price
-        attributes {
-          nodes {
-            id
-            options
-          }
-        }
+        options
       }
     }
   }
 }
-    `) as unknown as TypedDocumentString<HomepageProductsGetListQuery, HomepageProductsGetListQueryVariables>;
+    `, {"fragmentName":"ProductsGetListItem"}) as unknown as TypedDocumentString<ProductsGetListItemFragment, unknown>;
+export const ProductGetByIdDocument = new TypedDocumentString(`
+    query ProductGetById($id: ID!) {
+  product(id: $id) {
+    ...ProductsGetListItem
+  }
+}
+    fragment ProductsGetListItem on Product {
+  ... on SimpleProduct {
+    id
+    slug
+    name
+    price
+    image {
+      altText
+      sourceUrl
+      sizes
+    }
+    attributes {
+      nodes {
+        id
+        options
+      }
+    }
+  }
+}`) as unknown as TypedDocumentString<ProductGetByIdQuery, ProductGetByIdQueryVariables>;
+export const ProductsGetListDocument = new TypedDocumentString(`
+    query ProductsGetList {
+  products {
+    nodes {
+      ...ProductsGetListItem
+    }
+  }
+}
+    fragment ProductsGetListItem on Product {
+  ... on SimpleProduct {
+    id
+    slug
+    name
+    price
+    image {
+      altText
+      sourceUrl
+      sizes
+    }
+    attributes {
+      nodes {
+        id
+        options
+      }
+    }
+  }
+}`) as unknown as TypedDocumentString<ProductsGetListQuery, ProductsGetListQueryVariables>;

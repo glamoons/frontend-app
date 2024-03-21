@@ -4,11 +4,10 @@ import { CategorySection } from "@/components/templates/CategorySection";
 import { ConfiguratorSection } from "@/components/templates/ConfiguratorSection";
 import { ContactSection } from "@/components/templates/ContactSection";
 import { NewsletterSection } from "@/components/templates/NewsletterSection";
-import { HomepageApi } from "@/services/homepageApi";
+import { getProductsList } from "@/services/productsApi";
 
 export default async function Home() {
-	const { getHomepageProductsList } = HomepageApi();
-	const products = await getHomepageProductsList();
+	const products = await getProductsList();
 
 	return (
 		<>
