@@ -6,7 +6,7 @@ import { LogoLight } from "@/assets/logo/LogoLight";
 export const runtime = "edge";
 
 export const alt =
-	"Glamoons - konfigurowalne stoliki i zegary w stylu glamour.";
+	"Bazy MDF z podświetleniem LED pod wyroby z żywicy epoksydowej";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -48,7 +48,7 @@ export default async function Image() {
 		(
 			<div style={style}>
 				<div style={backdropStyle} />
-				<LogoLight width={238} height={160} />
+				<LogoLight width={240} height={150} />
 				<p>{messageDecoded}</p>
 			</div>
 		),
