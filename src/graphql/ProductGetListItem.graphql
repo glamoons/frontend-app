@@ -5,13 +5,12 @@ fragment ProductsGetListItem on Product {
 		name
 		price
 		image {
-			altText
-			sourceUrl
-			sizes
+			...ProductGetMediaItem
 		}
 		attributes {
 			nodes {
 				id
+				name
 				options
 			}
 		}

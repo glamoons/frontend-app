@@ -9,7 +9,7 @@ import { Section } from "@/components/atoms/Section";
 import { CategoryHolder } from "@/components/molecules/CategoryHolder";
 import { SectionHeading } from "@/components/molecules/SectionHeading";
 import { Category } from "@/components/organisms/Category";
-import { type SimpleProduct } from "@/gql/graphql";
+import { type ProductAttribute, type SimpleProduct } from "@/gql/graphql";
 import { cn } from "@/lib/utils";
 import "swiper/css";
 
@@ -58,7 +58,8 @@ export const CategorySection = ({
 						}}
 					>
 						{products.map((product) => {
-							const productAttributes = product.attributes?.nodes;
+							const productAttributes: ProductAttribute[] =
+								product.attributes?.nodes || [];
 							return (
 								<SwiperSlide key={product.id}>
 									<Category

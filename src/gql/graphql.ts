@@ -22685,22 +22685,24 @@ export type ProductGetByIdQueryVariables = Exact<{
 }>;
 
 
-export type ProductGetByIdQuery = { product?: { id: string, slug?: string | null, name?: string | null, price?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null, attributes?: { nodes: Array<{ id: string, options?: Array<string | null> | null } | { id: string, options?: Array<string | null> | null }> } | null } | {} | null };
+export type ProductGetByIdQuery = { product?: { galleryImages?: { nodes: Array<{ altText?: string | null, sourceUrl?: string | null, sizes?: string | null }> } | null } | { galleryImages?: { nodes: Array<{ altText?: string | null, sourceUrl?: string | null, sizes?: string | null }> } | null } | { id: string, slug?: string | null, name?: string | null, price?: string | null, galleryImages?: { nodes: Array<{ altText?: string | null, sourceUrl?: string | null, sizes?: string | null }> } | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null, attributes?: { nodes: Array<{ id: string, name?: string | null, options?: Array<string | null> | null } | { id: string, name?: string | null, options?: Array<string | null> | null }> } | null } | { galleryImages?: { nodes: Array<{ altText?: string | null, sourceUrl?: string | null, sizes?: string | null }> } | null } | null };
 
 type ProductsGetListItem_ExternalProduct_Fragment = {};
 
 type ProductsGetListItem_GroupProduct_Fragment = {};
 
-type ProductsGetListItem_SimpleProduct_Fragment = { id: string, slug?: string | null, name?: string | null, price?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null, attributes?: { nodes: Array<{ id: string, options?: Array<string | null> | null } | { id: string, options?: Array<string | null> | null }> } | null };
+type ProductsGetListItem_SimpleProduct_Fragment = { id: string, slug?: string | null, name?: string | null, price?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null, attributes?: { nodes: Array<{ id: string, name?: string | null, options?: Array<string | null> | null } | { id: string, name?: string | null, options?: Array<string | null> | null }> } | null };
 
 type ProductsGetListItem_VariableProduct_Fragment = {};
 
 export type ProductsGetListItemFragment = ProductsGetListItem_ExternalProduct_Fragment | ProductsGetListItem_GroupProduct_Fragment | ProductsGetListItem_SimpleProduct_Fragment | ProductsGetListItem_VariableProduct_Fragment;
 
+export type ProductGetMediaItemFragment = { altText?: string | null, sourceUrl?: string | null, sizes?: string | null };
+
 export type ProductsGetListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ProductsGetListQuery = { products?: { nodes: Array<{ id: string, slug?: string | null, name?: string | null, price?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null, attributes?: { nodes: Array<{ id: string, options?: Array<string | null> | null } | { id: string, options?: Array<string | null> | null }> } | null } | {}> } | null };
+export type ProductsGetListQuery = { products?: { nodes: Array<{ id: string, slug?: string | null, name?: string | null, price?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null, attributes?: { nodes: Array<{ id: string, name?: string | null, options?: Array<string | null> | null } | { id: string, name?: string | null, options?: Array<string | null> | null }> } | null } | {}> } | null };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -22716,6 +22718,13 @@ export class TypedDocumentString<TResult, TVariables>
     return this.value;
   }
 }
+export const ProductGetMediaItemFragmentDoc = new TypedDocumentString(`
+    fragment ProductGetMediaItem on MediaItem {
+  altText
+  sourceUrl
+  sizes
+}
+    `, {"fragmentName":"ProductGetMediaItem"}) as unknown as TypedDocumentString<ProductGetMediaItemFragment, unknown>;
 export const ProductsGetListItemFragmentDoc = new TypedDocumentString(`
     fragment ProductsGetListItem on Product {
   ... on SimpleProduct {
@@ -22724,23 +22733,31 @@ export const ProductsGetListItemFragmentDoc = new TypedDocumentString(`
     name
     price
     image {
-      altText
-      sourceUrl
-      sizes
+      ...ProductGetMediaItem
     }
     attributes {
       nodes {
         id
+        name
         options
       }
     }
   }
 }
-    `, {"fragmentName":"ProductsGetListItem"}) as unknown as TypedDocumentString<ProductsGetListItemFragment, unknown>;
+    fragment ProductGetMediaItem on MediaItem {
+  altText
+  sourceUrl
+  sizes
+}`, {"fragmentName":"ProductsGetListItem"}) as unknown as TypedDocumentString<ProductsGetListItemFragment, unknown>;
 export const ProductGetByIdDocument = new TypedDocumentString(`
     query ProductGetById($id: ID!) {
   product(id: $id) {
     ...ProductsGetListItem
+    galleryImages {
+      nodes {
+        ...ProductGetMediaItem
+      }
+    }
   }
 }
     fragment ProductsGetListItem on Product {
@@ -22750,17 +22767,21 @@ export const ProductGetByIdDocument = new TypedDocumentString(`
     name
     price
     image {
-      altText
-      sourceUrl
-      sizes
+      ...ProductGetMediaItem
     }
     attributes {
       nodes {
         id
+        name
         options
       }
     }
   }
+}
+fragment ProductGetMediaItem on MediaItem {
+  altText
+  sourceUrl
+  sizes
 }`) as unknown as TypedDocumentString<ProductGetByIdQuery, ProductGetByIdQueryVariables>;
 export const ProductsGetListDocument = new TypedDocumentString(`
     query ProductsGetList {
@@ -22777,15 +22798,19 @@ export const ProductsGetListDocument = new TypedDocumentString(`
     name
     price
     image {
-      altText
-      sourceUrl
-      sizes
+      ...ProductGetMediaItem
     }
     attributes {
       nodes {
         id
+        name
         options
       }
     }
   }
+}
+fragment ProductGetMediaItem on MediaItem {
+  altText
+  sourceUrl
+  sizes
 }`) as unknown as TypedDocumentString<ProductsGetListQuery, ProductsGetListQueryVariables>;
