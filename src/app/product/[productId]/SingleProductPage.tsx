@@ -1,10 +1,20 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { IconShoppingCart } from "@tabler/icons-react";
 import { Label } from "@/components/atoms/Label";
 import { ProductInformationBox } from "@/components/organisms/ProductInformationBox";
 import { cn } from "@/lib/utils";
 import { getProductById } from "@/services/productsApi";
 import { DefaultText } from "@/components/atoms/DefaultText";
+import { SubmitButton } from "@/components/atoms/SubmitButton";
+import { FieldsetFormItem } from "@/components/molecules/FieldsetFormItem";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
 
 export default async function SingleProductPage({
 	params,
@@ -21,6 +31,7 @@ export default async function SingleProductPage({
 		"use server";
 		console.log(formData);
 	};
+
 	return (
 		<>
 			<article className="container mx-auto">
@@ -45,65 +56,130 @@ export default async function SingleProductPage({
 							{product.name}
 						</h1>
 						<div className="flex justify-between">
-							<form action={addProductToCartAction}>
+							<form action={addProductToCartAction} className="space-y-8">
 								<input
 									type="hidden"
 									value={params.productId}
 									name="productId"
 								/>
-								<Label htmlFor="shape" className="text-sm">
-									Kształt
-								</Label>
-								<fieldset>
-									<div className="flex items-center">
-										<legend className="sr-only">Kształt kwadratowy</legend>
-										<input
-											type="radio"
+								<fieldset className="grid grid-cols-12 items-center">
+									<Label
+										htmlFor="shape"
+										className="col-span-4 col-start-1 text-sm"
+									>
+										Kształt
+									</Label>
+									<fieldset className="flex max-w-fit rounded-full bg-slate100">
+										<FieldsetFormItem
+											title="kwadratowy"
 											name="shape"
 											id="square"
 											value="square"
 											aria-label="Kształt kwadratowy"
-											hidden
 										/>
-										<Label htmlFor="square" aria-label="Kształt kwadratowy">
-											Kształt kwadratowy
-										</Label>
-									</div>
-									<div className="flex items-center">
-										<legend className="sr-only">Kształt prostokątny</legend>
-										<input
-											type="radio"
+										<FieldsetFormItem
+											title="prostokątny"
 											name="shape"
 											id="rectangle"
 											value="rectangle"
 											aria-label="Kształt prostokątny"
-											hidden
 										/>
-										<Label htmlFor="rectangle" aria-label="Kształt prostokątny">
-											Kształt prostokątny
-										</Label>
-									</div>
-									<div className="flex items-center">
-										<legend className="sr-only">Kształt okrągły</legend>
-										<input
-											type="radio"
+										<FieldsetFormItem
+											title="okrągły"
 											name="shape"
 											id="circle"
 											value="circle"
 											aria-label="Kształt okrągły"
-											hidden
 										/>
-										<Label htmlFor="circle" aria-label="Kształt okrągły">
-											Kształt okrągły
-										</Label>
-									</div>
+									</fieldset>
 								</fieldset>
-								<button type="submit">Zamów</button>
+								<fieldset className="grid grid-cols-12 items-center">
+									<Label
+										htmlFor="shape"
+										className="col-span-4 col-start-1 text-sm"
+									>
+										Średnica
+									</Label>
+									<fieldset className="col-span-4">
+										<Select name="size">
+											<SelectTrigger className="h-auto border-none bg-slate100 focus:ring-0">
+												<SelectValue
+													placeholder="Wybierz średnicę"
+													className="text-sm font-bold text-secondary"
+												/>
+											</SelectTrigger>
+											<SelectContent className="border-none bg-slate50">
+												<SelectItem value="30cm">30cm</SelectItem>
+												<SelectItem value="40cm">40cm</SelectItem>
+												<SelectItem value="50cm">50cm</SelectItem>
+												<SelectItem value="60cm">60cm</SelectItem>
+												<SelectItem value="70cm">70cm</SelectItem>
+												<SelectItem value="80cm">80cm</SelectItem>
+											</SelectContent>
+										</Select>
+									</fieldset>
+								</fieldset>
+								<fieldset className="grid grid-cols-12 items-center">
+									<Label
+										htmlFor="shape"
+										className="col-span-4 col-start-1 text-sm"
+									>
+										Kolor
+									</Label>
+									<fieldset className="col-span-4">
+										<Select name="color">
+											<SelectTrigger className="h-auto border-none bg-slate100 focus:ring-0">
+												<SelectValue
+													placeholder="Wybierz kolor"
+													className="text-sm font-bold text-secondary"
+												/>
+											</SelectTrigger>
+											<SelectContent
+												className="border-none bg-slate50"
+												defaultValue={"biały zimny"}
+											>
+												<SelectItem value="white-cold">
+													<span className="flex items-center space-x-2">
+														<span
+															className={cn(
+																"inline-block h-8 w-8 rounded-full drop-shadow-sm",
+																`bg-[#B0D6FD]`,
+															)}
+														></span>
+														<span>biały zimny</span>
+													</span>
+												</SelectItem>
+												<SelectItem value="white-warm">
+													<span className="flex items-center space-x-2">
+														<span
+															className={cn(
+																"inline-block h-8 w-8 rounded-full drop-shadow-sm",
+																`bg-[#FFD15C]`,
+															)}
+														></span>{" "}
+														<span>biały ciepły</span>
+													</span>
+												</SelectItem>
+											</SelectContent>
+										</Select>
+									</fieldset>
+								</fieldset>
+								<fieldset>
+									<span className="flex items-end justify-end space-x-3 py-4">
+										<span className="text-xs text-primaryDark">Cena</span>
+										<DefaultText className="flex justify-end text-2xl font-bold leading-none">
+											{product.price}
+										</DefaultText>
+									</span>
+									<SubmitButton type="submit" className="w-full">
+										<span className="flex flex-row items-center space-x-3">
+											<IconShoppingCart size={24} className="text-secondary" />
+											<span>Dodaj do koszyka</span>
+										</span>
+									</SubmitButton>
+								</fieldset>
 							</form>
 						</div>
-						<DefaultText className="text-2xl font-bold">
-							{product.price}
-						</DefaultText>
 					</div>
 				</div>
 			</article>
