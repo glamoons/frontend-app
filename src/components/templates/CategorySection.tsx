@@ -66,10 +66,15 @@ export const CategorySection = ({
 						{variationsProduct.map((product) => {
 							const productAttributes: VariationAttribute[] =
 								product.attributes?.nodes || [];
+
+							const defaultSizeAttribute = productAttributes.find(
+								(attribute) => attribute.name === "size",
+							);
+
 							return (
 								<SwiperSlide key={product.id}>
 									<Category
-										href={`/product/${product.id}`}
+										href={`/product/${product.id}?size=${defaultSizeAttribute?.value}`}
 										mobileSrc={`${product.image?.sourceUrl}`}
 										alt={product.image?.altText ?? String(product.name)}
 										desktopSrc={`${product.image?.sourceUrl}`}
@@ -81,7 +86,7 @@ export const CategorySection = ({
 										price={String(product.price)}
 										btnName="Skonfiguruj"
 										productAttributes={productAttributes}
-										href={`/product/${product.id}`}
+										href={`/product/${product.id}?size=${defaultSizeAttribute?.value}`}
 									/>
 								</SwiperSlide>
 							);
