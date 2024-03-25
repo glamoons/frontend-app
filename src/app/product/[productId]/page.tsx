@@ -2,11 +2,13 @@ import { type Metadata } from "next";
 import SingleProductPage from "./SingleProductPage";
 import { getProductById, getProductsList } from "@/services/productsApi";
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
 	const products = await getProductsList();
 
 	return products?.map((product) => ({
-		variationsId: product.id,
+		productId: product.id,
 	}));
 }
 
