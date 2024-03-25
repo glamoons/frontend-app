@@ -8,7 +8,7 @@ export async function generateStaticParams() {
 	const products = await getProductsList();
 
 	return products?.map((product) => ({
-		variationsId: product.id,
+		productId: product.id,
 	}));
 }
 
