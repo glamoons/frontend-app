@@ -6,8 +6,7 @@ export async function generateStaticParams() {
 	const products = await getProductsList();
 
 	return products?.map((product) => ({
-		productId: product.id,
-		productSlug: product.slug,
+		variationsId: product.id,
 	}));
 }
 
@@ -20,10 +19,8 @@ export async function generateMetadata({
 
 	return {
 		title: product?.name,
-		description: product?.description,
 		openGraph: {
 			title: `${product?.name}`,
-			description: `${product?.description}`,
 		},
 	};
 }
@@ -33,5 +30,9 @@ export default async function ProductDetailsPage({
 }: {
 	params: { productId: string };
 }) {
-	return <SingleProductPage params={params} />;
+	const products = await getProductsList();
+	const defaultProductId = products[0].id;
+	return (
+		<SingleProductPage params={params} defaultProductId={defaultProductId} />
+	);
 }

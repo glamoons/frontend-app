@@ -1,9 +1,14 @@
 query ProductGetById($id: ID!) {
-	product(id: $id) {
-		...ProductsGetListItem
-		galleryImages {
+	productVariation(id: $id) {
+		id
+		name
+		image {
+			...ProductGetMediaItem
+		}
+		price(format: FORMATTED)
+		attributes {
 			nodes {
-				...ProductGetMediaItem
+				...ProductGetVariationAttribute
 			}
 		}
 	}

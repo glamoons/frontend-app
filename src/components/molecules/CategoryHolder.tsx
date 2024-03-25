@@ -22,40 +22,29 @@ export const CategoryHolder = ({
 					<div className="space-y-2">
 						{productAttributes &&
 							productAttributes.map((attribute) => {
-								const attributeOptions = attribute.options;
-								return attribute.name === "color" ? (
-									<div
-										key={attribute.id}
-										className="flex flex-row items-center space-x-1"
-									>
-										{attributeOptions?.map((option) => {
-											return (
-												<div
-													key={option}
-													className={cn(
-														"h-8 w-8 rounded-full",
-														`bg-[${option}]`,
-													)}
-												></div>
-											);
-										})}
-									</div>
-								) : (
-									<p
-										key={attribute.id}
-										className="text-sm font-bold text-primaryDark tabletLg:text-base"
-									>
-										{attributeOptions?.map((option) => {
-											return `${option} `;
-										})}
-									</p>
+								return (
+									attribute.name === "color" && (
+										<div
+											key={attribute.id}
+											className="flex flex-row items-center space-x-1"
+										>
+											<div
+												className={cn(
+													"h-8 w-8 rounded-full",
+													`bg-[${attribute.value}]`,
+												)}
+											></div>
+										</div>
+									)
 								);
 							})}
 					</div>
 				</div>
-				<p className="text-2xl font-bold text-secondary">
-					{price} <small className="block text-xs">brutto</small>
-				</p>
+				{price && price !== "null" && (
+					<p className="text-right text-2xl font-bold text-secondary">
+						{price} <small className="block text-xs">brutto</small>
+					</p>
+				)}
 			</div>
 			<SecondaryButton
 				className="mt-4 bg-secondary text-slate50"

@@ -22680,29 +22680,42 @@ export type WritingSettings = {
   useSmilies?: Maybe<Scalars['Boolean']['output']>;
 };
 
+export type ProductGetAttributesByProductIdQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type ProductGetAttributesByProductIdQuery = { product?: { attributes?: { nodes: Array<{ name?: string | null, options?: Array<string | null> | null } | { name?: string | null, options?: Array<string | null> | null }> } | null } | { attributes?: { nodes: Array<{ name?: string | null, options?: Array<string | null> | null } | { name?: string | null, options?: Array<string | null> | null }> } | null } | { attributes?: { nodes: Array<{ name?: string | null, options?: Array<string | null> | null } | { name?: string | null, options?: Array<string | null> | null }> } | null } | { attributes?: { nodes: Array<{ name?: string | null, options?: Array<string | null> | null } | { name?: string | null, options?: Array<string | null> | null }> } | null } | null };
+
 export type ProductGetByIdQueryVariables = Exact<{
   id: Scalars['ID']['input'];
 }>;
 
 
-export type ProductGetByIdQuery = { product?: { galleryImages?: { nodes: Array<{ altText?: string | null, sourceUrl?: string | null, sizes?: string | null }> } | null } | { galleryImages?: { nodes: Array<{ altText?: string | null, sourceUrl?: string | null, sizes?: string | null }> } | null } | { id: string, slug?: string | null, name?: string | null, price?: string | null, galleryImages?: { nodes: Array<{ altText?: string | null, sourceUrl?: string | null, sizes?: string | null }> } | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null, attributes?: { nodes: Array<{ id: string, name?: string | null, options?: Array<string | null> | null } | { id: string, name?: string | null, options?: Array<string | null> | null }> } | null } | { galleryImages?: { nodes: Array<{ altText?: string | null, sourceUrl?: string | null, sizes?: string | null }> } | null } | null };
+export type ProductGetByIdQuery = { productVariation?: { id: string, name?: string | null, price?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null, attributes?: { nodes: Array<{ id: string, name?: string | null, value?: string | null }> } | null } | null };
 
 type ProductsGetListItem_ExternalProduct_Fragment = {};
 
 type ProductsGetListItem_GroupProduct_Fragment = {};
 
-type ProductsGetListItem_SimpleProduct_Fragment = { id: string, slug?: string | null, name?: string | null, price?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null, attributes?: { nodes: Array<{ id: string, name?: string | null, options?: Array<string | null> | null } | { id: string, name?: string | null, options?: Array<string | null> | null }> } | null };
+type ProductsGetListItem_SimpleProduct_Fragment = {};
 
-type ProductsGetListItem_VariableProduct_Fragment = {};
+type ProductsGetListItem_VariableProduct_Fragment = { variations?: { nodes: Array<{ id: string, name?: string | null, price?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null, attributes?: { nodes: Array<{ id: string, name?: string | null, value?: string | null }> } | null }> } | null };
 
 export type ProductsGetListItemFragment = ProductsGetListItem_ExternalProduct_Fragment | ProductsGetListItem_GroupProduct_Fragment | ProductsGetListItem_SimpleProduct_Fragment | ProductsGetListItem_VariableProduct_Fragment;
 
 export type ProductGetMediaItemFragment = { altText?: string | null, sourceUrl?: string | null, sizes?: string | null };
 
-export type ProductsGetListQueryVariables = Exact<{ [key: string]: never; }>;
+export type ProductGetVariationAttributeFragment = { id: string, name?: string | null, value?: string | null };
+
+export type ProductsGetListQueryVariables = Exact<{
+  first?: InputMaybe<Scalars['Int']['input']>;
+  field?: InputMaybe<ProductsOrderByEnum>;
+  order?: InputMaybe<OrderEnum>;
+}>;
 
 
-export type ProductsGetListQuery = { products?: { nodes: Array<{ id: string, slug?: string | null, name?: string | null, price?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null, attributes?: { nodes: Array<{ id: string, name?: string | null, options?: Array<string | null> | null } | { id: string, name?: string | null, options?: Array<string | null> | null }> } | null } | {}> } | null };
+export type ProductsGetListQuery = { products?: { nodes: Array<{ id: string } | { id: string } | { id: string } | { id: string } | { id: string, variations?: { nodes: Array<{ id: string, name?: string | null, price?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null, attributes?: { nodes: Array<{ id: string, name?: string | null, value?: string | null }> } | null }> } | null }> } | null };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -22725,21 +22738,29 @@ export const ProductGetMediaItemFragmentDoc = new TypedDocumentString(`
   sizes
 }
     `, {"fragmentName":"ProductGetMediaItem"}) as unknown as TypedDocumentString<ProductGetMediaItemFragment, unknown>;
+export const ProductGetVariationAttributeFragmentDoc = new TypedDocumentString(`
+    fragment ProductGetVariationAttribute on VariationAttribute {
+  id
+  name
+  value
+}
+    `, {"fragmentName":"ProductGetVariationAttribute"}) as unknown as TypedDocumentString<ProductGetVariationAttributeFragment, unknown>;
 export const ProductsGetListItemFragmentDoc = new TypedDocumentString(`
     fragment ProductsGetListItem on Product {
-  ... on SimpleProduct {
-    id
-    slug
-    name
-    price
-    image {
-      ...ProductGetMediaItem
-    }
-    attributes {
+  ... on VariableProduct {
+    variations(where: {orderby: {field: $field, order: $order}}, first: $first) {
       nodes {
         id
         name
-        options
+        image {
+          ...ProductGetMediaItem
+        }
+        price(format: FORMATTED)
+        attributes {
+          nodes {
+            ...ProductGetVariationAttribute
+          }
+        }
       }
     }
   }
@@ -22748,63 +22769,74 @@ export const ProductsGetListItemFragmentDoc = new TypedDocumentString(`
   altText
   sourceUrl
   sizes
-}`, {"fragmentName":"ProductsGetListItem"}) as unknown as TypedDocumentString<ProductsGetListItemFragment, unknown>;
-export const ProductGetByIdDocument = new TypedDocumentString(`
-    query ProductGetById($id: ID!) {
-  product(id: $id) {
-    ...ProductsGetListItem
-    galleryImages {
-      nodes {
-        ...ProductGetMediaItem
-      }
-    }
-  }
 }
-    fragment ProductsGetListItem on Product {
-  ... on SimpleProduct {
-    id
-    slug
-    name
-    price
-    image {
-      ...ProductGetMediaItem
-    }
+fragment ProductGetVariationAttribute on VariationAttribute {
+  id
+  name
+  value
+}`, {"fragmentName":"ProductsGetListItem"}) as unknown as TypedDocumentString<ProductsGetListItemFragment, unknown>;
+export const ProductGetAttributesByProductIdDocument = new TypedDocumentString(`
+    query ProductGetAttributesByProductId($id: ID!) {
+  product(id: $id) {
     attributes {
       nodes {
-        id
         name
         options
       }
     }
   }
 }
-fragment ProductGetMediaItem on MediaItem {
+    `) as unknown as TypedDocumentString<ProductGetAttributesByProductIdQuery, ProductGetAttributesByProductIdQueryVariables>;
+export const ProductGetByIdDocument = new TypedDocumentString(`
+    query ProductGetById($id: ID!) {
+  productVariation(id: $id) {
+    id
+    name
+    image {
+      ...ProductGetMediaItem
+    }
+    price(format: FORMATTED)
+    attributes {
+      nodes {
+        ...ProductGetVariationAttribute
+      }
+    }
+  }
+}
+    fragment ProductGetMediaItem on MediaItem {
   altText
   sourceUrl
   sizes
+}
+fragment ProductGetVariationAttribute on VariationAttribute {
+  id
+  name
+  value
 }`) as unknown as TypedDocumentString<ProductGetByIdQuery, ProductGetByIdQueryVariables>;
 export const ProductsGetListDocument = new TypedDocumentString(`
-    query ProductsGetList {
+    query ProductsGetList($first: Int = 6, $field: ProductsOrderByEnum = IN, $order: OrderEnum = ASC) {
   products {
     nodes {
+      id
       ...ProductsGetListItem
     }
   }
 }
     fragment ProductsGetListItem on Product {
-  ... on SimpleProduct {
-    id
-    slug
-    name
-    price
-    image {
-      ...ProductGetMediaItem
-    }
-    attributes {
+  ... on VariableProduct {
+    variations(where: {orderby: {field: $field, order: $order}}, first: $first) {
       nodes {
         id
         name
-        options
+        image {
+          ...ProductGetMediaItem
+        }
+        price(format: FORMATTED)
+        attributes {
+          nodes {
+            ...ProductGetVariationAttribute
+          }
+        }
       }
     }
   }
@@ -22813,4 +22845,9 @@ fragment ProductGetMediaItem on MediaItem {
   altText
   sourceUrl
   sizes
+}
+fragment ProductGetVariationAttribute on VariationAttribute {
+  id
+  name
+  value
 }`) as unknown as TypedDocumentString<ProductsGetListQuery, ProductsGetListQueryVariables>;

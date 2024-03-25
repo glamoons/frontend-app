@@ -1,13 +1,10 @@
+import { IconShoppingCart } from "@tabler/icons-react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { IconShoppingCart } from "@tabler/icons-react";
-import { Label } from "@/components/atoms/Label";
-import { ProductInformationBox } from "@/components/organisms/ProductInformationBox";
-import { cn } from "@/lib/utils";
-import { getProductById } from "@/services/productsApi";
 import { DefaultText } from "@/components/atoms/DefaultText";
+import { Label } from "@/components/atoms/Label";
 import { SubmitButton } from "@/components/atoms/SubmitButton";
-import { FieldsetFormItem } from "@/components/molecules/FieldsetFormItem";
+import { ProductInformationBox } from "@/components/organisms/ProductInformationBox";
 import {
 	Select,
 	SelectContent,
@@ -15,17 +12,40 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
+import { cn } from "@/lib/utils";
+import {
+	getProductAttributesByProductId,
+	getProductById,
+} from "@/services/productsApi";
+import { generateColorNameByProductOption } from "@/utils/generateColorNameByProductOption";
+import { generateNameByProductOption } from "@/utils/generateNameByProductOption";
 
 export default async function SingleProductPage({
 	params,
+	defaultProductId,
 }: {
 	params: { productId: string };
+	defaultProductId: string;
 }) {
 	const product = await getProductById(params.productId);
+	const productAttributes =
+		await getProductAttributesByProductId(defaultProductId);
 
 	if (!product) {
 		throw notFound();
 	}
+
+	const shapeAttr = product.attributes?.nodes.find(
+		(attribute) => attribute.name === "shape",
+	);
+
+	const sizeAttr = product.attributes?.nodes.find(
+		(attribute) => attribute.name === "size",
+	);
+
+	const colorAttr = product.attributes?.nodes.find(
+		(attribute) => attribute.name === "color",
+	);
 
 	const addProductToCartAction = async (formData: FormData) => {
 		"use server";
@@ -42,21 +62,24 @@ export default async function SingleProductPage({
 						<Image
 							fill
 							priority
-							src={String(product.galleryImages?.nodes[0].sourceUrl)}
+							src={String(product.image?.sourceUrl)}
 							alt={product.image?.altText ?? String(product.name)}
 							className={cn(
 								true ? "lg:col-span-2 lg:row-span-2" : "lg:block hidden",
 								"rounded-lg",
 							)}
-							sizes={String(product.galleryImages?.nodes[0].sizes)}
+							sizes={String(product.image?.sizes)}
 						/>
 					</div>
 					<div className="col-span-12 tabletLg:col-span-6 tabletLg:col-start-8 tabletLg:row-start-2">
 						<h1 className="text-2xl font-bold text-secondary">
 							{product.name}
 						</h1>
-						<div className="flex justify-between">
-							<form action={addProductToCartAction} className="space-y-8">
+						<div className="flex w-full justify-between">
+							<form
+								action={addProductToCartAction}
+								className="w-full space-y-8"
+							>
 								<input
 									type="hidden"
 									value={params.productId}
@@ -65,43 +88,44 @@ export default async function SingleProductPage({
 								<fieldset className="grid grid-cols-12 items-center">
 									<Label
 										htmlFor="shape"
-										className="col-span-4 col-start-1 text-sm"
+										className="col-span-3 col-start-1 text-sm"
 									>
 										Kształt
 									</Label>
-									<fieldset className="flex max-w-fit rounded-full bg-slate100">
-										<FieldsetFormItem
-											title="kwadratowy"
-											name="shape"
-											id="square"
-											value="square"
-											aria-label="Kształt kwadratowy"
-										/>
-										<FieldsetFormItem
-											title="prostokątny"
-											name="shape"
-											id="rectangle"
-											value="rectangle"
-											aria-label="Kształt prostokątny"
-										/>
-										<FieldsetFormItem
-											title="okrągły"
-											name="shape"
-											id="circle"
-											value="circle"
-											aria-label="Kształt okrągły"
-										/>
+									<fieldset className="col-span-5">
+										<Select name="size" defaultValue={String(shapeAttr?.value)}>
+											<SelectTrigger className="h-auto border-none bg-slate100 focus:ring-0">
+												<SelectValue
+													placeholder="Wybierz kształt"
+													className="text-sm font-bold text-secondary"
+												/>
+											</SelectTrigger>
+											<SelectContent className="border-none bg-slate50">
+												{productAttributes.map((attribute) => {
+													return (
+														attribute.name === "shape" &&
+														attribute.options?.map((option) => {
+															return (
+																<SelectItem key={option} value={String(option)}>
+																	{generateNameByProductOption(String(option))}
+																</SelectItem>
+															);
+														})
+													);
+												})}
+											</SelectContent>
+										</Select>
 									</fieldset>
 								</fieldset>
 								<fieldset className="grid grid-cols-12 items-center">
 									<Label
-										htmlFor="shape"
-										className="col-span-4 col-start-1 text-sm"
+										htmlFor="size"
+										className="col-span-3 col-start-1 text-sm"
 									>
 										Średnica
 									</Label>
-									<fieldset className="col-span-4">
-										<Select name="size">
+									<fieldset className="col-span-5">
+										<Select name="size" defaultValue={String(sizeAttr?.value)}>
 											<SelectTrigger className="h-auto border-none bg-slate100 focus:ring-0">
 												<SelectValue
 													placeholder="Wybierz średnicę"
@@ -109,25 +133,34 @@ export default async function SingleProductPage({
 												/>
 											</SelectTrigger>
 											<SelectContent className="border-none bg-slate50">
-												<SelectItem value="30cm">30cm</SelectItem>
-												<SelectItem value="40cm">40cm</SelectItem>
-												<SelectItem value="50cm">50cm</SelectItem>
-												<SelectItem value="60cm">60cm</SelectItem>
-												<SelectItem value="70cm">70cm</SelectItem>
-												<SelectItem value="80cm">80cm</SelectItem>
+												{productAttributes.map((attribute) => {
+													return (
+														attribute.name === "size" &&
+														attribute.options?.map((option) => {
+															return (
+																<SelectItem key={option} value={String(option)}>
+																	{String(option)}
+																</SelectItem>
+															);
+														})
+													);
+												})}
 											</SelectContent>
 										</Select>
 									</fieldset>
 								</fieldset>
 								<fieldset className="grid grid-cols-12 items-center">
 									<Label
-										htmlFor="shape"
-										className="col-span-4 col-start-1 text-sm"
+										htmlFor="color"
+										className="col-span-3 col-start-1 text-sm"
 									>
 										Kolor
 									</Label>
-									<fieldset className="col-span-4">
-										<Select name="color">
+									<fieldset className="col-span-5">
+										<Select
+											name="color"
+											defaultValue={String(colorAttr?.value)}
+										>
 											<SelectTrigger className="h-auto border-none bg-slate100 focus:ring-0">
 												<SelectValue
 													placeholder="Wybierz kolor"
@@ -138,28 +171,35 @@ export default async function SingleProductPage({
 												className="border-none bg-slate50"
 												defaultValue={"biały zimny"}
 											>
-												<SelectItem value="white-cold">
-													<span className="flex items-center space-x-2">
-														<span
-															className={cn(
-																"inline-block h-8 w-8 rounded-full drop-shadow-sm",
-																`bg-[#B0D6FD]`,
-															)}
-														></span>
-														<span>biały zimny</span>
-													</span>
-												</SelectItem>
-												<SelectItem value="white-warm">
-													<span className="flex items-center space-x-2">
-														<span
-															className={cn(
-																"inline-block h-8 w-8 rounded-full drop-shadow-sm",
-																`bg-[#FFD15C]`,
-															)}
-														></span>{" "}
-														<span>biały ciepły</span>
-													</span>
-												</SelectItem>
+												{productAttributes.map((attribute) => {
+													return (
+														attribute.name === "color" &&
+														attribute.options?.map((option) => {
+															return (
+																<SelectItem
+																	key={option}
+																	value={
+																		String(option) || String(colorAttr?.value)
+																	}
+																>
+																	<span className="flex items-center space-x-2">
+																		<span
+																			className={cn(
+																				"inline-block h-8 w-8 rounded-full drop-shadow-sm",
+																				`bg-[${option}]`,
+																			)}
+																		></span>
+																		<span>
+																			{generateColorNameByProductOption(
+																				String(option),
+																			)}
+																		</span>
+																	</span>
+																</SelectItem>
+															);
+														})
+													);
+												})}
 											</SelectContent>
 										</Select>
 									</fieldset>

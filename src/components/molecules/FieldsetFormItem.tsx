@@ -7,7 +7,14 @@ export const FieldsetFormItem = ({
 	InputHTMLAttributes<HTMLInputElement>,
 	HTMLInputElement
 >) => {
-	const { title, name, id, value, "aria-label": ariaLabel } = props;
+	const {
+		title,
+		name,
+		id,
+		value,
+		"aria-label": ariaLabel,
+		defaultValue,
+	} = props;
 
 	return (
 		<div className="flex items-center">
@@ -17,6 +24,7 @@ export const FieldsetFormItem = ({
 				name={name}
 				id={id}
 				value={value}
+				defaultValue={defaultValue}
 				aria-label={ariaLabel}
 				hidden
 			/>

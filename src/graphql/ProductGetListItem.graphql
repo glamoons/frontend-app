@@ -1,17 +1,21 @@
 fragment ProductsGetListItem on Product {
-	... on SimpleProduct {
-		id
-		slug
-		name
-		price
-		image {
-			...ProductGetMediaItem
-		}
-		attributes {
+	... on VariableProduct {
+		variations(
+			where: { orderby: { field: $field, order: $order } }
+			first: $first
+		) {
 			nodes {
 				id
 				name
-				options
+				image {
+					...ProductGetMediaItem
+				}
+				price(format: FORMATTED)
+				attributes {
+					nodes {
+						...ProductGetVariationAttribute
+					}
+				}
 			}
 		}
 	}

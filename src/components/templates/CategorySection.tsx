@@ -9,19 +9,25 @@ import { Section } from "@/components/atoms/Section";
 import { CategoryHolder } from "@/components/molecules/CategoryHolder";
 import { SectionHeading } from "@/components/molecules/SectionHeading";
 import { Category } from "@/components/organisms/Category";
-import { type ProductAttribute, type SimpleProduct } from "@/gql/graphql";
+import {
+	type ProductVariation,
+	type VariationAttribute,
+	type VariableProduct,
+} from "@/gql/graphql";
 import { cn } from "@/lib/utils";
 import "swiper/css";
 
 export const CategorySection = ({
 	products,
 }: {
-	products: SimpleProduct[];
+	products: VariableProduct[];
 }) => {
 	const swiperRef = useRef<SwiperType>();
 	const swiperInstanceRef = useRef<SwiperType>();
 	const [swiperActiveIndex, setSwiperActiveIndex] = useState(0);
 	const [swiperSlidesCount, setSwiperSlidesCount] = useState(0);
+	const variationsProduct: ProductVariation[] =
+		products[0].variations?.nodes ?? [];
 
 	return (
 		<Section className="overflow-hidden">
@@ -57,8 +63,8 @@ export const CategorySection = ({
 							setSwiperSlidesCount(swiper.slides.length);
 						}}
 					>
-						{products.map((product) => {
-							const productAttributes: ProductAttribute[] =
+						{variationsProduct.map((product) => {
+							const productAttributes: VariationAttribute[] =
 								product.attributes?.nodes || [];
 							return (
 								<SwiperSlide key={product.id}>
