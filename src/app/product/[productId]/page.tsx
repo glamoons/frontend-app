@@ -7,9 +7,11 @@ export const dynamicParams = false;
 export async function generateStaticParams() {
 	const products = await getProductsList();
 
-	return products?.map((product) => ({
-		productId: product.id,
-	}));
+	return products?.map((product) =>
+		product.variations?.nodes.map((variation) => ({
+			productId: variation.id,
+		})),
+	);
 }
 
 export async function generateMetadata({
