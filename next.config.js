@@ -1,5 +1,4 @@
 /** @type {import('next').NextConfig} */
-const path = require("path");
 const nextConfig = {
 	pageExtensions: ["ts", "tsx", "mdx"],
 	output: "standalone",
@@ -10,7 +9,7 @@ const nextConfig = {
 				protocol: "https",
 				hostname: "res.cloudinary.com",
 				port: "",
-				pathname: "/dstimijog/image/upload/**",
+				pathname: "/dstimijog/**",
 			},
 		],
 	},

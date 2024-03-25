@@ -9,14 +9,25 @@ import { Section } from "@/components/atoms/Section";
 import { CategoryHolder } from "@/components/molecules/CategoryHolder";
 import { SectionHeading } from "@/components/molecules/SectionHeading";
 import { Category } from "@/components/organisms/Category";
+import {
+	type ProductVariation,
+	type VariationAttribute,
+	type VariableProduct,
+} from "@/gql/graphql";
 import { cn } from "@/lib/utils";
 import "swiper/css";
 
-export const CategorySection = () => {
+export const CategorySection = ({
+	products,
+}: {
+	products: VariableProduct[];
+}) => {
 	const swiperRef = useRef<SwiperType>();
 	const swiperInstanceRef = useRef<SwiperType>();
 	const [swiperActiveIndex, setSwiperActiveIndex] = useState(0);
 	const [swiperSlidesCount, setSwiperSlidesCount] = useState(0);
+	const variationsProduct: ProductVariation[] =
+		products[0].variations?.nodes ?? [];
 
 	return (
 		<Section className="overflow-hidden">
@@ -52,96 +63,29 @@ export const CategorySection = () => {
 							setSwiperSlidesCount(swiper.slides.length);
 						}}
 					>
-						<SwiperSlide>
-							<Category
-								href="/"
-								mobileSrc="https://res.cloudinary.com/dstimijog/image/upload/v1710536717/product-item_bgacz4.webp"
-								alt="Stoliki"
-								desktopSrc="https://res.cloudinary.com/dstimijog/image/upload/v1710536717/product-item_bgacz4.webp"
-								title="Stoliki"
-							/>
-							<CategoryHolder
-								title="Baza MDF z podświetleniem LED"
-								size="30 cm"
-								price="99,00 zł"
-								btnName="Zamów teraz"
-							/>
-						</SwiperSlide>
-						<SwiperSlide>
-							<Category
-								href="/"
-								mobileSrc="https://res.cloudinary.com/dstimijog/image/upload/v1710536717/product-item_bgacz4.webp"
-								alt="Stoliki"
-								desktopSrc="https://res.cloudinary.com/dstimijog/image/upload/v1710536717/product-item_bgacz4.webp"
-								title="Stoliki"
-							/>
-							<CategoryHolder
-								title="Baza MDF z podświetleniem LED"
-								size="40 cm"
-								price="120,00 zł"
-								btnName="Zamów teraz"
-							/>
-						</SwiperSlide>
-						<SwiperSlide>
-							<Category
-								href="/"
-								mobileSrc="https://res.cloudinary.com/dstimijog/image/upload/v1710536717/product-item_bgacz4.webp"
-								alt="Stoliki"
-								desktopSrc="https://res.cloudinary.com/dstimijog/image/upload/v1710536717/product-item_bgacz4.webp"
-								title="Stoliki"
-							/>
-							<CategoryHolder
-								title="Baza MDF z podświetleniem LED"
-								size="50 cm"
-								price="150,00 zł"
-								btnName="Zamów teraz"
-							/>
-						</SwiperSlide>
-						<SwiperSlide>
-							<Category
-								href="/"
-								mobileSrc="https://res.cloudinary.com/dstimijog/image/upload/v1710536717/product-item_bgacz4.webp"
-								alt="Stoliki"
-								desktopSrc="https://res.cloudinary.com/dstimijog/image/upload/v1710536717/product-item_bgacz4.webp"
-								title="Stoliki"
-							/>
-							<CategoryHolder
-								title="Baza MDF z podświetleniem LED"
-								size="60 cm"
-								price="175,00 zł"
-								btnName="Zamów teraz"
-							/>
-						</SwiperSlide>
-						<SwiperSlide>
-							<Category
-								href="/"
-								mobileSrc="https://res.cloudinary.com/dstimijog/image/upload/v1710536717/product-item_bgacz4.webp"
-								alt="Stoliki"
-								desktopSrc="https://res.cloudinary.com/dstimijog/image/upload/v1710536717/product-item_bgacz4.webp"
-								title="Stoliki"
-							/>
-							<CategoryHolder
-								title="Baza MDF z podświetleniem LED"
-								size="70 cm"
-								price="190,00 zł"
-								btnName="Zamów teraz"
-							/>
-						</SwiperSlide>
-						<SwiperSlide>
-							<Category
-								href="/"
-								mobileSrc="https://res.cloudinary.com/dstimijog/image/upload/v1710536717/product-item_bgacz4.webp"
-								alt="Stoliki"
-								desktopSrc="https://res.cloudinary.com/dstimijog/image/upload/v1710536717/product-item_bgacz4.webp"
-								title="Stoliki"
-							/>
-							<CategoryHolder
-								title="Baza MDF z podświetleniem LED"
-								size="80 cm"
-								price="230,00 zł"
-								btnName="Zamów teraz"
-							/>
-						</SwiperSlide>
+						{variationsProduct.map((product) => {
+							const productAttributes: VariationAttribute[] =
+								product.attributes?.nodes || [];
+							return (
+								<SwiperSlide key={product.id}>
+									<Category
+										href={`/product/${product.id}`}
+										mobileSrc={`${product.image?.sourceUrl}`}
+										alt={product.image?.altText ?? String(product.name)}
+										desktopSrc={`${product.image?.sourceUrl}`}
+										title={product.image?.altText ?? String(product.name)}
+										sizes={product.image?.sizes ?? "50vw"}
+									/>
+									<CategoryHolder
+										title={String(product.name)}
+										price={String(product.price)}
+										btnName="Skonfiguruj"
+										productAttributes={productAttributes}
+										href={`/product/${product.id}`}
+									/>
+								</SwiperSlide>
+							);
+						})}
 					</Swiper>
 					<div
 						slot="navigation"

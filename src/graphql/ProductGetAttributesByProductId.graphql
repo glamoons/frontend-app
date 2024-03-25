@@ -1,0 +1,10 @@
+query ProductGetAttributesByProductId($id: ID!) {
+	product(id: $id) {
+		attributes {
+			nodes {
+				name
+				options
+			}
+		}
+	}
+}

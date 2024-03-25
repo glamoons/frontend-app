@@ -1,0 +1,12 @@
+query ProductsGetList(
+	$first: Int = 6
+	$field: ProductsOrderByEnum = IN
+	$order: OrderEnum = ASC
+) {
+	products {
+		nodes {
+			id
+			...ProductsGetListItem
+		}
+	}
+}
