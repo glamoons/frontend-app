@@ -8,13 +8,11 @@ export const ProductColorPicker = ({
 	currentColor,
 	currentSize,
 	colorVariationOptions,
-	productName,
 }: {
 	currentShape: string;
 	currentColor: string;
 	currentSize: string;
 	colorVariationOptions: SupportedColors[];
-	productName: string;
 }) => {
 	let selectedColor = currentColor;
 	if (
@@ -44,8 +42,8 @@ export const ProductColorPicker = ({
 								<Link
 									href={
 										currentShape && currentSize
-											? `?productName=${productName}&shape=${currentShape}&size=${currentSize}&color=${String(option)}`
-											: `?productName=${productName}&color=${selectedColor}`
+											? `?shape=${currentShape}&size=${currentSize}&color=${String(option)}`
+											: `?color=${selectedColor}`
 									}
 									className={cn(
 										supportedColors[option as SupportedColors]

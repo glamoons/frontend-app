@@ -82,7 +82,7 @@ export const CategorySection = ({
 							return (
 								<SwiperSlide key={product.id}>
 									<Category
-										href={`/configurator/?productName=${product.slug}&shape=${defaultShapeAttribute?.value}&size=${defaultSizeAttribute?.value}&color=${defaultColorAttribute?.value}`}
+										href={`/product/${product.slug}?shape=${defaultShapeAttribute?.value}&size=${defaultSizeAttribute?.value}&color=${defaultColorAttribute?.value}`}
 										mobileSrc={`${product.image?.sourceUrl}`}
 										alt={product.image?.altText ?? String(product.name)}
 										desktopSrc={`${product.image?.sourceUrl}`}
@@ -94,7 +94,7 @@ export const CategorySection = ({
 										price={String(product.price)}
 										btnName="Skonfiguruj"
 										productAttributes={productAttributes}
-										href={`/configurator/?productName=${product.slug}&shape=${defaultShapeAttribute?.value}&size=${defaultSizeAttribute?.value}&color=${defaultColorAttribute?.value}`}
+										href={`/product/${product.slug}?shape=${defaultShapeAttribute?.value}&size=${defaultSizeAttribute?.value}&color=${defaultColorAttribute?.value}`}
 									/>
 								</SwiperSlide>
 							);

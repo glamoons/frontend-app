@@ -26,22 +26,19 @@ import {
 import { type ProductVariation } from "@/gql/graphql";
 
 export default async function SingleProductPage({
+	params,
 	searchParams,
 	defaultProductId,
 }: {
-	searchParams: {
-		productName: string;
-		shape: string;
-		size: string;
-		color: string;
-	};
+	params: { slug: string };
+	searchParams: { shape: string; size: string; color: string };
 	defaultProductId: string;
 }) {
 	const productsList = await getProductsList();
 	const variationsProduct: ProductVariation[] =
 		productsList[0].variations?.nodes ?? [];
 	const productBySlug = variationsProduct.find(
-		(variation) => variation.slug === searchParams.productName,
+		(variation) => variation.slug === params.slug,
 	);
 
 	if (!productBySlug) {
@@ -185,7 +182,6 @@ export default async function SingleProductPage({
 									</Label>
 									<fieldset className="col-span-5">
 										<ProductColorPicker
-											productName={searchParams.productName}
 											currentShape={selectedShapeAttr}
 											currentColor={selectedColorAttr}
 											currentSize={selectedSizeAttr}

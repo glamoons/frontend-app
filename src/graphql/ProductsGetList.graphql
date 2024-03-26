@@ -6,6 +6,7 @@ query ProductsGetList(
 	products {
 		nodes {
 			id
+			slug
 			...ProductsGetListItem
 		}
 	}

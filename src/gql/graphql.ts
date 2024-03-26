@@ -22719,7 +22719,7 @@ export type ProductsGetListQueryVariables = Exact<{
 }>;
 
 
-export type ProductsGetListQuery = { products?: { nodes: Array<{ id: string } | { id: string } | { id: string } | { id: string } | { id: string, variations?: { nodes: Array<{ id: string, name?: string | null, slug?: string | null, price?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null, attributes?: { nodes: Array<{ id: string, name?: string | null, value?: string | null }> } | null }> } | null }> } | null };
+export type ProductsGetListQuery = { products?: { nodes: Array<{ id: string, slug?: string | null } | { id: string, slug?: string | null } | { id: string, slug?: string | null } | { id: string, slug?: string | null } | { id: string, slug?: string | null, variations?: { nodes: Array<{ id: string, name?: string | null, slug?: string | null, price?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null, attributes?: { nodes: Array<{ id: string, name?: string | null, value?: string | null }> } | null }> } | null }> } | null };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -22823,6 +22823,7 @@ export const ProductsGetListDocument = new TypedDocumentString(`
   products {
     nodes {
       id
+      slug
       ...ProductsGetListItem
     }
   }
