@@ -2,15 +2,6 @@
 const nextConfig = {
 	pageExtensions: ["ts", "tsx", "mdx"],
 	output: "standalone",
-	redirects: async () => {
-		return [
-			{
-				source: "/product/:slug",
-				destination: "/product/:slug/1",
-				permanent: true,
-			},
-		];
-	},
 	images: {
 		formats: ["image/avif", "image/webp"],
 		remotePatterns: [
