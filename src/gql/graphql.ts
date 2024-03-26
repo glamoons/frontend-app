@@ -3881,6 +3881,10 @@ export type CurrencyEnum =
 
 /** A customer object */
 export type Customer = Node & {
+  /** A nonce for the account page. By default, it expires in 1 hour. */
+  accountNonce?: Maybe<Scalars['String']['output']>;
+  /** A nonce link to the account page for session user. Expires in 24 hours. */
+  accountUrl?: Maybe<Scalars['String']['output']>;
   /** Customer&#039;s stored payment tokens. */
   availablePaymentMethods?: Maybe<Array<Maybe<PaymentToken>>>;
   /** Customer&#039;s stored payment tokens. */
