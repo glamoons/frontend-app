@@ -1,40 +1,15 @@
 import Link from "next/link";
 import { Label } from "../atoms/Label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { cn } from "@/lib/utils";
-
-export enum SupportedColors {
-	coldWhite = "coldWhite",
-	warmWhite = "warmWhite",
-}
-
-const supportedColors: {
-	[K in SupportedColors]: {
-		name: string;
-		bgColor: string;
-		selectedColor: string;
-		border: string;
-	};
-} = {
-	coldWhite: {
-		name: "zimny biały",
-		bgColor: "bg-[#B0D6FD]",
-		selectedColor: "ring-[#B0D6FD]",
-		border: "border-[#B0D6FD]",
-	},
-	warmWhite: {
-		name: "ciepły biały",
-		bgColor: "bg-[#FFD15C]",
-		selectedColor: "ring-[#FFD15C]",
-		border: "border-[#FFD15C]",
-	},
-};
+import { SupportedColors, cn, supportedColors } from "@/lib/utils";
 
 export const ProductColorPicker = ({
+	currentShape,
 	currentColor,
 	currentSize,
 	colorVariationOptions,
 }: {
+	currentShape: string;
 	currentColor: string;
 	currentSize: string;
 	colorVariationOptions: SupportedColors[];
@@ -50,9 +25,9 @@ export const ProductColorPicker = ({
 		<div className="grow-1">
 			<RadioGroup value={selectedColor} className="mt-2" name="color">
 				<Label className="sr-only">Wybierz kolor</Label>
-				<div className="sm:grid-cols-6 grid grid-cols-3 gap-3">
+				<div className="flex flex-row gap-3">
 					{colorVariationOptions.map((option) => (
-						<div key={String()}>
+						<div key={option} className="h-9 w-9">
 							<RadioGroupItem
 								value={option}
 								id={option}
@@ -61,20 +36,20 @@ export const ProductColorPicker = ({
 							<Label
 								htmlFor={option}
 								className={cn(
-									"border-muted bg-popover hover:bg-accent hover:text-accent-foreground flex flex-col items-center justify-between rounded-md border-2 peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary",
+									"border-muted bg-popover hover:bg-accent hover:text-accent-foreground flex h-full w-full flex-col items-center justify-between rounded-md border-2 peer-data-[state=checked]:border-secondary [&:has([data-state=checked])]:border-secondary",
 								)}
 							>
 								<Link
 									href={
-										currentSize
-											? `?size=${currentSize}&color=${String(option)}`
+										currentShape && currentSize
+											? `?shape=${currentShape}&size=${currentSize}&color=${String(option)}`
 											: `?color=${selectedColor}`
 									}
 									className={cn(
 										supportedColors[option as SupportedColors]
 											? supportedColors[option as SupportedColors].bgColor
 											: "bg-gray-900",
-										"w-full rounded-sm p-4 text-center",
+										"h-full w-full rounded-sm text-center",
 									)}
 								/>
 							</Label>

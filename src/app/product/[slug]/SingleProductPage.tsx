@@ -4,10 +4,7 @@ import { notFound } from "next/navigation";
 import { DefaultText } from "@/components/atoms/DefaultText";
 import { Label } from "@/components/atoms/Label";
 import { SubmitButton } from "@/components/atoms/SubmitButton";
-import {
-	ProductColorPicker,
-	type SupportedColors,
-} from "@/components/organisms/ProductColorPicker";
+import { ProductColorPicker } from "@/components/organisms/ProductColorPicker";
 import { ProductInformationBox } from "@/components/organisms/ProductInformationBox";
 import {
 	Select,
@@ -16,21 +13,26 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
-import { cn } from "@/lib/utils";
+import {
+	cn,
+	generateNameByProductOption,
+	type SupportedColors,
+} from "@/lib/utils";
 import {
 	getProductAttributesByProductId,
 	getProductById,
 } from "@/services/productsApi";
-import { generateNameByProductOption } from "@/utils/generateNameByProductOption";
 
 export default async function SingleProductPage({
-	params,
+	productId,
+	searchParams,
 	defaultProductId,
 }: {
-	params: { productId: string };
+	productId: string;
+	searchParams: { shape: string; size: string; color: string };
 	defaultProductId: string;
 }) {
-	const product = await getProductById(params.productId);
+	const product = await getProductById(productId);
 	const productAttributes =
 		await getProductAttributesByProductId(defaultProductId);
 
@@ -50,19 +52,11 @@ export default async function SingleProductPage({
 		(attribute) => attribute.name === "color",
 	);
 
-	console.log(sizeVariationOptions);
+	const selectedShapeAttr = searchParams.shape;
 
-	const selectedShapeAttr = product.attributes?.nodes.find(
-		(attribute) => attribute.name === "shape",
-	);
+	const selectedSizeAttr = searchParams.size;
 
-	const selectedSizeAttr = product.attributes?.nodes.find(
-		(attribute) => attribute.name === "size",
-	);
-
-	const selectedColorAttr = product.attributes?.nodes.find(
-		(attribute) => attribute.name === "color",
-	);
+	const selectedColorAttr = searchParams.color;
 
 	const addProductToCartAction = async (formData: FormData) => {
 		"use server";
@@ -71,7 +65,7 @@ export default async function SingleProductPage({
 
 	return (
 		<>
-			<article className="container mx-auto">
+			<article className="container mx-auto py-[3.125rem]">
 				<div className="grid grid-cols-12">
 					<div className="relative col-span-12 aspect-[4/5] tabletLg:col-span-6 tabletLg:col-start-1 tabletLg:row-span-3 tabletLg:row-start-1">
 						<h2 className="sr-only">{product.name}</h2>
@@ -97,11 +91,7 @@ export default async function SingleProductPage({
 								action={addProductToCartAction}
 								className="w-full space-y-8"
 							>
-								<input
-									type="hidden"
-									value={params.productId}
-									name="productId"
-								/>
+								<input type="hidden" value={productId} name="productId" />
 								<fieldset className="grid grid-cols-12 items-center">
 									<Label
 										htmlFor="shape"
@@ -110,10 +100,7 @@ export default async function SingleProductPage({
 										Kształt
 									</Label>
 									<fieldset className="col-span-5">
-										<Select
-											name="size"
-											defaultValue={String(selectedShapeAttr?.value)}
-										>
+										<Select name="size" defaultValue={selectedShapeAttr}>
 											<SelectTrigger className="h-auto border-none bg-slate100 focus:ring-0">
 												<SelectValue
 													placeholder="Wybierz kształt"
@@ -145,10 +132,7 @@ export default async function SingleProductPage({
 										Średnica
 									</Label>
 									<fieldset className="col-span-5">
-										<Select
-											name="size"
-											defaultValue={String(selectedSizeAttr?.value)}
-										>
+										<Select name="size" defaultValue={selectedSizeAttr}>
 											<SelectTrigger className="h-auto border-none bg-slate100 focus:ring-0">
 												<SelectValue
 													placeholder="Wybierz średnicę"
@@ -181,8 +165,9 @@ export default async function SingleProductPage({
 									</Label>
 									<fieldset className="col-span-5">
 										<ProductColorPicker
-											currentColor={String(selectedColorAttr?.value)}
-											currentSize={String(selectedSizeAttr?.value)}
+											currentShape={selectedShapeAttr}
+											currentColor={selectedColorAttr}
+											currentSize={selectedSizeAttr}
 											colorVariationOptions={
 												colorVariationOptions[0].options as SupportedColors[]
 											}

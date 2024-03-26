@@ -11,16 +11,17 @@ export async function generateStaticParams() {
 		products[0].variations?.nodes ?? [];
 
 	return variationsProduct.map((variation) => ({
-		productId: variation.id,
+		slug: `${variation.id},g,${variation.slug}`,
 	}));
 }
 
 export async function generateMetadata({
 	params,
 }: {
-	params: { productId: string };
+	params: { slug: string };
 }): Promise<Metadata> {
-	const product = await getProductById(params.productId);
+	const productId = params.slug.split(",")[0];
+	const product = await getProductById(productId);
 
 	return {
 		title: product?.name,
@@ -32,12 +33,19 @@ export async function generateMetadata({
 
 export default async function ProductDetailsPage({
 	params,
+	searchParams,
 }: {
-	params: { productId: string };
+	params: { slug: string };
+	searchParams: { shape: string; size: string; color: string };
 }) {
 	const products = await getProductsList();
 	const defaultProductId = products[0].id;
+	const productId = params.slug.split(",")[0];
 	return (
-		<SingleProductPage params={params} defaultProductId={defaultProductId} />
+		<SingleProductPage
+			productId={productId}
+			searchParams={searchParams}
+			defaultProductId={defaultProductId}
+		/>
 	);
 }

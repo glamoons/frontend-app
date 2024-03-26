@@ -22700,7 +22700,7 @@ type ProductsGetListItem_GroupProduct_Fragment = {};
 
 type ProductsGetListItem_SimpleProduct_Fragment = {};
 
-type ProductsGetListItem_VariableProduct_Fragment = { variations?: { nodes: Array<{ id: string, name?: string | null, price?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null, attributes?: { nodes: Array<{ id: string, name?: string | null, value?: string | null }> } | null }> } | null };
+type ProductsGetListItem_VariableProduct_Fragment = { variations?: { nodes: Array<{ id: string, name?: string | null, slug?: string | null, price?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null, attributes?: { nodes: Array<{ id: string, name?: string | null, value?: string | null }> } | null }> } | null };
 
 export type ProductsGetListItemFragment = ProductsGetListItem_ExternalProduct_Fragment | ProductsGetListItem_GroupProduct_Fragment | ProductsGetListItem_SimpleProduct_Fragment | ProductsGetListItem_VariableProduct_Fragment;
 
@@ -22715,7 +22715,7 @@ export type ProductsGetListQueryVariables = Exact<{
 }>;
 
 
-export type ProductsGetListQuery = { products?: { nodes: Array<{ id: string } | { id: string } | { id: string } | { id: string } | { id: string, variations?: { nodes: Array<{ id: string, name?: string | null, price?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null, attributes?: { nodes: Array<{ id: string, name?: string | null, value?: string | null }> } | null }> } | null }> } | null };
+export type ProductsGetListQuery = { products?: { nodes: Array<{ id: string } | { id: string } | { id: string } | { id: string } | { id: string, variations?: { nodes: Array<{ id: string, name?: string | null, slug?: string | null, price?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null, attributes?: { nodes: Array<{ id: string, name?: string | null, value?: string | null }> } | null }> } | null }> } | null };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -22752,6 +22752,7 @@ export const ProductsGetListItemFragmentDoc = new TypedDocumentString(`
       nodes {
         id
         name
+        slug
         image {
           ...ProductGetMediaItem
         }
@@ -22828,6 +22829,7 @@ export const ProductsGetListDocument = new TypedDocumentString(`
       nodes {
         id
         name
+        slug
         image {
           ...ProductGetMediaItem
         }
