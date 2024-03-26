@@ -32,6 +32,8 @@ jobs:
         uses: docker/setup-buildx-action@v3
       - name: Build and push docker image
         uses: docker/build-push-action@v5
+        env:
+          GRAPHQL_URL: ${{ secrets.GRAPHQL_URL }}
         with:
           context: .
           file: ./prod.Dockerfile

@@ -1,7 +1,7 @@
 FROM node:18-alpine AS base
 
 FROM base AS builder
-ENV NODE_ENV=production
+
 WORKDIR /app
 
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
@@ -27,7 +27,7 @@ RUN \
   fi
 
 FROM base AS runner
-ENV NODE_ENV=production
+
 WORKDIR /app
 
 RUN addgroup --system --gid 1001 nodejs
