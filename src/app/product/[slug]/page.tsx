@@ -4,7 +4,6 @@ import { getProductById, getProductsList } from "@/services/productsApi";
 import { type ProductVariation } from "@/gql/graphql";
 
 export const dynamicParams = false;
-export const runtime = "edge";
 
 export async function generateStaticParams() {
 	const products = await getProductsList();
