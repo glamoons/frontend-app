@@ -3,28 +3,18 @@ import SingleProductPage from "./SingleProductPage";
 import { getProductById, getProductsList } from "@/services/productsApi";
 import { type ProductVariation } from "@/gql/graphql";
 
-export const dynamicParams = false;
-
-export async function generateStaticParams() {
-	const products = await getProductsList();
-	const variationsProduct: ProductVariation[] =
-		products[0].variations?.nodes ?? [];
-
-	return variationsProduct.map((variation) => ({
-		slug: variation.slug,
-	}));
-}
+export const runtime = "edge";
 
 export async function generateMetadata({
-	params,
+	searchParams,
 }: {
-	params: { slug: string };
+	searchParams: { productName: string };
 }): Promise<Metadata> {
 	const products = await getProductsList();
 	const variationsProduct: ProductVariation[] =
 		products[0].variations?.nodes ?? [];
 	const productBySlug = variationsProduct.find(
-		(variation) => variation.slug === params.slug,
+		(variation) => variation.slug === searchParams.productName,
 	);
 
 	if (!productBySlug) {
@@ -36,7 +26,7 @@ export async function generateMetadata({
 	return {
 		metadataBase: new URL("https://dev.glamoons.com"),
 		alternates: {
-			canonical: `https://dev.glamoons.com/product/${params.slug}`,
+			canonical: `https://dev.glamoons.com/configurator/?productName=${searchParams.productName}`,
 		},
 		title: product?.name,
 		openGraph: {
@@ -45,19 +35,21 @@ export async function generateMetadata({
 	};
 }
 
-export default async function ProductDetailsPage({
-	params,
+export default async function ConfiguratorPage({
 	searchParams,
 }: {
-	params: { slug: string };
-	searchParams: { shape: string; size: string; color: string };
+	searchParams: {
+		productName: string;
+		shape: string;
+		size: string;
+		color: string;
+	};
 }) {
 	const products = await getProductsList();
 	const defaultProductId = products[0].id;
 
 	return (
 		<SingleProductPage
-			params={params}
 			searchParams={searchParams}
 			defaultProductId={defaultProductId}
 		/>
