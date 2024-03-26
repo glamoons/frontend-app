@@ -4,7 +4,6 @@ FROM base AS builder
 
 WORKDIR /app
 
-ENV NODE_ENV production
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 RUN \
   if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
