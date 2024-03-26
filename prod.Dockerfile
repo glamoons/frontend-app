@@ -31,9 +31,8 @@ FROM base AS runner
 WORKDIR /app
 
 ENV NODE_ENV production
-ENV GRAPHQL_URL https://app.glamoons.com/graphql
 # Uncomment the following line in case you want to disable telemetry during runtime.
-# ENV NEXT_TELEMETRY_DISABLED 1
+ENV NEXT_TELEMETRY_DISABLED 1
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
