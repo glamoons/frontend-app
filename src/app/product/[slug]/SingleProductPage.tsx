@@ -21,18 +21,31 @@ import {
 import {
 	getProductAttributesByProductId,
 	getProductById,
+	getProductsList,
 } from "@/services/productsApi";
+import { type ProductVariation } from "@/gql/graphql";
 
 export default async function SingleProductPage({
-	productId,
+	params,
 	searchParams,
 	defaultProductId,
 }: {
-	productId: string;
+	params: { slug: string };
 	searchParams: { shape: string; size: string; color: string };
 	defaultProductId: string;
 }) {
-	const product = await getProductById(productId);
+	const productsList = await getProductsList();
+	const variationsProduct: ProductVariation[] =
+		productsList[0].variations?.nodes ?? [];
+	const productBySlug = variationsProduct.find(
+		(variation) => variation.slug === params.slug,
+	);
+
+	if (!productBySlug) {
+		throw notFound();
+	}
+
+	const product = await getProductById(productBySlug.id);
 	const productAttributes =
 		await getProductAttributesByProductId(defaultProductId);
 
@@ -91,7 +104,11 @@ export default async function SingleProductPage({
 								action={addProductToCartAction}
 								className="w-full space-y-8"
 							>
-								<input type="hidden" value={productId} name="productId" />
+								<input
+									type="hidden"
+									value={productBySlug.id}
+									name="productId"
+								/>
 								<fieldset className="grid grid-cols-12 items-center">
 									<Label
 										htmlFor="shape"

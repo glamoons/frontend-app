@@ -12,7 +12,7 @@ export async function generateStaticParams() {
 		products[0].variations?.nodes ?? [];
 
 	return variationsProduct.map((variation) => ({
-		slug: `${variation.id},g,${variation.slug}`,
+		slug: variation.slug,
 	}));
 }
 
@@ -21,10 +21,24 @@ export async function generateMetadata({
 }: {
 	params: { slug: string };
 }): Promise<Metadata> {
-	const productId = params.slug.split(",")[0];
-	const product = await getProductById(productId);
+	const products = await getProductsList();
+	const variationsProduct: ProductVariation[] =
+		products[0].variations?.nodes ?? [];
+	const productBySlug = variationsProduct.find(
+		(variation) => variation.slug === params.slug,
+	);
+
+	if (!productBySlug) {
+		throw TypeError("Product not found");
+	}
+
+	const product = await getProductById(productBySlug.id);
 
 	return {
+		metadataBase: new URL("https://dev.glamoons.com"),
+		alternates: {
+			canonical: `https://dev.glamoons.com/product/${params.slug}`,
+		},
 		title: product?.name,
 		openGraph: {
 			title: `${product?.name}`,
@@ -41,10 +55,10 @@ export default async function ProductDetailsPage({
 }) {
 	const products = await getProductsList();
 	const defaultProductId = products[0].id;
-	const productId = params.slug.split(",")[0];
+
 	return (
 		<SingleProductPage
-			productId={productId}
+			params={params}
 			searchParams={searchParams}
 			defaultProductId={defaultProductId}
 		/>
