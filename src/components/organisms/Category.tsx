@@ -1,15 +1,14 @@
-import Link from "next/link";
+import Link, { type LinkProps } from "next/link";
 import { ResponsiveImage } from "@/components/atoms/ResponsiveImage";
 import {
-	type BaseProps,
 	type CategoryHolderProps,
 	type ResponsiveImageProps,
 } from "@/interfaces/base";
 
 type CategoryProps = {
-	href: BaseProps["href"];
+	href: LinkProps["href"];
 } & Omit<ResponsiveImageProps, "style" | "className"> &
-	Omit<CategoryHolderProps, "size" | "price">;
+	Omit<CategoryHolderProps, "size" | "price" | "productId">;
 
 export const Category = ({
 	href,

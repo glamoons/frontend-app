@@ -1,9 +1,10 @@
 import { IconShoppingCart } from "@tabler/icons-react";
+import { type LinkProps } from "next/link";
 import { SecondaryButton } from "@/components/atoms/SecondaryButton";
-import { type BaseProps, type CategoryHolderProps } from "@/interfaces/base";
-import { cn } from "@/lib/utils";
+import { type CategoryHolderProps } from "@/interfaces/base";
+import { cn, supportedColors, type SupportedColors } from "@/lib/utils";
 
-type CategoryHolderAdditionalProps = Pick<BaseProps, "href">;
+type CategoryHolderAdditionalProps = Pick<LinkProps, "href">;
 
 export const CategoryHolder = ({
 	title,
@@ -12,6 +13,13 @@ export const CategoryHolder = ({
 	productAttributes,
 	href,
 }: CategoryHolderProps & CategoryHolderAdditionalProps) => {
+	const productColorAttributes = productAttributes?.filter(
+		(attribute) => attribute.name === "color",
+	);
+	const productSizeAttributes = productAttributes?.filter(
+		(attribute) => attribute.name === "size",
+	);
+
 	return (
 		<div className="relative flex flex-col justify-end bg-slate50 p-4 tablet:rounded-b-3xl tablet:p-6">
 			<div className="flex flex-col space-y-2 laptop:flex-row laptop:items-start laptop:space-x-2 laptop:space-y-0">
@@ -20,22 +28,31 @@ export const CategoryHolder = ({
 						{title}
 					</h3>
 					<div className="space-y-2">
-						{productAttributes &&
-							productAttributes.map((attribute) => {
+						{productSizeAttributes &&
+							productSizeAttributes.map((attribute) => {
 								return (
-									attribute.name === "color" && (
+									<p key={attribute.id} className="font-bold text-primaryDark">
+										{attribute.value}
+									</p>
+								);
+							})}
+						{productColorAttributes &&
+							productColorAttributes.map((attribute) => {
+								return (
+									<div
+										key={attribute.id}
+										className="flex flex-row items-center space-x-1"
+									>
 										<div
-											key={attribute.id}
-											className="flex flex-row items-center space-x-1"
-										>
-											<div
-												className={cn(
-													"h-8 w-8 rounded-full",
-													`bg-[${attribute.value}]`,
-												)}
-											></div>
-										</div>
-									)
+											className={cn(
+												"h-6 w-6 rounded-full",
+												supportedColors[attribute.value as SupportedColors]
+													? supportedColors[attribute.value as SupportedColors]
+															.bgColor
+													: "bg-[#B0D6FD]",
+											)}
+										></div>
+									</div>
 								);
 							})}
 					</div>

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { DefaultText } from "@/components/atoms/DefaultText";
 import { Label } from "@/components/atoms/Label";
 import { SubmitButton } from "@/components/atoms/SubmitButton";
+import { ProductColorPicker } from "@/components/organisms/ProductColorPicker";
 import { ProductInformationBox } from "@/components/organisms/ProductInformationBox";
 import {
 	Select,
@@ -12,22 +13,26 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
-import { cn } from "@/lib/utils";
+import {
+	cn,
+	generateNameByProductOption,
+	type SupportedColors,
+} from "@/lib/utils";
 import {
 	getProductAttributesByProductId,
 	getProductById,
 } from "@/services/productsApi";
-import { generateColorNameByProductOption } from "@/utils/generateColorNameByProductOption";
-import { generateNameByProductOption } from "@/utils/generateNameByProductOption";
 
 export default async function SingleProductPage({
-	params,
+	productId,
+	searchParams,
 	defaultProductId,
 }: {
-	params: { productId: string };
+	productId: string;
+	searchParams: { shape: string; size: string; color: string };
 	defaultProductId: string;
 }) {
-	const product = await getProductById(params.productId);
+	const product = await getProductById(productId);
 	const productAttributes =
 		await getProductAttributesByProductId(defaultProductId);
 
@@ -35,17 +40,23 @@ export default async function SingleProductPage({
 		throw notFound();
 	}
 
-	const shapeAttr = product.attributes?.nodes.find(
+	const shapeVariationOptions = productAttributes?.filter(
 		(attribute) => attribute.name === "shape",
 	);
 
-	const sizeAttr = product.attributes?.nodes.find(
+	const sizeVariationOptions = productAttributes?.filter(
 		(attribute) => attribute.name === "size",
 	);
 
-	const colorAttr = product.attributes?.nodes.find(
+	const colorVariationOptions = productAttributes?.filter(
 		(attribute) => attribute.name === "color",
 	);
+
+	const selectedShapeAttr = searchParams.shape;
+
+	const selectedSizeAttr = searchParams.size;
+
+	const selectedColorAttr = searchParams.color;
 
 	const addProductToCartAction = async (formData: FormData) => {
 		"use server";
@@ -54,7 +65,7 @@ export default async function SingleProductPage({
 
 	return (
 		<>
-			<article className="container mx-auto">
+			<article className="container mx-auto py-[3.125rem]">
 				<div className="grid grid-cols-12">
 					<div className="relative col-span-12 aspect-[4/5] tabletLg:col-span-6 tabletLg:col-start-1 tabletLg:row-span-3 tabletLg:row-start-1">
 						<h2 className="sr-only">{product.name}</h2>
@@ -80,11 +91,7 @@ export default async function SingleProductPage({
 								action={addProductToCartAction}
 								className="w-full space-y-8"
 							>
-								<input
-									type="hidden"
-									value={params.productId}
-									name="productId"
-								/>
+								<input type="hidden" value={productId} name="productId" />
 								<fieldset className="grid grid-cols-12 items-center">
 									<Label
 										htmlFor="shape"
@@ -93,7 +100,7 @@ export default async function SingleProductPage({
 										Kształt
 									</Label>
 									<fieldset className="col-span-5">
-										<Select name="size" defaultValue={String(shapeAttr?.value)}>
+										<Select name="size" defaultValue={selectedShapeAttr}>
 											<SelectTrigger className="h-auto border-none bg-slate100 focus:ring-0">
 												<SelectValue
 													placeholder="Wybierz kształt"
@@ -101,17 +108,17 @@ export default async function SingleProductPage({
 												/>
 											</SelectTrigger>
 											<SelectContent className="border-none bg-slate50">
-												{productAttributes.map((attribute) => {
-													return (
-														attribute.name === "shape" &&
-														attribute.options?.map((option) => {
-															return (
-																<SelectItem key={option} value={String(option)}>
-																	{generateNameByProductOption(String(option))}
-																</SelectItem>
-															);
-														})
-													);
+												{shapeVariationOptions.map((val) => {
+													return val.options?.map((option) => {
+														return (
+															<SelectItem
+																key={String(option)}
+																value={String(option)}
+															>
+																{generateNameByProductOption(String(option))}
+															</SelectItem>
+														);
+													});
 												})}
 											</SelectContent>
 										</Select>
@@ -125,7 +132,7 @@ export default async function SingleProductPage({
 										Średnica
 									</Label>
 									<fieldset className="col-span-5">
-										<Select name="size" defaultValue={String(sizeAttr?.value)}>
+										<Select name="size" defaultValue={selectedSizeAttr}>
 											<SelectTrigger className="h-auto border-none bg-slate100 focus:ring-0">
 												<SelectValue
 													placeholder="Wybierz średnicę"
@@ -133,17 +140,17 @@ export default async function SingleProductPage({
 												/>
 											</SelectTrigger>
 											<SelectContent className="border-none bg-slate50">
-												{productAttributes.map((attribute) => {
-													return (
-														attribute.name === "size" &&
-														attribute.options?.map((option) => {
-															return (
-																<SelectItem key={option} value={String(option)}>
-																	{String(option)}
-																</SelectItem>
-															);
-														})
-													);
+												{sizeVariationOptions.map((val) => {
+													return val.options?.map((option) => {
+														return (
+															<SelectItem
+																key={String(option)}
+																value={String(option)}
+															>
+																{String(option)}
+															</SelectItem>
+														);
+													});
 												})}
 											</SelectContent>
 										</Select>
@@ -157,51 +164,14 @@ export default async function SingleProductPage({
 										Kolor
 									</Label>
 									<fieldset className="col-span-5">
-										<Select
-											name="color"
-											defaultValue={String(colorAttr?.value)}
-										>
-											<SelectTrigger className="h-auto border-none bg-slate100 focus:ring-0">
-												<SelectValue
-													placeholder="Wybierz kolor"
-													className="text-sm font-bold text-secondary"
-												/>
-											</SelectTrigger>
-											<SelectContent
-												className="border-none bg-slate50"
-												defaultValue={"biały zimny"}
-											>
-												{productAttributes.map((attribute) => {
-													return (
-														attribute.name === "color" &&
-														attribute.options?.map((option) => {
-															return (
-																<SelectItem
-																	key={option}
-																	value={
-																		String(option) || String(colorAttr?.value)
-																	}
-																>
-																	<span className="flex items-center space-x-2">
-																		<span
-																			className={cn(
-																				"inline-block h-8 w-8 rounded-full drop-shadow-sm",
-																				`bg-[${option}]`,
-																			)}
-																		></span>
-																		<span>
-																			{generateColorNameByProductOption(
-																				String(option),
-																			)}
-																		</span>
-																	</span>
-																</SelectItem>
-															);
-														})
-													);
-												})}
-											</SelectContent>
-										</Select>
+										<ProductColorPicker
+											currentShape={selectedShapeAttr}
+											currentColor={selectedColorAttr}
+											currentSize={selectedSizeAttr}
+											colorVariationOptions={
+												colorVariationOptions[0].options as SupportedColors[]
+											}
+										/>
 									</fieldset>
 								</fieldset>
 								<fieldset>

@@ -23,7 +23,7 @@ export const Header = () => {
 				pathname === "/" ? "absolute left-0 right-0 top-0" : "relative",
 			)}
 		>
-			<Link href="/" aria-label="Logo Glamoons">
+			<Link href="/" aria-label="Logo Glamoons" className="cursor-pointer">
 				{!isOpen ? pathname === "/" ? <LogoLight /> : <LogoDark /> : null}
 			</Link>
 			<Navigation className="hidden laptop:flex" />
