@@ -12,6 +12,7 @@ env:
   SSH_PORT: 22
   SSH_USER: ubuntu
   SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+  GRAPHQL_URL: ${{ secrets.GRAPHQL_URL }}
 
 jobs:
   build:
@@ -35,13 +36,13 @@ jobs:
         uses: docker/setup-buildx-action@v3
       - name: Build and push docker image
         uses: docker/build-push-action@v5
-        env:
-          GRAPHQL_URL: ${{ secrets.GRAPHQL_URL }}
         with:
           context: .
           file: ./prod.Dockerfile
           push: true
           tags: ${{ env.DOCKER_HUB_REPOSITORY }}:latest
+        env:
+          GRAPHQL_URL: ${{ env.GRAPHQL_URL }}
       - name: Upload deployment configuration
         uses: actions/upload-artifact@v4
         with:
