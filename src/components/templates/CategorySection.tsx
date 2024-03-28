@@ -65,7 +65,7 @@ export const CategorySection = ({
 							return (
 								<SwiperSlide key={product.id}>
 									<Category
-										href={`/product/${product.slug}`}
+										href={`/product/${product.slug}?vId=${productVariations[0].databaseId}`}
 										mobileSrc={`${product.image?.sourceUrl}`}
 										alt={product.image?.altText ?? String(product.name)}
 										desktopSrc={`${product.image?.sourceUrl}`}
@@ -75,9 +75,9 @@ export const CategorySection = ({
 									<CategoryHolder
 										title={String(product.name)}
 										price={String(productVariations[0].regularPrice)}
-										btnName="Skonfiguruj"
+										btnName="Zobacz"
 										productAttributes={productAttributes}
-										href={`/product/${product.slug}`}
+										href={`/product/${product.slug}?vId=${productVariations[0].databaseId}`}
 									/>
 								</SwiperSlide>
 							);

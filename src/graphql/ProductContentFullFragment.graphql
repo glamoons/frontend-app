@@ -1,5 +1,6 @@
 fragment ProductContentFull on Product {
 	id
+	databaseId
 	name
 	slug
 	image {
@@ -11,6 +12,7 @@ fragment ProductContentFull on Product {
 		variations(first: 50) {
 			nodes {
 				id
+				databaseId
 				name
 				sku
 				price(format: FORMATTED)

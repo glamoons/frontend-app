@@ -22697,13 +22697,13 @@ export type CartItemContentFragment = { key: string, quantity?: number | null, t
 
 export type CustomerContentFragment = { id: string, sessionToken?: string | null, shipping?: { postcode?: string | null, state?: string | null, city?: string | null, country?: CountriesEnum | null } | null };
 
-type ProductContentFull_ExternalProduct_Fragment = { id: string, name?: string | null, slug?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null };
+type ProductContentFull_ExternalProduct_Fragment = { id: string, databaseId: number, name?: string | null, slug?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null };
 
-type ProductContentFull_GroupProduct_Fragment = { id: string, name?: string | null, slug?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null };
+type ProductContentFull_GroupProduct_Fragment = { id: string, databaseId: number, name?: string | null, slug?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null };
 
-type ProductContentFull_SimpleProduct_Fragment = { id: string, name?: string | null, slug?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null };
+type ProductContentFull_SimpleProduct_Fragment = { id: string, databaseId: number, name?: string | null, slug?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null };
 
-type ProductContentFull_VariableProduct_Fragment = { id: string, name?: string | null, slug?: string | null, variations?: { nodes: Array<{ id: string, name?: string | null, sku?: string | null, price?: string | null, regularPrice?: string | null, attributes?: { nodes: Array<{ id: string, name?: string | null, label?: string | null, value?: string | null }> } | null }> } | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null };
+type ProductContentFull_VariableProduct_Fragment = { id: string, name?: string | null, databaseId: number, slug?: string | null, variations?: { nodes: Array<{ id: string, databaseId: number, name?: string | null, sku?: string | null, price?: string | null, regularPrice?: string | null, attributes?: { nodes: Array<{ id: string, name?: string | null, label?: string | null, value?: string | null }> } | null }> } | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null };
 
 export type ProductContentFullFragment = ProductContentFull_ExternalProduct_Fragment | ProductContentFull_GroupProduct_Fragment | ProductContentFull_SimpleProduct_Fragment | ProductContentFull_VariableProduct_Fragment;
 
@@ -22729,7 +22729,7 @@ export type ProductGetByIdQueryVariables = Exact<{
 }>;
 
 
-export type ProductGetByIdQuery = { product?: { id: string, name?: string | null, slug?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null } | { id: string, name?: string | null, slug?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null } | { id: string, name?: string | null, slug?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null } | { id: string, name?: string | null, slug?: string | null, variations?: { nodes: Array<{ id: string, name?: string | null, sku?: string | null, price?: string | null, regularPrice?: string | null, attributes?: { nodes: Array<{ id: string, name?: string | null, label?: string | null, value?: string | null }> } | null }> } | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null } | null };
+export type ProductGetByIdQuery = { product?: { id: string, databaseId: number, name?: string | null, slug?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null } | { id: string, databaseId: number, name?: string | null, slug?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null } | { id: string, databaseId: number, name?: string | null, slug?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null } | { id: string, name?: string | null, databaseId: number, slug?: string | null, variations?: { nodes: Array<{ id: string, databaseId: number, name?: string | null, sku?: string | null, price?: string | null, regularPrice?: string | null, attributes?: { nodes: Array<{ id: string, name?: string | null, label?: string | null, value?: string | null }> } | null }> } | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null } | null };
 
 type ProductsGetListItem_ExternalProduct_Fragment = {};
 
@@ -22753,7 +22753,7 @@ export type ProductsGetListQueryVariables = Exact<{
 }>;
 
 
-export type ProductsGetListQuery = { products?: { nodes: Array<{ id: string, name?: string | null, slug?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null } | { id: string, name?: string | null, slug?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null } | { id: string, name?: string | null, slug?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null } | { id: string, name?: string | null, slug?: string | null, variations?: { nodes: Array<{ id: string, name?: string | null, sku?: string | null, price?: string | null, regularPrice?: string | null, attributes?: { nodes: Array<{ id: string, name?: string | null, label?: string | null, value?: string | null }> } | null }> } | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null } | {}> } | null };
+export type ProductsGetListQuery = { products?: { nodes: Array<{ id: string, databaseId: number, name?: string | null, slug?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null } | { id: string, databaseId: number, name?: string | null, slug?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null } | { id: string, databaseId: number, name?: string | null, slug?: string | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null } | { id: string, name?: string | null, databaseId: number, slug?: string | null, variations?: { nodes: Array<{ id: string, databaseId: number, name?: string | null, sku?: string | null, price?: string | null, regularPrice?: string | null, attributes?: { nodes: Array<{ id: string, name?: string | null, label?: string | null, value?: string | null }> } | null }> } | null, image?: { altText?: string | null, sourceUrl?: string | null, sizes?: string | null } | null } | {}> } | null };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -22964,6 +22964,7 @@ export const CustomerContentFragmentDoc = new TypedDocumentString(`
 export const ProductContentFullFragmentDoc = new TypedDocumentString(`
     fragment ProductContentFull on Product {
   id
+  databaseId
   name
   slug
   image {
@@ -22975,6 +22976,7 @@ export const ProductContentFullFragmentDoc = new TypedDocumentString(`
     variations(first: 50) {
       nodes {
         id
+        databaseId
         name
         sku
         price(format: FORMATTED)
@@ -23151,6 +23153,7 @@ export const ProductGetByIdDocument = new TypedDocumentString(`
 }
     fragment ProductContentFull on Product {
   id
+  databaseId
   name
   slug
   image {
@@ -23162,6 +23165,7 @@ export const ProductGetByIdDocument = new TypedDocumentString(`
     variations(first: 50) {
       nodes {
         id
+        databaseId
         name
         sku
         price(format: FORMATTED)
@@ -23193,6 +23197,7 @@ export const ProductsGetListDocument = new TypedDocumentString(`
 }
     fragment ProductContentFull on Product {
   id
+  databaseId
   name
   slug
   image {
@@ -23204,6 +23209,7 @@ export const ProductsGetListDocument = new TypedDocumentString(`
     variations(first: 50) {
       nodes {
         id
+        databaseId
         name
         sku
         price(format: FORMATTED)

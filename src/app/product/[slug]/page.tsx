@@ -45,7 +45,7 @@ export default async function ProductDetailsPage({
 	searchParams,
 }: {
 	params: { slug: string };
-	searchParams: { vId?: string };
+	searchParams: { vId: number };
 }) {
 	return <SingleProductPage params={params} searchParams={searchParams} />;
 }
