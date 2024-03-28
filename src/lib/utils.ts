@@ -1,12 +1,15 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { type VariationAttribute } from "@/gql/graphql";
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
 }
 
-export const generateNameByProductOption = (productOption: string): string => {
-	switch (productOption) {
+export const generateNameByProductOptionValue = (
+	optionValue: string,
+): string => {
+	switch (optionValue) {
 		case "square":
 			return "kwadratowy";
 		case "rectangle":
@@ -15,6 +18,21 @@ export const generateNameByProductOption = (productOption: string): string => {
 			return "okrągły";
 		default:
 			return "okrągły";
+	}
+};
+
+export const generateLabelNameFromAttributeName = (
+	attribute: VariationAttribute,
+) => {
+	switch (attribute.name) {
+		case "shape":
+			return "Kształt";
+		case "size":
+			return "Rozmiar";
+		case "color":
+			return "Kolor";
+		default:
+			return attribute.label;
 	}
 };
 

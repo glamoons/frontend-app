@@ -1,80 +1,57 @@
 import { IconShoppingCart } from "@tabler/icons-react";
-import Image from "next/image";
-import { notFound } from "next/navigation";
+import { revalidateTag } from "next/cache";
+import NextImage from "next/image";
+import { notFound, redirect } from "next/navigation";
+import { SelectField } from "./SelectField";
 import { DefaultText } from "@/components/atoms/DefaultText";
 import { Label } from "@/components/atoms/Label";
 import { SubmitButton } from "@/components/atoms/SubmitButton";
-import { ProductColorPicker } from "@/components/organisms/ProductColorPicker";
 import { ProductInformationBox } from "@/components/organisms/ProductInformationBox";
-import {
-	Select,
-	SelectContent,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
-} from "@/components/ui/select";
+import { type ProductVariation, type VariationAttribute } from "@/gql/graphql";
 import {
 	cn,
-	generateNameByProductOption,
+	generateLabelNameFromAttributeName,
+	generateNameByProductOptionValue,
+	supportedColors,
 	type SupportedColors,
 } from "@/lib/utils";
-import {
-	getProductAttributesByProductId,
-	getProductById,
-	getProductsList,
-} from "@/services/productsApi";
-import { type ProductVariation } from "@/gql/graphql";
+import { getProductById, getProductsList } from "@/services/productsApi";
 
 export default async function SingleProductPage({
 	params,
 	searchParams,
-	defaultProductId,
 }: {
 	params: { slug: string };
-	searchParams: { shape: string; size: string; color: string };
-	defaultProductId: string;
+	searchParams: { vId: number };
 }) {
-	const productsList = await getProductsList();
-	const variationsProduct: ProductVariation[] =
-		productsList[0].variations?.nodes ?? [];
-	const productBySlug = variationsProduct.find(
-		(variation) => variation.slug === params.slug,
+	const products = await getProductsList();
+	const productBySlug = products.find(
+		(product) => product.slug === params.slug,
 	);
 
 	if (!productBySlug) {
-		throw notFound();
+		redirect("/");
 	}
-
 	const product = await getProductById(productBySlug.id);
-	const productAttributes =
-		await getProductAttributesByProductId(defaultProductId);
 
 	if (!product) {
 		throw notFound();
 	}
 
-	const shapeVariationOptions = productAttributes?.filter(
-		(attribute) => attribute.name === "shape",
-	);
-
-	const sizeVariationOptions = productAttributes?.filter(
-		(attribute) => attribute.name === "size",
-	);
-
-	const colorVariationOptions = productAttributes?.filter(
-		(attribute) => attribute.name === "color",
-	);
-
-	const selectedShapeAttr = searchParams.shape;
-
-	const selectedSizeAttr = searchParams.size;
-
-	const selectedColorAttr = searchParams.color;
-
 	const addProductToCartAction = async (formData: FormData) => {
 		"use server";
 		console.log(formData);
+
+		revalidateTag("cart");
 	};
+
+	const productVariations = product.variations?.nodes.find(
+		(el: ProductVariation) => el.databaseId === Number(searchParams.vId),
+	);
+
+	const productVariantAttributes = productVariations?.attributes?.nodes.map(
+		(el): VariationAttribute => el,
+	);
 
 	return (
 		<>
@@ -83,7 +60,7 @@ export default async function SingleProductPage({
 					<div className="relative col-span-12 aspect-[4/5] tabletLg:col-span-6 tabletLg:col-start-1 tabletLg:row-span-3 tabletLg:row-start-1">
 						<h2 className="sr-only">{product.name}</h2>
 
-						<Image
+						<NextImage
 							fill
 							priority
 							src={String(product.image?.sourceUrl)}
@@ -95,7 +72,7 @@ export default async function SingleProductPage({
 							sizes={String(product.image?.sizes)}
 						/>
 					</div>
-					<div className="col-span-12 tabletLg:col-span-6 tabletLg:col-start-8 tabletLg:row-start-2">
+					<div className="col-span-12 pt-10 tabletLg:col-span-6 tabletLg:col-start-8 tabletLg:row-start-2 tabletLg:pt-0">
 						<h1 className="text-2xl font-bold text-secondary">
 							{product.name}
 						</h1>
@@ -106,7 +83,7 @@ export default async function SingleProductPage({
 							>
 								<input
 									type="hidden"
-									value={productBySlug.id}
+									value={productBySlug.databaseId}
 									name="productId"
 								/>
 								<fieldset className="grid grid-cols-12 items-center">
@@ -114,88 +91,56 @@ export default async function SingleProductPage({
 										htmlFor="shape"
 										className="col-span-3 col-start-1 text-sm"
 									>
-										Kształt
+										Wariant
 									</Label>
-									<fieldset className="col-span-5">
-										<Select name="size" defaultValue={selectedShapeAttr}>
-											<SelectTrigger className="h-auto border-none bg-slate100 focus:ring-0">
-												<SelectValue
-													placeholder="Wybierz kształt"
-													className="text-sm font-bold text-secondary"
-												/>
-											</SelectTrigger>
-											<SelectContent className="border-none bg-slate50">
-												{shapeVariationOptions.map((val) => {
-													return val.options?.map((option) => {
-														return (
-															<SelectItem
-																key={String(option)}
-																value={String(option)}
-															>
-																{generateNameByProductOption(String(option))}
-															</SelectItem>
-														);
-													});
-												})}
-											</SelectContent>
-										</Select>
-									</fieldset>
-								</fieldset>
-								<fieldset className="grid grid-cols-12 items-center">
-									<Label
-										htmlFor="size"
-										className="col-span-3 col-start-1 text-sm"
-									>
-										Średnica
-									</Label>
-									<fieldset className="col-span-5">
-										<Select name="size" defaultValue={selectedSizeAttr}>
-											<SelectTrigger className="h-auto border-none bg-slate100 focus:ring-0">
-												<SelectValue
-													placeholder="Wybierz średnicę"
-													className="text-sm font-bold text-secondary"
-												/>
-											</SelectTrigger>
-											<SelectContent className="border-none bg-slate50">
-												{sizeVariationOptions.map((val) => {
-													return val.options?.map((option) => {
-														return (
-															<SelectItem
-																key={String(option)}
-																value={String(option)}
-															>
-																{String(option)}
-															</SelectItem>
-														);
-													});
-												})}
-											</SelectContent>
-										</Select>
-									</fieldset>
-								</fieldset>
-								<fieldset className="grid grid-cols-12 items-center">
-									<Label
-										htmlFor="color"
-										className="col-span-3 col-start-1 text-sm"
-									>
-										Kolor
-									</Label>
-									<fieldset className="col-span-5">
-										<ProductColorPicker
-											currentShape={selectedShapeAttr}
-											currentColor={selectedColorAttr}
-											currentSize={selectedSizeAttr}
-											colorVariationOptions={
-												colorVariationOptions[0].options as SupportedColors[]
-											}
+									<fieldset className="col-span-9 laptop:col-span-6">
+										<SelectField
+											name="variationId"
+											productSlug={params.slug}
+											options={product.variations?.nodes as ProductVariation[]}
 										/>
 									</fieldset>
+								</fieldset>
+								<fieldset className="space-y-4">
+									{productVariantAttributes?.map((attribute) => (
+										<fieldset
+											key={attribute.id}
+											className="grid grid-cols-12 items-center"
+										>
+											<Label className="col-span-3 col-start-1 text-sm">
+												{generateLabelNameFromAttributeName(attribute)}
+											</Label>
+											<fieldset className="col-span-5">
+												<Label className="col-span-3 col-start-1 text-sm font-bold">
+													{attribute.name === "shape" ? (
+														attribute.value &&
+														generateNameByProductOptionValue(attribute.value)
+													) : attribute.name === "color" ? (
+														<div
+															className={cn(
+																"h-6 w-6 rounded-full",
+																supportedColors[
+																	attribute.value as SupportedColors
+																]
+																	? supportedColors[
+																			attribute.value as SupportedColors
+																		].bgColor
+																	: "bg-[#B0D6FD]",
+															)}
+														></div>
+													) : (
+														attribute.value
+													)}
+												</Label>
+											</fieldset>
+										</fieldset>
+									))}
 								</fieldset>
 								<fieldset>
 									<span className="flex items-end justify-end space-x-3 py-4">
 										<span className="text-xs text-primaryDark">Cena</span>
 										<DefaultText className="flex justify-end text-2xl font-bold leading-none">
-											{product.price}
+											{productVariations?.regularPrice}
 										</DefaultText>
 									</span>
 									<SubmitButton type="submit" className="w-full">

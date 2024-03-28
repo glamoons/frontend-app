@@ -9,11 +9,7 @@ import { Section } from "@/components/atoms/Section";
 import { CategoryHolder } from "@/components/molecules/CategoryHolder";
 import { SectionHeading } from "@/components/molecules/SectionHeading";
 import { Category } from "@/components/organisms/Category";
-import {
-	type ProductVariation,
-	type VariationAttribute,
-	type VariableProduct,
-} from "@/gql/graphql";
+import { type ProductVariation, type VariableProduct } from "@/gql/graphql";
 import { cn } from "@/lib/utils";
 import "swiper/css";
 
@@ -26,8 +22,6 @@ export const CategorySection = ({
 	const swiperInstanceRef = useRef<SwiperType>();
 	const [swiperActiveIndex, setSwiperActiveIndex] = useState(0);
 	const [swiperSlidesCount, setSwiperSlidesCount] = useState(0);
-	const variationsProduct: ProductVariation[] =
-		products[0].variations?.nodes ?? [];
 
 	return (
 		<Section className="overflow-hidden">
@@ -63,26 +57,15 @@ export const CategorySection = ({
 							setSwiperSlidesCount(swiper.slides.length);
 						}}
 					>
-						{variationsProduct.map((product) => {
-							const productAttributes: VariationAttribute[] =
-								product.attributes?.nodes || [];
-
-							const defaultShapeAttribute = productAttributes.find(
-								(attribute) => attribute.name === "shape",
-							);
-
-							const defaultSizeAttribute = productAttributes.find(
-								(attribute) => attribute.name === "size",
-							);
-
-							const defaultColorAttribute = productAttributes.find(
-								(attribute) => attribute.name === "color",
-							);
+						{products.map((product) => {
+							const productVariations = product.variations
+								?.nodes as ProductVariation[];
+							const productAttributes = productVariations[0].attributes?.nodes;
 
 							return (
 								<SwiperSlide key={product.id}>
 									<Category
-										href={`/product/${product.slug}?shape=${defaultShapeAttribute?.value}&size=${defaultSizeAttribute?.value}&color=${defaultColorAttribute?.value}`}
+										href={`/product/${product.slug}?vId=${productVariations[0].databaseId}`}
 										mobileSrc={`${product.image?.sourceUrl}`}
 										alt={product.image?.altText ?? String(product.name)}
 										desktopSrc={`${product.image?.sourceUrl}`}
@@ -91,10 +74,10 @@ export const CategorySection = ({
 									/>
 									<CategoryHolder
 										title={String(product.name)}
-										price={String(product.price)}
-										btnName="Skonfiguruj"
+										price={String(productVariations[0].regularPrice)}
+										btnName="Zobacz"
 										productAttributes={productAttributes}
-										href={`/product/${product.slug}?shape=${defaultShapeAttribute?.value}&size=${defaultSizeAttribute?.value}&color=${defaultColorAttribute?.value}`}
+										href={`/product/${product.slug}?vId=${productVariations[0].databaseId}`}
 									/>
 								</SwiperSlide>
 							);

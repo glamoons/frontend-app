@@ -1,22 +1,20 @@
 import { redirect } from "next/navigation";
 import { executeQuery } from "./api/api-config";
 import {
+	ProductGetAttributesByProductIdDocument,
 	ProductGetByIdDocument,
 	ProductsGetListDocument,
-	type ProductGetByIdQuery,
+	type ProductGetAttributesByProductIdQueryVariables,
 	type ProductGetByIdQueryVariables,
 	type VariableProduct,
-	type ProductGetAttributesByProductIdQueryVariables,
-	ProductGetAttributesByProductIdDocument,
 } from "@/gql/graphql";
 
 export const getProductsList = async () => {
 	const graphqlResponse = await executeQuery({
 		query: ProductsGetListDocument,
 		variables: {
-			first: 6,
-			field: "IN",
-			order: "DESC",
+			field: "DATE",
+			order: "ASC",
 		},
 	});
 
@@ -24,9 +22,9 @@ export const getProductsList = async () => {
 		throw TypeError("Response does not contain products");
 	}
 
-	const variableProducts = graphqlResponse.products.nodes as VariableProduct[];
+	const products = graphqlResponse.products.nodes as VariableProduct[];
 
-	return variableProducts.map((product) => {
+	return products.map((product) => {
 		return {
 			...product,
 		};
@@ -43,11 +41,11 @@ export const getProductById = async (
 		},
 	});
 
-	if (!graphqlResponse.productVariation) {
+	if (!graphqlResponse.product) {
 		redirect("/");
 	}
 
-	return graphqlResponse.productVariation as ProductGetByIdQuery["productVariation"];
+	return graphqlResponse.product as VariableProduct;
 };
 
 export const getProductAttributesByProductId = async (

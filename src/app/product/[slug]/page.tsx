@@ -1,17 +1,14 @@
 import { type Metadata } from "next";
 import SingleProductPage from "./SingleProductPage";
 import { getProductById, getProductsList } from "@/services/productsApi";
-import { type ProductVariation } from "@/gql/graphql";
 
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
 	const products = await getProductsList();
-	const variationsProduct: ProductVariation[] =
-		products[0].variations?.nodes ?? [];
 
-	return variationsProduct.map((variation) => ({
-		slug: variation.slug,
+	return products.map((product) => ({
+		slug: product.slug,
 	}));
 }
 
@@ -21,10 +18,8 @@ export async function generateMetadata({
 	params: { slug: string };
 }): Promise<Metadata> {
 	const products = await getProductsList();
-	const variationsProduct: ProductVariation[] =
-		products[0].variations?.nodes ?? [];
-	const productBySlug = variationsProduct.find(
-		(variation) => variation.slug === params.slug,
+	const productBySlug = products.find(
+		(product) => product.slug === params.slug,
 	);
 
 	if (!productBySlug) {
@@ -50,16 +45,7 @@ export default async function ProductDetailsPage({
 	searchParams,
 }: {
 	params: { slug: string };
-	searchParams: { shape: string; size: string; color: string };
+	searchParams: { vId: number };
 }) {
-	const products = await getProductsList();
-	const defaultProductId = products[0].id;
-
-	return (
-		<SingleProductPage
-			params={params}
-			searchParams={searchParams}
-			defaultProductId={defaultProductId}
-		/>
-	);
+	return <SingleProductPage params={params} searchParams={searchParams} />;
 }
