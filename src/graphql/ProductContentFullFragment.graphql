@@ -1,0 +1,29 @@
+fragment ProductContentFull on Product {
+	id
+	name
+	slug
+	image {
+		...ProductGetMediaItem
+	}
+	... on VariableProduct {
+		id
+		name
+		variations(first: 50) {
+			nodes {
+				id
+				name
+				sku
+				price(format: FORMATTED)
+				regularPrice(format: FORMATTED)
+				attributes {
+					nodes {
+						id
+						name
+						label
+						value
+					}
+				}
+			}
+		}
+	}
+}

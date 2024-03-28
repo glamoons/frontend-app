@@ -1,0 +1,11 @@
+fragment ProductVariationContentSlice on ProductVariation {
+	id
+	databaseId
+	name
+	slug
+	image {
+		...ProductGetMediaItem
+	}
+	price
+	regularPrice
+}

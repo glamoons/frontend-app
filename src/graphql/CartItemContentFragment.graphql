@@ -1,0 +1,21 @@
+fragment CartItemContent on CartItem {
+	key
+	product {
+		node {
+			...ProductContentSlice
+		}
+	}
+	variation {
+		node {
+			...ProductVariationContentSlice
+		}
+	}
+	quantity
+	total
+	subtotal
+	subtotalTax
+	extraData {
+		key
+		value
+	}
+}

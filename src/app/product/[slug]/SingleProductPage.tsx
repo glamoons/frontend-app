@@ -1,10 +1,11 @@
 import { IconShoppingCart } from "@tabler/icons-react";
-import Image from "next/image";
-import { notFound } from "next/navigation";
+import { revalidateTag } from "next/cache";
+import NextImage from "next/image";
+import { notFound, redirect } from "next/navigation";
+import { SelectField } from "./SelectField";
 import { DefaultText } from "@/components/atoms/DefaultText";
 import { Label } from "@/components/atoms/Label";
 import { SubmitButton } from "@/components/atoms/SubmitButton";
-import { ProductColorPicker } from "@/components/organisms/ProductColorPicker";
 import { ProductInformationBox } from "@/components/organisms/ProductInformationBox";
 import {
 	Select,
@@ -13,67 +14,50 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
-import {
-	cn,
-	generateNameByProductOption,
-	type SupportedColors,
-} from "@/lib/utils";
+import { type ProductVariation } from "@/gql/graphql";
+import { cn } from "@/lib/utils";
 import {
 	getProductAttributesByProductId,
 	getProductById,
 	getProductsList,
 } from "@/services/productsApi";
-import { type ProductVariation } from "@/gql/graphql";
 
 export default async function SingleProductPage({
 	params,
-	searchParams,
-	defaultProductId,
 }: {
 	params: { slug: string };
-	searchParams: { shape: string; size: string; color: string };
-	defaultProductId: string;
 }) {
-	const productsList = await getProductsList();
-	const variationsProduct: ProductVariation[] =
-		productsList[0].variations?.nodes ?? [];
-	const productBySlug = variationsProduct.find(
-		(variation) => variation.slug === params.slug,
+	const products = await getProductsList();
+	const productBySlug = products.find(
+		(product) => product.slug === params.slug,
 	);
 
 	if (!productBySlug) {
-		throw notFound();
+		redirect("/");
 	}
-
 	const product = await getProductById(productBySlug.id);
-	const productAttributes =
-		await getProductAttributesByProductId(defaultProductId);
+	const productAttributes = await getProductAttributesByProductId(
+		productBySlug.id,
+	);
 
 	if (!product) {
 		throw notFound();
 	}
 
-	const shapeVariationOptions = productAttributes?.filter(
-		(attribute) => attribute.name === "shape",
-	);
-
 	const sizeVariationOptions = productAttributes?.filter(
 		(attribute) => attribute.name === "size",
 	);
 
-	const colorVariationOptions = productAttributes?.filter(
-		(attribute) => attribute.name === "color",
-	);
-
-	const selectedShapeAttr = searchParams.shape;
-
-	const selectedSizeAttr = searchParams.size;
-
-	const selectedColorAttr = searchParams.color;
-
 	const addProductToCartAction = async (formData: FormData) => {
 		"use server";
 		console.log(formData);
+
+		revalidateTag("cart");
+	};
+
+	const handleValueChange = async (value: string) => {
+		"use server";
+		console.log(value);
 	};
 
 	return (
@@ -83,7 +67,7 @@ export default async function SingleProductPage({
 					<div className="relative col-span-12 aspect-[4/5] tabletLg:col-span-6 tabletLg:col-start-1 tabletLg:row-span-3 tabletLg:row-start-1">
 						<h2 className="sr-only">{product.name}</h2>
 
-						<Image
+						<NextImage
 							fill
 							priority
 							src={String(product.image?.sourceUrl)}
@@ -114,31 +98,14 @@ export default async function SingleProductPage({
 										htmlFor="shape"
 										className="col-span-3 col-start-1 text-sm"
 									>
-										Kształt
+										Wariant
 									</Label>
 									<fieldset className="col-span-5">
-										<Select name="size" defaultValue={selectedShapeAttr}>
-											<SelectTrigger className="h-auto border-none bg-slate100 focus:ring-0">
-												<SelectValue
-													placeholder="Wybierz kształt"
-													className="text-sm font-bold text-secondary"
-												/>
-											</SelectTrigger>
-											<SelectContent className="border-none bg-slate50">
-												{shapeVariationOptions.map((val) => {
-													return val.options?.map((option) => {
-														return (
-															<SelectItem
-																key={String(option)}
-																value={String(option)}
-															>
-																{generateNameByProductOption(String(option))}
-															</SelectItem>
-														);
-													});
-												})}
-											</SelectContent>
-										</Select>
+										<SelectField
+											name="variationId"
+											options={product.variations?.nodes as ProductVariation[]}
+											handleValueChange={handleValueChange}
+										/>
 									</fieldset>
 								</fieldset>
 								<fieldset className="grid grid-cols-12 items-center">
@@ -149,7 +116,12 @@ export default async function SingleProductPage({
 										Średnica
 									</Label>
 									<fieldset className="col-span-5">
-										<Select name="size" defaultValue={selectedSizeAttr}>
+										<Select
+											name="size"
+											defaultValue={String(
+												product.variations?.nodes[0].attributes?.nodes[1].value,
+											)}
+										>
 											<SelectTrigger className="h-auto border-none bg-slate100 focus:ring-0">
 												<SelectValue
 													placeholder="Wybierz średnicę"
@@ -181,14 +153,14 @@ export default async function SingleProductPage({
 										Kolor
 									</Label>
 									<fieldset className="col-span-5">
-										<ProductColorPicker
+										{/* <ProductColorPicker
 											currentShape={selectedShapeAttr}
 											currentColor={selectedColorAttr}
 											currentSize={selectedSizeAttr}
 											colorVariationOptions={
 												colorVariationOptions[0].options as SupportedColors[]
 											}
-										/>
+										/> */}
 									</fieldset>
 								</fieldset>
 								<fieldset>

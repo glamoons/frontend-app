@@ -1,13 +1,10 @@
 query ProductsGetList(
-	$first: Int = 6
-	$field: ProductsOrderByEnum = IN
+	$field: ProductsOrderByEnum = DATE
 	$order: OrderEnum = ASC
 ) {
-	products {
+	products(where: { orderby: { field: $field, order: $order } }) {
 		nodes {
-			id
-			slug
-			...ProductsGetListItem
+			...ProductContentFull
 		}
 	}
 }

@@ -1,0 +1,10 @@
+fragment CustomerContent on Customer {
+	id
+	sessionToken
+	shipping {
+		postcode
+		state
+		city
+		country
+	}
+}

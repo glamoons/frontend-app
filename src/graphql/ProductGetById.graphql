@@ -1,15 +1,5 @@
 query ProductGetById($id: ID!) {
-	productVariation(id: $id) {
-		id
-		name
-		image {
-			...ProductGetMediaItem
-		}
-		price(format: FORMATTED)
-		attributes {
-			nodes {
-				...ProductGetVariationAttribute
-			}
-		}
+	product(id: $id) {
+		...ProductContentFull
 	}
 }

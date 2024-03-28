@@ -1,0 +1,13 @@
+fragment ProductContentSlice on Product {
+	id
+	name
+	slug
+	image {
+		...ProductGetMediaItem
+	}
+	... on VariableProduct {
+		price
+		regularPrice
+		soldIndividually
+	}
+}
