@@ -42,8 +42,10 @@ export async function generateMetadata({
 
 export default async function ProductDetailsPage({
 	params,
+	searchParams,
 }: {
 	params: { slug: string };
+	searchParams: { vId?: string };
 }) {
-	return <SingleProductPage params={params} />;
+	return <SingleProductPage params={params} searchParams={searchParams} />;
 }

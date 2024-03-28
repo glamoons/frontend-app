@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import {
 	Select,
 	SelectContent,
@@ -11,15 +12,23 @@ import { type ProductVariation } from "@/gql/graphql";
 
 export const SelectField = ({
 	name,
+	productSlug,
 	options,
-	handleValueChange,
 }: {
 	name: string;
+	productSlug: string;
 	options: ProductVariation[];
-	handleValueChange: (value: string) => void;
 }) => {
+	const router = useRouter();
+
+	const handleValueChange = (value: string) => {
+		router.replace(`/product/${productSlug}?vId=${value}`);
+	};
 	return (
-		<Select name={name} onValueChange={handleValueChange}>
+		<Select
+			name={name}
+			onValueChange={(value) => handleValueChange(`${value}`)}
+		>
 			<SelectTrigger className="h-auto border-none bg-slate100 focus:ring-0">
 				<SelectValue
 					placeholder="Wybierz wariant"

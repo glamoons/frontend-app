@@ -24,8 +24,10 @@ import {
 
 export default async function SingleProductPage({
 	params,
+	searchParams,
 }: {
 	params: { slug: string };
+	searchParams: { vId?: string };
 }) {
 	const products = await getProductsList();
 	const productBySlug = products.find(
@@ -55,10 +57,7 @@ export default async function SingleProductPage({
 		revalidateTag("cart");
 	};
 
-	const handleValueChange = async (value: string) => {
-		"use server";
-		console.log(value);
-	};
+	console.log(searchParams);
 
 	return (
 		<>
@@ -103,8 +102,8 @@ export default async function SingleProductPage({
 									<fieldset className="col-span-5">
 										<SelectField
 											name="variationId"
+											productSlug={params.slug}
 											options={product.variations?.nodes as ProductVariation[]}
-											handleValueChange={handleValueChange}
 										/>
 									</fieldset>
 								</fieldset>
