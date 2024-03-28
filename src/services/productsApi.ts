@@ -16,6 +16,9 @@ export const getProductsList = async () => {
 			field: "DATE",
 			order: "ASC",
 		},
+		next: {
+			revalidate: 15,
+		},
 	});
 
 	if (!graphqlResponse.products || !graphqlResponse.products.nodes) {
