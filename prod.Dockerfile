@@ -14,7 +14,7 @@ RUN \
 
 RUN --mount=type=secret,id=GRAPHQL_URL \
    export GRAPHQL_URL=$(cat /run/secrets/GRAPHQL_URL) && \
-   yarn generate
+   echo "GRAPHQL_URL: $GRAPHQL_URL"
 
 COPY src ./src
 COPY public ./public
