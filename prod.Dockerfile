@@ -12,6 +12,10 @@ RUN \
   else echo "Warning: Lockfile not found. It is recommended to commit lockfiles to version control." && yarn install; \
   fi
 
+RUN --mount=type=secret,id=GRAPHQL_URL \
+   export GRAPHQL_URL=$(cat /run/secrets/GRAPHQL_URL) && \
+   yarn generate
+
 COPY src ./src
 COPY public ./public
 COPY next.config.js .
