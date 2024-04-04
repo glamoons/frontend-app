@@ -41,6 +41,11 @@ jobs:
 
           scp -o StrictHostKeyChecking=no -P $SSH_PORT .env.production $SSH_USER@$SSH_HOST:~
       - name: Build and push docker image
+        env:
+          GRAPHQL_URL: ${{ secrets.GRAPHQL_URL }}
+          run: |
+            echo "GRAPHQL_URL=$GRAPHQL_URL" > .env.production
+            scp -o StrictHostKeyChecking=no -P $SSH_PORT .env.production $SSH_USER@$SSH_HOST:~
         uses: docker/build-push-action@v5
         with:
           context: .
@@ -67,6 +72,8 @@ jobs:
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
+
+          scp -o StrictHostKeyChecking=no -P $SSH_PORT .env.production $SSH_USER@$SSH_HOST:~
 
           scp -o StrictHostKeyChecking=no -P $SSH_PORT docker-compose-dev-web.yaml $SSH_USER@$SSH_HOST:docker-compose-dev-web.yaml
           ssh -o StrictHostKeyChecking=no -p $SSH_PORT $SSH_USER@$SSH_HOST docker compose -f docker-compose-dev-web.yaml pull
