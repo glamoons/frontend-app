@@ -34,8 +34,8 @@ jobs:
         env:
           GRAPHQL_URL: ${{ secrets.GRAPHQL_URL }}
           run: |
-            echo "GRAPHQL_URL=$GRAPHQL_URL" > .env
-            scp -o StrictHostKeyChecking=no -P $SSH_PORT .env $SSH_USER@$SSH_HOST:~
+            echo "GRAPHQL_URL=$GRAPHQL_URL" > .env.production
+            scp -o StrictHostKeyChecking=no -P $SSH_PORT .env.production $SSH_USER@$SSH_HOST:~
         uses: docker/build-push-action@v5
         with:
           context: .
