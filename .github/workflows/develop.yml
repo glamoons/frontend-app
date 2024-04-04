@@ -31,9 +31,15 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       - name: Set environment variables
+        shell: bash
         run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
           echo "GRAPHQL_URL=${{ secrets.GRAPHQL_URL }}" >> .env.production
-          echo $GRAPHQL_URL
+
+          scp -o StrictHostKeyChecking=no -P $SSH_PORT .env.production $SSH_USER@$SSH_HOST:~
       - name: Build and push docker image
         env:
           GRAPHQL_URL: ${{ secrets.GRAPHQL_URL }}
