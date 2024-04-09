@@ -3,7 +3,7 @@ import {
 	type HTMLAttributes,
 	type ImgHTMLAttributes,
 } from "react";
-import { type VariationAttribute } from "@/gql/graphql";
+import { type Product_Variants } from "@/gql/graphql";
 
 export type BaseProps = {
 	className?: string;
@@ -33,7 +33,7 @@ export type CategoryHolderProps = {
 	title: string;
 	price: string;
 	btnName?: string;
-	productAttributes?: VariationAttribute[];
+	productAttributes?: Product_Variants[];
 };
 
 export type ProductOptions = "square" | "rectangle" | "circle";

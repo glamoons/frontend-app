@@ -11,6 +11,12 @@ const nextConfig = {
 				port: "",
 				pathname: "/dstimijog/**",
 			},
+			{
+				protocol: "https",
+				hostname: "backoffice-dev.glamoons.com",
+				port: "",
+				pathname: "/**",
+			},
 		],
 	},
 	experimental: {

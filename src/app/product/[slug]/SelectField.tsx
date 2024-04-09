@@ -8,7 +8,7 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
-import { type ProductVariation } from "@/gql/graphql";
+import { type Product_Variants } from "@/gql/graphql";
 
 export const SelectField = ({
 	name,
@@ -17,7 +17,7 @@ export const SelectField = ({
 }: {
 	name: string;
 	productSlug: string;
-	options: ProductVariation[];
+	options: Product_Variants[];
 }) => {
 	const router = useRouter();
 
@@ -28,7 +28,7 @@ export const SelectField = ({
 		<Select
 			name={name}
 			onValueChange={(value) => handleValueChange(`${value}`)}
-			defaultValue={String(options[0].databaseId)}
+			defaultValue={String(options[0].id)}
 		>
 			<SelectTrigger className="h-auto border-none bg-slate100 focus:ring-0">
 				<SelectValue
@@ -39,8 +39,8 @@ export const SelectField = ({
 			<SelectContent className="border-none bg-slate50">
 				{options.map((option) => {
 					return (
-						<SelectItem key={option.id} value={String(option.databaseId)}>
-							{option.sku}
+						<SelectItem key={option.id} value={String(option.id)}>
+							{option.blockType}
 						</SelectItem>
 					);
 				})}

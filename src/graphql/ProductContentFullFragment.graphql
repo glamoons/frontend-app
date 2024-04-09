@@ -1,31 +1,29 @@
 fragment ProductContentFull on Product {
 	id
-	databaseId
 	name
 	slug
+	price
 	image {
 		...ProductGetMediaItem
 	}
-	... on VariableProduct {
-		id
-		name
-		variations(first: 50) {
-			nodes {
-				id
-				databaseId
-				name
-				sku
-				price(format: FORMATTED)
-				regularPrice(format: FORMATTED)
-				attributes {
-					nodes {
-						id
-						name
-						label
-						value
-					}
-				}
-			}
+	variants {
+		... on Color {
+			id
+			color
+			blockName
+			blockType
+		}
+		... on Size {
+			id
+			size
+			blockName
+			blockType
+		}
+		... on Shape {
+			id
+			shape
+			blockName
+			blockType
 		}
 	}
 }

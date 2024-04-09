@@ -1,5 +1,0 @@
-fragment ProductGetVariationAttribute on VariationAttribute {
-	id
-	name
-	value
-}

@@ -1,9 +1,6 @@
-query ProductsGetList(
-	$field: ProductsOrderByEnum = DATE
-	$order: OrderEnum = ASC
-) {
-	products(where: { orderby: { field: $field, order: $order } }) {
-		nodes {
+query ProductsGetList($sort: String) {
+	Products(sort: $sort) {
+		docs {
 			...ProductContentFull
 		}
 	}

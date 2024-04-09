@@ -1,9 +1,15 @@
-import { type ClassValue, clsx } from "clsx";
+import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { type VariationAttribute } from "@/gql/graphql";
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
+}
+
+export function formatMoney(amount: number, currency = "PLN") {
+	return new Intl.NumberFormat("pl-PL", {
+		style: "currency",
+		currency,
+	}).format(amount);
 }
 
 export const generateNameByProductOptionValue = (
@@ -18,21 +24,6 @@ export const generateNameByProductOptionValue = (
 			return "okrągły";
 		default:
 			return "okrągły";
-	}
-};
-
-export const generateLabelNameFromAttributeName = (
-	attribute: VariationAttribute,
-) => {
-	switch (attribute.name) {
-		case "shape":
-			return "Kształt";
-		case "size":
-			return "Rozmiar";
-		case "color":
-			return "Kolor";
-		default:
-			return attribute.label;
 	}
 };
 

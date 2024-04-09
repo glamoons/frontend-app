@@ -1,5 +1,6 @@
-fragment ProductGetMediaItem on MediaItem {
-	altText
-	sourceUrl
-	sizes
+fragment ProductGetMediaItem on Media {
+	alt
+	url
+	height
+	width
 }

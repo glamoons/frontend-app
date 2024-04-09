@@ -9,14 +9,14 @@ import { Section } from "@/components/atoms/Section";
 import { CategoryHolder } from "@/components/molecules/CategoryHolder";
 import { SectionHeading } from "@/components/molecules/SectionHeading";
 import { Category } from "@/components/organisms/Category";
-import { type ProductVariation, type VariableProduct } from "@/gql/graphql";
-import { cn } from "@/lib/utils";
+import { cn, formatMoney } from "@/lib/utils";
 import "swiper/css";
+import { type ProductContentFullFragment } from "@/gql/graphql";
 
 export const CategorySection = ({
 	products,
 }: {
-	products: VariableProduct[];
+	products: ProductContentFullFragment[];
 }) => {
 	const swiperRef = useRef<SwiperType>();
 	const swiperInstanceRef = useRef<SwiperType>();
@@ -58,26 +58,22 @@ export const CategorySection = ({
 						}}
 					>
 						{products.map((product) => {
-							const productVariations = product.variations
-								?.nodes as ProductVariation[];
-							const productAttributes = productVariations[0].attributes?.nodes;
-
 							return (
 								<SwiperSlide key={product.id}>
 									<Category
-										href={`/product/${product.slug}?vId=${productVariations[0].databaseId}`}
-										mobileSrc={`${product.image?.sourceUrl}`}
-										alt={product.image?.altText ?? String(product.name)}
-										desktopSrc={`${product.image?.sourceUrl}`}
-										title={product.image?.altText ?? String(product.name)}
-										sizes={product.image?.sizes ?? "50vw"}
+										href={`/product/${product.slug}`}
+										mobileSrc={`${process.env.NEXT_PUBLIC_BASE_URL}${product.image?.url}`}
+										alt={product.image?.alt ?? String(product.name)}
+										desktopSrc={`${process.env.NEXT_PUBLIC_BASE_URL}${product.image?.url}`}
+										title={product.image?.alt ?? String(product.name)}
+										sizes={"50vw"}
 									/>
 									<CategoryHolder
 										title={String(product.name)}
-										price={String(productVariations[0].regularPrice)}
+										price={formatMoney(product.price)}
 										btnName="Zobacz"
-										productAttributes={productAttributes}
-										href={`/product/${product.slug}?vId=${productVariations[0].databaseId}`}
+										productAttributes={product.variants}
+										href={`/product/${product.slug}`}
 									/>
 								</SwiperSlide>
 							);

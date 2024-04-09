@@ -1,37 +1,28 @@
 import { redirect } from "next/navigation";
 import { executeQuery } from "./api/api-config";
 import {
-	ProductGetAttributesByProductIdDocument,
+	type ProductContentFullFragment,
 	ProductGetByIdDocument,
 	ProductsGetListDocument,
-	type ProductGetAttributesByProductIdQueryVariables,
 	type ProductGetByIdQueryVariables,
-	type VariableProduct,
 } from "@/gql/graphql";
 
 export const getProductsList = async () => {
 	const graphqlResponse = await executeQuery({
 		query: ProductsGetListDocument,
 		variables: {
-			field: "DATE",
-			order: "ASC",
+			sort: "name",
 		},
 		next: {
 			revalidate: 15,
 		},
 	});
 
-	if (!graphqlResponse.products || !graphqlResponse.products.nodes) {
+	if (!graphqlResponse.Products || !graphqlResponse.Products.docs) {
 		throw TypeError("Response does not contain products");
 	}
 
-	const products = graphqlResponse.products.nodes as VariableProduct[];
-
-	return products.map((product) => {
-		return {
-			...product,
-		};
-	});
+	return graphqlResponse.Products.docs as ProductContentFullFragment[];
 };
 
 export const getProductById = async (
@@ -44,26 +35,9 @@ export const getProductById = async (
 		},
 	});
 
-	if (!graphqlResponse.product) {
+	if (!graphqlResponse.Product) {
 		redirect("/");
 	}
 
-	return graphqlResponse.product as VariableProduct;
-};
-
-export const getProductAttributesByProductId = async (
-	id: ProductGetAttributesByProductIdQueryVariables["id"],
-) => {
-	const graphqlResponse = await executeQuery({
-		query: ProductGetAttributesByProductIdDocument,
-		variables: {
-			id,
-		},
-	});
-
-	if (!graphqlResponse.product || !graphqlResponse.product.attributes) {
-		throw TypeError("Response does not contain product attributes");
-	}
-
-	return graphqlResponse.product.attributes.nodes;
+	return graphqlResponse.Product;
 };

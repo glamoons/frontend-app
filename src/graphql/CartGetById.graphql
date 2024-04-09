@@ -1,8 +1,0 @@
-query CartGetById($customerId: Int) {
-	cart {
-		...CartContent
-	}
-	customer(customerId: $customerId) {
-		...CustomerContent
-	}
-}

@@ -7,10 +7,9 @@ import { DefaultText } from "@/components/atoms/DefaultText";
 import { Label } from "@/components/atoms/Label";
 import { SubmitButton } from "@/components/atoms/SubmitButton";
 import { ProductInformationBox } from "@/components/organisms/ProductInformationBox";
-import { type ProductVariation, type VariationAttribute } from "@/gql/graphql";
+import { type Color, type Shape, type Size } from "@/gql/graphql";
 import {
 	cn,
-	generateLabelNameFromAttributeName,
 	generateNameByProductOptionValue,
 	supportedColors,
 	type SupportedColors,
@@ -19,17 +18,17 @@ import { getProductById, getProductsList } from "@/services/productsApi";
 
 export default async function SingleProductPage({
 	params,
-	searchParams,
+	// searchParams,
 }: {
 	params: { slug: string };
-	searchParams: { vId: number };
+	// searchParams: { vId: number };
 }) {
 	const products = await getProductsList();
 	const productBySlug = products.find(
 		(product) => product.slug === params.slug,
 	);
 
-	if (!productBySlug) {
+	if (!productBySlug || !productBySlug.id) {
 		redirect("/");
 	}
 	const product = await getProductById(productBySlug.id);
@@ -45,13 +44,18 @@ export default async function SingleProductPage({
 		revalidateTag("cart");
 	};
 
-	const productVariations = product.variations?.nodes.find(
-		(el: ProductVariation) => el.databaseId === Number(searchParams.vId),
-	);
+	const productVariants = product.variants;
 
-	const productVariantAttributes = productVariations?.attributes?.nodes.map(
-		(el): VariationAttribute => el,
-	);
+	const productColorAttributes = productVariants?.find(
+		(attribute) => attribute.blockType === "color",
+	) as unknown as Color;
+	const productSizeAttributes = productVariants?.find(
+		(attribute) => attribute.blockType === "size",
+	) as unknown as Size;
+
+	const productShapeAttributes = productVariants?.find(
+		(attribute) => attribute.blockType === "shape",
+	) as unknown as Shape;
 
 	return (
 		<>
@@ -63,13 +67,12 @@ export default async function SingleProductPage({
 						<NextImage
 							fill
 							priority
-							src={String(product.image?.sourceUrl)}
-							alt={product.image?.altText ?? String(product.name)}
+							src={`${process.env.NEXT_PUBLIC_BASE_URL}${product.image?.url}`}
+							alt={product.image?.alt ?? String(product.name)}
 							className={cn(
 								true ? "lg:col-span-2 lg:row-span-2" : "lg:block hidden",
 								"rounded-lg",
 							)}
-							sizes={String(product.image?.sizes)}
 						/>
 					</div>
 					<div className="col-span-12 pt-10 tabletLg:col-span-6 tabletLg:col-start-8 tabletLg:row-start-2 tabletLg:pt-0">
@@ -83,7 +86,7 @@ export default async function SingleProductPage({
 							>
 								<input
 									type="hidden"
-									value={productBySlug.databaseId}
+									value={productBySlug.id}
 									name="productId"
 								/>
 								<fieldset className="grid grid-cols-12 items-center">
@@ -97,40 +100,44 @@ export default async function SingleProductPage({
 										<SelectField
 											name="variationId"
 											productSlug={params.slug}
-											options={product.variations?.nodes as ProductVariation[]}
+											options={product.variants}
 										/>
 									</fieldset>
 								</fieldset>
 								<fieldset className="space-y-4">
-									{productVariantAttributes?.map((attribute) => (
+									{productVariants.map((attribute) => (
 										<fieldset
 											key={attribute.id}
 											className="grid grid-cols-12 items-center"
 										>
 											<Label className="col-span-3 col-start-1 text-sm">
-												{generateLabelNameFromAttributeName(attribute)}
+												{attribute.blockName}
 											</Label>
 											<fieldset className="col-span-5">
-												<Label className="col-span-3 col-start-1 text-sm font-bold">
-													{attribute.name === "shape" ? (
-														attribute.value &&
-														generateNameByProductOptionValue(attribute.value)
-													) : attribute.name === "color" ? (
-														<div
-															className={cn(
-																"h-6 w-6 rounded-full",
-																supportedColors[
-																	attribute.value as SupportedColors
-																]
-																	? supportedColors[
-																			attribute.value as SupportedColors
-																		].bgColor
-																	: "bg-[#B0D6FD]",
-															)}
-														></div>
-													) : (
-														attribute.value
-													)}
+												<Label className="col-span-3 col-start-1 flex items-center space-x-2 text-sm font-bold">
+													{attribute.blockType === "color" &&
+														productColorAttributes.color?.map((color) => {
+															return (
+																<div
+																	key={color}
+																	className={cn(
+																		"h-6 w-6 rounded-full",
+																		supportedColors[color as SupportedColors]
+																			? supportedColors[
+																					color as SupportedColors
+																				].bgColor
+																			: "bg-[#B0D6FD]",
+																	)}
+																></div>
+															);
+														})}
+													{attribute.blockType === "shape" &&
+														productShapeAttributes.shape &&
+														generateNameByProductOptionValue(
+															productShapeAttributes.shape,
+														)}
+													{attribute.blockType === "size" &&
+														productSizeAttributes.size}
 												</Label>
 											</fieldset>
 										</fieldset>
@@ -140,7 +147,7 @@ export default async function SingleProductPage({
 									<span className="flex items-end justify-end space-x-3 py-4">
 										<span className="text-xs text-primaryDark">Cena</span>
 										<DefaultText className="flex justify-end text-2xl font-bold leading-none">
-											{productVariations?.regularPrice}
+											{product.price}
 										</DefaultText>
 									</span>
 									<SubmitButton type="submit" className="w-full">
