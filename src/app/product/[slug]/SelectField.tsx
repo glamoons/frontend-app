@@ -9,6 +9,7 @@ import {
 	SelectValue,
 } from "@/components/ui/select";
 import { type Product_Variants } from "@/gql/graphql";
+import { generateNameByProductEnumValue } from "@/lib/utils";
 
 export const SelectField = ({
 	name,
@@ -40,7 +41,7 @@ export const SelectField = ({
 				{options.map((option) => {
 					return (
 						<SelectItem key={option.id} value={String(option.id)}>
-							{option.blockType}
+							{generateNameByProductEnumValue(option.sku)}
 						</SelectItem>
 					);
 				})}

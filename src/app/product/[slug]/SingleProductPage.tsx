@@ -18,10 +18,10 @@ import { getProductById, getProductsList } from "@/services/productsApi";
 
 export default async function SingleProductPage({
 	params,
-	// searchParams,
+	searchParams,
 }: {
 	params: { slug: string };
-	// searchParams: { vId: number };
+	searchParams: { vId: string };
 }) {
 	const products = await getProductsList();
 	const productBySlug = products.find(
@@ -37,25 +37,36 @@ export default async function SingleProductPage({
 		throw notFound();
 	}
 
+	const productVariantDefault = product.variants.find(
+		(variant) => variant.isDefault,
+	);
+
+	const productVariants = product.variants.filter(
+		(variant) => !variant.isDefault,
+	);
+
+	const productVariantAtrributes = productVariants?.find(
+		(attribute) => attribute.id === searchParams.vId,
+	);
+
+	const productColorAttributes = productVariantAtrributes?.items?.find(
+		(attribute) => attribute.blockType === "color",
+	) as Color;
+
+	const productSizeAttributes = productVariantAtrributes?.items?.find(
+		(attribute) => attribute.blockType === "size",
+	) as Size;
+
+	const productShapeAttributes = productVariantAtrributes?.items?.find(
+		(attribute) => attribute.blockType === "shape",
+	) as Shape;
+
 	const addProductToCartAction = async (formData: FormData) => {
 		"use server";
 		console.log(formData);
 
 		revalidateTag("cart");
 	};
-
-	const productVariants = product.variants;
-
-	const productColorAttributes = productVariants?.find(
-		(attribute) => attribute.blockType === "color",
-	) as unknown as Color;
-	const productSizeAttributes = productVariants?.find(
-		(attribute) => attribute.blockType === "size",
-	) as unknown as Size;
-
-	const productShapeAttributes = productVariants?.find(
-		(attribute) => attribute.blockType === "shape",
-	) as unknown as Shape;
 
 	return (
 		<>
@@ -100,12 +111,12 @@ export default async function SingleProductPage({
 										<SelectField
 											name="variationId"
 											productSlug={params.slug}
-											options={product.variants}
+											options={productVariants}
 										/>
 									</fieldset>
 								</fieldset>
 								<fieldset className="space-y-4">
-									{productVariants.map((attribute) => (
+									{productVariantDefault?.items?.map((attribute) => (
 										<fieldset
 											key={attribute.id}
 											className="grid grid-cols-12 items-center"

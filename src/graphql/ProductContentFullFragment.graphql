@@ -7,21 +7,30 @@ fragment ProductContentFull on Product {
 		...ProductGetMediaItem
 	}
 	variants {
-		... on Color {
+		... on variant {
 			id
-			color
-			blockName
-			blockType
-		}
-		... on Size {
-			id
-			size
-			blockName
-			blockType
-		}
-		... on Shape {
-			id
-			shape
+			isDefault
+			sku
+			items {
+				... on Color {
+					id
+					color
+					blockName
+					blockType
+				}
+				... on Shape {
+					id
+					shape
+					blockName
+					blockType
+				}
+				... on Size {
+					id
+					size
+					blockName
+					blockType
+				}
+			}
 			blockName
 			blockType
 		}

@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { ProductSkuEnum } from "@/interfaces/base";
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -55,3 +56,18 @@ export const supportedColors: {
 	},
 };
 /* colors-end */
+
+export const generateNameByProductEnumValue = (optionValue: string): string => {
+	switch (optionValue) {
+		case "CIRCLE_COLDWHITE_30":
+			return ProductSkuEnum.CIRCLE_COLDWHITE_30;
+		case "CIRCLE_WARMWHITE_30":
+			return ProductSkuEnum.CIRCLE_WARMWHITE_30;
+		case "CIRCLE_COLDWHITE_40":
+			return ProductSkuEnum.CIRCLE_COLDWHITE_40;
+		case "CIRCLE_WARMWHITE_40":
+			return ProductSkuEnum.CIRCLE_WARMWHITE_40;
+		default:
+			return ProductSkuEnum.CIRCLE_COLDWHITE_30;
+	}
+};

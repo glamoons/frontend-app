@@ -39,3 +39,10 @@ export type CategoryHolderProps = {
 export type ProductOptions = "square" | "rectangle" | "circle";
 
 export type HTMLElements<E> = DetailedHTMLProps<HTMLAttributes<E>, E>;
+
+export enum ProductSkuEnum {
+	CIRCLE_COLDWHITE_30 = "OKRĄGŁY_BIAŁYZIMNY_30",
+	CIRCLE_WARMWHITE_30 = "OKRĄGŁY_BIAŁYCIEPŁY_30",
+	CIRCLE_COLDWHITE_40 = "OKRĄGŁY_BIAŁYZIMNY_40",
+	CIRCLE_WARMWHITE_40 = "OKRĄGŁY_BIAŁYCIEPŁY_40",
+}

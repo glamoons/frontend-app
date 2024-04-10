@@ -14,10 +14,14 @@ export const CategoryHolder = ({
 	productAttributes,
 	href,
 }: CategoryHolderProps & CategoryHolderAdditionalProps) => {
-	const productColorAttributes = productAttributes?.find(
+	const productDefaultVariant = productAttributes?.find(
+		(attribute) => attribute.isDefault,
+	);
+
+	const productColorAttributes = productDefaultVariant?.items?.find(
 		(attribute) => attribute.blockType === "color",
 	) as Color;
-	const productSizeAttributes = productAttributes?.find(
+	const productSizeAttributes = productDefaultVariant?.items?.find(
 		(attribute) => attribute.blockType === "size",
 	) as Size;
 

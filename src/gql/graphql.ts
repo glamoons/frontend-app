@@ -4442,7 +4442,7 @@ export type Product_Image_Width_Operator = {
   not_equals?: InputMaybe<Scalars['Float']['input']>;
 };
 
-export type Product_Variants = Color | Shape | Size;
+export type Product_Variants = Variant;
 
 export type Product_CreatedAt_Operator = {
   equals?: InputMaybe<Scalars['DateTime']['input']>;
@@ -6514,14 +6514,25 @@ export type UsersResetPassword = {
   user?: Maybe<User>;
 };
 
-export type ProductContentFullFragment = { id?: number | null, name: string, slug: string, price: number, image: { alt?: string | null, url?: string | null, height?: number | null, width?: number | null }, variants: Array<{ id?: string | null, color?: Array<Color_Color> | null, blockName?: string | null, blockType?: string | null } | { id?: string | null, shape?: Shape_Shape | null, blockName?: string | null, blockType?: string | null } | { id?: string | null, size?: Size_Size | null, blockName?: string | null, blockType?: string | null }> };
+export type Variant = {
+  blockName?: Maybe<Scalars['String']['output']>;
+  blockType?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  isDefault?: Maybe<Scalars['Boolean']['output']>;
+  items?: Maybe<Array<Variant_Items>>;
+  sku: Scalars['String']['output'];
+};
+
+export type Variant_Items = Color | Shape | Size;
+
+export type ProductContentFullFragment = { id?: number | null, name: string, slug: string, price: number, image: { alt?: string | null, url?: string | null, height?: number | null, width?: number | null }, variants: Array<{ id?: string | null, isDefault?: boolean | null, sku: string, blockName?: string | null, blockType?: string | null, items?: Array<{ id?: string | null, color?: Array<Color_Color> | null, blockName?: string | null, blockType?: string | null } | { id?: string | null, shape?: Shape_Shape | null, blockName?: string | null, blockType?: string | null } | { id?: string | null, size?: Size_Size | null, blockName?: string | null, blockType?: string | null }> | null }> };
 
 export type ProductGetByIdQueryVariables = Exact<{
   id: Scalars['Int']['input'];
 }>;
 
 
-export type ProductGetByIdQuery = { Product?: { id?: number | null, name: string, slug: string, price: number, image: { alt?: string | null, url?: string | null, height?: number | null, width?: number | null }, variants: Array<{ id?: string | null, color?: Array<Color_Color> | null, blockName?: string | null, blockType?: string | null } | { id?: string | null, shape?: Shape_Shape | null, blockName?: string | null, blockType?: string | null } | { id?: string | null, size?: Size_Size | null, blockName?: string | null, blockType?: string | null }> } | null };
+export type ProductGetByIdQuery = { Product?: { id?: number | null, name: string, slug: string, price: number, image: { alt?: string | null, url?: string | null, height?: number | null, width?: number | null }, variants: Array<{ id?: string | null, isDefault?: boolean | null, sku: string, blockName?: string | null, blockType?: string | null, items?: Array<{ id?: string | null, color?: Array<Color_Color> | null, blockName?: string | null, blockType?: string | null } | { id?: string | null, shape?: Shape_Shape | null, blockName?: string | null, blockType?: string | null } | { id?: string | null, size?: Size_Size | null, blockName?: string | null, blockType?: string | null }> | null }> } | null };
 
 export type ProductGetMediaItemFragment = { alt?: string | null, url?: string | null, height?: number | null, width?: number | null };
 
@@ -6530,7 +6541,7 @@ export type ProductsGetListQueryVariables = Exact<{
 }>;
 
 
-export type ProductsGetListQuery = { Products?: { docs?: Array<{ id?: number | null, name: string, slug: string, price: number, image: { alt?: string | null, url?: string | null, height?: number | null, width?: number | null }, variants: Array<{ id?: string | null, color?: Array<Color_Color> | null, blockName?: string | null, blockType?: string | null } | { id?: string | null, shape?: Shape_Shape | null, blockName?: string | null, blockType?: string | null } | { id?: string | null, size?: Size_Size | null, blockName?: string | null, blockType?: string | null }> } | null> | null } | null };
+export type ProductsGetListQuery = { Products?: { docs?: Array<{ id?: number | null, name: string, slug: string, price: number, image: { alt?: string | null, url?: string | null, height?: number | null, width?: number | null }, variants: Array<{ id?: string | null, isDefault?: boolean | null, sku: string, blockName?: string | null, blockType?: string | null, items?: Array<{ id?: string | null, color?: Array<Color_Color> | null, blockName?: string | null, blockType?: string | null } | { id?: string | null, shape?: Shape_Shape | null, blockName?: string | null, blockType?: string | null } | { id?: string | null, size?: Size_Size | null, blockName?: string | null, blockType?: string | null }> | null }> } | null> | null } | null };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -6564,21 +6575,30 @@ export const ProductContentFullFragmentDoc = new TypedDocumentString(`
     ...ProductGetMediaItem
   }
   variants {
-    ... on Color {
+    ... on variant {
       id
-      color
-      blockName
-      blockType
-    }
-    ... on Size {
-      id
-      size
-      blockName
-      blockType
-    }
-    ... on Shape {
-      id
-      shape
+      isDefault
+      sku
+      items {
+        ... on Color {
+          id
+          color
+          blockName
+          blockType
+        }
+        ... on Shape {
+          id
+          shape
+          blockName
+          blockType
+        }
+        ... on Size {
+          id
+          size
+          blockName
+          blockType
+        }
+      }
       blockName
       blockType
     }
@@ -6605,21 +6625,30 @@ export const ProductGetByIdDocument = new TypedDocumentString(`
     ...ProductGetMediaItem
   }
   variants {
-    ... on Color {
+    ... on variant {
       id
-      color
-      blockName
-      blockType
-    }
-    ... on Size {
-      id
-      size
-      blockName
-      blockType
-    }
-    ... on Shape {
-      id
-      shape
+      isDefault
+      sku
+      items {
+        ... on Color {
+          id
+          color
+          blockName
+          blockType
+        }
+        ... on Shape {
+          id
+          shape
+          blockName
+          blockType
+        }
+        ... on Size {
+          id
+          size
+          blockName
+          blockType
+        }
+      }
       blockName
       blockType
     }
@@ -6648,21 +6677,30 @@ export const ProductsGetListDocument = new TypedDocumentString(`
     ...ProductGetMediaItem
   }
   variants {
-    ... on Color {
+    ... on variant {
       id
-      color
-      blockName
-      blockType
-    }
-    ... on Size {
-      id
-      size
-      blockName
-      blockType
-    }
-    ... on Shape {
-      id
-      shape
+      isDefault
+      sku
+      items {
+        ... on Color {
+          id
+          color
+          blockName
+          blockType
+        }
+        ... on Shape {
+          id
+          shape
+          blockName
+          blockType
+        }
+        ... on Size {
+          id
+          size
+          blockName
+          blockType
+        }
+      }
       blockName
       blockType
     }

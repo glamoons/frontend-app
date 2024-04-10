@@ -14,7 +14,7 @@ import * as types from './graphql';
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "fragment ProductContentFull on Product {\n  id\n  name\n  slug\n  price\n  image {\n    ...ProductGetMediaItem\n  }\n  variants {\n    ... on Color {\n      id\n      color\n      blockName\n      blockType\n    }\n    ... on Size {\n      id\n      size\n      blockName\n      blockType\n    }\n    ... on Shape {\n      id\n      shape\n      blockName\n      blockType\n    }\n  }\n}": types.ProductContentFullFragmentDoc,
+    "fragment ProductContentFull on Product {\n  id\n  name\n  slug\n  price\n  image {\n    ...ProductGetMediaItem\n  }\n  variants {\n    ... on variant {\n      id\n      isDefault\n      sku\n      items {\n        ... on Color {\n          id\n          color\n          blockName\n          blockType\n        }\n        ... on Shape {\n          id\n          shape\n          blockName\n          blockType\n        }\n        ... on Size {\n          id\n          size\n          blockName\n          blockType\n        }\n      }\n      blockName\n      blockType\n    }\n  }\n}": types.ProductContentFullFragmentDoc,
     "query ProductGetById($id: Int!) {\n  Product(id: $id) {\n    ...ProductContentFull\n  }\n}": types.ProductGetByIdDocument,
     "fragment ProductGetMediaItem on Media {\n  alt\n  url\n  height\n  width\n}": types.ProductGetMediaItemFragmentDoc,
     "query ProductsGetList($sort: String) {\n  Products(sort: $sort) {\n    docs {\n      ...ProductContentFull\n    }\n  }\n}": types.ProductsGetListDocument,
@@ -23,7 +23,7 @@ const documents = {
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "fragment ProductContentFull on Product {\n  id\n  name\n  slug\n  price\n  image {\n    ...ProductGetMediaItem\n  }\n  variants {\n    ... on Color {\n      id\n      color\n      blockName\n      blockType\n    }\n    ... on Size {\n      id\n      size\n      blockName\n      blockType\n    }\n    ... on Shape {\n      id\n      shape\n      blockName\n      blockType\n    }\n  }\n}"): typeof import('./graphql').ProductContentFullFragmentDoc;
+export function graphql(source: "fragment ProductContentFull on Product {\n  id\n  name\n  slug\n  price\n  image {\n    ...ProductGetMediaItem\n  }\n  variants {\n    ... on variant {\n      id\n      isDefault\n      sku\n      items {\n        ... on Color {\n          id\n          color\n          blockName\n          blockType\n        }\n        ... on Shape {\n          id\n          shape\n          blockName\n          blockType\n        }\n        ... on Size {\n          id\n          size\n          blockName\n          blockType\n        }\n      }\n      blockName\n      blockType\n    }\n  }\n}"): typeof import('./graphql').ProductContentFullFragmentDoc;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

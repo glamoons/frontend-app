@@ -42,10 +42,10 @@ export async function generateMetadata({
 
 export default async function ProductDetailsPage({
 	params,
-	// searchParams,
+	searchParams,
 }: {
 	params: { slug: string };
-	searchParams: { vId: number };
+	searchParams: { vId: string };
 }) {
-	return <SingleProductPage params={params} />;
+	return <SingleProductPage params={params} searchParams={searchParams} />;
 }
