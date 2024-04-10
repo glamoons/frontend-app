@@ -10,6 +10,7 @@ import { ProductInformationBox } from "@/components/organisms/ProductInformation
 import { type Color, type Shape, type Size } from "@/gql/graphql";
 import {
 	cn,
+	formatMoney,
 	generateNameByProductOptionValue,
 	supportedColors,
 	type SupportedColors,
@@ -158,7 +159,7 @@ export default async function SingleProductPage({
 									<span className="flex items-end justify-end space-x-3 py-4">
 										<span className="text-xs text-primaryDark">Cena</span>
 										<DefaultText className="flex justify-end text-2xl font-bold leading-none">
-											{product.price}
+											{formatMoney(product.price)}
 										</DefaultText>
 									</span>
 									<SubmitButton type="submit" className="w-full">

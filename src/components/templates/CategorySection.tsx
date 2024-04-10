@@ -58,10 +58,13 @@ export const CategorySection = ({
 						}}
 					>
 						{products.map((product) => {
+							const productVariants = product.variants.filter(
+								(variant) => !variant.isDefault,
+							);
 							return (
 								<SwiperSlide key={product.id}>
 									<Category
-										href={`/product/${product.slug}`}
+										href={`/product/${product.slug}?vId=${productVariants[0].id}`}
 										mobileSrc={`${process.env.NEXT_PUBLIC_BASE_URL}${product.image?.url}`}
 										alt={product.image?.alt ?? String(product.name)}
 										desktopSrc={`${process.env.NEXT_PUBLIC_BASE_URL}${product.image?.url}`}
@@ -73,7 +76,7 @@ export const CategorySection = ({
 										price={formatMoney(product.price)}
 										btnName="Zobacz"
 										productAttributes={product.variants}
-										href={`/product/${product.slug}`}
+										href={`/product/${product.slug}?vId=${productVariants[0].id}`}
 									/>
 								</SwiperSlide>
 							);
