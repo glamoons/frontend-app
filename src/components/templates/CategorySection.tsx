@@ -67,7 +67,6 @@ export const CategorySection = ({
 										href={`/product/${product.slug}?vId=${productVariants[0].id}`}
 										mobileSrc={`${process.env.NEXT_PUBLIC_BASE_URL}${product.image?.url}`}
 										alt={product.image?.alt ?? String(product.name)}
-										desktopSrc={`${process.env.NEXT_PUBLIC_BASE_URL}${product.image?.url}`}
 										title={product.image?.alt ?? String(product.name)}
 										sizes={"50vw"}
 									/>

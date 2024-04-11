@@ -17,6 +17,12 @@ const nextConfig = {
 				port: "",
 				pathname: "/**",
 			},
+			{
+				protocol: "http",
+				hostname: "payload",
+				port: "8080",
+				pathname: "/media/**",
+			},
 		],
 	},
 	experimental: {
