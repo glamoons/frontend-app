@@ -1,0 +1,18 @@
+mutation CartAddItem(
+	$totalAmount: Float!
+	$cartId: Int!
+	$productId: Int!
+	$productVariantId: String!
+) {
+	createOrderItem(
+		data: {
+			quantity: 1
+			totalAmount: $totalAmount
+			order: $cartId
+			product: $productId
+			productVariantId: $productVariantId
+		}
+	) {
+		id
+	}
+}

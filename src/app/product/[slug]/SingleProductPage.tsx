@@ -1,11 +1,11 @@
-import { IconShoppingCart } from "@tabler/icons-react";
 import { revalidateTag } from "next/cache";
+import { cookies } from "next/headers";
 import NextImage from "next/image";
 import { notFound, redirect } from "next/navigation";
-import { SelectField } from "./SelectField";
+import { AddToCartButton } from "./AddToCartButton";
+import { SelectProductVariant } from "./SelectProductVariant";
 import { DefaultText } from "@/components/atoms/DefaultText";
 import { Label } from "@/components/atoms/Label";
-import { SubmitButton } from "@/components/atoms/SubmitButton";
 import { ProductInformationBox } from "@/components/organisms/ProductInformationBox";
 import { type Color, type Shape, type Size } from "@/gql/graphql";
 import {
@@ -16,6 +16,7 @@ import {
 	type SupportedColors,
 } from "@/lib/utils";
 import { getProductById, getProductsList } from "@/services/productsApi";
+import { addProductToCart, getOrCreateCart } from "@/services/cartApi";
 
 export default async function SingleProductPage({
 	params,
@@ -62,10 +63,27 @@ export default async function SingleProductPage({
 		(attribute) => attribute.blockType === "shape",
 	) as Shape;
 
-	const addProductToCartAction = async (formData: FormData) => {
+	const addProductToCartAction = async (_formData: FormData) => {
 		"use server";
-		console.log(formData);
 
+		const productId = product.id;
+		const productVariantId = productVariantAtrributes?.id;
+
+		if (!productId || !productVariantId) {
+			throw TypeError("Product or variant not found");
+		}
+
+		const cart = await getOrCreateCart();
+
+		if (!cart || !cart.id) {
+			throw TypeError("Cart not found");
+		}
+
+		cookies().set("cartId", String(cart.id), {
+			httpOnly: true,
+			sameSite: "lax",
+		});
+		await addProductToCart(cart.id, productId, productVariantId);
 		revalidateTag("cart");
 	};
 
@@ -109,7 +127,7 @@ export default async function SingleProductPage({
 										Wariant
 									</Label>
 									<fieldset className="col-span-9 laptop:col-span-6">
-										<SelectField
+										<SelectProductVariant
 											name="variationId"
 											productSlug={params.slug}
 											options={productVariants}
@@ -162,12 +180,7 @@ export default async function SingleProductPage({
 											{formatMoney(product.price)}
 										</DefaultText>
 									</span>
-									<SubmitButton type="submit" className="w-full">
-										<span className="flex flex-row items-center space-x-3">
-											<IconShoppingCart size={24} className="text-secondary" />
-											<span>Dodaj do koszyka</span>
-										</span>
-									</SubmitButton>
+									<AddToCartButton />
 								</fieldset>
 							</form>
 						</div>

@@ -11,7 +11,7 @@ import {
 import { type Product_Variants } from "@/gql/graphql";
 import { generateNameByProductEnumValue } from "@/lib/utils";
 
-export const SelectField = ({
+export const SelectProductVariant = ({
 	name,
 	productSlug,
 	options,

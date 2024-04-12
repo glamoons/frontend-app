@@ -1,0 +1,6 @@
+query CartGetById($id: Int!) {
+	Order(id: $id) {
+		id
+		status
+	}
+}

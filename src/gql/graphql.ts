@@ -26,352 +26,13 @@ export type Scalars = {
 
 export type Access = {
   canAccessAdmin: Scalars['Boolean']['output'];
-  cart?: Maybe<CartAccess>;
   media?: Maybe<MediaAccess>;
+  orderItems?: Maybe<OrderItemsAccess>;
   orders?: Maybe<OrdersAccess>;
   payload_preferences?: Maybe<Payload_PreferencesAccess>;
   products?: Maybe<ProductsAccess>;
   reviews?: Maybe<ReviewsAccess>;
   users?: Maybe<UsersAccess>;
-};
-
-export type Cart = {
-  createdAt?: Maybe<Scalars['DateTime']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-  product: Product;
-  quantity: Scalars['Float']['output'];
-  updatedAt?: Maybe<Scalars['DateTime']['output']>;
-};
-
-export type CartCreateAccess = {
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-export type CartCreateDocAccess = {
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-export type CartDeleteAccess = {
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-export type CartDeleteDocAccess = {
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-export type CartDocAccessFields = {
-  createdAt?: Maybe<CartDocAccessFields_CreatedAt>;
-  product?: Maybe<CartDocAccessFields_Product>;
-  quantity?: Maybe<CartDocAccessFields_Quantity>;
-  updatedAt?: Maybe<CartDocAccessFields_UpdatedAt>;
-};
-
-export type CartDocAccessFields_CreatedAt = {
-  create?: Maybe<CartDocAccessFields_CreatedAt_Create>;
-  delete?: Maybe<CartDocAccessFields_CreatedAt_Delete>;
-  read?: Maybe<CartDocAccessFields_CreatedAt_Read>;
-  update?: Maybe<CartDocAccessFields_CreatedAt_Update>;
-};
-
-export type CartDocAccessFields_CreatedAt_Create = {
-  permission: Scalars['Boolean']['output'];
-};
-
-export type CartDocAccessFields_CreatedAt_Delete = {
-  permission: Scalars['Boolean']['output'];
-};
-
-export type CartDocAccessFields_CreatedAt_Read = {
-  permission: Scalars['Boolean']['output'];
-};
-
-export type CartDocAccessFields_CreatedAt_Update = {
-  permission: Scalars['Boolean']['output'];
-};
-
-export type CartDocAccessFields_Product = {
-  create?: Maybe<CartDocAccessFields_Product_Create>;
-  delete?: Maybe<CartDocAccessFields_Product_Delete>;
-  read?: Maybe<CartDocAccessFields_Product_Read>;
-  update?: Maybe<CartDocAccessFields_Product_Update>;
-};
-
-export type CartDocAccessFields_Product_Create = {
-  permission: Scalars['Boolean']['output'];
-};
-
-export type CartDocAccessFields_Product_Delete = {
-  permission: Scalars['Boolean']['output'];
-};
-
-export type CartDocAccessFields_Product_Read = {
-  permission: Scalars['Boolean']['output'];
-};
-
-export type CartDocAccessFields_Product_Update = {
-  permission: Scalars['Boolean']['output'];
-};
-
-export type CartDocAccessFields_Quantity = {
-  create?: Maybe<CartDocAccessFields_Quantity_Create>;
-  delete?: Maybe<CartDocAccessFields_Quantity_Delete>;
-  read?: Maybe<CartDocAccessFields_Quantity_Read>;
-  update?: Maybe<CartDocAccessFields_Quantity_Update>;
-};
-
-export type CartDocAccessFields_Quantity_Create = {
-  permission: Scalars['Boolean']['output'];
-};
-
-export type CartDocAccessFields_Quantity_Delete = {
-  permission: Scalars['Boolean']['output'];
-};
-
-export type CartDocAccessFields_Quantity_Read = {
-  permission: Scalars['Boolean']['output'];
-};
-
-export type CartDocAccessFields_Quantity_Update = {
-  permission: Scalars['Boolean']['output'];
-};
-
-export type CartDocAccessFields_UpdatedAt = {
-  create?: Maybe<CartDocAccessFields_UpdatedAt_Create>;
-  delete?: Maybe<CartDocAccessFields_UpdatedAt_Delete>;
-  read?: Maybe<CartDocAccessFields_UpdatedAt_Read>;
-  update?: Maybe<CartDocAccessFields_UpdatedAt_Update>;
-};
-
-export type CartDocAccessFields_UpdatedAt_Create = {
-  permission: Scalars['Boolean']['output'];
-};
-
-export type CartDocAccessFields_UpdatedAt_Delete = {
-  permission: Scalars['Boolean']['output'];
-};
-
-export type CartDocAccessFields_UpdatedAt_Read = {
-  permission: Scalars['Boolean']['output'];
-};
-
-export type CartDocAccessFields_UpdatedAt_Update = {
-  permission: Scalars['Boolean']['output'];
-};
-
-export type CartFields = {
-  createdAt?: Maybe<CartFields_CreatedAt>;
-  product?: Maybe<CartFields_Product>;
-  quantity?: Maybe<CartFields_Quantity>;
-  updatedAt?: Maybe<CartFields_UpdatedAt>;
-};
-
-export type CartFields_CreatedAt = {
-  create?: Maybe<CartFields_CreatedAt_Create>;
-  delete?: Maybe<CartFields_CreatedAt_Delete>;
-  read?: Maybe<CartFields_CreatedAt_Read>;
-  update?: Maybe<CartFields_CreatedAt_Update>;
-};
-
-export type CartFields_CreatedAt_Create = {
-  permission: Scalars['Boolean']['output'];
-};
-
-export type CartFields_CreatedAt_Delete = {
-  permission: Scalars['Boolean']['output'];
-};
-
-export type CartFields_CreatedAt_Read = {
-  permission: Scalars['Boolean']['output'];
-};
-
-export type CartFields_CreatedAt_Update = {
-  permission: Scalars['Boolean']['output'];
-};
-
-export type CartFields_Product = {
-  create?: Maybe<CartFields_Product_Create>;
-  delete?: Maybe<CartFields_Product_Delete>;
-  read?: Maybe<CartFields_Product_Read>;
-  update?: Maybe<CartFields_Product_Update>;
-};
-
-export type CartFields_Product_Create = {
-  permission: Scalars['Boolean']['output'];
-};
-
-export type CartFields_Product_Delete = {
-  permission: Scalars['Boolean']['output'];
-};
-
-export type CartFields_Product_Read = {
-  permission: Scalars['Boolean']['output'];
-};
-
-export type CartFields_Product_Update = {
-  permission: Scalars['Boolean']['output'];
-};
-
-export type CartFields_Quantity = {
-  create?: Maybe<CartFields_Quantity_Create>;
-  delete?: Maybe<CartFields_Quantity_Delete>;
-  read?: Maybe<CartFields_Quantity_Read>;
-  update?: Maybe<CartFields_Quantity_Update>;
-};
-
-export type CartFields_Quantity_Create = {
-  permission: Scalars['Boolean']['output'];
-};
-
-export type CartFields_Quantity_Delete = {
-  permission: Scalars['Boolean']['output'];
-};
-
-export type CartFields_Quantity_Read = {
-  permission: Scalars['Boolean']['output'];
-};
-
-export type CartFields_Quantity_Update = {
-  permission: Scalars['Boolean']['output'];
-};
-
-export type CartFields_UpdatedAt = {
-  create?: Maybe<CartFields_UpdatedAt_Create>;
-  delete?: Maybe<CartFields_UpdatedAt_Delete>;
-  read?: Maybe<CartFields_UpdatedAt_Read>;
-  update?: Maybe<CartFields_UpdatedAt_Update>;
-};
-
-export type CartFields_UpdatedAt_Create = {
-  permission: Scalars['Boolean']['output'];
-};
-
-export type CartFields_UpdatedAt_Delete = {
-  permission: Scalars['Boolean']['output'];
-};
-
-export type CartFields_UpdatedAt_Read = {
-  permission: Scalars['Boolean']['output'];
-};
-
-export type CartFields_UpdatedAt_Update = {
-  permission: Scalars['Boolean']['output'];
-};
-
-export type CartReadAccess = {
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-export type CartReadDocAccess = {
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-export type CartUpdateAccess = {
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-export type CartUpdateDocAccess = {
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-export type Cart_CreatedAt_Operator = {
-  equals?: InputMaybe<Scalars['DateTime']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  like?: InputMaybe<Scalars['DateTime']['input']>;
-  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
-};
-
-export type Cart_Id_Operator = {
-  equals?: InputMaybe<Scalars['Int']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Int']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Int']['input']>;
-  less_than?: InputMaybe<Scalars['Int']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Int']['input']>;
-  not_equals?: InputMaybe<Scalars['Int']['input']>;
-};
-
-export type Cart_Product_Operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
-  equals?: InputMaybe<Scalars['JSON']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
-  not_equals?: InputMaybe<Scalars['JSON']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
-};
-
-export type Cart_Quantity_Operator = {
-  equals?: InputMaybe<Scalars['Float']['input']>;
-  greater_than?: InputMaybe<Scalars['Float']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  less_than?: InputMaybe<Scalars['Float']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  not_equals?: InputMaybe<Scalars['Float']['input']>;
-};
-
-export type Cart_UpdatedAt_Operator = {
-  equals?: InputMaybe<Scalars['DateTime']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  like?: InputMaybe<Scalars['DateTime']['input']>;
-  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
-};
-
-export type Cart_Where = {
-  AND?: InputMaybe<Array<InputMaybe<Cart_Where_And>>>;
-  OR?: InputMaybe<Array<InputMaybe<Cart_Where_Or>>>;
-  createdAt?: InputMaybe<Cart_CreatedAt_Operator>;
-  id?: InputMaybe<Cart_Id_Operator>;
-  product?: InputMaybe<Cart_Product_Operator>;
-  quantity?: InputMaybe<Cart_Quantity_Operator>;
-  updatedAt?: InputMaybe<Cart_UpdatedAt_Operator>;
-};
-
-export type Cart_Where_And = {
-  AND?: InputMaybe<Array<InputMaybe<Cart_Where_And>>>;
-  OR?: InputMaybe<Array<InputMaybe<Cart_Where_Or>>>;
-  createdAt?: InputMaybe<Cart_CreatedAt_Operator>;
-  id?: InputMaybe<Cart_Id_Operator>;
-  product?: InputMaybe<Cart_Product_Operator>;
-  quantity?: InputMaybe<Cart_Quantity_Operator>;
-  updatedAt?: InputMaybe<Cart_UpdatedAt_Operator>;
-};
-
-export type Cart_Where_Or = {
-  AND?: InputMaybe<Array<InputMaybe<Cart_Where_And>>>;
-  OR?: InputMaybe<Array<InputMaybe<Cart_Where_Or>>>;
-  createdAt?: InputMaybe<Cart_CreatedAt_Operator>;
-  id?: InputMaybe<Cart_Id_Operator>;
-  product?: InputMaybe<Cart_Product_Operator>;
-  quantity?: InputMaybe<Cart_Quantity_Operator>;
-  updatedAt?: InputMaybe<Cart_UpdatedAt_Operator>;
-};
-
-export type Carts = {
-  docs?: Maybe<Array<Maybe<Cart>>>;
-  hasNextPage?: Maybe<Scalars['Boolean']['output']>;
-  hasPrevPage?: Maybe<Scalars['Boolean']['output']>;
-  limit?: Maybe<Scalars['Int']['output']>;
-  nextPage?: Maybe<Scalars['Int']['output']>;
-  offset?: Maybe<Scalars['Int']['output']>;
-  page?: Maybe<Scalars['Int']['output']>;
-  pagingCounter?: Maybe<Scalars['Int']['output']>;
-  prevPage?: Maybe<Scalars['Int']['output']>;
-  totalDocs?: Maybe<Scalars['Int']['output']>;
-  totalPages?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Color = {
@@ -2891,16 +2552,16 @@ export type Media_Width_Operator = {
 };
 
 export type Mutation = {
-  createCart?: Maybe<Cart>;
   createMedia?: Maybe<Media>;
   createOrder?: Maybe<Order>;
+  createOrderItem?: Maybe<OrderItem>;
   createPayloadPreference?: Maybe<PayloadPreference>;
   createProduct?: Maybe<Product>;
   createReview?: Maybe<Review>;
   createUser?: Maybe<User>;
-  deleteCart?: Maybe<Cart>;
   deleteMedia?: Maybe<Media>;
   deleteOrder?: Maybe<Order>;
+  deleteOrderItem?: Maybe<OrderItem>;
   deletePayloadPreference?: Maybe<PayloadPreference>;
   deleteProduct?: Maybe<Product>;
   deleteReview?: Maybe<Review>;
@@ -2911,20 +2572,14 @@ export type Mutation = {
   refreshTokenUser?: Maybe<UsersRefreshedUser>;
   resetPasswordUser?: Maybe<UsersResetPassword>;
   unlockUser: Scalars['Boolean']['output'];
-  updateCart?: Maybe<Cart>;
   updateMedia?: Maybe<Media>;
   updateOrder?: Maybe<Order>;
+  updateOrderItem?: Maybe<OrderItem>;
   updatePayloadPreference?: Maybe<PayloadPreference>;
   updateProduct?: Maybe<Product>;
   updateReview?: Maybe<Review>;
   updateUser?: Maybe<User>;
   verifyEmailUser?: Maybe<Scalars['Boolean']['output']>;
-};
-
-
-export type MutationCreateCartArgs = {
-  data: MutationCartInput;
-  draft?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -2936,6 +2591,12 @@ export type MutationCreateMediaArgs = {
 
 export type MutationCreateOrderArgs = {
   data: MutationOrderInput;
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type MutationCreateOrderItemArgs = {
+  data: MutationOrderItemInput;
   draft?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -2964,17 +2625,17 @@ export type MutationCreateUserArgs = {
 };
 
 
-export type MutationDeleteCartArgs = {
-  id: Scalars['Int']['input'];
-};
-
-
 export type MutationDeleteMediaArgs = {
   id: Scalars['Int']['input'];
 };
 
 
 export type MutationDeleteOrderArgs = {
+  id: Scalars['Int']['input'];
+};
+
+
+export type MutationDeleteOrderItemArgs = {
   id: Scalars['Int']['input'];
 };
 
@@ -3028,14 +2689,6 @@ export type MutationUnlockUserArgs = {
 };
 
 
-export type MutationUpdateCartArgs = {
-  autosave?: InputMaybe<Scalars['Boolean']['input']>;
-  data: MutationCartUpdateInput;
-  draft?: InputMaybe<Scalars['Boolean']['input']>;
-  id: Scalars['Int']['input'];
-};
-
-
 export type MutationUpdateMediaArgs = {
   autosave?: InputMaybe<Scalars['Boolean']['input']>;
   data: MutationMediaUpdateInput;
@@ -3047,6 +2700,14 @@ export type MutationUpdateMediaArgs = {
 export type MutationUpdateOrderArgs = {
   autosave?: InputMaybe<Scalars['Boolean']['input']>;
   data: MutationOrderUpdateInput;
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  id: Scalars['Int']['input'];
+};
+
+
+export type MutationUpdateOrderItemArgs = {
+  autosave?: InputMaybe<Scalars['Boolean']['input']>;
+  data: MutationOrderItemUpdateInput;
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   id: Scalars['Int']['input'];
 };
@@ -3090,11 +2751,534 @@ export type MutationVerifyEmailUserArgs = {
 
 export type Order = {
   createdAt?: Maybe<Scalars['DateTime']['output']>;
+  email?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
-  lines: Scalars['JSON']['output'];
   status?: Maybe<Order_Status>;
+  stripeCheckoutID?: Maybe<Scalars['String']['output']>;
   totalAmount: Scalars['Float']['output'];
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export type OrderItem = {
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  order: Order;
+  product: Product;
+  productVariantId: Scalars['String']['output'];
+  quantity: Scalars['Float']['output'];
+  totalAmount: Scalars['Float']['output'];
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export type OrderItem_CreatedAt_Operator = {
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  like?: InputMaybe<Scalars['DateTime']['input']>;
+  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type OrderItem_Id_Operator = {
+  equals?: InputMaybe<Scalars['Int']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Int']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Int']['input']>;
+  less_than?: InputMaybe<Scalars['Int']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Int']['input']>;
+  not_equals?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type OrderItem_Order_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
+  equals?: InputMaybe<Scalars['JSON']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
+  not_equals?: InputMaybe<Scalars['JSON']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
+};
+
+export type OrderItem_ProductVariantId_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type OrderItem_Product_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
+  equals?: InputMaybe<Scalars['JSON']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
+  not_equals?: InputMaybe<Scalars['JSON']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
+};
+
+export type OrderItem_Quantity_Operator = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  greater_than?: InputMaybe<Scalars['Float']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  less_than?: InputMaybe<Scalars['Float']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  not_equals?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type OrderItem_TotalAmount_Operator = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  greater_than?: InputMaybe<Scalars['Float']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  less_than?: InputMaybe<Scalars['Float']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  not_equals?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type OrderItem_UpdatedAt_Operator = {
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  like?: InputMaybe<Scalars['DateTime']['input']>;
+  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type OrderItem_Where = {
+  AND?: InputMaybe<Array<InputMaybe<OrderItem_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<OrderItem_Where_Or>>>;
+  createdAt?: InputMaybe<OrderItem_CreatedAt_Operator>;
+  id?: InputMaybe<OrderItem_Id_Operator>;
+  order?: InputMaybe<OrderItem_Order_Operator>;
+  product?: InputMaybe<OrderItem_Product_Operator>;
+  productVariantId?: InputMaybe<OrderItem_ProductVariantId_Operator>;
+  quantity?: InputMaybe<OrderItem_Quantity_Operator>;
+  totalAmount?: InputMaybe<OrderItem_TotalAmount_Operator>;
+  updatedAt?: InputMaybe<OrderItem_UpdatedAt_Operator>;
+};
+
+export type OrderItem_Where_And = {
+  AND?: InputMaybe<Array<InputMaybe<OrderItem_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<OrderItem_Where_Or>>>;
+  createdAt?: InputMaybe<OrderItem_CreatedAt_Operator>;
+  id?: InputMaybe<OrderItem_Id_Operator>;
+  order?: InputMaybe<OrderItem_Order_Operator>;
+  product?: InputMaybe<OrderItem_Product_Operator>;
+  productVariantId?: InputMaybe<OrderItem_ProductVariantId_Operator>;
+  quantity?: InputMaybe<OrderItem_Quantity_Operator>;
+  totalAmount?: InputMaybe<OrderItem_TotalAmount_Operator>;
+  updatedAt?: InputMaybe<OrderItem_UpdatedAt_Operator>;
+};
+
+export type OrderItem_Where_Or = {
+  AND?: InputMaybe<Array<InputMaybe<OrderItem_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<OrderItem_Where_Or>>>;
+  createdAt?: InputMaybe<OrderItem_CreatedAt_Operator>;
+  id?: InputMaybe<OrderItem_Id_Operator>;
+  order?: InputMaybe<OrderItem_Order_Operator>;
+  product?: InputMaybe<OrderItem_Product_Operator>;
+  productVariantId?: InputMaybe<OrderItem_ProductVariantId_Operator>;
+  quantity?: InputMaybe<OrderItem_Quantity_Operator>;
+  totalAmount?: InputMaybe<OrderItem_TotalAmount_Operator>;
+  updatedAt?: InputMaybe<OrderItem_UpdatedAt_Operator>;
+};
+
+export type OrderItems = {
+  docs?: Maybe<Array<Maybe<OrderItem>>>;
+  hasNextPage?: Maybe<Scalars['Boolean']['output']>;
+  hasPrevPage?: Maybe<Scalars['Boolean']['output']>;
+  limit?: Maybe<Scalars['Int']['output']>;
+  nextPage?: Maybe<Scalars['Int']['output']>;
+  offset?: Maybe<Scalars['Int']['output']>;
+  page?: Maybe<Scalars['Int']['output']>;
+  pagingCounter?: Maybe<Scalars['Int']['output']>;
+  prevPage?: Maybe<Scalars['Int']['output']>;
+  totalDocs?: Maybe<Scalars['Int']['output']>;
+  totalPages?: Maybe<Scalars['Int']['output']>;
+};
+
+export type OrderItemsCreateAccess = {
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type OrderItemsCreateDocAccess = {
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type OrderItemsDeleteAccess = {
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type OrderItemsDeleteDocAccess = {
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type OrderItemsDocAccessFields = {
+  createdAt?: Maybe<OrderItemsDocAccessFields_CreatedAt>;
+  order?: Maybe<OrderItemsDocAccessFields_Order>;
+  product?: Maybe<OrderItemsDocAccessFields_Product>;
+  productVariantId?: Maybe<OrderItemsDocAccessFields_ProductVariantId>;
+  quantity?: Maybe<OrderItemsDocAccessFields_Quantity>;
+  totalAmount?: Maybe<OrderItemsDocAccessFields_TotalAmount>;
+  updatedAt?: Maybe<OrderItemsDocAccessFields_UpdatedAt>;
+};
+
+export type OrderItemsDocAccessFields_CreatedAt = {
+  create?: Maybe<OrderItemsDocAccessFields_CreatedAt_Create>;
+  delete?: Maybe<OrderItemsDocAccessFields_CreatedAt_Delete>;
+  read?: Maybe<OrderItemsDocAccessFields_CreatedAt_Read>;
+  update?: Maybe<OrderItemsDocAccessFields_CreatedAt_Update>;
+};
+
+export type OrderItemsDocAccessFields_CreatedAt_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsDocAccessFields_CreatedAt_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsDocAccessFields_CreatedAt_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsDocAccessFields_CreatedAt_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsDocAccessFields_Order = {
+  create?: Maybe<OrderItemsDocAccessFields_Order_Create>;
+  delete?: Maybe<OrderItemsDocAccessFields_Order_Delete>;
+  read?: Maybe<OrderItemsDocAccessFields_Order_Read>;
+  update?: Maybe<OrderItemsDocAccessFields_Order_Update>;
+};
+
+export type OrderItemsDocAccessFields_Order_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsDocAccessFields_Order_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsDocAccessFields_Order_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsDocAccessFields_Order_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsDocAccessFields_Product = {
+  create?: Maybe<OrderItemsDocAccessFields_Product_Create>;
+  delete?: Maybe<OrderItemsDocAccessFields_Product_Delete>;
+  read?: Maybe<OrderItemsDocAccessFields_Product_Read>;
+  update?: Maybe<OrderItemsDocAccessFields_Product_Update>;
+};
+
+export type OrderItemsDocAccessFields_ProductVariantId = {
+  create?: Maybe<OrderItemsDocAccessFields_ProductVariantId_Create>;
+  delete?: Maybe<OrderItemsDocAccessFields_ProductVariantId_Delete>;
+  read?: Maybe<OrderItemsDocAccessFields_ProductVariantId_Read>;
+  update?: Maybe<OrderItemsDocAccessFields_ProductVariantId_Update>;
+};
+
+export type OrderItemsDocAccessFields_ProductVariantId_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsDocAccessFields_ProductVariantId_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsDocAccessFields_ProductVariantId_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsDocAccessFields_ProductVariantId_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsDocAccessFields_Product_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsDocAccessFields_Product_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsDocAccessFields_Product_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsDocAccessFields_Product_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsDocAccessFields_Quantity = {
+  create?: Maybe<OrderItemsDocAccessFields_Quantity_Create>;
+  delete?: Maybe<OrderItemsDocAccessFields_Quantity_Delete>;
+  read?: Maybe<OrderItemsDocAccessFields_Quantity_Read>;
+  update?: Maybe<OrderItemsDocAccessFields_Quantity_Update>;
+};
+
+export type OrderItemsDocAccessFields_Quantity_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsDocAccessFields_Quantity_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsDocAccessFields_Quantity_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsDocAccessFields_Quantity_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsDocAccessFields_TotalAmount = {
+  create?: Maybe<OrderItemsDocAccessFields_TotalAmount_Create>;
+  delete?: Maybe<OrderItemsDocAccessFields_TotalAmount_Delete>;
+  read?: Maybe<OrderItemsDocAccessFields_TotalAmount_Read>;
+  update?: Maybe<OrderItemsDocAccessFields_TotalAmount_Update>;
+};
+
+export type OrderItemsDocAccessFields_TotalAmount_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsDocAccessFields_TotalAmount_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsDocAccessFields_TotalAmount_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsDocAccessFields_TotalAmount_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsDocAccessFields_UpdatedAt = {
+  create?: Maybe<OrderItemsDocAccessFields_UpdatedAt_Create>;
+  delete?: Maybe<OrderItemsDocAccessFields_UpdatedAt_Delete>;
+  read?: Maybe<OrderItemsDocAccessFields_UpdatedAt_Read>;
+  update?: Maybe<OrderItemsDocAccessFields_UpdatedAt_Update>;
+};
+
+export type OrderItemsDocAccessFields_UpdatedAt_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsDocAccessFields_UpdatedAt_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsDocAccessFields_UpdatedAt_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsDocAccessFields_UpdatedAt_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsFields = {
+  createdAt?: Maybe<OrderItemsFields_CreatedAt>;
+  order?: Maybe<OrderItemsFields_Order>;
+  product?: Maybe<OrderItemsFields_Product>;
+  productVariantId?: Maybe<OrderItemsFields_ProductVariantId>;
+  quantity?: Maybe<OrderItemsFields_Quantity>;
+  totalAmount?: Maybe<OrderItemsFields_TotalAmount>;
+  updatedAt?: Maybe<OrderItemsFields_UpdatedAt>;
+};
+
+export type OrderItemsFields_CreatedAt = {
+  create?: Maybe<OrderItemsFields_CreatedAt_Create>;
+  delete?: Maybe<OrderItemsFields_CreatedAt_Delete>;
+  read?: Maybe<OrderItemsFields_CreatedAt_Read>;
+  update?: Maybe<OrderItemsFields_CreatedAt_Update>;
+};
+
+export type OrderItemsFields_CreatedAt_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsFields_CreatedAt_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsFields_CreatedAt_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsFields_CreatedAt_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsFields_Order = {
+  create?: Maybe<OrderItemsFields_Order_Create>;
+  delete?: Maybe<OrderItemsFields_Order_Delete>;
+  read?: Maybe<OrderItemsFields_Order_Read>;
+  update?: Maybe<OrderItemsFields_Order_Update>;
+};
+
+export type OrderItemsFields_Order_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsFields_Order_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsFields_Order_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsFields_Order_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsFields_Product = {
+  create?: Maybe<OrderItemsFields_Product_Create>;
+  delete?: Maybe<OrderItemsFields_Product_Delete>;
+  read?: Maybe<OrderItemsFields_Product_Read>;
+  update?: Maybe<OrderItemsFields_Product_Update>;
+};
+
+export type OrderItemsFields_ProductVariantId = {
+  create?: Maybe<OrderItemsFields_ProductVariantId_Create>;
+  delete?: Maybe<OrderItemsFields_ProductVariantId_Delete>;
+  read?: Maybe<OrderItemsFields_ProductVariantId_Read>;
+  update?: Maybe<OrderItemsFields_ProductVariantId_Update>;
+};
+
+export type OrderItemsFields_ProductVariantId_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsFields_ProductVariantId_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsFields_ProductVariantId_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsFields_ProductVariantId_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsFields_Product_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsFields_Product_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsFields_Product_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsFields_Product_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsFields_Quantity = {
+  create?: Maybe<OrderItemsFields_Quantity_Create>;
+  delete?: Maybe<OrderItemsFields_Quantity_Delete>;
+  read?: Maybe<OrderItemsFields_Quantity_Read>;
+  update?: Maybe<OrderItemsFields_Quantity_Update>;
+};
+
+export type OrderItemsFields_Quantity_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsFields_Quantity_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsFields_Quantity_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsFields_Quantity_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsFields_TotalAmount = {
+  create?: Maybe<OrderItemsFields_TotalAmount_Create>;
+  delete?: Maybe<OrderItemsFields_TotalAmount_Delete>;
+  read?: Maybe<OrderItemsFields_TotalAmount_Read>;
+  update?: Maybe<OrderItemsFields_TotalAmount_Update>;
+};
+
+export type OrderItemsFields_TotalAmount_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsFields_TotalAmount_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsFields_TotalAmount_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsFields_TotalAmount_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsFields_UpdatedAt = {
+  create?: Maybe<OrderItemsFields_UpdatedAt_Create>;
+  delete?: Maybe<OrderItemsFields_UpdatedAt_Delete>;
+  read?: Maybe<OrderItemsFields_UpdatedAt_Read>;
+  update?: Maybe<OrderItemsFields_UpdatedAt_Update>;
+};
+
+export type OrderItemsFields_UpdatedAt_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsFields_UpdatedAt_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsFields_UpdatedAt_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsFields_UpdatedAt_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrderItemsReadAccess = {
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type OrderItemsReadDocAccess = {
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type OrderItemsUpdateAccess = {
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type OrderItemsUpdateDocAccess = {
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
 };
 
 export type Order_CreatedAt_Operator = {
@@ -3108,6 +3292,17 @@ export type Order_CreatedAt_Operator = {
   not_equals?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
+export type Order_Email_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
 export type Order_Id_Operator = {
   equals?: InputMaybe<Scalars['Int']['input']>;
   exists?: InputMaybe<Scalars['Boolean']['input']>;
@@ -3116,15 +3311,6 @@ export type Order_Id_Operator = {
   less_than?: InputMaybe<Scalars['Int']['input']>;
   less_than_equal?: InputMaybe<Scalars['Int']['input']>;
   not_equals?: InputMaybe<Scalars['Int']['input']>;
-};
-
-export type Order_Lines_Operator = {
-  contains?: InputMaybe<Scalars['JSON']['input']>;
-  equals?: InputMaybe<Scalars['JSON']['input']>;
-  intersects?: InputMaybe<Scalars['JSON']['input']>;
-  like?: InputMaybe<Scalars['JSON']['input']>;
-  not_equals?: InputMaybe<Scalars['JSON']['input']>;
-  within?: InputMaybe<Scalars['JSON']['input']>;
 };
 
 export type Order_Status =
@@ -3145,6 +3331,17 @@ export type Order_Status_Operator = {
   exists?: InputMaybe<Scalars['Boolean']['input']>;
   like?: InputMaybe<Order_Status_Input>;
   not_equals?: InputMaybe<Order_Status_Input>;
+};
+
+export type Order_StripeCheckoutId_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type Order_TotalAmount_Operator = {
@@ -3171,9 +3368,10 @@ export type Order_Where = {
   AND?: InputMaybe<Array<InputMaybe<Order_Where_And>>>;
   OR?: InputMaybe<Array<InputMaybe<Order_Where_Or>>>;
   createdAt?: InputMaybe<Order_CreatedAt_Operator>;
+  email?: InputMaybe<Order_Email_Operator>;
   id?: InputMaybe<Order_Id_Operator>;
-  lines?: InputMaybe<Order_Lines_Operator>;
   status?: InputMaybe<Order_Status_Operator>;
+  stripeCheckoutID?: InputMaybe<Order_StripeCheckoutId_Operator>;
   totalAmount?: InputMaybe<Order_TotalAmount_Operator>;
   updatedAt?: InputMaybe<Order_UpdatedAt_Operator>;
 };
@@ -3182,9 +3380,10 @@ export type Order_Where_And = {
   AND?: InputMaybe<Array<InputMaybe<Order_Where_And>>>;
   OR?: InputMaybe<Array<InputMaybe<Order_Where_Or>>>;
   createdAt?: InputMaybe<Order_CreatedAt_Operator>;
+  email?: InputMaybe<Order_Email_Operator>;
   id?: InputMaybe<Order_Id_Operator>;
-  lines?: InputMaybe<Order_Lines_Operator>;
   status?: InputMaybe<Order_Status_Operator>;
+  stripeCheckoutID?: InputMaybe<Order_StripeCheckoutId_Operator>;
   totalAmount?: InputMaybe<Order_TotalAmount_Operator>;
   updatedAt?: InputMaybe<Order_UpdatedAt_Operator>;
 };
@@ -3193,9 +3392,10 @@ export type Order_Where_Or = {
   AND?: InputMaybe<Array<InputMaybe<Order_Where_And>>>;
   OR?: InputMaybe<Array<InputMaybe<Order_Where_Or>>>;
   createdAt?: InputMaybe<Order_CreatedAt_Operator>;
+  email?: InputMaybe<Order_Email_Operator>;
   id?: InputMaybe<Order_Id_Operator>;
-  lines?: InputMaybe<Order_Lines_Operator>;
   status?: InputMaybe<Order_Status_Operator>;
+  stripeCheckoutID?: InputMaybe<Order_StripeCheckoutId_Operator>;
   totalAmount?: InputMaybe<Order_TotalAmount_Operator>;
   updatedAt?: InputMaybe<Order_UpdatedAt_Operator>;
 };
@@ -3236,8 +3436,9 @@ export type OrdersDeleteDocAccess = {
 
 export type OrdersDocAccessFields = {
   createdAt?: Maybe<OrdersDocAccessFields_CreatedAt>;
-  lines?: Maybe<OrdersDocAccessFields_Lines>;
+  email?: Maybe<OrdersDocAccessFields_Email>;
   status?: Maybe<OrdersDocAccessFields_Status>;
+  stripeCheckoutID?: Maybe<OrdersDocAccessFields_StripeCheckoutId>;
   totalAmount?: Maybe<OrdersDocAccessFields_TotalAmount>;
   updatedAt?: Maybe<OrdersDocAccessFields_UpdatedAt>;
 };
@@ -3265,26 +3466,26 @@ export type OrdersDocAccessFields_CreatedAt_Update = {
   permission: Scalars['Boolean']['output'];
 };
 
-export type OrdersDocAccessFields_Lines = {
-  create?: Maybe<OrdersDocAccessFields_Lines_Create>;
-  delete?: Maybe<OrdersDocAccessFields_Lines_Delete>;
-  read?: Maybe<OrdersDocAccessFields_Lines_Read>;
-  update?: Maybe<OrdersDocAccessFields_Lines_Update>;
+export type OrdersDocAccessFields_Email = {
+  create?: Maybe<OrdersDocAccessFields_Email_Create>;
+  delete?: Maybe<OrdersDocAccessFields_Email_Delete>;
+  read?: Maybe<OrdersDocAccessFields_Email_Read>;
+  update?: Maybe<OrdersDocAccessFields_Email_Update>;
 };
 
-export type OrdersDocAccessFields_Lines_Create = {
+export type OrdersDocAccessFields_Email_Create = {
   permission: Scalars['Boolean']['output'];
 };
 
-export type OrdersDocAccessFields_Lines_Delete = {
+export type OrdersDocAccessFields_Email_Delete = {
   permission: Scalars['Boolean']['output'];
 };
 
-export type OrdersDocAccessFields_Lines_Read = {
+export type OrdersDocAccessFields_Email_Read = {
   permission: Scalars['Boolean']['output'];
 };
 
-export type OrdersDocAccessFields_Lines_Update = {
+export type OrdersDocAccessFields_Email_Update = {
   permission: Scalars['Boolean']['output'];
 };
 
@@ -3308,6 +3509,29 @@ export type OrdersDocAccessFields_Status_Read = {
 };
 
 export type OrdersDocAccessFields_Status_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_StripeCheckoutId = {
+  create?: Maybe<OrdersDocAccessFields_StripeCheckoutId_Create>;
+  delete?: Maybe<OrdersDocAccessFields_StripeCheckoutId_Delete>;
+  read?: Maybe<OrdersDocAccessFields_StripeCheckoutId_Read>;
+  update?: Maybe<OrdersDocAccessFields_StripeCheckoutId_Update>;
+};
+
+export type OrdersDocAccessFields_StripeCheckoutId_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_StripeCheckoutId_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_StripeCheckoutId_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_StripeCheckoutId_Update = {
   permission: Scalars['Boolean']['output'];
 };
 
@@ -3359,8 +3583,9 @@ export type OrdersDocAccessFields_UpdatedAt_Update = {
 
 export type OrdersFields = {
   createdAt?: Maybe<OrdersFields_CreatedAt>;
-  lines?: Maybe<OrdersFields_Lines>;
+  email?: Maybe<OrdersFields_Email>;
   status?: Maybe<OrdersFields_Status>;
+  stripeCheckoutID?: Maybe<OrdersFields_StripeCheckoutId>;
   totalAmount?: Maybe<OrdersFields_TotalAmount>;
   updatedAt?: Maybe<OrdersFields_UpdatedAt>;
 };
@@ -3388,26 +3613,26 @@ export type OrdersFields_CreatedAt_Update = {
   permission: Scalars['Boolean']['output'];
 };
 
-export type OrdersFields_Lines = {
-  create?: Maybe<OrdersFields_Lines_Create>;
-  delete?: Maybe<OrdersFields_Lines_Delete>;
-  read?: Maybe<OrdersFields_Lines_Read>;
-  update?: Maybe<OrdersFields_Lines_Update>;
+export type OrdersFields_Email = {
+  create?: Maybe<OrdersFields_Email_Create>;
+  delete?: Maybe<OrdersFields_Email_Delete>;
+  read?: Maybe<OrdersFields_Email_Read>;
+  update?: Maybe<OrdersFields_Email_Update>;
 };
 
-export type OrdersFields_Lines_Create = {
+export type OrdersFields_Email_Create = {
   permission: Scalars['Boolean']['output'];
 };
 
-export type OrdersFields_Lines_Delete = {
+export type OrdersFields_Email_Delete = {
   permission: Scalars['Boolean']['output'];
 };
 
-export type OrdersFields_Lines_Read = {
+export type OrdersFields_Email_Read = {
   permission: Scalars['Boolean']['output'];
 };
 
-export type OrdersFields_Lines_Update = {
+export type OrdersFields_Email_Update = {
   permission: Scalars['Boolean']['output'];
 };
 
@@ -3431,6 +3656,29 @@ export type OrdersFields_Status_Read = {
 };
 
 export type OrdersFields_Status_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_StripeCheckoutId = {
+  create?: Maybe<OrdersFields_StripeCheckoutId_Create>;
+  delete?: Maybe<OrdersFields_StripeCheckoutId_Delete>;
+  read?: Maybe<OrdersFields_StripeCheckoutId_Read>;
+  update?: Maybe<OrdersFields_StripeCheckoutId_Update>;
+};
+
+export type OrdersFields_StripeCheckoutId_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_StripeCheckoutId_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_StripeCheckoutId_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_StripeCheckoutId_Update = {
   permission: Scalars['Boolean']['output'];
 };
 
@@ -5063,10 +5311,10 @@ export type ProductsUpdateDocAccess = {
 
 export type Query = {
   Access?: Maybe<Access>;
-  Cart?: Maybe<Cart>;
-  Carts?: Maybe<Carts>;
   Media?: Maybe<Media>;
   Order?: Maybe<Order>;
+  OrderItem?: Maybe<OrderItem>;
+  OrderItems?: Maybe<OrderItems>;
   Orders?: Maybe<Orders>;
   PayloadPreference?: Maybe<PayloadPreference>;
   PayloadPreferences?: Maybe<PayloadPreferences>;
@@ -5077,30 +5325,15 @@ export type Query = {
   User?: Maybe<User>;
   Users?: Maybe<Users>;
   allMedia?: Maybe<AllMedia>;
-  docAccessCart?: Maybe<CartDocAccess>;
   docAccessMedia?: Maybe<MediaDocAccess>;
   docAccessOrder?: Maybe<OrdersDocAccess>;
+  docAccessOrderItem?: Maybe<OrderItemsDocAccess>;
   docAccessPayloadPreference?: Maybe<Payload_PreferencesDocAccess>;
   docAccessProduct?: Maybe<ProductsDocAccess>;
   docAccessReview?: Maybe<ReviewsDocAccess>;
   docAccessUser?: Maybe<UsersDocAccess>;
   initializedUser?: Maybe<Scalars['Boolean']['output']>;
   meUser?: Maybe<UsersMe>;
-};
-
-
-export type QueryCartArgs = {
-  draft?: InputMaybe<Scalars['Boolean']['input']>;
-  id: Scalars['Int']['input'];
-};
-
-
-export type QueryCartsArgs = {
-  draft?: InputMaybe<Scalars['Boolean']['input']>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  where?: InputMaybe<Cart_Where>;
 };
 
 
@@ -5113,6 +5346,21 @@ export type QueryMediaArgs = {
 export type QueryOrderArgs = {
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   id: Scalars['Int']['input'];
+};
+
+
+export type QueryOrderItemArgs = {
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  id: Scalars['Int']['input'];
+};
+
+
+export type QueryOrderItemsArgs = {
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  where?: InputMaybe<OrderItem_Where>;
 };
 
 
@@ -5194,17 +5442,17 @@ export type QueryAllMediaArgs = {
 };
 
 
-export type QueryDocAccessCartArgs = {
-  id: Scalars['Int']['input'];
-};
-
-
 export type QueryDocAccessMediaArgs = {
   id: Scalars['Int']['input'];
 };
 
 
 export type QueryDocAccessOrderArgs = {
+  id: Scalars['Int']['input'];
+};
+
+
+export type QueryDocAccessOrderItemArgs = {
   id: Scalars['Int']['input'];
 };
 
@@ -6141,22 +6389,6 @@ export type AllMedia = {
   totalPages?: Maybe<Scalars['Int']['output']>;
 };
 
-export type CartAccess = {
-  create?: Maybe<CartCreateAccess>;
-  delete?: Maybe<CartDeleteAccess>;
-  fields?: Maybe<CartFields>;
-  read?: Maybe<CartReadAccess>;
-  update?: Maybe<CartUpdateAccess>;
-};
-
-export type CartDocAccess = {
-  create?: Maybe<CartCreateDocAccess>;
-  delete?: Maybe<CartDeleteDocAccess>;
-  fields?: Maybe<CartDocAccessFields>;
-  read?: Maybe<CartReadDocAccess>;
-  update?: Maybe<CartUpdateDocAccess>;
-};
-
 export type MediaAccess = {
   create?: Maybe<MediaCreateAccess>;
   delete?: Maybe<MediaDeleteAccess>;
@@ -6171,20 +6403,6 @@ export type MediaDocAccess = {
   fields?: Maybe<MediaDocAccessFields>;
   read?: Maybe<MediaReadDocAccess>;
   update?: Maybe<MediaUpdateDocAccess>;
-};
-
-export type MutationCartInput = {
-  createdAt?: InputMaybe<Scalars['String']['input']>;
-  product?: InputMaybe<Scalars['Int']['input']>;
-  quantity: Scalars['Float']['input'];
-  updatedAt?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type MutationCartUpdateInput = {
-  createdAt?: InputMaybe<Scalars['String']['input']>;
-  product?: InputMaybe<Scalars['Int']['input']>;
-  quantity?: InputMaybe<Scalars['Float']['input']>;
-  updatedAt?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type MutationMediaInput = {
@@ -6303,16 +6521,38 @@ export type MutationMedia_Sizes_ThumbnailInput = {
 
 export type MutationOrderInput = {
   createdAt?: InputMaybe<Scalars['String']['input']>;
-  lines: Scalars['JSON']['input'];
+  email?: InputMaybe<Scalars['String']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
+  stripeCheckoutID?: InputMaybe<Scalars['String']['input']>;
   totalAmount: Scalars['Float']['input'];
+  updatedAt?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type MutationOrderItemInput = {
+  createdAt?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Scalars['Int']['input']>;
+  product?: InputMaybe<Scalars['Int']['input']>;
+  productVariantId: Scalars['String']['input'];
+  quantity: Scalars['Float']['input'];
+  totalAmount: Scalars['Float']['input'];
+  updatedAt?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type MutationOrderItemUpdateInput = {
+  createdAt?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Scalars['Int']['input']>;
+  product?: InputMaybe<Scalars['Int']['input']>;
+  productVariantId?: InputMaybe<Scalars['String']['input']>;
+  quantity?: InputMaybe<Scalars['Float']['input']>;
+  totalAmount?: InputMaybe<Scalars['Float']['input']>;
   updatedAt?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type MutationOrderUpdateInput = {
   createdAt?: InputMaybe<Scalars['String']['input']>;
-  lines?: InputMaybe<Scalars['JSON']['input']>;
+  email?: InputMaybe<Scalars['String']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
+  stripeCheckoutID?: InputMaybe<Scalars['String']['input']>;
   totalAmount?: InputMaybe<Scalars['Float']['input']>;
   updatedAt?: InputMaybe<Scalars['String']['input']>;
 };
@@ -6401,6 +6641,22 @@ export type MutationUserUpdateInput = {
   resetPasswordToken?: InputMaybe<Scalars['String']['input']>;
   salt?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type OrderItemsAccess = {
+  create?: Maybe<OrderItemsCreateAccess>;
+  delete?: Maybe<OrderItemsDeleteAccess>;
+  fields?: Maybe<OrderItemsFields>;
+  read?: Maybe<OrderItemsReadAccess>;
+  update?: Maybe<OrderItemsUpdateAccess>;
+};
+
+export type OrderItemsDocAccess = {
+  create?: Maybe<OrderItemsCreateDocAccess>;
+  delete?: Maybe<OrderItemsDeleteDocAccess>;
+  fields?: Maybe<OrderItemsDocAccessFields>;
+  read?: Maybe<OrderItemsReadDocAccess>;
+  update?: Maybe<OrderItemsUpdateDocAccess>;
 };
 
 export type OrdersAccess = {
@@ -6525,6 +6781,37 @@ export type Variant = {
 
 export type Variant_Items = Color | Shape | Size;
 
+export type CartAddItemMutationVariables = Exact<{
+  totalAmount: Scalars['Float']['input'];
+  cartId: Scalars['Int']['input'];
+  productId: Scalars['Int']['input'];
+  productVariantId: Scalars['String']['input'];
+}>;
+
+
+export type CartAddItemMutation = { createOrderItem?: { id?: number | null } | null };
+
+export type CartCreateMutationVariables = Exact<{
+  status?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type CartCreateMutation = { createOrder?: { id?: number | null } | null };
+
+export type CartGetByIdQueryVariables = Exact<{
+  id: Scalars['Int']['input'];
+}>;
+
+
+export type CartGetByIdQuery = { Order?: { id?: number | null, status?: Order_Status | null } | null };
+
+export type CartGetItemsByCartIdQueryVariables = Exact<{
+  cartId?: InputMaybe<Scalars['JSON']['input']>;
+}>;
+
+
+export type CartGetItemsByCartIdQuery = { OrderItems?: { docs?: Array<{ id?: number | null, quantity: number, totalAmount: number, productVariantId: string, order: { id?: number | null, status?: Order_Status | null }, product: { id?: number | null, name: string, slug: string, price: number, image: { alt?: string | null, url?: string | null, height?: number | null, width?: number | null }, variants: Array<{ id?: string | null, isDefault?: boolean | null, sku: string, blockName?: string | null, blockType?: string | null, items?: Array<{ id?: string | null, color?: Array<Color_Color> | null, blockName?: string | null, blockType?: string | null } | { id?: string | null, shape?: Shape_Shape | null, blockName?: string | null, blockType?: string | null } | { id?: string | null, size?: Size_Size | null, blockName?: string | null, blockType?: string | null }> | null }> } } | null> | null } | null };
+
 export type ProductContentFullFragment = { id?: number | null, name: string, slug: string, price: number, image: { alt?: string | null, url?: string | null, height?: number | null, width?: number | null }, variants: Array<{ id?: string | null, isDefault?: boolean | null, sku: string, blockName?: string | null, blockType?: string | null, items?: Array<{ id?: string | null, color?: Array<Color_Color> | null, blockName?: string | null, blockType?: string | null } | { id?: string | null, shape?: Shape_Shape | null, blockName?: string | null, blockType?: string | null } | { id?: string | null, size?: Size_Size | null, blockName?: string | null, blockType?: string | null }> | null }> };
 
 export type ProductGetByIdQueryVariables = Exact<{
@@ -6610,6 +6897,92 @@ export const ProductContentFullFragmentDoc = new TypedDocumentString(`
   height
   width
 }`, {"fragmentName":"ProductContentFull"}) as unknown as TypedDocumentString<ProductContentFullFragment, unknown>;
+export const CartAddItemDocument = new TypedDocumentString(`
+    mutation CartAddItem($totalAmount: Float!, $cartId: Int!, $productId: Int!, $productVariantId: String!) {
+  createOrderItem(
+    data: {quantity: 1, totalAmount: $totalAmount, order: $cartId, product: $productId, productVariantId: $productVariantId}
+  ) {
+    id
+  }
+}
+    `) as unknown as TypedDocumentString<CartAddItemMutation, CartAddItemMutationVariables>;
+export const CartCreateDocument = new TypedDocumentString(`
+    mutation CartCreate($status: String = "created") {
+  createOrder(data: {totalAmount: 0, status: $status}) {
+    id
+  }
+}
+    `) as unknown as TypedDocumentString<CartCreateMutation, CartCreateMutationVariables>;
+export const CartGetByIdDocument = new TypedDocumentString(`
+    query CartGetById($id: Int!) {
+  Order(id: $id) {
+    id
+    status
+  }
+}
+    `) as unknown as TypedDocumentString<CartGetByIdQuery, CartGetByIdQueryVariables>;
+export const CartGetItemsByCartIdDocument = new TypedDocumentString(`
+    query CartGetItemsByCartId($cartId: JSON) {
+  OrderItems(where: {order: {equals: $cartId}}) {
+    docs {
+      id
+      order {
+        id
+        status
+      }
+      quantity
+      totalAmount
+      productVariantId
+      product {
+        ...ProductContentFull
+      }
+    }
+  }
+}
+    fragment ProductContentFull on Product {
+  id
+  name
+  slug
+  price
+  image {
+    ...ProductGetMediaItem
+  }
+  variants {
+    ... on variant {
+      id
+      isDefault
+      sku
+      items {
+        ... on Color {
+          id
+          color
+          blockName
+          blockType
+        }
+        ... on Shape {
+          id
+          shape
+          blockName
+          blockType
+        }
+        ... on Size {
+          id
+          size
+          blockName
+          blockType
+        }
+      }
+      blockName
+      blockType
+    }
+  }
+}
+fragment ProductGetMediaItem on Media {
+  alt
+  url
+  height
+  width
+}`) as unknown as TypedDocumentString<CartGetItemsByCartIdQuery, CartGetItemsByCartIdQueryVariables>;
 export const ProductGetByIdDocument = new TypedDocumentString(`
     query ProductGetById($id: Int!) {
   Product(id: $id) {
