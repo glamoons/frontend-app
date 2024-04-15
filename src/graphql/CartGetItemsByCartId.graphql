@@ -1,5 +1,7 @@
-query CartGetItemsByCartId($cartId: JSON) {
-	OrderItems(where: { order: { equals: $cartId } }) {
+query CartGetItemsByCartId($cartId: JSON, $productId: JSON) {
+	OrderItems(
+		where: { order: { equals: $cartId }, product: { equals: $productId } }
+	) {
 		docs {
 			id
 			order {

@@ -1,5 +1,4 @@
 import { revalidateTag } from "next/cache";
-import { cookies } from "next/headers";
 import NextImage from "next/image";
 import { notFound, redirect } from "next/navigation";
 import { AddToCartButton } from "./AddToCartButton";
@@ -15,8 +14,8 @@ import {
 	supportedColors,
 	type SupportedColors,
 } from "@/lib/utils";
-import { getProductById, getProductsList } from "@/services/productsApi";
 import { addProductToCart, getOrCreateCart } from "@/services/cartApi";
+import { getProductById, getProductsList } from "@/services/productsApi";
 
 export default async function SingleProductPage({
 	params,
@@ -79,10 +78,6 @@ export default async function SingleProductPage({
 			throw TypeError("Cart not found");
 		}
 
-		cookies().set("cartId", String(cart.id), {
-			httpOnly: true,
-			sameSite: "lax",
-		});
 		await addProductToCart(cart.id, productId, productVariantId);
 		revalidateTag("cart");
 	};

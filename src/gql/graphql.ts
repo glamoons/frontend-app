@@ -6807,6 +6807,7 @@ export type CartGetByIdQuery = { Order?: { id?: number | null, status?: Order_St
 
 export type CartGetItemsByCartIdQueryVariables = Exact<{
   cartId?: InputMaybe<Scalars['JSON']['input']>;
+  productId?: InputMaybe<Scalars['JSON']['input']>;
 }>;
 
 
@@ -6922,8 +6923,8 @@ export const CartGetByIdDocument = new TypedDocumentString(`
 }
     `) as unknown as TypedDocumentString<CartGetByIdQuery, CartGetByIdQueryVariables>;
 export const CartGetItemsByCartIdDocument = new TypedDocumentString(`
-    query CartGetItemsByCartId($cartId: JSON) {
-  OrderItems(where: {order: {equals: $cartId}}) {
+    query CartGetItemsByCartId($cartId: JSON, $productId: JSON) {
+  OrderItems(where: {order: {equals: $cartId}, product: {equals: $productId}}) {
     docs {
       id
       order {

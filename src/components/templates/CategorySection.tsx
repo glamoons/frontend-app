@@ -83,7 +83,12 @@ export const CategorySection = ({
 					</Swiper>
 					<div
 						slot="navigation"
-						className="z-50 flex flex-row justify-center space-x-3 laptop:absolute laptop:top-1/2 laptop:!mt-0 laptop:w-full laptop:-translate-y-1/2 laptop:justify-between laptop:space-x-0 laptop:opacity-0 laptop:transition-opacity laptop:duration-500 laptop:group-hover:opacity-100"
+						className={cn(
+							"z-50 flex flex-row justify-center space-x-3 laptop:absolute laptop:top-1/2 laptop:!mt-0 laptop:w-full laptop:-translate-y-1/2 laptop:justify-between laptop:space-x-0 laptop:opacity-0 laptop:transition-opacity laptop:duration-500 laptop:group-hover:opacity-100",
+							{
+								hidden: products.length <= 3,
+							},
+						)}
 					>
 						<RoundedButton
 							slot="prev-button"

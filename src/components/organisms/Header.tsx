@@ -3,15 +3,22 @@
 import { IconMenuDeep, IconX } from "@tabler/icons-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Navigation } from "./Navigation";
-import { useNavigationContext } from "@/app/providers/navigation-provider";
-import { LogoDark } from "@/assets/logo/LogoDark";
-import { LogoLight } from "@/assets/logo/LogoLight";
-import { MobileMenuHandler } from "@/components/atoms/MobileMenuHandler";
-import { ShoppingActionsNavLinks } from "@/components/molecules/ShoppingActionsNavLinks";
+import { type ReactNode } from "react";
+import { Badge } from "../atoms/Badge";
+import { ShoppingCart } from "./ShoppingCart";
 import { cn } from "@/lib/utils";
+import { MobileMenuHandler } from "@/components/atoms/MobileMenuHandler";
+import { LogoLight } from "@/assets/logo/LogoLight";
+import { LogoDark } from "@/assets/logo/LogoDark";
+import { useNavigationContext } from "@/app/providers/navigation-provider";
 
-export const Header = () => {
+export const Header = ({
+	children,
+	quantity,
+}: {
+	children: ReactNode;
+	quantity: number;
+}) => {
 	const { setIsOpen, isOpen } = useNavigationContext();
 	const pathname = usePathname();
 
@@ -26,13 +33,14 @@ export const Header = () => {
 			<Link href="/" aria-label="Logo Glamoons" className="cursor-pointer">
 				{!isOpen ? pathname === "/" ? <LogoLight /> : <LogoDark /> : null}
 			</Link>
-			<Navigation className="hidden laptop:flex" />
-			<ShoppingActionsNavLinks
-				favoritesHref="/"
-				userHref="/"
-				cartHref="/"
-				className={pathname !== "/" ? "text-secondary" : ""}
-			/>
+			{children}
+			<div className="hidden flex-row space-x-6 text-slate50 laptop:flex laptop:items-center">
+				<div className="relative">
+					<ShoppingCart className={pathname === "/" ? "" : "text-secondary"} />
+					<Badge quantity={quantity} className="absolute -right-1.5 top-1" />
+				</div>
+			</div>
+
 			<MobileMenuHandler
 				onClick={() => setIsOpen(!isOpen)}
 				className={cn(

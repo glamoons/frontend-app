@@ -4,6 +4,7 @@ import {
 	CartAddItemDocument,
 	CartCreateDocument,
 	CartGetByIdDocument,
+	CartGetItemsByCartIdDocument,
 	ProductGetByIdDocument,
 } from "@/gql/graphql";
 
@@ -20,6 +21,12 @@ export const getOrCreateCart = async () => {
 	if (!newCart) {
 		throw new Error("Failed to create cart");
 	}
+
+	cookies().set("cartId", String(newCart.id), {
+		httpOnly: true,
+		sameSite: "lax",
+	});
+
 	return newCart;
 };
 export const getCartById = async (cartId: string) => {
@@ -66,6 +73,22 @@ export const addProductToCart = async (
 			productId,
 			productVariantId,
 			totalAmount: product.price,
+		},
+		next: {
+			tags: ["cart"],
+		},
+	});
+};
+
+export const getProductItemsFromCart = async (
+	cartId: number,
+	productId?: number,
+) => {
+	return executeQuery({
+		query: CartGetItemsByCartIdDocument,
+		variables: {
+			cartId,
+			productId,
 		},
 		next: {
 			tags: ["cart"],
