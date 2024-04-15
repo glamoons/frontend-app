@@ -8,9 +8,8 @@ export const NavBar = async () => {
 	const cart = cartId
 		? await getProductItemsFromCart({ cartId: Number(cartId) })
 		: null;
-	if (!cart) return null;
-	const { OrderItems: cartItems } = cart;
-	const count = cartItems?.docs?.length || 0;
+	const count = cart?.OrderItems?.docs?.length || 0;
+	const cartItems = cart?.OrderItems;
 	return (
 		<Header quantity={count} cartItems={cartItems}>
 			<Navigation className="hidden laptop:flex" />
