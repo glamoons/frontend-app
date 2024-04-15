@@ -28,6 +28,29 @@ export const generateNameByProductOptionValue = (
 	}
 };
 
+export const generateSizeByProductOptionValue = (
+	optionValue: string,
+): string => {
+	switch (optionValue) {
+		case "_30":
+			return "30cm";
+		case "_40":
+			return "40cm";
+		case "_50":
+			return "50cm";
+		case "_60":
+			return "60cm";
+		case "_70":
+			return "70cm";
+		case "_80":
+			return "80cm";
+		case "_90":
+			return "90cm";
+		default:
+			return "30cm";
+	}
+};
+
 /* colors-start */
 export enum SupportedColors {
 	coldWhite = "coldWhite",

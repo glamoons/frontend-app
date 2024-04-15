@@ -6791,6 +6791,16 @@ export type CartAddItemMutationVariables = Exact<{
 
 export type CartAddItemMutation = { createOrderItem?: { id?: number | null } | null };
 
+export type CartChangeItemQuantityMutationVariables = Exact<{
+  itemId: Scalars['Int']['input'];
+  quantity: Scalars['Float']['input'];
+  totalAmount: Scalars['Float']['input'];
+  cartId: Scalars['Int']['input'];
+}>;
+
+
+export type CartChangeItemQuantityMutation = { updateOrderItem?: { quantity: number } | null };
+
 export type CartCreateMutationVariables = Exact<{
   status?: InputMaybe<Scalars['String']['input']>;
 }>;
@@ -6808,6 +6818,7 @@ export type CartGetByIdQuery = { Order?: { id?: number | null, status?: Order_St
 export type CartGetItemsByCartIdQueryVariables = Exact<{
   cartId?: InputMaybe<Scalars['JSON']['input']>;
   productId?: InputMaybe<Scalars['JSON']['input']>;
+  productVariantId?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
@@ -6907,6 +6918,16 @@ export const CartAddItemDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<CartAddItemMutation, CartAddItemMutationVariables>;
+export const CartChangeItemQuantityDocument = new TypedDocumentString(`
+    mutation CartChangeItemQuantity($itemId: Int!, $quantity: Float!, $totalAmount: Float!, $cartId: Int!) {
+  updateOrderItem(
+    id: $itemId
+    data: {order: $cartId, quantity: $quantity, totalAmount: $totalAmount}
+  ) {
+    quantity
+  }
+}
+    `) as unknown as TypedDocumentString<CartChangeItemQuantityMutation, CartChangeItemQuantityMutationVariables>;
 export const CartCreateDocument = new TypedDocumentString(`
     mutation CartCreate($status: String = "created") {
   createOrder(data: {totalAmount: 0, status: $status}) {
@@ -6923,8 +6944,10 @@ export const CartGetByIdDocument = new TypedDocumentString(`
 }
     `) as unknown as TypedDocumentString<CartGetByIdQuery, CartGetByIdQueryVariables>;
 export const CartGetItemsByCartIdDocument = new TypedDocumentString(`
-    query CartGetItemsByCartId($cartId: JSON, $productId: JSON) {
-  OrderItems(where: {order: {equals: $cartId}, product: {equals: $productId}}) {
+    query CartGetItemsByCartId($cartId: JSON, $productId: JSON, $productVariantId: String) {
+  OrderItems(
+    where: {order: {equals: $cartId}, product: {equals: $productId}, productVariantId: {equals: $productVariantId}}
+  ) {
     docs {
       id
       order {

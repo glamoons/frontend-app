@@ -11,10 +11,16 @@ import {
 	cn,
 	formatMoney,
 	generateNameByProductOptionValue,
+	generateSizeByProductOptionValue,
 	supportedColors,
 	type SupportedColors,
 } from "@/lib/utils";
-import { addProductToCart, getOrCreateCart } from "@/services/cartApi";
+import {
+	addProductToCart,
+	getOrCreateCart,
+	getProductItemsFromCart,
+	updateCartItem,
+} from "@/services/cartApi";
 import { getProductById, getProductsList } from "@/services/productsApi";
 
 export default async function SingleProductPage({
@@ -76,6 +82,31 @@ export default async function SingleProductPage({
 
 		if (!cart || !cart.id) {
 			throw TypeError("Cart not found");
+		}
+
+		const productItemsFromCart = await getProductItemsFromCart({
+			cartId: cart.id,
+			productId,
+			productVariantId,
+		});
+
+		const { OrderItems: cartItems } = productItemsFromCart;
+
+		if (cartItems && cartItems.docs && cartItems.docs.length > 0) {
+			const itemId = cartItems.docs[0]?.id;
+			const itemQuantity = cartItems.docs[0]?.quantity;
+			if (!itemId || !itemQuantity) {
+				throw TypeError("Cart item not found");
+			}
+
+			await updateCartItem({
+				cartId: cart.id,
+				cartItemId: itemId,
+				quantity: itemQuantity + 1,
+				totalAmount: product.price * (itemQuantity + 1),
+			});
+			revalidateTag("cart");
+			return;
 		}
 
 		await addProductToCart(cart.id, productId, productVariantId);
@@ -162,7 +193,10 @@ export default async function SingleProductPage({
 															productShapeAttributes.shape,
 														)}
 													{attribute.blockType === "size" &&
-														productSizeAttributes.size}
+														productSizeAttributes.size &&
+														generateSizeByProductOptionValue(
+															productSizeAttributes.size,
+														)}
 												</Label>
 											</fieldset>
 										</fieldset>

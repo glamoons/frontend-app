@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import { executeQuery } from "./api/api-config";
 import {
 	CartAddItemDocument,
+	CartChangeItemQuantityDocument,
 	CartCreateDocument,
 	CartGetByIdDocument,
 	CartGetItemsByCartIdDocument,
@@ -83,15 +84,47 @@ export const addProductToCart = async (
 	});
 };
 
-export const getProductItemsFromCart = async (
-	cartId: number,
-	productId?: number,
-) => {
+export const getProductItemsFromCart = async ({
+	cartId,
+	productId,
+	productVariantId,
+}: {
+	cartId: number;
+	productId?: number;
+	productVariantId?: string;
+}) => {
 	return executeQuery({
 		query: CartGetItemsByCartIdDocument,
 		variables: {
 			cartId,
 			productId,
+			productVariantId,
+		},
+		next: {
+			tags: ["cart"],
+		},
+		cache: "no-store",
+	});
+};
+
+export const updateCartItem = async ({
+	cartId,
+	cartItemId,
+	quantity,
+	totalAmount,
+}: {
+	cartId: number;
+	cartItemId: number;
+	quantity: number;
+	totalAmount: number;
+}) => {
+	return executeQuery({
+		query: CartChangeItemQuantityDocument,
+		variables: {
+			cartId,
+			itemId: cartItemId,
+			quantity,
+			totalAmount,
 		},
 		next: {
 			tags: ["cart"],

@@ -2,7 +2,12 @@ import { IconShoppingCart } from "@tabler/icons-react";
 import { type LinkProps } from "next/link";
 import { SecondaryButton } from "@/components/atoms/SecondaryButton";
 import { type CategoryHolderProps } from "@/interfaces/base";
-import { cn, supportedColors, type SupportedColors } from "@/lib/utils";
+import {
+	cn,
+	generateSizeByProductOptionValue,
+	supportedColors,
+	type SupportedColors,
+} from "@/lib/utils";
 import { type Color, type Size } from "@/gql/graphql";
 
 type CategoryHolderAdditionalProps = Pick<LinkProps, "href">;
@@ -34,7 +39,8 @@ export const CategoryHolder = ({
 					</h3>
 					<div className="space-y-2">
 						<p className="font-bold text-primaryDark">
-							{productSizeAttributes.size}
+							{productSizeAttributes.size &&
+								generateSizeByProductOptionValue(productSizeAttributes.size)}
 						</p>
 						<div className="flex flex-row items-center space-x-1">
 							{productColorAttributes &&
