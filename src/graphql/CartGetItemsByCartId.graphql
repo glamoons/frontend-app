@@ -1,0 +1,27 @@
+query CartGetItemsByCartId(
+	$cartId: JSON
+	$productId: JSON
+	$productVariantId: String
+) {
+	OrderItems(
+		where: {
+			order: { equals: $cartId }
+			product: { equals: $productId }
+			productVariantId: { equals: $productVariantId }
+		}
+	) {
+		docs {
+			id
+			order {
+				id
+				status
+			}
+			quantity
+			totalAmount
+			productVariantId
+			product {
+				...ProductContentFull
+			}
+		}
+	}
+}

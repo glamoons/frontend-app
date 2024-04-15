@@ -11,6 +11,18 @@ const nextConfig = {
 				port: "",
 				pathname: "/dstimijog/**",
 			},
+			{
+				protocol: "https",
+				hostname: "backoffice-dev.glamoons.com",
+				port: "",
+				pathname: "/**",
+			},
+			{
+				protocol: "http",
+				hostname: "payload",
+				port: "8080",
+				pathname: "/media/**",
+			},
 		],
 	},
 	experimental: {

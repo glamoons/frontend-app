@@ -1,0 +1,13 @@
+mutation CartChangeItemQuantity(
+	$itemId: Int!
+	$quantity: Float!
+	$totalAmount: Float!
+	$cartId: Int!
+) {
+	updateOrderItem(
+		id: $itemId
+		data: { order: $cartId, quantity: $quantity, totalAmount: $totalAmount }
+	) {
+		quantity
+	}
+}

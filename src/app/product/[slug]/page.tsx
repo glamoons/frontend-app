@@ -22,7 +22,7 @@ export async function generateMetadata({
 		(product) => product.slug === params.slug,
 	);
 
-	if (!productBySlug) {
+	if (!productBySlug || !productBySlug.id) {
 		throw TypeError("Product not found");
 	}
 
@@ -45,7 +45,7 @@ export default async function ProductDetailsPage({
 	searchParams,
 }: {
 	params: { slug: string };
-	searchParams: { vId: number };
+	searchParams: { vId: string };
 }) {
 	return <SingleProductPage params={params} searchParams={searchParams} />;
 }

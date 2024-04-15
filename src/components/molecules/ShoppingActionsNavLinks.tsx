@@ -1,19 +1,19 @@
-import { IconHeart, IconShoppingCart, IconUser } from "@tabler/icons-react";
+import { IconHeart, IconUser } from "@tabler/icons-react";
+import { ShoppingCart } from "../organisms/ShoppingCart";
 import { LinkWithIcon } from "@/components/atoms/LinkWithIcon";
-import { cn } from "@/lib/utils";
 import { type HTMLElements } from "@/interfaces/base";
+import { cn } from "@/lib/utils";
 
 type ShoppingActionsNavLinksProps = {
 	favoritesHref: string;
 	userHref: string;
-	cartHref: string;
+	cartHref?: string;
 	className?: HTMLElements<HTMLDivElement>["className"];
 };
 
 export const ShoppingActionsNavLinks = ({
 	favoritesHref,
 	userHref,
-	cartHref,
 	className,
 }: ShoppingActionsNavLinksProps) => {
 	return (
@@ -33,11 +33,7 @@ export const ShoppingActionsNavLinks = ({
 				icon={<IconUser />}
 				aria-label="Moje konto"
 			/>
-			<LinkWithIcon
-				href={cartHref}
-				icon={<IconShoppingCart />}
-				aria-label="Koszyk"
-			/>
+			<ShoppingCart />
 		</div>
 	);
 };

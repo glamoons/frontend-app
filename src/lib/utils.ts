@@ -1,9 +1,16 @@
-import { type ClassValue, clsx } from "clsx";
+import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { type VariationAttribute } from "@/gql/graphql";
+import { ProductSkuEnum } from "@/interfaces/base";
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
+}
+
+export function formatMoney(amount: number, currency = "PLN") {
+	return new Intl.NumberFormat("pl-PL", {
+		style: "currency",
+		currency,
+	}).format(amount);
 }
 
 export const generateNameByProductOptionValue = (
@@ -21,18 +28,26 @@ export const generateNameByProductOptionValue = (
 	}
 };
 
-export const generateLabelNameFromAttributeName = (
-	attribute: VariationAttribute,
-) => {
-	switch (attribute.name) {
-		case "shape":
-			return "Kształt";
-		case "size":
-			return "Rozmiar";
-		case "color":
-			return "Kolor";
+export const generateSizeByProductOptionValue = (
+	optionValue: string,
+): string => {
+	switch (optionValue) {
+		case "_30":
+			return "30cm";
+		case "_40":
+			return "40cm";
+		case "_50":
+			return "50cm";
+		case "_60":
+			return "60cm";
+		case "_70":
+			return "70cm";
+		case "_80":
+			return "80cm";
+		case "_90":
+			return "90cm";
 		default:
-			return attribute.label;
+			return "30cm";
 	}
 };
 
@@ -64,3 +79,18 @@ export const supportedColors: {
 	},
 };
 /* colors-end */
+
+export const generateNameByProductEnumValue = (optionValue: string): string => {
+	switch (optionValue) {
+		case "CIRCLE_COLDWHITE_30":
+			return ProductSkuEnum.CIRCLE_COLDWHITE_30;
+		case "CIRCLE_WARMWHITE_30":
+			return ProductSkuEnum.CIRCLE_WARMWHITE_30;
+		case "CIRCLE_COLDWHITE_40":
+			return ProductSkuEnum.CIRCLE_COLDWHITE_40;
+		case "CIRCLE_WARMWHITE_40":
+			return ProductSkuEnum.CIRCLE_WARMWHITE_40;
+		default:
+			return ProductSkuEnum.CIRCLE_COLDWHITE_30;
+	}
+};

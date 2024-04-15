@@ -2,7 +2,13 @@ import { IconShoppingCart } from "@tabler/icons-react";
 import { type LinkProps } from "next/link";
 import { SecondaryButton } from "@/components/atoms/SecondaryButton";
 import { type CategoryHolderProps } from "@/interfaces/base";
-import { cn, supportedColors, type SupportedColors } from "@/lib/utils";
+import {
+	cn,
+	generateSizeByProductOptionValue,
+	supportedColors,
+	type SupportedColors,
+} from "@/lib/utils";
+import { type Color, type Size } from "@/gql/graphql";
 
 type CategoryHolderAdditionalProps = Pick<LinkProps, "href">;
 
@@ -13,12 +19,16 @@ export const CategoryHolder = ({
 	productAttributes,
 	href,
 }: CategoryHolderProps & CategoryHolderAdditionalProps) => {
-	const productColorAttributes = productAttributes?.filter(
-		(attribute) => attribute.name === "color",
+	const productDefaultVariant = productAttributes?.find(
+		(attribute) => attribute.isDefault,
 	);
-	const productSizeAttributes = productAttributes?.filter(
-		(attribute) => attribute.name === "size",
-	);
+
+	const productColorAttributes = productDefaultVariant?.items?.find(
+		(attribute) => attribute.blockType === "color",
+	) as Color;
+	const productSizeAttributes = productDefaultVariant?.items?.find(
+		(attribute) => attribute.blockType === "size",
+	) as Size;
 
 	return (
 		<div className="relative flex flex-col justify-end bg-slate50 p-4 tablet:rounded-b-3xl tablet:p-6">
@@ -28,33 +38,27 @@ export const CategoryHolder = ({
 						{title}
 					</h3>
 					<div className="space-y-2">
-						{productSizeAttributes &&
-							productSizeAttributes.map((attribute) => {
-								return (
-									<p key={attribute.id} className="font-bold text-primaryDark">
-										{attribute.value}
-									</p>
-								);
-							})}
-						{productColorAttributes &&
-							productColorAttributes.map((attribute) => {
-								return (
-									<div
-										key={attribute.id}
-										className="flex flex-row items-center space-x-1"
-									>
+						<p className="font-bold text-primaryDark">
+							{productSizeAttributes.size &&
+								generateSizeByProductOptionValue(productSizeAttributes.size)}
+						</p>
+						<div className="flex flex-row items-center space-x-1">
+							{productColorAttributes &&
+								productColorAttributes.color &&
+								productColorAttributes.color.map((color) => {
+									return (
 										<div
+											key={color}
 											className={cn(
 												"h-6 w-6 rounded-full",
-												supportedColors[attribute.value as SupportedColors]
-													? supportedColors[attribute.value as SupportedColors]
-															.bgColor
+												supportedColors[color as SupportedColors]
+													? supportedColors[color as SupportedColors].bgColor
 													: "bg-[#B0D6FD]",
 											)}
 										></div>
-									</div>
-								);
-							})}
+									);
+								})}
+						</div>
 					</div>
 				</div>
 				{price && price !== "null" && (

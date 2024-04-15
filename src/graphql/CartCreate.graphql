@@ -1,0 +1,5 @@
+mutation CartCreate($status: String = "created") {
+	createOrder(data: { totalAmount: 0, status: $status }) {
+		id
+	}
+}

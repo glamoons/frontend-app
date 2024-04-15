@@ -6,7 +6,7 @@ import {
 } from "@tabler/icons-react";
 import { MenuBarListLink } from "../molecules/MenuBarListLink";
 
-export const MenuBar = () => {
+export const MobileMenuBar = () => {
 	const iconClassName =
 		"text-primaryDark transition-colors duration-500 group-hover:text-secondary";
 	return (
