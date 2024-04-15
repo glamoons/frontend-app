@@ -38,6 +38,7 @@ export const getCartById = async (cartId: string) => {
 		next: {
 			tags: ["cart"],
 		},
+		cache: "no-store",
 	});
 };
 export const createCart = async () => {
@@ -49,6 +50,7 @@ export const createCart = async () => {
 		next: {
 			tags: ["cart"],
 		},
+		cache: "no-store",
 	});
 };
 export const addProductToCart = async (
@@ -77,6 +79,7 @@ export const addProductToCart = async (
 		next: {
 			tags: ["cart"],
 		},
+		cache: "no-store",
 	});
 };
 
@@ -93,5 +96,6 @@ export const getProductItemsFromCart = async (
 		next: {
 			tags: ["cart"],
 		},
+		cache: "no-store",
 	});
 };

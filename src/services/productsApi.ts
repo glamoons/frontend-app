@@ -33,6 +33,9 @@ export const getProductById = async (
 		variables: {
 			id,
 		},
+		next: {
+			revalidate: 1,
+		},
 	});
 
 	if (!graphqlResponse.Product) {
