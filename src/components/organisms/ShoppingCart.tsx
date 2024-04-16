@@ -1,4 +1,4 @@
-import { IconShoppingCart } from "@tabler/icons-react";
+import { IconShoppingBag } from "@tabler/icons-react";
 import { Button } from "../ui/button";
 import { type BaseProps } from "@/interfaces/base";
 import { cn } from "@/lib/utils";
@@ -15,7 +15,7 @@ export const ShoppingCart = ({ className }: ShoppingCartProps) => {
 				className,
 			)}
 		>
-			<IconShoppingCart />
+			<IconShoppingBag />
 		</Button>
 	);
 };

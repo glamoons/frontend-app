@@ -1,6 +1,7 @@
-import { IconShoppingCart } from "@tabler/icons-react";
+import { IconShoppingBag } from "@tabler/icons-react";
 import { type LinkProps } from "next/link";
 import { SecondaryButton } from "@/components/atoms/SecondaryButton";
+import { type Color, type Size } from "@/gql/graphql";
 import { type CategoryHolderProps } from "@/interfaces/base";
 import {
 	cn,
@@ -8,7 +9,6 @@ import {
 	supportedColors,
 	type SupportedColors,
 } from "@/lib/utils";
-import { type Color, type Size } from "@/gql/graphql";
 
 type CategoryHolderAdditionalProps = Pick<LinkProps, "href">;
 
@@ -72,7 +72,7 @@ export const CategoryHolder = ({
 				href={String(href)}
 			>
 				<span className="hidden tablet:block">{btnName}</span>
-				<IconShoppingCart className="tablet:hidden" />
+				<IconShoppingBag className="tablet:hidden" />
 			</SecondaryButton>
 		</div>
 	);

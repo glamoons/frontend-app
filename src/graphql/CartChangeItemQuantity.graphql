@@ -8,6 +8,7 @@ mutation CartChangeItemQuantity(
 		id: $itemId
 		data: { order: $cartId, quantity: $quantity, totalAmount: $totalAmount }
 	) {
+		id
 		quantity
 	}
 }

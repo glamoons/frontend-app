@@ -1,8 +1,8 @@
 import {
 	IconAdjustments,
-	// IconHeart,
-	IconShoppingCart,
-	// IconUser,
+	IconHeart,
+	IconShoppingBag,
+	IconUser
 } from "@tabler/icons-react";
 import { MenuBarListLink } from "../molecules/MenuBarListLink";
 
@@ -17,7 +17,7 @@ export const MobileMenuBar = () => {
 					linkName="Konfigurator"
 					icon={<IconAdjustments className={iconClassName} />}
 				/>
-				{/* <MenuBarListLink
+				<MenuBarListLink
 					href="/"
 					linkName="Ulubione"
 					icon={<IconHeart className={iconClassName} />}
@@ -26,11 +26,11 @@ export const MobileMenuBar = () => {
 					href="/"
 					linkName="Moje konto"
 					icon={<IconUser className={iconClassName} />}
-				/> */}
+				/>
 				<MenuBarListLink
 					href="/"
 					linkName="Koszyk"
-					icon={<IconShoppingCart className={iconClassName} />}
+					icon={<IconShoppingBag className={iconClassName} />}
 				/>
 			</ul>
 		</nav>

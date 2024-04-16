@@ -3,7 +3,7 @@ import { type PropsWithChildren } from "react";
 import { Body } from "@/components/atoms/Body";
 import { Footer } from "@/components/organisms/Footer";
 import { NavBar } from "@/components/organisms/NavBar";
-import { MobileMenuBar } from "@/components/organisms/MobileMenuBar";
+// import { MobileMenuBar } from "@/components/organisms/MobileMenuBar";
 import { Menu } from "@/components/templates/Menu";
 import "./globals.css";
 import { NavigationProvider } from "@/app/providers/navigation-provider";
@@ -40,7 +40,7 @@ export default function RootLayout({
 				<Body>
 					<NavBar />
 					<Menu />
-					<MobileMenuBar />
+					{/* <MobileMenuBar /> */}
 					<main>{children}</main>
 					<Toaster />
 					<Footer />

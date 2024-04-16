@@ -1,14 +1,20 @@
 "use client";
 
 import { IconMenuDeep, IconX } from "@tabler/icons-react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useMemo, type ReactNode } from "react";
 import NextImage from "next/image";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { useMemo, useState, type ReactNode } from "react";
+import { SubmitButton } from "../atoms/SubmitButton";
+import { CartItemInfo } from "./CartItemInfo";
 import { ShoppingCart } from "./ShoppingCart";
+import { CartItemAmount } from "./CartItemAmount";
+import { useNavigationContext } from "@/app/providers/navigation-provider";
+import { LogoDark } from "@/assets/logo/LogoDark";
+import { LogoLight } from "@/assets/logo/LogoLight";
 import { Badge } from "@/components/atoms/Badge";
+import { MobileMenuHandler } from "@/components/atoms/MobileMenuHandler";
 import { SecondaryButton } from "@/components/atoms/SecondaryButton";
-import { PrimaryButton } from "@/components/atoms/PrimaryButton";
 import {
 	Dialog,
 	DialogClose,
@@ -19,23 +25,15 @@ import {
 	DialogTrigger,
 } from "@/components/ui/dialog";
 import {
-	type SupportedColors,
-	cn,
-	generateNameByProductOptionValue,
-	supportedColors,
-	formatMoney,
-	generateSizeByProductOptionValue,
-} from "@/lib/utils";
-import { MobileMenuHandler } from "@/components/atoms/MobileMenuHandler";
-import { LogoLight } from "@/assets/logo/LogoLight";
-import { LogoDark } from "@/assets/logo/LogoDark";
-import { useNavigationContext } from "@/app/providers/navigation-provider";
-import {
+	type OrderItem,
+	type CartGetItemsByCartIdQuery,
 	type Color,
 	type Shape,
 	type Size,
-	type CartGetItemsByCartIdQuery,
+	type Variant,
 } from "@/gql/graphql";
+import { calculateTotalPrice, cn, formatMoney } from "@/lib/utils";
+import { deliveryFee } from "@/config/config";
 
 export const Header = ({
 	children,
@@ -47,14 +45,12 @@ export const Header = ({
 	cartItems: CartGetItemsByCartIdQuery["OrderItems"];
 }) => {
 	const { setIsOpen, isOpen } = useNavigationContext();
+	const [dialogOpen, setDialogOpen] = useState(false);
+	const router = useRouter();
 	const pathname = usePathname();
-	const deliveryFee = 20;
 
 	const totalPrice = useMemo(() => {
-		return cartItems?.docs?.reduce((acc, item) => {
-			if (!item) return acc;
-			return acc + item?.totalAmount;
-		}, 0);
+		return calculateTotalPrice(cartItems?.docs as OrderItem[]);
 	}, [cartItems]);
 
 	return (
@@ -69,20 +65,22 @@ export const Header = ({
 				{!isOpen ? pathname === "/" ? <LogoLight /> : <LogoDark /> : null}
 			</Link>
 			{children}
-			<div className="hidden flex-row space-x-6 text-slate50 laptop:flex laptop:items-center">
-				<Dialog>
+			<div className="flex-row space-x-6 text-slate50 laptop:flex laptop:items-center">
+				<Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
 					<DialogTrigger asChild>
-						<div className="relative">
-							<ShoppingCart
-								className={pathname === "/" ? "" : "text-secondary"}
-							/>
-							<Badge
-								quantity={quantity}
-								className="absolute -right-1.5 top-1"
-							/>
+						<div className="fixed bottom-0 right-0 z-[99] bg-secondary px-4 py-3 laptop:relative laptop:bottom-auto laptop:right-auto laptop:bg-transparent laptop:p-0">
+							<div className="relative">
+								<ShoppingCart
+									className={pathname === "/" ? "" : "laptop:text-secondary"}
+								/>
+								<Badge
+									quantity={quantity}
+									className="absolute -right-1.5 top-1"
+								/>
+							</div>
 						</div>
 					</DialogTrigger>
-					<DialogContent className="sm:max-w-md left-auto right-4 h-[calc(100vh-16px)] translate-x-0 rounded-3xl">
+					<DialogContent className="sm:max-w-md left-auto z-[101] h-screen translate-x-0 p-5 laptop:right-4 laptop:h-[calc(100vh-16px)] laptop:rounded-3xl laptop:p-6">
 						<div>
 							<DialogHeader className="space-y-0 text-left">
 								<DialogTitle className="py-2 text-xl font-bold">
@@ -95,7 +93,7 @@ export const Header = ({
 									cartItems.docs.map((item) => {
 										const productVariant = item?.product.variants.find(
 											(variant) => variant.id === item?.productVariantId,
-										);
+										) as Variant;
 										const productColorAttributes = productVariant?.items?.find(
 											(attribute) => attribute.blockType === "color",
 										) as Color;
@@ -107,6 +105,8 @@ export const Header = ({
 										const productShapeAttributes = productVariant?.items?.find(
 											(attribute) => attribute.blockType === "shape",
 										) as Shape;
+
+										const cartItem = item as OrderItem;
 										return (
 											<div
 												key={item?.id}
@@ -123,62 +123,14 @@ export const Header = ({
 													className="rounded-[8px]"
 												/>
 												<div className="flex flex-col space-y-1">
-													<h3 className="text-sm">
-														{item?.quantity} x {item?.product.name}
-													</h3>
-													<div className="flex items-center space-x-4">
-														{productVariant?.items?.map((variantItem) => (
-															<div
-																key={variantItem?.id}
-																className="flex items-center justify-between space-x-2 text-sm font-bold"
-															>
-																<p>{variantItem?.blockName}:</p>
-																{variantItem.blockType === "color" &&
-																	productColorAttributes.color?.map((color) => {
-																		return (
-																			<div
-																				key={color}
-																				className={cn(
-																					"h-6 w-6 rounded-full",
-																					supportedColors[
-																						color as SupportedColors
-																					]
-																						? supportedColors[
-																								color as SupportedColors
-																							].bgColor
-																						: "bg-[#B0D6FD]",
-																				)}
-																			></div>
-																		);
-																	})}
-																{variantItem.blockType === "shape" &&
-																	productShapeAttributes.shape && (
-																		<span>
-																			{generateNameByProductOptionValue(
-																				productShapeAttributes.shape,
-																			)}
-																		</span>
-																	)}
-																{variantItem.blockType === "size" &&
-																	productSizeAttributes.size && (
-																		<span>
-																			{generateSizeByProductOptionValue(
-																				productSizeAttributes.size,
-																			)}
-																		</span>
-																	)}
-															</div>
-														))}
-													</div>
-													<div className="flex flex-row items-center justify-between">
-														<p className="text-sm">
-															Cena za sztukę:{" "}
-															{formatMoney(Number(item?.product.price) || 0)}
-														</p>
-														<p className="text-xl font-bold">
-															{formatMoney(Number(item?.totalAmount) || 0)}
-														</p>
-													</div>
+													<CartItemInfo
+														title={`${item?.quantity} x ${item?.product.name}`}
+														productVariant={productVariant}
+														productColorAttributes={productColorAttributes}
+														productSizeAttributes={productSizeAttributes}
+														productShapeAttributes={productShapeAttributes}
+													/>
+													<CartItemAmount item={cartItem} />
 												</div>
 											</div>
 										);
@@ -208,16 +160,28 @@ export const Header = ({
 								</div>
 								{totalPrice && (
 									<div className="flex flex-row items-center justify-between">
-										<p className="text-sm">Wartość koszyka:</p>
+										<p className="text-sm">Wartość koszyka + wysyłka:</p>
 										<span className="text-xl font-bold">
 											{formatMoney(totalPrice + deliveryFee)}
 										</span>
 									</div>
 								)}
 							</div>
-							<div className="mt-5 flex flex-row items-end justify-between">
-								<PrimaryButton href={"/cart"}>Pokaż koszyk</PrimaryButton>
-								<SecondaryButton href={"/checkout"}>Do kasy</SecondaryButton>
+							<div className="mt-5 flex flex-col items-center space-y-3">
+								<SubmitButton
+									onClick={() => {
+										setTimeout(() => {
+											setDialogOpen(false);
+										}, 100);
+										router.push("/cart");
+									}}
+									className="w-full"
+								>
+									Pokaż koszyk
+								</SubmitButton>
+								<SecondaryButton href={"/checkout"} className="w-full">
+									Do kasy
+								</SecondaryButton>
 							</div>
 						</DialogFooter>
 					</DialogContent>
