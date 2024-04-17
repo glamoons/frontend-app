@@ -6799,7 +6799,7 @@ export type CartChangeItemQuantityMutationVariables = Exact<{
 }>;
 
 
-export type CartChangeItemQuantityMutation = { updateOrderItem?: { quantity: number } | null };
+export type CartChangeItemQuantityMutation = { updateOrderItem?: { id?: number | null, quantity: number } | null };
 
 export type CartCreateMutationVariables = Exact<{
   status?: InputMaybe<Scalars['String']['input']>;
@@ -6823,6 +6823,13 @@ export type CartGetItemsByCartIdQueryVariables = Exact<{
 
 
 export type CartGetItemsByCartIdQuery = { OrderItems?: { docs?: Array<{ id?: number | null, quantity: number, totalAmount: number, productVariantId: string, order: { id?: number | null, status?: Order_Status | null }, product: { id?: number | null, name: string, slug: string, price: number, image: { alt?: string | null, url?: string | null, height?: number | null, width?: number | null }, variants: Array<{ id?: string | null, isDefault?: boolean | null, sku: string, blockName?: string | null, blockType?: string | null, items?: Array<{ id?: string | null, color?: Array<Color_Color> | null, blockName?: string | null, blockType?: string | null } | { id?: string | null, shape?: Shape_Shape | null, blockName?: string | null, blockType?: string | null } | { id?: string | null, size?: Size_Size | null, blockName?: string | null, blockType?: string | null }> | null }> } } | null> | null } | null };
+
+export type CartRemoveItemMutationVariables = Exact<{
+  itemId: Scalars['Int']['input'];
+}>;
+
+
+export type CartRemoveItemMutation = { deleteOrderItem?: { id?: number | null } | null };
 
 export type ProductContentFullFragment = { id?: number | null, name: string, slug: string, price: number, image: { alt?: string | null, url?: string | null, height?: number | null, width?: number | null }, variants: Array<{ id?: string | null, isDefault?: boolean | null, sku: string, blockName?: string | null, blockType?: string | null, items?: Array<{ id?: string | null, color?: Array<Color_Color> | null, blockName?: string | null, blockType?: string | null } | { id?: string | null, shape?: Shape_Shape | null, blockName?: string | null, blockType?: string | null } | { id?: string | null, size?: Size_Size | null, blockName?: string | null, blockType?: string | null }> | null }> };
 
@@ -6924,6 +6931,7 @@ export const CartChangeItemQuantityDocument = new TypedDocumentString(`
     id: $itemId
     data: {order: $cartId, quantity: $quantity, totalAmount: $totalAmount}
   ) {
+    id
     quantity
   }
 }
@@ -7007,6 +7015,13 @@ fragment ProductGetMediaItem on Media {
   height
   width
 }`) as unknown as TypedDocumentString<CartGetItemsByCartIdQuery, CartGetItemsByCartIdQueryVariables>;
+export const CartRemoveItemDocument = new TypedDocumentString(`
+    mutation CartRemoveItem($itemId: Int!) {
+  deleteOrderItem(id: $itemId) {
+    id
+  }
+}
+    `) as unknown as TypedDocumentString<CartRemoveItemMutation, CartRemoveItemMutationVariables>;
 export const ProductGetByIdDocument = new TypedDocumentString(`
     query ProductGetById($id: Int!) {
   Product(id: $id) {

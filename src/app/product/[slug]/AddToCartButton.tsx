@@ -1,10 +1,10 @@
 "use client";
 
-import { useFormStatus } from "react-dom";
-import { IconShoppingCart } from "@tabler/icons-react";
+import { IconShoppingBag } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
-import { SubmitButton } from "@/components/atoms/SubmitButton";
+import { useFormStatus } from "react-dom";
 import { useToast } from "@/components/ui/use-toast";
+import { SubmitButton } from "@/components/atoms/SubmitButton";
 
 export const AddToCartButton = () => {
 	const [addtoCart, setAddtoCart] = useState(false);
@@ -16,7 +16,7 @@ export const AddToCartButton = () => {
 			setAddtoCart(false);
 			toast({
 				title: "Produkt został dodany do koszyka",
-				className: "bg-slate50 border-border",
+				className: "bg-secondary border-border border-secondary text-slate50",
 			});
 		}
 	}, [addtoCart, status.pending, toast]);
@@ -29,7 +29,7 @@ export const AddToCartButton = () => {
 			onClick={() => setAddtoCart(true)}
 		>
 			<span className="flex flex-row items-center space-x-3">
-				<IconShoppingCart size={24} className="text-secondary" />
+				<IconShoppingBag size={24} className="text-secondary" />
 				<span>Dodaj do koszyka</span>
 			</span>
 		</SubmitButton>

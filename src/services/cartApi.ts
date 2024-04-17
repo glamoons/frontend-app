@@ -6,6 +6,7 @@ import {
 	CartCreateDocument,
 	CartGetByIdDocument,
 	CartGetItemsByCartIdDocument,
+	CartRemoveItemDocument,
 	ProductGetByIdDocument,
 } from "@/gql/graphql";
 
@@ -125,6 +126,19 @@ export const updateCartItem = async ({
 			itemId: cartItemId,
 			quantity,
 			totalAmount,
+		},
+		next: {
+			tags: ["cart"],
+		},
+		cache: "no-store",
+	});
+};
+
+export const removeCartitem = async ({ itemId }: { itemId: number }) => {
+	return executeQuery({
+		query: CartRemoveItemDocument,
+		variables: {
+			itemId,
 		},
 		next: {
 			tags: ["cart"],

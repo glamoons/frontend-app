@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { type OrderItem } from "@/gql/graphql";
 import { ProductSkuEnum } from "@/interfaces/base";
 
 export function cn(...inputs: ClassValue[]) {
@@ -93,4 +94,11 @@ export const generateNameByProductEnumValue = (optionValue: string): string => {
 		default:
 			return ProductSkuEnum.CIRCLE_COLDWHITE_30;
 	}
+};
+
+export const calculateTotalPrice = (cartItems: OrderItem[]) => {
+	return cartItems.reduce((acc, item) => {
+		if (!item) return acc;
+		return acc + item?.totalAmount;
+	}, 0);
 };
