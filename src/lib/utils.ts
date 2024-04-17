@@ -97,8 +97,10 @@ export const generateNameByProductEnumValue = (optionValue: string): string => {
 };
 
 export const calculateTotalPrice = (cartItems: OrderItem[]) => {
-	return cartItems.reduce((acc, item) => {
-		if (!item) return acc;
-		return acc + item?.totalAmount;
-	}, 0);
+	return (
+		cartItems.reduce((acc, item) => {
+			if (!item) return acc;
+			return acc + item?.totalAmount;
+		}, 0) || 0
+	);
 };

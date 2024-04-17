@@ -96,7 +96,7 @@ export const Header = ({
 										"mt-0 flex h-full flex-col justify-center",
 								)}
 							>
-								{cartItems?.docs?.length ? (
+								{cartItems && cartItems.docs && cartItems.docs.length > 0 ? (
 									cartItems.docs.map((item) => {
 										const productVariant = item?.product.variants.find(
 											(variant) => variant.id === item?.productVariantId,
@@ -147,7 +147,7 @@ export const Header = ({
 								)}
 							</div>
 						</div>
-						{cartItems?.docs?.length ? (
+						{cartItems && cartItems.docs && cartItems.docs.length > 0 ? (
 							<DialogFooter className="flex flex-col justify-end">
 								<hr className="my-5 h-px border-0 bg-primaryLight" />
 								<div className="space-y-3">
