@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useMemo, useState, type ReactNode } from "react";
 import { SubmitButton } from "../atoms/SubmitButton";
+import { EmptyCart } from "../molecules/EmptyCart";
 import { CartItemInfo } from "./CartItemInfo";
 import { ShoppingCart } from "./ShoppingCart";
 import { CartItemAmount } from "./CartItemAmount";
@@ -81,14 +82,20 @@ export const Header = ({
 						</div>
 					</DialogTrigger>
 					<DialogContent className="sm:max-w-md left-auto z-[101] h-screen translate-x-0 p-5 laptop:right-4 laptop:h-[calc(100vh-16px)] laptop:rounded-3xl laptop:p-6">
-						<div>
+						<div className="flex h-full flex-col">
 							<DialogHeader className="space-y-0 text-left">
 								<DialogTitle className="py-2 text-xl font-bold">
 									Twój koszyk
 								</DialogTitle>
 								<DialogClose asChild />
 							</DialogHeader>
-							<div className="mt-10 space-y-5">
+							<div
+								className={cn(
+									"mt-10 space-y-5",
+									!cartItems?.docs?.length &&
+										"mt-0 flex h-full flex-col justify-center",
+								)}
+							>
 								{cartItems?.docs?.length ? (
 									cartItems.docs.map((item) => {
 										const productVariant = item?.product.variants.find(
@@ -136,54 +143,58 @@ export const Header = ({
 										);
 									})
 								) : (
-									<p className="text-center">Twoj koszyk jest pusty</p>
+									<EmptyCart />
 								)}
 							</div>
 						</div>
-						<DialogFooter className="flex flex-col justify-end">
-							<hr className="my-5 h-px border-0 bg-primaryLight" />
-							<div className="space-y-3">
-								{quantity > 0 && (
+						{cartItems?.docs?.length ? (
+							<DialogFooter className="flex flex-col justify-end">
+								<hr className="my-5 h-px border-0 bg-primaryLight" />
+								<div className="space-y-3">
+									{quantity > 0 && (
+										<div className="flex flex-row items-center justify-between">
+											<p className="text-sm">Ilość produktów w koszyku:</p>
+											<span className="text-sm font-bold">{quantity}</span>
+										</div>
+									)}
 									<div className="flex flex-row items-center justify-between">
-										<p className="text-sm">Ilość produktów w koszyku:</p>
-										<span className="text-sm font-bold">{quantity}</span>
+										<div className="flex flex-col space-y-0">
+											<p className="text-sm">Dostawa:</p>
+											<span className="text-xs font-light">
+												Wysyłka w ciągu 1 tygodnia
+											</span>
+										</div>
+										<span className="text-sm">{formatMoney(deliveryFee)}</span>
 									</div>
-								)}
-								<div className="flex flex-row items-center justify-between">
-									<div className="flex flex-col space-y-0">
-										<p className="text-sm">Dostawa:</p>
-										<span className="text-xs font-light">
-											Wysyłka w ciągu 1 tygodnia
-										</span>
-									</div>
-									<span className="text-sm">{formatMoney(deliveryFee)}</span>
+									{totalPrice && (
+										<div className="flex flex-row items-center justify-between">
+											<p className="text-sm">Wartość koszyka + wysyłka:</p>
+											<span className="text-xl font-bold">
+												{formatMoney(totalPrice + deliveryFee)}
+											</span>
+										</div>
+									)}
 								</div>
-								{totalPrice && (
-									<div className="flex flex-row items-center justify-between">
-										<p className="text-sm">Wartość koszyka + wysyłka:</p>
-										<span className="text-xl font-bold">
-											{formatMoney(totalPrice + deliveryFee)}
-										</span>
-									</div>
-								)}
-							</div>
-							<div className="mt-5 flex flex-col items-center space-y-3">
-								<SubmitButton
-									onClick={() => {
-										setTimeout(() => {
-											setDialogOpen(false);
-										}, 100);
-										router.push("/cart");
-									}}
-									className="w-full"
-								>
-									Pokaż koszyk
-								</SubmitButton>
-								<SecondaryButton href={"/checkout"} className="w-full">
-									Do kasy
-								</SecondaryButton>
-							</div>
-						</DialogFooter>
+								<div className="mt-5 flex flex-col items-center space-y-3">
+									<SubmitButton
+										onClick={() => {
+											setTimeout(() => {
+												setDialogOpen(false);
+											}, 100);
+											router.push("/cart");
+										}}
+										className="w-full"
+									>
+										Pokaż koszyk
+									</SubmitButton>
+									<SecondaryButton href={"/checkout"} className="w-full">
+										Do kasy
+									</SecondaryButton>
+								</div>
+							</DialogFooter>
+						) : (
+							false
+						)}
 					</DialogContent>
 				</Dialog>
 			</div>

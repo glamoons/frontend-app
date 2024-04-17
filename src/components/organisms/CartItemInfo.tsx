@@ -28,11 +28,11 @@ export const CartItemInfo = ({
 			<NextLink href={"/"} className="text-sm">
 				{title}
 			</NextLink>
-			<div className="flex space-x-4 tablet:items-center">
+			<div className="flex space-x-4 desktop:items-center">
 				{productVariant?.items?.map((variantItem) => (
 					<div
 						key={variantItem?.id}
-						className="flex flex-col text-sm font-bold tablet:flex-row tablet:items-center tablet:space-x-2"
+						className="flex flex-col text-sm font-bold desktop:flex-row desktop:items-center desktop:space-x-2"
 					>
 						<p>{variantItem?.blockName}:</p>
 						{variantItem.blockType === "color" &&

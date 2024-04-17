@@ -16,7 +16,7 @@ export const AddToCartButton = () => {
 			setAddtoCart(false);
 			toast({
 				title: "Produkt został dodany do koszyka",
-				className: "bg-slate50 border-border",
+				className: "bg-secondary border-border border-secondary text-slate50",
 			});
 		}
 	}, [addtoCart, status.pending, toast]);

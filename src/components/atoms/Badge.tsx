@@ -10,7 +10,7 @@ export const Badge = ({ quantity, className }: BadgeProps) => {
 	return (
 		<div
 			className={cn(
-				"h-4 w-4 rounded-full bg-slate100",
+				"h-4 w-4 cursor-pointer rounded-full bg-slate100",
 				quantity === 0 && "hidden",
 				className,
 			)}
