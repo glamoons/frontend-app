@@ -1,5 +1,5 @@
 import { IconHeart, IconUser } from "@tabler/icons-react";
-import { ShoppingCart } from "../organisms/ShoppingCart";
+import { ShoppingCart } from "./ShoppingCart";
 import { LinkWithIcon } from "@/components/atoms/LinkWithIcon";
 import { type HTMLElements } from "@/interfaces/base";
 import { cn } from "@/lib/utils";

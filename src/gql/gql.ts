@@ -20,6 +20,7 @@ const documents = {
     "query CartGetById($id: Int!) {\n  Order(id: $id) {\n    id\n    status\n  }\n}": types.CartGetByIdDocument,
     "query CartGetItemsByCartId($cartId: JSON, $productId: JSON, $productVariantId: String) {\n  OrderItems(\n    where: {order: {equals: $cartId}, product: {equals: $productId}, productVariantId: {equals: $productVariantId}}\n  ) {\n    docs {\n      id\n      order {\n        id\n        status\n      }\n      quantity\n      totalAmount\n      productVariantId\n      product {\n        ...ProductContentFull\n      }\n    }\n  }\n}": types.CartGetItemsByCartIdDocument,
     "mutation CartRemoveItem($itemId: Int!) {\n  deleteOrderItem(id: $itemId) {\n    id\n  }\n}": types.CartRemoveItemDocument,
+    "mutation CartUpdate($cartId: Int!, $status: String!, $stripeCheckoutId: String!, $totalAmount: Float) {\n  updateOrder(\n    id: $cartId\n    data: {status: $status, stripeCheckoutID: $stripeCheckoutId, totalAmount: $totalAmount}\n  ) {\n    id\n    status\n  }\n}": types.CartUpdateDocument,
     "fragment ProductContentFull on Product {\n  id\n  name\n  slug\n  price\n  image {\n    ...ProductGetMediaItem\n  }\n  variants {\n    ... on variant {\n      id\n      isDefault\n      sku\n      items {\n        ... on Color {\n          id\n          color\n          blockName\n          blockType\n        }\n        ... on Shape {\n          id\n          shape\n          blockName\n          blockType\n        }\n        ... on Size {\n          id\n          size\n          blockName\n          blockType\n        }\n      }\n      blockName\n      blockType\n    }\n  }\n}": types.ProductContentFullFragmentDoc,
     "query ProductGetById($id: Int!) {\n  Product(id: $id) {\n    ...ProductContentFull\n  }\n}": types.ProductGetByIdDocument,
     "fragment ProductGetMediaItem on Media {\n  alt\n  url\n  height\n  width\n}": types.ProductGetMediaItemFragmentDoc,
@@ -50,6 +51,10 @@ export function graphql(source: "query CartGetItemsByCartId($cartId: JSON, $prod
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "mutation CartRemoveItem($itemId: Int!) {\n  deleteOrderItem(id: $itemId) {\n    id\n  }\n}"): typeof import('./graphql').CartRemoveItemDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "mutation CartUpdate($cartId: Int!, $status: String!, $stripeCheckoutId: String!, $totalAmount: Float) {\n  updateOrder(\n    id: $cartId\n    data: {status: $status, stripeCheckoutID: $stripeCheckoutId, totalAmount: $totalAmount}\n  ) {\n    id\n    status\n  }\n}"): typeof import('./graphql').CartUpdateDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

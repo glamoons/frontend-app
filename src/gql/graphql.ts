@@ -6831,6 +6831,16 @@ export type CartRemoveItemMutationVariables = Exact<{
 
 export type CartRemoveItemMutation = { deleteOrderItem?: { id?: number | null } | null };
 
+export type CartUpdateMutationVariables = Exact<{
+  cartId: Scalars['Int']['input'];
+  status: Scalars['String']['input'];
+  stripeCheckoutId: Scalars['String']['input'];
+  totalAmount?: InputMaybe<Scalars['Float']['input']>;
+}>;
+
+
+export type CartUpdateMutation = { updateOrder?: { id?: number | null, status?: Order_Status | null } | null };
+
 export type ProductContentFullFragment = { id?: number | null, name: string, slug: string, price: number, image: { alt?: string | null, url?: string | null, height?: number | null, width?: number | null }, variants: Array<{ id?: string | null, isDefault?: boolean | null, sku: string, blockName?: string | null, blockType?: string | null, items?: Array<{ id?: string | null, color?: Array<Color_Color> | null, blockName?: string | null, blockType?: string | null } | { id?: string | null, shape?: Shape_Shape | null, blockName?: string | null, blockType?: string | null } | { id?: string | null, size?: Size_Size | null, blockName?: string | null, blockType?: string | null }> | null }> };
 
 export type ProductGetByIdQueryVariables = Exact<{
@@ -7022,6 +7032,17 @@ export const CartRemoveItemDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<CartRemoveItemMutation, CartRemoveItemMutationVariables>;
+export const CartUpdateDocument = new TypedDocumentString(`
+    mutation CartUpdate($cartId: Int!, $status: String!, $stripeCheckoutId: String!, $totalAmount: Float) {
+  updateOrder(
+    id: $cartId
+    data: {status: $status, stripeCheckoutID: $stripeCheckoutId, totalAmount: $totalAmount}
+  ) {
+    id
+    status
+  }
+}
+    `) as unknown as TypedDocumentString<CartUpdateMutation, CartUpdateMutationVariables>;
 export const ProductGetByIdDocument = new TypedDocumentString(`
     query ProductGetById($id: Int!) {
   Product(id: $id) {

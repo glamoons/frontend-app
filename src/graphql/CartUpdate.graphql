@@ -1,0 +1,18 @@
+mutation CartUpdate(
+	$cartId: Int!
+	$status: String!
+	$stripeCheckoutId: String!
+	$totalAmount: Float
+) {
+	updateOrder(
+		id: $cartId
+		data: {
+			status: $status
+			stripeCheckoutID: $stripeCheckoutId
+			totalAmount: $totalAmount
+		}
+	) {
+		id
+		status
+	}
+}
