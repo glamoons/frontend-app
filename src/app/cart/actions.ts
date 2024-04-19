@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import Stripe from "stripe";
-import { getCart, removeCartitem, updateCartItem } from "@/services/cartApi";
+import { getCart, removeCartItem, updateCartItem } from "@/services/cartApi";
 import { deliveryFee } from "@/config/config";
 
 export const changeItemQuantity = async (
@@ -24,7 +24,7 @@ export const changeItemQuantity = async (
 };
 
 export const removeItem = async (itemId: number) => {
-	await removeCartitem({ itemId }).finally(() => {
+	await removeCartItem({ itemId }).finally(() => {
 		revalidatePath("/cart");
 	});
 };
@@ -56,9 +56,6 @@ export const handleStripePaymentAction = async () => {
 		payment_method_types: ["card", "p24", "blik"],
 		metadata: {
 			cartId,
-			totalAmount: cart.items
-				.map((item) => item.totalAmount)
-				.reduce((a, b) => a + b, 0),
 		},
 		line_items: cartItems.map((item) => ({
 			price_data: {
@@ -103,9 +100,29 @@ export const handleStripePaymentAction = async () => {
 				},
 			},
 		],
-		invoice_creation: {
-			enabled: true,
-		},
+		custom_fields: [
+			{
+				key: "companyName",
+				label: {
+					type: "custom",
+					custom: "Nazwa firmy",
+				},
+				optional: true,
+				type: "text",
+			},
+			{
+				key: "vatId",
+				label: {
+					type: "custom",
+					custom: "NIP",
+				},
+				optional: true,
+				type: "numeric",
+				numeric: {
+					minimum_length: 10,
+				},
+			},
+		],
 		success_url: `http://localhost:3000/cart/success?sessionId={CHECKOUT_SESSION_ID}`,
 		cancel_url: `http://localhost:3000/cart`,
 	});

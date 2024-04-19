@@ -3,10 +3,10 @@
 import { type NextRequest } from "next/server";
 import Stripe from "stripe";
 import { cartUpdate } from "@/services/cartApi";
+import { createCustomer } from "@/services/customerApi";
 
 export async function POST(request: NextRequest): Promise<Response> {
-	const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
-	if (!webhookSecret) {
+	if (!process.env.STRIPE_WEBHOOK_SECRET) {
 		return new Response("No webhook secret", { status: 500 });
 	}
 	if (!process.env.STRIPE_SECRET_KEY) {
@@ -26,26 +26,88 @@ export async function POST(request: NextRequest): Promise<Response> {
 	const event = stripe.webhooks.constructEvent(
 		await request.text(),
 		signature,
-		webhookSecret,
+		process.env.STRIPE_WEBHOOK_SECRET,
 	) as Stripe.DiscriminatedEvent;
 
 	switch (event.type) {
 		case "checkout.session.completed": {
-			console.log(event);
+			console.dir(event, { depth: 999 });
 
 			const cartId = event.data.object.metadata?.cartId;
-			await cartUpdate(
-				Number(cartId),
-				"paid",
-				event.data.object.id,
-				Number(event.data.object.metadata?.totalAmount),
-			);
+			const companyName = event.data.object.custom_fields
+				.map((el) => el.text?.value)
+				.join();
+			const vatId = event.data.object.custom_fields
+				.map((el) => el.numeric?.value)
+				.join();
+			await cartUpdate({
+				cartId: Number(cartId),
+				status: "paid",
+				stripeCheckoutId: event.data.object.id,
+				email: String(event.data.object.customer_details?.email),
+				totalAmount: Number(event.data.object?.amount_total) / 100,
+				address: {
+					deliveryAddress: {
+						deliveryCity: event.data.object.shipping_details?.address?.city,
+						deliveryCountry:
+							event.data.object.shipping_details?.address?.country,
+						deliveryPostalCode:
+							event.data.object.shipping_details?.address?.postal_code,
+						deliveryStreet: event.data.object.shipping_details?.address?.line1,
+					},
+				},
+				billingDetails: {
+					deliveryData: {
+						city: event.data.object.customer_details?.address?.city,
+						country: event.data.object.customer_details?.address?.country,
+						postalCode:
+							event.data.object.customer_details?.address?.postal_code,
+						street: event.data.object.customer_details?.address?.line1,
+						companyName,
+						vatId: Number(vatId),
+					},
+				},
+			});
+			await createCustomer({
+				customerName: event.data.object.customer_details?.name || "",
+				registrationDate: new Date().toISOString(),
+				email: event.data.object.customer_details?.email || "",
+				address: {
+					deliveryAddress: {
+						deliveryCity: event.data.object.shipping_details?.address?.city,
+						deliveryCountry:
+							event.data.object.shipping_details?.address?.country,
+						deliveryPostalCode:
+							event.data.object.shipping_details?.address?.postal_code,
+						deliveryStreet: event.data.object.shipping_details?.address?.line1,
+					},
+				},
+				billingDetails: {
+					deliveryData: {
+						city: event.data.object.customer_details?.address?.city,
+						country: event.data.object.customer_details?.address?.country,
+						postalCode:
+							event.data.object.customer_details?.address?.postal_code,
+						street: event.data.object.customer_details?.address?.line1,
+						companyName,
+						vatId: Number(vatId),
+					},
+				},
+				currency: event.data.object.currency?.toUpperCase(),
+				phone: event.data.object.customer_details?.phone || "",
+				totalExpenses: 0,
+				averageOrderValue: 0,
+				orders: [Number(cartId)],
+			});
 		}
 		case "checkout.session.async_payment_succeeded": {
+			console.log("payment succeeded");
 		}
 		case "checkout.session.expired": {
+			console.log("payment expired");
 		}
 		case "checkout.session.async_payment_failed": {
+			console.log("payment failed");
 		}
 	}
 

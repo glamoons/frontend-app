@@ -1,0 +1,4 @@
+fragment CustomerShort on Customer {
+	id
+	email
+}

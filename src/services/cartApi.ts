@@ -11,6 +11,8 @@ import {
 	type OrderItem,
 	ProductGetByIdDocument,
 	CartUpdateDocument,
+	type Order_Address,
+	type Order_BillingDetails,
 } from "@/gql/graphql";
 
 export const getOrCreateCart = async () => {
@@ -137,7 +139,7 @@ export const updateCartItem = async ({
 	});
 };
 
-export const removeCartitem = async ({ itemId }: { itemId: number }) => {
+export const removeCartItem = async ({ itemId }: { itemId: number }) => {
 	return executeQuery({
 		query: CartRemoveItemDocument,
 		variables: {
@@ -167,19 +169,33 @@ export const getCart = async () => {
 	};
 };
 
-export const cartUpdate = async (
-	cartId: number,
-	status: string,
-	stripeCheckoutId: string,
-	totalAmount: number,
-) => {
+export const cartUpdate = async ({
+	cartId,
+	status,
+	stripeCheckoutId,
+	email,
+	totalAmount,
+	address,
+	billingDetails,
+}: {
+	cartId: number;
+	status: string;
+	stripeCheckoutId: string;
+	email: string;
+	totalAmount: number;
+	address: Order_Address;
+	billingDetails: Order_BillingDetails;
+}) => {
 	return executeQuery({
 		query: CartUpdateDocument,
 		variables: {
 			cartId,
 			status,
 			stripeCheckoutId,
+			email,
 			totalAmount,
+			address,
+			billingDetails,
 		},
 		next: {
 			tags: ["cart"],

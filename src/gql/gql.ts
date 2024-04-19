@@ -20,7 +20,16 @@ const documents = {
     "query CartGetById($id: Int!) {\n  Order(id: $id) {\n    id\n    status\n  }\n}": types.CartGetByIdDocument,
     "query CartGetItemsByCartId($cartId: JSON, $productId: JSON, $productVariantId: String) {\n  OrderItems(\n    where: {order: {equals: $cartId}, product: {equals: $productId}, productVariantId: {equals: $productVariantId}}\n  ) {\n    docs {\n      id\n      order {\n        id\n        status\n      }\n      quantity\n      totalAmount\n      productVariantId\n      product {\n        ...ProductContentFull\n      }\n    }\n  }\n}": types.CartGetItemsByCartIdDocument,
     "mutation CartRemoveItem($itemId: Int!) {\n  deleteOrderItem(id: $itemId) {\n    id\n  }\n}": types.CartRemoveItemDocument,
-    "mutation CartUpdate($cartId: Int!, $status: String!, $stripeCheckoutId: String!, $totalAmount: Float) {\n  updateOrder(\n    id: $cartId\n    data: {status: $status, stripeCheckoutID: $stripeCheckoutId, totalAmount: $totalAmount}\n  ) {\n    id\n    status\n  }\n}": types.CartUpdateDocument,
+    "mutation CartUpdate($cartId: Int!, $status: String!, $stripeCheckoutId: String!, $email: String!, $totalAmount: Float, $address: mutationOrderUpdate_AddressInput, $billingDetails: mutationOrderUpdate_BillingDetailsInput) {\n  updateOrder(\n    id: $cartId\n    data: {status: $status, stripeCheckoutID: $stripeCheckoutId, totalAmount: $totalAmount, email: $email, address: $address, billingDetails: $billingDetails}\n  ) {\n    id\n    status\n    totalAmount\n    email\n    address {\n      ...OrderDeliveryAddress\n    }\n    billingDetails {\n      ...OrderBillingDetails\n    }\n  }\n}": types.CartUpdateDocument,
+    "fragment CustomerBillingDetails on Customer_BillingDetails {\n  deliveryData {\n    street\n    postalCode\n    city\n    country\n    companyName\n    vatId\n  }\n}": types.CustomerBillingDetailsFragmentDoc,
+    "mutation CustomerCreate($customerName: String!, $registrationDate: String!, $email: String!, $orders: [Int], $totalExpenses: Float = 0, $averageOrderValue: Float = 0, $currency: String = \"PLN\", $phone: String = \"\", $address: mutationCustomer_AddressInput!, $billingDetails: mutationCustomer_BillingDetailsInput!) {\n  createCustomer(\n    data: {customerName: $customerName, registrationDate: $registrationDate, email: $email, orders: $orders, totalExpenses: $totalExpenses, averageOrderValue: $averageOrderValue, currency: $currency, phone: $phone, address: $address, billingDetails: $billingDetails}\n  ) {\n    ...CustomerShort\n  }\n}": types.CustomerCreateDocument,
+    "fragment CustomerDeliveryAddress on Customer_Address {\n  deliveryAddress {\n    deliveryCity\n    deliveryCountry\n    deliveryPostalCode\n    deliveryStreet\n  }\n}": types.CustomerDeliveryAddressFragmentDoc,
+    "fragment CustomerFull on Customer {\n  ...CustomerShort\n  customerName\n  registrationDate\n  phone\n  address {\n    ...CustomerDeliveryAddress\n  }\n  billingDetails {\n    ...CustomerBillingDetails\n  }\n  orders {\n    id\n    status\n  }\n  totalExpenses\n  averageOrderValue\n  currency\n}": types.CustomerFullFragmentDoc,
+    "fragment CustomerShort on Customer {\n  id\n  email\n}": types.CustomerShortFragmentDoc,
+    "mutation CustomerUpdate($customerId: Int!, $customerName: String, $registrationDate: String, $email: String, $orders: [Int], $totalExpenses: Float = 0, $averageOrderValue: Float = 0, $currency: String = \"PLN\", $phone: String = \"\", $address: mutationCustomerUpdate_AddressInput, $billingDetails: mutationCustomerUpdate_BillingDetailsInput) {\n  updateCustomer(\n    id: $customerId\n    data: {customerName: $customerName, registrationDate: $registrationDate, email: $email, orders: $orders, totalExpenses: $totalExpenses, averageOrderValue: $averageOrderValue, currency: $currency, phone: $phone, address: $address, billingDetails: $billingDetails}\n  ) {\n    ...CustomerFull\n  }\n}": types.CustomerUpdateDocument,
+    "query CustomersGetList($email: EmailAddress) {\n  Customers(where: {email: {equals: $email}}) {\n    docs {\n      ...CustomerFull\n    }\n  }\n}": types.CustomersGetListDocument,
+    "fragment OrderBillingDetails on Order_BillingDetails {\n  deliveryData {\n    street\n    postalCode\n    city\n    country\n    companyName\n    vatId\n  }\n}": types.OrderBillingDetailsFragmentDoc,
+    "fragment OrderDeliveryAddress on Order_Address {\n  deliveryAddress {\n    deliveryCity\n    deliveryCountry\n    deliveryPostalCode\n    deliveryStreet\n  }\n}": types.OrderDeliveryAddressFragmentDoc,
     "fragment ProductContentFull on Product {\n  id\n  name\n  slug\n  price\n  image {\n    ...ProductGetMediaItem\n  }\n  variants {\n    ... on variant {\n      id\n      isDefault\n      sku\n      items {\n        ... on Color {\n          id\n          color\n          blockName\n          blockType\n        }\n        ... on Shape {\n          id\n          shape\n          blockName\n          blockType\n        }\n        ... on Size {\n          id\n          size\n          blockName\n          blockType\n        }\n      }\n      blockName\n      blockType\n    }\n  }\n}": types.ProductContentFullFragmentDoc,
     "query ProductGetById($id: Int!) {\n  Product(id: $id) {\n    ...ProductContentFull\n  }\n}": types.ProductGetByIdDocument,
     "fragment ProductGetMediaItem on Media {\n  alt\n  url\n  height\n  width\n}": types.ProductGetMediaItemFragmentDoc,
@@ -54,7 +63,43 @@ export function graphql(source: "mutation CartRemoveItem($itemId: Int!) {\n  del
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "mutation CartUpdate($cartId: Int!, $status: String!, $stripeCheckoutId: String!, $totalAmount: Float) {\n  updateOrder(\n    id: $cartId\n    data: {status: $status, stripeCheckoutID: $stripeCheckoutId, totalAmount: $totalAmount}\n  ) {\n    id\n    status\n  }\n}"): typeof import('./graphql').CartUpdateDocument;
+export function graphql(source: "mutation CartUpdate($cartId: Int!, $status: String!, $stripeCheckoutId: String!, $email: String!, $totalAmount: Float, $address: mutationOrderUpdate_AddressInput, $billingDetails: mutationOrderUpdate_BillingDetailsInput) {\n  updateOrder(\n    id: $cartId\n    data: {status: $status, stripeCheckoutID: $stripeCheckoutId, totalAmount: $totalAmount, email: $email, address: $address, billingDetails: $billingDetails}\n  ) {\n    id\n    status\n    totalAmount\n    email\n    address {\n      ...OrderDeliveryAddress\n    }\n    billingDetails {\n      ...OrderBillingDetails\n    }\n  }\n}"): typeof import('./graphql').CartUpdateDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "fragment CustomerBillingDetails on Customer_BillingDetails {\n  deliveryData {\n    street\n    postalCode\n    city\n    country\n    companyName\n    vatId\n  }\n}"): typeof import('./graphql').CustomerBillingDetailsFragmentDoc;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "mutation CustomerCreate($customerName: String!, $registrationDate: String!, $email: String!, $orders: [Int], $totalExpenses: Float = 0, $averageOrderValue: Float = 0, $currency: String = \"PLN\", $phone: String = \"\", $address: mutationCustomer_AddressInput!, $billingDetails: mutationCustomer_BillingDetailsInput!) {\n  createCustomer(\n    data: {customerName: $customerName, registrationDate: $registrationDate, email: $email, orders: $orders, totalExpenses: $totalExpenses, averageOrderValue: $averageOrderValue, currency: $currency, phone: $phone, address: $address, billingDetails: $billingDetails}\n  ) {\n    ...CustomerShort\n  }\n}"): typeof import('./graphql').CustomerCreateDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "fragment CustomerDeliveryAddress on Customer_Address {\n  deliveryAddress {\n    deliveryCity\n    deliveryCountry\n    deliveryPostalCode\n    deliveryStreet\n  }\n}"): typeof import('./graphql').CustomerDeliveryAddressFragmentDoc;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "fragment CustomerFull on Customer {\n  ...CustomerShort\n  customerName\n  registrationDate\n  phone\n  address {\n    ...CustomerDeliveryAddress\n  }\n  billingDetails {\n    ...CustomerBillingDetails\n  }\n  orders {\n    id\n    status\n  }\n  totalExpenses\n  averageOrderValue\n  currency\n}"): typeof import('./graphql').CustomerFullFragmentDoc;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "fragment CustomerShort on Customer {\n  id\n  email\n}"): typeof import('./graphql').CustomerShortFragmentDoc;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "mutation CustomerUpdate($customerId: Int!, $customerName: String, $registrationDate: String, $email: String, $orders: [Int], $totalExpenses: Float = 0, $averageOrderValue: Float = 0, $currency: String = \"PLN\", $phone: String = \"\", $address: mutationCustomerUpdate_AddressInput, $billingDetails: mutationCustomerUpdate_BillingDetailsInput) {\n  updateCustomer(\n    id: $customerId\n    data: {customerName: $customerName, registrationDate: $registrationDate, email: $email, orders: $orders, totalExpenses: $totalExpenses, averageOrderValue: $averageOrderValue, currency: $currency, phone: $phone, address: $address, billingDetails: $billingDetails}\n  ) {\n    ...CustomerFull\n  }\n}"): typeof import('./graphql').CustomerUpdateDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query CustomersGetList($email: EmailAddress) {\n  Customers(where: {email: {equals: $email}}) {\n    docs {\n      ...CustomerFull\n    }\n  }\n}"): typeof import('./graphql').CustomersGetListDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "fragment OrderBillingDetails on Order_BillingDetails {\n  deliveryData {\n    street\n    postalCode\n    city\n    country\n    companyName\n    vatId\n  }\n}"): typeof import('./graphql').OrderBillingDetailsFragmentDoc;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "fragment OrderDeliveryAddress on Order_Address {\n  deliveryAddress {\n    deliveryCity\n    deliveryCountry\n    deliveryPostalCode\n    deliveryStreet\n  }\n}"): typeof import('./graphql').OrderDeliveryAddressFragmentDoc;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

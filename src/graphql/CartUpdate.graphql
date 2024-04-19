@@ -2,7 +2,10 @@ mutation CartUpdate(
 	$cartId: Int!
 	$status: String!
 	$stripeCheckoutId: String!
+	$email: String!
 	$totalAmount: Float
+	$address: mutationOrderUpdate_AddressInput
+	$billingDetails: mutationOrderUpdate_BillingDetailsInput
 ) {
 	updateOrder(
 		id: $cartId
@@ -10,9 +13,20 @@ mutation CartUpdate(
 			status: $status
 			stripeCheckoutID: $stripeCheckoutId
 			totalAmount: $totalAmount
+			email: $email
+			address: $address
+			billingDetails: $billingDetails
 		}
 	) {
 		id
 		status
+		totalAmount
+		email
+		address {
+			...OrderDeliveryAddress
+		}
+		billingDetails {
+			...OrderBillingDetails
+		}
 	}
 }
