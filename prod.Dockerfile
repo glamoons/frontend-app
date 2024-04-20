@@ -12,6 +12,15 @@ RUN \
   else echo "Warning: Lockfile not found. It is recommended to commit lockfiles to version control." && yarn install; \
   fi
 
+ARG GRAPHQL_URL
+ENV GRAPHQL_URL ${GRAPHQL_URL}
+ARG NEXT_PUBLIC_BASE_URL
+ENV NEXT_PUBLIC_BASE_URL ${NEXT_PUBLIC_BASE_URL}
+ARG STRIPE_SECRET_KEY
+ENV STRIPE_SECRET_KEY ${STRIPE_SECRET_KEY}
+ARG STRIPE_WEBHOOK_SECRET
+ENV STRIPE_WEBHOOK_SECRET ${STRIPE_WEBHOOK_SECRET}
+
 COPY src ./src
 COPY public ./public
 COPY next.config.js .
