@@ -1,0 +1,29 @@
+mutation CustomerCreate(
+	$customerName: String!
+	$registrationDate: String!
+	$email: String!
+	$orders: [Int]
+	$totalExpenses: Float = 0
+	$averageOrderValue: Float = 0
+	$currency: String = "PLN"
+	$phone: String = ""
+	$address: mutationCustomer_AddressInput!
+	$billingDetails: mutationCustomer_BillingDetailsInput!
+) {
+	createCustomer(
+		data: {
+			customerName: $customerName
+			registrationDate: $registrationDate
+			email: $email
+			orders: $orders
+			totalExpenses: $totalExpenses
+			averageOrderValue: $averageOrderValue
+			currency: $currency
+			phone: $phone
+			address: $address
+			billingDetails: $billingDetails
+		}
+	) {
+		...CustomerShort
+	}
+}

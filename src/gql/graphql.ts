@@ -26,6 +26,7 @@ export type Scalars = {
 
 export type Access = {
   canAccessAdmin: Scalars['Boolean']['output'];
+  customers?: Maybe<CustomersAccess>;
   media?: Maybe<MediaAccess>;
   orderItems?: Maybe<OrderItemsAccess>;
   orders?: Maybe<OrdersAccess>;
@@ -45,6 +46,1479 @@ export type Color = {
 export type Color_Color =
   | 'coldWhite'
   | 'warmWhite';
+
+export type Customer = {
+  address?: Maybe<Customer_Address>;
+  averageOrderValue?: Maybe<Scalars['Float']['output']>;
+  billingDetails?: Maybe<Customer_BillingDetails>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  currency?: Maybe<Scalars['String']['output']>;
+  customerName: Scalars['String']['output'];
+  email: Scalars['EmailAddress']['output'];
+  id?: Maybe<Scalars['Int']['output']>;
+  orders?: Maybe<Array<Order>>;
+  phone?: Maybe<Scalars['String']['output']>;
+  registrationDate?: Maybe<Scalars['DateTime']['output']>;
+  totalExpenses?: Maybe<Scalars['Float']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export type Customer_Address = {
+  deliveryAddress?: Maybe<Customer_Address_DeliveryAddress>;
+};
+
+export type Customer_Address_DeliveryAddress = {
+  deliveryCity?: Maybe<Scalars['String']['output']>;
+  deliveryCountry?: Maybe<Scalars['String']['output']>;
+  deliveryPostalCode?: Maybe<Scalars['String']['output']>;
+  deliveryStreet?: Maybe<Scalars['String']['output']>;
+};
+
+export type Customer_BillingDetails = {
+  deliveryData?: Maybe<Customer_BillingDetails_DeliveryData>;
+};
+
+export type Customer_BillingDetails_DeliveryData = {
+  city?: Maybe<Scalars['String']['output']>;
+  companyName?: Maybe<Scalars['String']['output']>;
+  country?: Maybe<Scalars['String']['output']>;
+  postalCode?: Maybe<Scalars['String']['output']>;
+  street?: Maybe<Scalars['String']['output']>;
+  vatId?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Customer_Address__DeliveryAddress__DeliveryCity_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Customer_Address__DeliveryAddress__DeliveryCountry_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Customer_Address__DeliveryAddress__DeliveryPostalCode_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Customer_Address__DeliveryAddress__DeliveryStreet_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Customer_AverageOrderValue_Operator = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Float']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  less_than?: InputMaybe<Scalars['Float']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  not_equals?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type Customer_BillingDetails__DeliveryData__City_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Customer_BillingDetails__DeliveryData__CompanyName_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Customer_BillingDetails__DeliveryData__Country_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Customer_BillingDetails__DeliveryData__PostalCode_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Customer_BillingDetails__DeliveryData__Street_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Customer_BillingDetails__DeliveryData__VatId_Operator = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Float']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  less_than?: InputMaybe<Scalars['Float']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  not_equals?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type Customer_CreatedAt_Operator = {
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  like?: InputMaybe<Scalars['DateTime']['input']>;
+  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type Customer_Currency_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Customer_CustomerName_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Customer_Email_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['EmailAddress']['input']>>>;
+  contains?: InputMaybe<Scalars['EmailAddress']['input']>;
+  equals?: InputMaybe<Scalars['EmailAddress']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['EmailAddress']['input']>>>;
+  like?: InputMaybe<Scalars['EmailAddress']['input']>;
+  not_equals?: InputMaybe<Scalars['EmailAddress']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['EmailAddress']['input']>>>;
+};
+
+export type Customer_Id_Operator = {
+  equals?: InputMaybe<Scalars['Int']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Int']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Int']['input']>;
+  less_than?: InputMaybe<Scalars['Int']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Int']['input']>;
+  not_equals?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type Customer_Orders_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
+  equals?: InputMaybe<Scalars['JSON']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
+  not_equals?: InputMaybe<Scalars['JSON']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
+};
+
+export type Customer_Phone_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Customer_RegistrationDate_Operator = {
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  like?: InputMaybe<Scalars['DateTime']['input']>;
+  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type Customer_TotalExpenses_Operator = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Float']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  less_than?: InputMaybe<Scalars['Float']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  not_equals?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type Customer_UpdatedAt_Operator = {
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  like?: InputMaybe<Scalars['DateTime']['input']>;
+  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type Customer_Where = {
+  AND?: InputMaybe<Array<InputMaybe<Customer_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<Customer_Where_Or>>>;
+  address__deliveryAddress__deliveryCity?: InputMaybe<Customer_Address__DeliveryAddress__DeliveryCity_Operator>;
+  address__deliveryAddress__deliveryCountry?: InputMaybe<Customer_Address__DeliveryAddress__DeliveryCountry_Operator>;
+  address__deliveryAddress__deliveryPostalCode?: InputMaybe<Customer_Address__DeliveryAddress__DeliveryPostalCode_Operator>;
+  address__deliveryAddress__deliveryStreet?: InputMaybe<Customer_Address__DeliveryAddress__DeliveryStreet_Operator>;
+  averageOrderValue?: InputMaybe<Customer_AverageOrderValue_Operator>;
+  billingDetails__deliveryData__city?: InputMaybe<Customer_BillingDetails__DeliveryData__City_Operator>;
+  billingDetails__deliveryData__companyName?: InputMaybe<Customer_BillingDetails__DeliveryData__CompanyName_Operator>;
+  billingDetails__deliveryData__country?: InputMaybe<Customer_BillingDetails__DeliveryData__Country_Operator>;
+  billingDetails__deliveryData__postalCode?: InputMaybe<Customer_BillingDetails__DeliveryData__PostalCode_Operator>;
+  billingDetails__deliveryData__street?: InputMaybe<Customer_BillingDetails__DeliveryData__Street_Operator>;
+  billingDetails__deliveryData__vatId?: InputMaybe<Customer_BillingDetails__DeliveryData__VatId_Operator>;
+  createdAt?: InputMaybe<Customer_CreatedAt_Operator>;
+  currency?: InputMaybe<Customer_Currency_Operator>;
+  customerName?: InputMaybe<Customer_CustomerName_Operator>;
+  email?: InputMaybe<Customer_Email_Operator>;
+  id?: InputMaybe<Customer_Id_Operator>;
+  orders?: InputMaybe<Customer_Orders_Operator>;
+  phone?: InputMaybe<Customer_Phone_Operator>;
+  registrationDate?: InputMaybe<Customer_RegistrationDate_Operator>;
+  totalExpenses?: InputMaybe<Customer_TotalExpenses_Operator>;
+  updatedAt?: InputMaybe<Customer_UpdatedAt_Operator>;
+};
+
+export type Customer_Where_And = {
+  AND?: InputMaybe<Array<InputMaybe<Customer_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<Customer_Where_Or>>>;
+  address__deliveryAddress__deliveryCity?: InputMaybe<Customer_Address__DeliveryAddress__DeliveryCity_Operator>;
+  address__deliveryAddress__deliveryCountry?: InputMaybe<Customer_Address__DeliveryAddress__DeliveryCountry_Operator>;
+  address__deliveryAddress__deliveryPostalCode?: InputMaybe<Customer_Address__DeliveryAddress__DeliveryPostalCode_Operator>;
+  address__deliveryAddress__deliveryStreet?: InputMaybe<Customer_Address__DeliveryAddress__DeliveryStreet_Operator>;
+  averageOrderValue?: InputMaybe<Customer_AverageOrderValue_Operator>;
+  billingDetails__deliveryData__city?: InputMaybe<Customer_BillingDetails__DeliveryData__City_Operator>;
+  billingDetails__deliveryData__companyName?: InputMaybe<Customer_BillingDetails__DeliveryData__CompanyName_Operator>;
+  billingDetails__deliveryData__country?: InputMaybe<Customer_BillingDetails__DeliveryData__Country_Operator>;
+  billingDetails__deliveryData__postalCode?: InputMaybe<Customer_BillingDetails__DeliveryData__PostalCode_Operator>;
+  billingDetails__deliveryData__street?: InputMaybe<Customer_BillingDetails__DeliveryData__Street_Operator>;
+  billingDetails__deliveryData__vatId?: InputMaybe<Customer_BillingDetails__DeliveryData__VatId_Operator>;
+  createdAt?: InputMaybe<Customer_CreatedAt_Operator>;
+  currency?: InputMaybe<Customer_Currency_Operator>;
+  customerName?: InputMaybe<Customer_CustomerName_Operator>;
+  email?: InputMaybe<Customer_Email_Operator>;
+  id?: InputMaybe<Customer_Id_Operator>;
+  orders?: InputMaybe<Customer_Orders_Operator>;
+  phone?: InputMaybe<Customer_Phone_Operator>;
+  registrationDate?: InputMaybe<Customer_RegistrationDate_Operator>;
+  totalExpenses?: InputMaybe<Customer_TotalExpenses_Operator>;
+  updatedAt?: InputMaybe<Customer_UpdatedAt_Operator>;
+};
+
+export type Customer_Where_Or = {
+  AND?: InputMaybe<Array<InputMaybe<Customer_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<Customer_Where_Or>>>;
+  address__deliveryAddress__deliveryCity?: InputMaybe<Customer_Address__DeliveryAddress__DeliveryCity_Operator>;
+  address__deliveryAddress__deliveryCountry?: InputMaybe<Customer_Address__DeliveryAddress__DeliveryCountry_Operator>;
+  address__deliveryAddress__deliveryPostalCode?: InputMaybe<Customer_Address__DeliveryAddress__DeliveryPostalCode_Operator>;
+  address__deliveryAddress__deliveryStreet?: InputMaybe<Customer_Address__DeliveryAddress__DeliveryStreet_Operator>;
+  averageOrderValue?: InputMaybe<Customer_AverageOrderValue_Operator>;
+  billingDetails__deliveryData__city?: InputMaybe<Customer_BillingDetails__DeliveryData__City_Operator>;
+  billingDetails__deliveryData__companyName?: InputMaybe<Customer_BillingDetails__DeliveryData__CompanyName_Operator>;
+  billingDetails__deliveryData__country?: InputMaybe<Customer_BillingDetails__DeliveryData__Country_Operator>;
+  billingDetails__deliveryData__postalCode?: InputMaybe<Customer_BillingDetails__DeliveryData__PostalCode_Operator>;
+  billingDetails__deliveryData__street?: InputMaybe<Customer_BillingDetails__DeliveryData__Street_Operator>;
+  billingDetails__deliveryData__vatId?: InputMaybe<Customer_BillingDetails__DeliveryData__VatId_Operator>;
+  createdAt?: InputMaybe<Customer_CreatedAt_Operator>;
+  currency?: InputMaybe<Customer_Currency_Operator>;
+  customerName?: InputMaybe<Customer_CustomerName_Operator>;
+  email?: InputMaybe<Customer_Email_Operator>;
+  id?: InputMaybe<Customer_Id_Operator>;
+  orders?: InputMaybe<Customer_Orders_Operator>;
+  phone?: InputMaybe<Customer_Phone_Operator>;
+  registrationDate?: InputMaybe<Customer_RegistrationDate_Operator>;
+  totalExpenses?: InputMaybe<Customer_TotalExpenses_Operator>;
+  updatedAt?: InputMaybe<Customer_UpdatedAt_Operator>;
+};
+
+export type Customers = {
+  docs?: Maybe<Array<Maybe<Customer>>>;
+  hasNextPage?: Maybe<Scalars['Boolean']['output']>;
+  hasPrevPage?: Maybe<Scalars['Boolean']['output']>;
+  limit?: Maybe<Scalars['Int']['output']>;
+  nextPage?: Maybe<Scalars['Int']['output']>;
+  offset?: Maybe<Scalars['Int']['output']>;
+  page?: Maybe<Scalars['Int']['output']>;
+  pagingCounter?: Maybe<Scalars['Int']['output']>;
+  prevPage?: Maybe<Scalars['Int']['output']>;
+  totalDocs?: Maybe<Scalars['Int']['output']>;
+  totalPages?: Maybe<Scalars['Int']['output']>;
+};
+
+export type CustomersCreateAccess = {
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type CustomersCreateDocAccess = {
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type CustomersDeleteAccess = {
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type CustomersDeleteDocAccess = {
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type CustomersDocAccessFields = {
+  averageOrderValue?: Maybe<CustomersDocAccessFields_AverageOrderValue>;
+  createdAt?: Maybe<CustomersDocAccessFields_CreatedAt>;
+  currency?: Maybe<CustomersDocAccessFields_Currency>;
+  customerName?: Maybe<CustomersDocAccessFields_CustomerName>;
+  deliveryAddress?: Maybe<CustomersDocAccessFields_DeliveryAddress>;
+  deliveryData?: Maybe<CustomersDocAccessFields_DeliveryData>;
+  email?: Maybe<CustomersDocAccessFields_Email>;
+  orders?: Maybe<CustomersDocAccessFields_Orders>;
+  phone?: Maybe<CustomersDocAccessFields_Phone>;
+  registrationDate?: Maybe<CustomersDocAccessFields_RegistrationDate>;
+  totalExpenses?: Maybe<CustomersDocAccessFields_TotalExpenses>;
+  updatedAt?: Maybe<CustomersDocAccessFields_UpdatedAt>;
+};
+
+export type CustomersDocAccessFields_AverageOrderValue = {
+  create?: Maybe<CustomersDocAccessFields_AverageOrderValue_Create>;
+  delete?: Maybe<CustomersDocAccessFields_AverageOrderValue_Delete>;
+  read?: Maybe<CustomersDocAccessFields_AverageOrderValue_Read>;
+  update?: Maybe<CustomersDocAccessFields_AverageOrderValue_Update>;
+};
+
+export type CustomersDocAccessFields_AverageOrderValue_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_AverageOrderValue_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_AverageOrderValue_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_AverageOrderValue_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_CreatedAt = {
+  create?: Maybe<CustomersDocAccessFields_CreatedAt_Create>;
+  delete?: Maybe<CustomersDocAccessFields_CreatedAt_Delete>;
+  read?: Maybe<CustomersDocAccessFields_CreatedAt_Read>;
+  update?: Maybe<CustomersDocAccessFields_CreatedAt_Update>;
+};
+
+export type CustomersDocAccessFields_CreatedAt_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_CreatedAt_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_CreatedAt_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_CreatedAt_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_Currency = {
+  create?: Maybe<CustomersDocAccessFields_Currency_Create>;
+  delete?: Maybe<CustomersDocAccessFields_Currency_Delete>;
+  read?: Maybe<CustomersDocAccessFields_Currency_Read>;
+  update?: Maybe<CustomersDocAccessFields_Currency_Update>;
+};
+
+export type CustomersDocAccessFields_Currency_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_Currency_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_Currency_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_Currency_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_CustomerName = {
+  create?: Maybe<CustomersDocAccessFields_CustomerName_Create>;
+  delete?: Maybe<CustomersDocAccessFields_CustomerName_Delete>;
+  read?: Maybe<CustomersDocAccessFields_CustomerName_Read>;
+  update?: Maybe<CustomersDocAccessFields_CustomerName_Update>;
+};
+
+export type CustomersDocAccessFields_CustomerName_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_CustomerName_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_CustomerName_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_CustomerName_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryAddress = {
+  create?: Maybe<CustomersDocAccessFields_DeliveryAddress_Create>;
+  delete?: Maybe<CustomersDocAccessFields_DeliveryAddress_Delete>;
+  fields?: Maybe<CustomersDocAccessFields_DeliveryAddress_Fields>;
+  read?: Maybe<CustomersDocAccessFields_DeliveryAddress_Read>;
+  update?: Maybe<CustomersDocAccessFields_DeliveryAddress_Update>;
+};
+
+export type CustomersDocAccessFields_DeliveryAddress_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryAddress_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryAddress_Fields = {
+  deliveryCity?: Maybe<CustomersDocAccessFields_DeliveryAddress_DeliveryCity>;
+  deliveryCountry?: Maybe<CustomersDocAccessFields_DeliveryAddress_DeliveryCountry>;
+  deliveryPostalCode?: Maybe<CustomersDocAccessFields_DeliveryAddress_DeliveryPostalCode>;
+  deliveryStreet?: Maybe<CustomersDocAccessFields_DeliveryAddress_DeliveryStreet>;
+};
+
+export type CustomersDocAccessFields_DeliveryAddress_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryAddress_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryAddress_DeliveryCity = {
+  create?: Maybe<CustomersDocAccessFields_DeliveryAddress_DeliveryCity_Create>;
+  delete?: Maybe<CustomersDocAccessFields_DeliveryAddress_DeliveryCity_Delete>;
+  read?: Maybe<CustomersDocAccessFields_DeliveryAddress_DeliveryCity_Read>;
+  update?: Maybe<CustomersDocAccessFields_DeliveryAddress_DeliveryCity_Update>;
+};
+
+export type CustomersDocAccessFields_DeliveryAddress_DeliveryCity_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryAddress_DeliveryCity_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryAddress_DeliveryCity_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryAddress_DeliveryCity_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryAddress_DeliveryCountry = {
+  create?: Maybe<CustomersDocAccessFields_DeliveryAddress_DeliveryCountry_Create>;
+  delete?: Maybe<CustomersDocAccessFields_DeliveryAddress_DeliveryCountry_Delete>;
+  read?: Maybe<CustomersDocAccessFields_DeliveryAddress_DeliveryCountry_Read>;
+  update?: Maybe<CustomersDocAccessFields_DeliveryAddress_DeliveryCountry_Update>;
+};
+
+export type CustomersDocAccessFields_DeliveryAddress_DeliveryCountry_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryAddress_DeliveryCountry_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryAddress_DeliveryCountry_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryAddress_DeliveryCountry_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryAddress_DeliveryPostalCode = {
+  create?: Maybe<CustomersDocAccessFields_DeliveryAddress_DeliveryPostalCode_Create>;
+  delete?: Maybe<CustomersDocAccessFields_DeliveryAddress_DeliveryPostalCode_Delete>;
+  read?: Maybe<CustomersDocAccessFields_DeliveryAddress_DeliveryPostalCode_Read>;
+  update?: Maybe<CustomersDocAccessFields_DeliveryAddress_DeliveryPostalCode_Update>;
+};
+
+export type CustomersDocAccessFields_DeliveryAddress_DeliveryPostalCode_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryAddress_DeliveryPostalCode_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryAddress_DeliveryPostalCode_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryAddress_DeliveryPostalCode_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryAddress_DeliveryStreet = {
+  create?: Maybe<CustomersDocAccessFields_DeliveryAddress_DeliveryStreet_Create>;
+  delete?: Maybe<CustomersDocAccessFields_DeliveryAddress_DeliveryStreet_Delete>;
+  read?: Maybe<CustomersDocAccessFields_DeliveryAddress_DeliveryStreet_Read>;
+  update?: Maybe<CustomersDocAccessFields_DeliveryAddress_DeliveryStreet_Update>;
+};
+
+export type CustomersDocAccessFields_DeliveryAddress_DeliveryStreet_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryAddress_DeliveryStreet_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryAddress_DeliveryStreet_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryAddress_DeliveryStreet_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryData = {
+  create?: Maybe<CustomersDocAccessFields_DeliveryData_Create>;
+  delete?: Maybe<CustomersDocAccessFields_DeliveryData_Delete>;
+  fields?: Maybe<CustomersDocAccessFields_DeliveryData_Fields>;
+  read?: Maybe<CustomersDocAccessFields_DeliveryData_Read>;
+  update?: Maybe<CustomersDocAccessFields_DeliveryData_Update>;
+};
+
+export type CustomersDocAccessFields_DeliveryData_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryData_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryData_Fields = {
+  city?: Maybe<CustomersDocAccessFields_DeliveryData_City>;
+  companyName?: Maybe<CustomersDocAccessFields_DeliveryData_CompanyName>;
+  country?: Maybe<CustomersDocAccessFields_DeliveryData_Country>;
+  postalCode?: Maybe<CustomersDocAccessFields_DeliveryData_PostalCode>;
+  street?: Maybe<CustomersDocAccessFields_DeliveryData_Street>;
+  vatId?: Maybe<CustomersDocAccessFields_DeliveryData_VatId>;
+};
+
+export type CustomersDocAccessFields_DeliveryData_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryData_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryData_City = {
+  create?: Maybe<CustomersDocAccessFields_DeliveryData_City_Create>;
+  delete?: Maybe<CustomersDocAccessFields_DeliveryData_City_Delete>;
+  read?: Maybe<CustomersDocAccessFields_DeliveryData_City_Read>;
+  update?: Maybe<CustomersDocAccessFields_DeliveryData_City_Update>;
+};
+
+export type CustomersDocAccessFields_DeliveryData_City_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryData_City_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryData_City_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryData_City_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryData_CompanyName = {
+  create?: Maybe<CustomersDocAccessFields_DeliveryData_CompanyName_Create>;
+  delete?: Maybe<CustomersDocAccessFields_DeliveryData_CompanyName_Delete>;
+  read?: Maybe<CustomersDocAccessFields_DeliveryData_CompanyName_Read>;
+  update?: Maybe<CustomersDocAccessFields_DeliveryData_CompanyName_Update>;
+};
+
+export type CustomersDocAccessFields_DeliveryData_CompanyName_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryData_CompanyName_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryData_CompanyName_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryData_CompanyName_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryData_Country = {
+  create?: Maybe<CustomersDocAccessFields_DeliveryData_Country_Create>;
+  delete?: Maybe<CustomersDocAccessFields_DeliveryData_Country_Delete>;
+  read?: Maybe<CustomersDocAccessFields_DeliveryData_Country_Read>;
+  update?: Maybe<CustomersDocAccessFields_DeliveryData_Country_Update>;
+};
+
+export type CustomersDocAccessFields_DeliveryData_Country_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryData_Country_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryData_Country_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryData_Country_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryData_PostalCode = {
+  create?: Maybe<CustomersDocAccessFields_DeliveryData_PostalCode_Create>;
+  delete?: Maybe<CustomersDocAccessFields_DeliveryData_PostalCode_Delete>;
+  read?: Maybe<CustomersDocAccessFields_DeliveryData_PostalCode_Read>;
+  update?: Maybe<CustomersDocAccessFields_DeliveryData_PostalCode_Update>;
+};
+
+export type CustomersDocAccessFields_DeliveryData_PostalCode_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryData_PostalCode_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryData_PostalCode_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryData_PostalCode_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryData_Street = {
+  create?: Maybe<CustomersDocAccessFields_DeliveryData_Street_Create>;
+  delete?: Maybe<CustomersDocAccessFields_DeliveryData_Street_Delete>;
+  read?: Maybe<CustomersDocAccessFields_DeliveryData_Street_Read>;
+  update?: Maybe<CustomersDocAccessFields_DeliveryData_Street_Update>;
+};
+
+export type CustomersDocAccessFields_DeliveryData_Street_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryData_Street_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryData_Street_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryData_Street_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryData_VatId = {
+  create?: Maybe<CustomersDocAccessFields_DeliveryData_VatId_Create>;
+  delete?: Maybe<CustomersDocAccessFields_DeliveryData_VatId_Delete>;
+  read?: Maybe<CustomersDocAccessFields_DeliveryData_VatId_Read>;
+  update?: Maybe<CustomersDocAccessFields_DeliveryData_VatId_Update>;
+};
+
+export type CustomersDocAccessFields_DeliveryData_VatId_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryData_VatId_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryData_VatId_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_DeliveryData_VatId_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_Email = {
+  create?: Maybe<CustomersDocAccessFields_Email_Create>;
+  delete?: Maybe<CustomersDocAccessFields_Email_Delete>;
+  read?: Maybe<CustomersDocAccessFields_Email_Read>;
+  update?: Maybe<CustomersDocAccessFields_Email_Update>;
+};
+
+export type CustomersDocAccessFields_Email_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_Email_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_Email_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_Email_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_Orders = {
+  create?: Maybe<CustomersDocAccessFields_Orders_Create>;
+  delete?: Maybe<CustomersDocAccessFields_Orders_Delete>;
+  read?: Maybe<CustomersDocAccessFields_Orders_Read>;
+  update?: Maybe<CustomersDocAccessFields_Orders_Update>;
+};
+
+export type CustomersDocAccessFields_Orders_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_Orders_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_Orders_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_Orders_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_Phone = {
+  create?: Maybe<CustomersDocAccessFields_Phone_Create>;
+  delete?: Maybe<CustomersDocAccessFields_Phone_Delete>;
+  read?: Maybe<CustomersDocAccessFields_Phone_Read>;
+  update?: Maybe<CustomersDocAccessFields_Phone_Update>;
+};
+
+export type CustomersDocAccessFields_Phone_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_Phone_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_Phone_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_Phone_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_RegistrationDate = {
+  create?: Maybe<CustomersDocAccessFields_RegistrationDate_Create>;
+  delete?: Maybe<CustomersDocAccessFields_RegistrationDate_Delete>;
+  read?: Maybe<CustomersDocAccessFields_RegistrationDate_Read>;
+  update?: Maybe<CustomersDocAccessFields_RegistrationDate_Update>;
+};
+
+export type CustomersDocAccessFields_RegistrationDate_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_RegistrationDate_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_RegistrationDate_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_RegistrationDate_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_TotalExpenses = {
+  create?: Maybe<CustomersDocAccessFields_TotalExpenses_Create>;
+  delete?: Maybe<CustomersDocAccessFields_TotalExpenses_Delete>;
+  read?: Maybe<CustomersDocAccessFields_TotalExpenses_Read>;
+  update?: Maybe<CustomersDocAccessFields_TotalExpenses_Update>;
+};
+
+export type CustomersDocAccessFields_TotalExpenses_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_TotalExpenses_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_TotalExpenses_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_TotalExpenses_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_UpdatedAt = {
+  create?: Maybe<CustomersDocAccessFields_UpdatedAt_Create>;
+  delete?: Maybe<CustomersDocAccessFields_UpdatedAt_Delete>;
+  read?: Maybe<CustomersDocAccessFields_UpdatedAt_Read>;
+  update?: Maybe<CustomersDocAccessFields_UpdatedAt_Update>;
+};
+
+export type CustomersDocAccessFields_UpdatedAt_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_UpdatedAt_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_UpdatedAt_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersDocAccessFields_UpdatedAt_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields = {
+  averageOrderValue?: Maybe<CustomersFields_AverageOrderValue>;
+  createdAt?: Maybe<CustomersFields_CreatedAt>;
+  currency?: Maybe<CustomersFields_Currency>;
+  customerName?: Maybe<CustomersFields_CustomerName>;
+  deliveryAddress?: Maybe<CustomersFields_DeliveryAddress>;
+  deliveryData?: Maybe<CustomersFields_DeliveryData>;
+  email?: Maybe<CustomersFields_Email>;
+  orders?: Maybe<CustomersFields_Orders>;
+  phone?: Maybe<CustomersFields_Phone>;
+  registrationDate?: Maybe<CustomersFields_RegistrationDate>;
+  totalExpenses?: Maybe<CustomersFields_TotalExpenses>;
+  updatedAt?: Maybe<CustomersFields_UpdatedAt>;
+};
+
+export type CustomersFields_AverageOrderValue = {
+  create?: Maybe<CustomersFields_AverageOrderValue_Create>;
+  delete?: Maybe<CustomersFields_AverageOrderValue_Delete>;
+  read?: Maybe<CustomersFields_AverageOrderValue_Read>;
+  update?: Maybe<CustomersFields_AverageOrderValue_Update>;
+};
+
+export type CustomersFields_AverageOrderValue_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_AverageOrderValue_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_AverageOrderValue_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_AverageOrderValue_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_CreatedAt = {
+  create?: Maybe<CustomersFields_CreatedAt_Create>;
+  delete?: Maybe<CustomersFields_CreatedAt_Delete>;
+  read?: Maybe<CustomersFields_CreatedAt_Read>;
+  update?: Maybe<CustomersFields_CreatedAt_Update>;
+};
+
+export type CustomersFields_CreatedAt_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_CreatedAt_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_CreatedAt_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_CreatedAt_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_Currency = {
+  create?: Maybe<CustomersFields_Currency_Create>;
+  delete?: Maybe<CustomersFields_Currency_Delete>;
+  read?: Maybe<CustomersFields_Currency_Read>;
+  update?: Maybe<CustomersFields_Currency_Update>;
+};
+
+export type CustomersFields_Currency_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_Currency_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_Currency_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_Currency_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_CustomerName = {
+  create?: Maybe<CustomersFields_CustomerName_Create>;
+  delete?: Maybe<CustomersFields_CustomerName_Delete>;
+  read?: Maybe<CustomersFields_CustomerName_Read>;
+  update?: Maybe<CustomersFields_CustomerName_Update>;
+};
+
+export type CustomersFields_CustomerName_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_CustomerName_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_CustomerName_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_CustomerName_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryAddress = {
+  create?: Maybe<CustomersFields_DeliveryAddress_Create>;
+  delete?: Maybe<CustomersFields_DeliveryAddress_Delete>;
+  fields?: Maybe<CustomersFields_DeliveryAddress_Fields>;
+  read?: Maybe<CustomersFields_DeliveryAddress_Read>;
+  update?: Maybe<CustomersFields_DeliveryAddress_Update>;
+};
+
+export type CustomersFields_DeliveryAddress_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryAddress_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryAddress_Fields = {
+  deliveryCity?: Maybe<CustomersFields_DeliveryAddress_DeliveryCity>;
+  deliveryCountry?: Maybe<CustomersFields_DeliveryAddress_DeliveryCountry>;
+  deliveryPostalCode?: Maybe<CustomersFields_DeliveryAddress_DeliveryPostalCode>;
+  deliveryStreet?: Maybe<CustomersFields_DeliveryAddress_DeliveryStreet>;
+};
+
+export type CustomersFields_DeliveryAddress_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryAddress_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryAddress_DeliveryCity = {
+  create?: Maybe<CustomersFields_DeliveryAddress_DeliveryCity_Create>;
+  delete?: Maybe<CustomersFields_DeliveryAddress_DeliveryCity_Delete>;
+  read?: Maybe<CustomersFields_DeliveryAddress_DeliveryCity_Read>;
+  update?: Maybe<CustomersFields_DeliveryAddress_DeliveryCity_Update>;
+};
+
+export type CustomersFields_DeliveryAddress_DeliveryCity_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryAddress_DeliveryCity_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryAddress_DeliveryCity_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryAddress_DeliveryCity_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryAddress_DeliveryCountry = {
+  create?: Maybe<CustomersFields_DeliveryAddress_DeliveryCountry_Create>;
+  delete?: Maybe<CustomersFields_DeliveryAddress_DeliveryCountry_Delete>;
+  read?: Maybe<CustomersFields_DeliveryAddress_DeliveryCountry_Read>;
+  update?: Maybe<CustomersFields_DeliveryAddress_DeliveryCountry_Update>;
+};
+
+export type CustomersFields_DeliveryAddress_DeliveryCountry_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryAddress_DeliveryCountry_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryAddress_DeliveryCountry_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryAddress_DeliveryCountry_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryAddress_DeliveryPostalCode = {
+  create?: Maybe<CustomersFields_DeliveryAddress_DeliveryPostalCode_Create>;
+  delete?: Maybe<CustomersFields_DeliveryAddress_DeliveryPostalCode_Delete>;
+  read?: Maybe<CustomersFields_DeliveryAddress_DeliveryPostalCode_Read>;
+  update?: Maybe<CustomersFields_DeliveryAddress_DeliveryPostalCode_Update>;
+};
+
+export type CustomersFields_DeliveryAddress_DeliveryPostalCode_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryAddress_DeliveryPostalCode_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryAddress_DeliveryPostalCode_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryAddress_DeliveryPostalCode_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryAddress_DeliveryStreet = {
+  create?: Maybe<CustomersFields_DeliveryAddress_DeliveryStreet_Create>;
+  delete?: Maybe<CustomersFields_DeliveryAddress_DeliveryStreet_Delete>;
+  read?: Maybe<CustomersFields_DeliveryAddress_DeliveryStreet_Read>;
+  update?: Maybe<CustomersFields_DeliveryAddress_DeliveryStreet_Update>;
+};
+
+export type CustomersFields_DeliveryAddress_DeliveryStreet_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryAddress_DeliveryStreet_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryAddress_DeliveryStreet_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryAddress_DeliveryStreet_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryData = {
+  create?: Maybe<CustomersFields_DeliveryData_Create>;
+  delete?: Maybe<CustomersFields_DeliveryData_Delete>;
+  fields?: Maybe<CustomersFields_DeliveryData_Fields>;
+  read?: Maybe<CustomersFields_DeliveryData_Read>;
+  update?: Maybe<CustomersFields_DeliveryData_Update>;
+};
+
+export type CustomersFields_DeliveryData_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryData_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryData_Fields = {
+  city?: Maybe<CustomersFields_DeliveryData_City>;
+  companyName?: Maybe<CustomersFields_DeliveryData_CompanyName>;
+  country?: Maybe<CustomersFields_DeliveryData_Country>;
+  postalCode?: Maybe<CustomersFields_DeliveryData_PostalCode>;
+  street?: Maybe<CustomersFields_DeliveryData_Street>;
+  vatId?: Maybe<CustomersFields_DeliveryData_VatId>;
+};
+
+export type CustomersFields_DeliveryData_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryData_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryData_City = {
+  create?: Maybe<CustomersFields_DeliveryData_City_Create>;
+  delete?: Maybe<CustomersFields_DeliveryData_City_Delete>;
+  read?: Maybe<CustomersFields_DeliveryData_City_Read>;
+  update?: Maybe<CustomersFields_DeliveryData_City_Update>;
+};
+
+export type CustomersFields_DeliveryData_City_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryData_City_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryData_City_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryData_City_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryData_CompanyName = {
+  create?: Maybe<CustomersFields_DeliveryData_CompanyName_Create>;
+  delete?: Maybe<CustomersFields_DeliveryData_CompanyName_Delete>;
+  read?: Maybe<CustomersFields_DeliveryData_CompanyName_Read>;
+  update?: Maybe<CustomersFields_DeliveryData_CompanyName_Update>;
+};
+
+export type CustomersFields_DeliveryData_CompanyName_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryData_CompanyName_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryData_CompanyName_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryData_CompanyName_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryData_Country = {
+  create?: Maybe<CustomersFields_DeliveryData_Country_Create>;
+  delete?: Maybe<CustomersFields_DeliveryData_Country_Delete>;
+  read?: Maybe<CustomersFields_DeliveryData_Country_Read>;
+  update?: Maybe<CustomersFields_DeliveryData_Country_Update>;
+};
+
+export type CustomersFields_DeliveryData_Country_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryData_Country_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryData_Country_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryData_Country_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryData_PostalCode = {
+  create?: Maybe<CustomersFields_DeliveryData_PostalCode_Create>;
+  delete?: Maybe<CustomersFields_DeliveryData_PostalCode_Delete>;
+  read?: Maybe<CustomersFields_DeliveryData_PostalCode_Read>;
+  update?: Maybe<CustomersFields_DeliveryData_PostalCode_Update>;
+};
+
+export type CustomersFields_DeliveryData_PostalCode_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryData_PostalCode_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryData_PostalCode_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryData_PostalCode_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryData_Street = {
+  create?: Maybe<CustomersFields_DeliveryData_Street_Create>;
+  delete?: Maybe<CustomersFields_DeliveryData_Street_Delete>;
+  read?: Maybe<CustomersFields_DeliveryData_Street_Read>;
+  update?: Maybe<CustomersFields_DeliveryData_Street_Update>;
+};
+
+export type CustomersFields_DeliveryData_Street_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryData_Street_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryData_Street_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryData_Street_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryData_VatId = {
+  create?: Maybe<CustomersFields_DeliveryData_VatId_Create>;
+  delete?: Maybe<CustomersFields_DeliveryData_VatId_Delete>;
+  read?: Maybe<CustomersFields_DeliveryData_VatId_Read>;
+  update?: Maybe<CustomersFields_DeliveryData_VatId_Update>;
+};
+
+export type CustomersFields_DeliveryData_VatId_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryData_VatId_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryData_VatId_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_DeliveryData_VatId_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_Email = {
+  create?: Maybe<CustomersFields_Email_Create>;
+  delete?: Maybe<CustomersFields_Email_Delete>;
+  read?: Maybe<CustomersFields_Email_Read>;
+  update?: Maybe<CustomersFields_Email_Update>;
+};
+
+export type CustomersFields_Email_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_Email_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_Email_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_Email_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_Orders = {
+  create?: Maybe<CustomersFields_Orders_Create>;
+  delete?: Maybe<CustomersFields_Orders_Delete>;
+  read?: Maybe<CustomersFields_Orders_Read>;
+  update?: Maybe<CustomersFields_Orders_Update>;
+};
+
+export type CustomersFields_Orders_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_Orders_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_Orders_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_Orders_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_Phone = {
+  create?: Maybe<CustomersFields_Phone_Create>;
+  delete?: Maybe<CustomersFields_Phone_Delete>;
+  read?: Maybe<CustomersFields_Phone_Read>;
+  update?: Maybe<CustomersFields_Phone_Update>;
+};
+
+export type CustomersFields_Phone_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_Phone_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_Phone_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_Phone_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_RegistrationDate = {
+  create?: Maybe<CustomersFields_RegistrationDate_Create>;
+  delete?: Maybe<CustomersFields_RegistrationDate_Delete>;
+  read?: Maybe<CustomersFields_RegistrationDate_Read>;
+  update?: Maybe<CustomersFields_RegistrationDate_Update>;
+};
+
+export type CustomersFields_RegistrationDate_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_RegistrationDate_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_RegistrationDate_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_RegistrationDate_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_TotalExpenses = {
+  create?: Maybe<CustomersFields_TotalExpenses_Create>;
+  delete?: Maybe<CustomersFields_TotalExpenses_Delete>;
+  read?: Maybe<CustomersFields_TotalExpenses_Read>;
+  update?: Maybe<CustomersFields_TotalExpenses_Update>;
+};
+
+export type CustomersFields_TotalExpenses_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_TotalExpenses_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_TotalExpenses_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_TotalExpenses_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_UpdatedAt = {
+  create?: Maybe<CustomersFields_UpdatedAt_Create>;
+  delete?: Maybe<CustomersFields_UpdatedAt_Delete>;
+  read?: Maybe<CustomersFields_UpdatedAt_Read>;
+  update?: Maybe<CustomersFields_UpdatedAt_Update>;
+};
+
+export type CustomersFields_UpdatedAt_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_UpdatedAt_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_UpdatedAt_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersFields_UpdatedAt_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type CustomersReadAccess = {
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type CustomersReadDocAccess = {
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type CustomersUpdateAccess = {
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type CustomersUpdateDocAccess = {
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
 
 export type Media = {
   alt?: Maybe<Scalars['String']['output']>;
@@ -2552,6 +4026,7 @@ export type Media_Width_Operator = {
 };
 
 export type Mutation = {
+  createCustomer?: Maybe<Customer>;
   createMedia?: Maybe<Media>;
   createOrder?: Maybe<Order>;
   createOrderItem?: Maybe<OrderItem>;
@@ -2559,6 +4034,7 @@ export type Mutation = {
   createProduct?: Maybe<Product>;
   createReview?: Maybe<Review>;
   createUser?: Maybe<User>;
+  deleteCustomer?: Maybe<Customer>;
   deleteMedia?: Maybe<Media>;
   deleteOrder?: Maybe<Order>;
   deleteOrderItem?: Maybe<OrderItem>;
@@ -2572,6 +4048,7 @@ export type Mutation = {
   refreshTokenUser?: Maybe<UsersRefreshedUser>;
   resetPasswordUser?: Maybe<UsersResetPassword>;
   unlockUser: Scalars['Boolean']['output'];
+  updateCustomer?: Maybe<Customer>;
   updateMedia?: Maybe<Media>;
   updateOrder?: Maybe<Order>;
   updateOrderItem?: Maybe<OrderItem>;
@@ -2580,6 +4057,12 @@ export type Mutation = {
   updateReview?: Maybe<Review>;
   updateUser?: Maybe<User>;
   verifyEmailUser?: Maybe<Scalars['Boolean']['output']>;
+};
+
+
+export type MutationCreateCustomerArgs = {
+  data: MutationCustomerInput;
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -2622,6 +4105,11 @@ export type MutationCreateReviewArgs = {
 export type MutationCreateUserArgs = {
   data: MutationUserInput;
   draft?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type MutationDeleteCustomerArgs = {
+  id: Scalars['Int']['input'];
 };
 
 
@@ -2689,6 +4177,14 @@ export type MutationUnlockUserArgs = {
 };
 
 
+export type MutationUpdateCustomerArgs = {
+  autosave?: InputMaybe<Scalars['Boolean']['input']>;
+  data: MutationCustomerUpdateInput;
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  id: Scalars['Int']['input'];
+};
+
+
 export type MutationUpdateMediaArgs = {
   autosave?: InputMaybe<Scalars['Boolean']['input']>;
   data: MutationMediaUpdateInput;
@@ -2750,6 +4246,8 @@ export type MutationVerifyEmailUserArgs = {
 };
 
 export type Order = {
+  address?: Maybe<Order_Address>;
+  billingDetails?: Maybe<Order_BillingDetails>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   email?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
@@ -3281,6 +4779,139 @@ export type OrderItemsUpdateDocAccess = {
   where?: Maybe<Scalars['JSONObject']['output']>;
 };
 
+export type Order_Address = {
+  deliveryAddress?: Maybe<Order_Address_DeliveryAddress>;
+};
+
+export type Order_Address_DeliveryAddress = {
+  deliveryCity?: Maybe<Scalars['String']['output']>;
+  deliveryCountry?: Maybe<Scalars['String']['output']>;
+  deliveryPostalCode?: Maybe<Scalars['String']['output']>;
+  deliveryStreet?: Maybe<Scalars['String']['output']>;
+};
+
+export type Order_BillingDetails = {
+  deliveryData?: Maybe<Order_BillingDetails_DeliveryData>;
+};
+
+export type Order_BillingDetails_DeliveryData = {
+  city?: Maybe<Scalars['String']['output']>;
+  companyName?: Maybe<Scalars['String']['output']>;
+  country?: Maybe<Scalars['String']['output']>;
+  postalCode?: Maybe<Scalars['String']['output']>;
+  street?: Maybe<Scalars['String']['output']>;
+  vatId?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Order_Address__DeliveryAddress__DeliveryCity_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Order_Address__DeliveryAddress__DeliveryCountry_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Order_Address__DeliveryAddress__DeliveryPostalCode_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Order_Address__DeliveryAddress__DeliveryStreet_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Order_BillingDetails__DeliveryData__City_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Order_BillingDetails__DeliveryData__CompanyName_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Order_BillingDetails__DeliveryData__Country_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Order_BillingDetails__DeliveryData__PostalCode_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Order_BillingDetails__DeliveryData__Street_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Order_BillingDetails__DeliveryData__VatId_Operator = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Float']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  less_than?: InputMaybe<Scalars['Float']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  not_equals?: InputMaybe<Scalars['Float']['input']>;
+};
+
 export type Order_CreatedAt_Operator = {
   equals?: InputMaybe<Scalars['DateTime']['input']>;
   exists?: InputMaybe<Scalars['Boolean']['input']>;
@@ -3367,6 +4998,16 @@ export type Order_UpdatedAt_Operator = {
 export type Order_Where = {
   AND?: InputMaybe<Array<InputMaybe<Order_Where_And>>>;
   OR?: InputMaybe<Array<InputMaybe<Order_Where_Or>>>;
+  address__deliveryAddress__deliveryCity?: InputMaybe<Order_Address__DeliveryAddress__DeliveryCity_Operator>;
+  address__deliveryAddress__deliveryCountry?: InputMaybe<Order_Address__DeliveryAddress__DeliveryCountry_Operator>;
+  address__deliveryAddress__deliveryPostalCode?: InputMaybe<Order_Address__DeliveryAddress__DeliveryPostalCode_Operator>;
+  address__deliveryAddress__deliveryStreet?: InputMaybe<Order_Address__DeliveryAddress__DeliveryStreet_Operator>;
+  billingDetails__deliveryData__city?: InputMaybe<Order_BillingDetails__DeliveryData__City_Operator>;
+  billingDetails__deliveryData__companyName?: InputMaybe<Order_BillingDetails__DeliveryData__CompanyName_Operator>;
+  billingDetails__deliveryData__country?: InputMaybe<Order_BillingDetails__DeliveryData__Country_Operator>;
+  billingDetails__deliveryData__postalCode?: InputMaybe<Order_BillingDetails__DeliveryData__PostalCode_Operator>;
+  billingDetails__deliveryData__street?: InputMaybe<Order_BillingDetails__DeliveryData__Street_Operator>;
+  billingDetails__deliveryData__vatId?: InputMaybe<Order_BillingDetails__DeliveryData__VatId_Operator>;
   createdAt?: InputMaybe<Order_CreatedAt_Operator>;
   email?: InputMaybe<Order_Email_Operator>;
   id?: InputMaybe<Order_Id_Operator>;
@@ -3379,6 +5020,16 @@ export type Order_Where = {
 export type Order_Where_And = {
   AND?: InputMaybe<Array<InputMaybe<Order_Where_And>>>;
   OR?: InputMaybe<Array<InputMaybe<Order_Where_Or>>>;
+  address__deliveryAddress__deliveryCity?: InputMaybe<Order_Address__DeliveryAddress__DeliveryCity_Operator>;
+  address__deliveryAddress__deliveryCountry?: InputMaybe<Order_Address__DeliveryAddress__DeliveryCountry_Operator>;
+  address__deliveryAddress__deliveryPostalCode?: InputMaybe<Order_Address__DeliveryAddress__DeliveryPostalCode_Operator>;
+  address__deliveryAddress__deliveryStreet?: InputMaybe<Order_Address__DeliveryAddress__DeliveryStreet_Operator>;
+  billingDetails__deliveryData__city?: InputMaybe<Order_BillingDetails__DeliveryData__City_Operator>;
+  billingDetails__deliveryData__companyName?: InputMaybe<Order_BillingDetails__DeliveryData__CompanyName_Operator>;
+  billingDetails__deliveryData__country?: InputMaybe<Order_BillingDetails__DeliveryData__Country_Operator>;
+  billingDetails__deliveryData__postalCode?: InputMaybe<Order_BillingDetails__DeliveryData__PostalCode_Operator>;
+  billingDetails__deliveryData__street?: InputMaybe<Order_BillingDetails__DeliveryData__Street_Operator>;
+  billingDetails__deliveryData__vatId?: InputMaybe<Order_BillingDetails__DeliveryData__VatId_Operator>;
   createdAt?: InputMaybe<Order_CreatedAt_Operator>;
   email?: InputMaybe<Order_Email_Operator>;
   id?: InputMaybe<Order_Id_Operator>;
@@ -3391,6 +5042,16 @@ export type Order_Where_And = {
 export type Order_Where_Or = {
   AND?: InputMaybe<Array<InputMaybe<Order_Where_And>>>;
   OR?: InputMaybe<Array<InputMaybe<Order_Where_Or>>>;
+  address__deliveryAddress__deliveryCity?: InputMaybe<Order_Address__DeliveryAddress__DeliveryCity_Operator>;
+  address__deliveryAddress__deliveryCountry?: InputMaybe<Order_Address__DeliveryAddress__DeliveryCountry_Operator>;
+  address__deliveryAddress__deliveryPostalCode?: InputMaybe<Order_Address__DeliveryAddress__DeliveryPostalCode_Operator>;
+  address__deliveryAddress__deliveryStreet?: InputMaybe<Order_Address__DeliveryAddress__DeliveryStreet_Operator>;
+  billingDetails__deliveryData__city?: InputMaybe<Order_BillingDetails__DeliveryData__City_Operator>;
+  billingDetails__deliveryData__companyName?: InputMaybe<Order_BillingDetails__DeliveryData__CompanyName_Operator>;
+  billingDetails__deliveryData__country?: InputMaybe<Order_BillingDetails__DeliveryData__Country_Operator>;
+  billingDetails__deliveryData__postalCode?: InputMaybe<Order_BillingDetails__DeliveryData__PostalCode_Operator>;
+  billingDetails__deliveryData__street?: InputMaybe<Order_BillingDetails__DeliveryData__Street_Operator>;
+  billingDetails__deliveryData__vatId?: InputMaybe<Order_BillingDetails__DeliveryData__VatId_Operator>;
   createdAt?: InputMaybe<Order_CreatedAt_Operator>;
   email?: InputMaybe<Order_Email_Operator>;
   id?: InputMaybe<Order_Id_Operator>;
@@ -3436,6 +5097,8 @@ export type OrdersDeleteDocAccess = {
 
 export type OrdersDocAccessFields = {
   createdAt?: Maybe<OrdersDocAccessFields_CreatedAt>;
+  deliveryAddress?: Maybe<OrdersDocAccessFields_DeliveryAddress>;
+  deliveryData?: Maybe<OrdersDocAccessFields_DeliveryData>;
   email?: Maybe<OrdersDocAccessFields_Email>;
   status?: Maybe<OrdersDocAccessFields_Status>;
   stripeCheckoutID?: Maybe<OrdersDocAccessFields_StripeCheckoutId>;
@@ -3463,6 +5126,300 @@ export type OrdersDocAccessFields_CreatedAt_Read = {
 };
 
 export type OrdersDocAccessFields_CreatedAt_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryAddress = {
+  create?: Maybe<OrdersDocAccessFields_DeliveryAddress_Create>;
+  delete?: Maybe<OrdersDocAccessFields_DeliveryAddress_Delete>;
+  fields?: Maybe<OrdersDocAccessFields_DeliveryAddress_Fields>;
+  read?: Maybe<OrdersDocAccessFields_DeliveryAddress_Read>;
+  update?: Maybe<OrdersDocAccessFields_DeliveryAddress_Update>;
+};
+
+export type OrdersDocAccessFields_DeliveryAddress_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryAddress_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryAddress_Fields = {
+  deliveryCity?: Maybe<OrdersDocAccessFields_DeliveryAddress_DeliveryCity>;
+  deliveryCountry?: Maybe<OrdersDocAccessFields_DeliveryAddress_DeliveryCountry>;
+  deliveryPostalCode?: Maybe<OrdersDocAccessFields_DeliveryAddress_DeliveryPostalCode>;
+  deliveryStreet?: Maybe<OrdersDocAccessFields_DeliveryAddress_DeliveryStreet>;
+};
+
+export type OrdersDocAccessFields_DeliveryAddress_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryAddress_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryAddress_DeliveryCity = {
+  create?: Maybe<OrdersDocAccessFields_DeliveryAddress_DeliveryCity_Create>;
+  delete?: Maybe<OrdersDocAccessFields_DeliveryAddress_DeliveryCity_Delete>;
+  read?: Maybe<OrdersDocAccessFields_DeliveryAddress_DeliveryCity_Read>;
+  update?: Maybe<OrdersDocAccessFields_DeliveryAddress_DeliveryCity_Update>;
+};
+
+export type OrdersDocAccessFields_DeliveryAddress_DeliveryCity_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryAddress_DeliveryCity_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryAddress_DeliveryCity_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryAddress_DeliveryCity_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryAddress_DeliveryCountry = {
+  create?: Maybe<OrdersDocAccessFields_DeliveryAddress_DeliveryCountry_Create>;
+  delete?: Maybe<OrdersDocAccessFields_DeliveryAddress_DeliveryCountry_Delete>;
+  read?: Maybe<OrdersDocAccessFields_DeliveryAddress_DeliveryCountry_Read>;
+  update?: Maybe<OrdersDocAccessFields_DeliveryAddress_DeliveryCountry_Update>;
+};
+
+export type OrdersDocAccessFields_DeliveryAddress_DeliveryCountry_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryAddress_DeliveryCountry_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryAddress_DeliveryCountry_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryAddress_DeliveryCountry_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryAddress_DeliveryPostalCode = {
+  create?: Maybe<OrdersDocAccessFields_DeliveryAddress_DeliveryPostalCode_Create>;
+  delete?: Maybe<OrdersDocAccessFields_DeliveryAddress_DeliveryPostalCode_Delete>;
+  read?: Maybe<OrdersDocAccessFields_DeliveryAddress_DeliveryPostalCode_Read>;
+  update?: Maybe<OrdersDocAccessFields_DeliveryAddress_DeliveryPostalCode_Update>;
+};
+
+export type OrdersDocAccessFields_DeliveryAddress_DeliveryPostalCode_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryAddress_DeliveryPostalCode_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryAddress_DeliveryPostalCode_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryAddress_DeliveryPostalCode_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryAddress_DeliveryStreet = {
+  create?: Maybe<OrdersDocAccessFields_DeliveryAddress_DeliveryStreet_Create>;
+  delete?: Maybe<OrdersDocAccessFields_DeliveryAddress_DeliveryStreet_Delete>;
+  read?: Maybe<OrdersDocAccessFields_DeliveryAddress_DeliveryStreet_Read>;
+  update?: Maybe<OrdersDocAccessFields_DeliveryAddress_DeliveryStreet_Update>;
+};
+
+export type OrdersDocAccessFields_DeliveryAddress_DeliveryStreet_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryAddress_DeliveryStreet_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryAddress_DeliveryStreet_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryAddress_DeliveryStreet_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryData = {
+  create?: Maybe<OrdersDocAccessFields_DeliveryData_Create>;
+  delete?: Maybe<OrdersDocAccessFields_DeliveryData_Delete>;
+  fields?: Maybe<OrdersDocAccessFields_DeliveryData_Fields>;
+  read?: Maybe<OrdersDocAccessFields_DeliveryData_Read>;
+  update?: Maybe<OrdersDocAccessFields_DeliveryData_Update>;
+};
+
+export type OrdersDocAccessFields_DeliveryData_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryData_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryData_Fields = {
+  city?: Maybe<OrdersDocAccessFields_DeliveryData_City>;
+  companyName?: Maybe<OrdersDocAccessFields_DeliveryData_CompanyName>;
+  country?: Maybe<OrdersDocAccessFields_DeliveryData_Country>;
+  postalCode?: Maybe<OrdersDocAccessFields_DeliveryData_PostalCode>;
+  street?: Maybe<OrdersDocAccessFields_DeliveryData_Street>;
+  vatId?: Maybe<OrdersDocAccessFields_DeliveryData_VatId>;
+};
+
+export type OrdersDocAccessFields_DeliveryData_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryData_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryData_City = {
+  create?: Maybe<OrdersDocAccessFields_DeliveryData_City_Create>;
+  delete?: Maybe<OrdersDocAccessFields_DeliveryData_City_Delete>;
+  read?: Maybe<OrdersDocAccessFields_DeliveryData_City_Read>;
+  update?: Maybe<OrdersDocAccessFields_DeliveryData_City_Update>;
+};
+
+export type OrdersDocAccessFields_DeliveryData_City_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryData_City_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryData_City_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryData_City_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryData_CompanyName = {
+  create?: Maybe<OrdersDocAccessFields_DeliveryData_CompanyName_Create>;
+  delete?: Maybe<OrdersDocAccessFields_DeliveryData_CompanyName_Delete>;
+  read?: Maybe<OrdersDocAccessFields_DeliveryData_CompanyName_Read>;
+  update?: Maybe<OrdersDocAccessFields_DeliveryData_CompanyName_Update>;
+};
+
+export type OrdersDocAccessFields_DeliveryData_CompanyName_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryData_CompanyName_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryData_CompanyName_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryData_CompanyName_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryData_Country = {
+  create?: Maybe<OrdersDocAccessFields_DeliveryData_Country_Create>;
+  delete?: Maybe<OrdersDocAccessFields_DeliveryData_Country_Delete>;
+  read?: Maybe<OrdersDocAccessFields_DeliveryData_Country_Read>;
+  update?: Maybe<OrdersDocAccessFields_DeliveryData_Country_Update>;
+};
+
+export type OrdersDocAccessFields_DeliveryData_Country_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryData_Country_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryData_Country_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryData_Country_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryData_PostalCode = {
+  create?: Maybe<OrdersDocAccessFields_DeliveryData_PostalCode_Create>;
+  delete?: Maybe<OrdersDocAccessFields_DeliveryData_PostalCode_Delete>;
+  read?: Maybe<OrdersDocAccessFields_DeliveryData_PostalCode_Read>;
+  update?: Maybe<OrdersDocAccessFields_DeliveryData_PostalCode_Update>;
+};
+
+export type OrdersDocAccessFields_DeliveryData_PostalCode_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryData_PostalCode_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryData_PostalCode_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryData_PostalCode_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryData_Street = {
+  create?: Maybe<OrdersDocAccessFields_DeliveryData_Street_Create>;
+  delete?: Maybe<OrdersDocAccessFields_DeliveryData_Street_Delete>;
+  read?: Maybe<OrdersDocAccessFields_DeliveryData_Street_Read>;
+  update?: Maybe<OrdersDocAccessFields_DeliveryData_Street_Update>;
+};
+
+export type OrdersDocAccessFields_DeliveryData_Street_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryData_Street_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryData_Street_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryData_Street_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryData_VatId = {
+  create?: Maybe<OrdersDocAccessFields_DeliveryData_VatId_Create>;
+  delete?: Maybe<OrdersDocAccessFields_DeliveryData_VatId_Delete>;
+  read?: Maybe<OrdersDocAccessFields_DeliveryData_VatId_Read>;
+  update?: Maybe<OrdersDocAccessFields_DeliveryData_VatId_Update>;
+};
+
+export type OrdersDocAccessFields_DeliveryData_VatId_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryData_VatId_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryData_VatId_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersDocAccessFields_DeliveryData_VatId_Update = {
   permission: Scalars['Boolean']['output'];
 };
 
@@ -3583,6 +5540,8 @@ export type OrdersDocAccessFields_UpdatedAt_Update = {
 
 export type OrdersFields = {
   createdAt?: Maybe<OrdersFields_CreatedAt>;
+  deliveryAddress?: Maybe<OrdersFields_DeliveryAddress>;
+  deliveryData?: Maybe<OrdersFields_DeliveryData>;
   email?: Maybe<OrdersFields_Email>;
   status?: Maybe<OrdersFields_Status>;
   stripeCheckoutID?: Maybe<OrdersFields_StripeCheckoutId>;
@@ -3610,6 +5569,300 @@ export type OrdersFields_CreatedAt_Read = {
 };
 
 export type OrdersFields_CreatedAt_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryAddress = {
+  create?: Maybe<OrdersFields_DeliveryAddress_Create>;
+  delete?: Maybe<OrdersFields_DeliveryAddress_Delete>;
+  fields?: Maybe<OrdersFields_DeliveryAddress_Fields>;
+  read?: Maybe<OrdersFields_DeliveryAddress_Read>;
+  update?: Maybe<OrdersFields_DeliveryAddress_Update>;
+};
+
+export type OrdersFields_DeliveryAddress_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryAddress_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryAddress_Fields = {
+  deliveryCity?: Maybe<OrdersFields_DeliveryAddress_DeliveryCity>;
+  deliveryCountry?: Maybe<OrdersFields_DeliveryAddress_DeliveryCountry>;
+  deliveryPostalCode?: Maybe<OrdersFields_DeliveryAddress_DeliveryPostalCode>;
+  deliveryStreet?: Maybe<OrdersFields_DeliveryAddress_DeliveryStreet>;
+};
+
+export type OrdersFields_DeliveryAddress_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryAddress_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryAddress_DeliveryCity = {
+  create?: Maybe<OrdersFields_DeliveryAddress_DeliveryCity_Create>;
+  delete?: Maybe<OrdersFields_DeliveryAddress_DeliveryCity_Delete>;
+  read?: Maybe<OrdersFields_DeliveryAddress_DeliveryCity_Read>;
+  update?: Maybe<OrdersFields_DeliveryAddress_DeliveryCity_Update>;
+};
+
+export type OrdersFields_DeliveryAddress_DeliveryCity_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryAddress_DeliveryCity_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryAddress_DeliveryCity_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryAddress_DeliveryCity_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryAddress_DeliveryCountry = {
+  create?: Maybe<OrdersFields_DeliveryAddress_DeliveryCountry_Create>;
+  delete?: Maybe<OrdersFields_DeliveryAddress_DeliveryCountry_Delete>;
+  read?: Maybe<OrdersFields_DeliveryAddress_DeliveryCountry_Read>;
+  update?: Maybe<OrdersFields_DeliveryAddress_DeliveryCountry_Update>;
+};
+
+export type OrdersFields_DeliveryAddress_DeliveryCountry_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryAddress_DeliveryCountry_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryAddress_DeliveryCountry_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryAddress_DeliveryCountry_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryAddress_DeliveryPostalCode = {
+  create?: Maybe<OrdersFields_DeliveryAddress_DeliveryPostalCode_Create>;
+  delete?: Maybe<OrdersFields_DeliveryAddress_DeliveryPostalCode_Delete>;
+  read?: Maybe<OrdersFields_DeliveryAddress_DeliveryPostalCode_Read>;
+  update?: Maybe<OrdersFields_DeliveryAddress_DeliveryPostalCode_Update>;
+};
+
+export type OrdersFields_DeliveryAddress_DeliveryPostalCode_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryAddress_DeliveryPostalCode_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryAddress_DeliveryPostalCode_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryAddress_DeliveryPostalCode_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryAddress_DeliveryStreet = {
+  create?: Maybe<OrdersFields_DeliveryAddress_DeliveryStreet_Create>;
+  delete?: Maybe<OrdersFields_DeliveryAddress_DeliveryStreet_Delete>;
+  read?: Maybe<OrdersFields_DeliveryAddress_DeliveryStreet_Read>;
+  update?: Maybe<OrdersFields_DeliveryAddress_DeliveryStreet_Update>;
+};
+
+export type OrdersFields_DeliveryAddress_DeliveryStreet_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryAddress_DeliveryStreet_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryAddress_DeliveryStreet_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryAddress_DeliveryStreet_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryData = {
+  create?: Maybe<OrdersFields_DeliveryData_Create>;
+  delete?: Maybe<OrdersFields_DeliveryData_Delete>;
+  fields?: Maybe<OrdersFields_DeliveryData_Fields>;
+  read?: Maybe<OrdersFields_DeliveryData_Read>;
+  update?: Maybe<OrdersFields_DeliveryData_Update>;
+};
+
+export type OrdersFields_DeliveryData_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryData_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryData_Fields = {
+  city?: Maybe<OrdersFields_DeliveryData_City>;
+  companyName?: Maybe<OrdersFields_DeliveryData_CompanyName>;
+  country?: Maybe<OrdersFields_DeliveryData_Country>;
+  postalCode?: Maybe<OrdersFields_DeliveryData_PostalCode>;
+  street?: Maybe<OrdersFields_DeliveryData_Street>;
+  vatId?: Maybe<OrdersFields_DeliveryData_VatId>;
+};
+
+export type OrdersFields_DeliveryData_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryData_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryData_City = {
+  create?: Maybe<OrdersFields_DeliveryData_City_Create>;
+  delete?: Maybe<OrdersFields_DeliveryData_City_Delete>;
+  read?: Maybe<OrdersFields_DeliveryData_City_Read>;
+  update?: Maybe<OrdersFields_DeliveryData_City_Update>;
+};
+
+export type OrdersFields_DeliveryData_City_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryData_City_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryData_City_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryData_City_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryData_CompanyName = {
+  create?: Maybe<OrdersFields_DeliveryData_CompanyName_Create>;
+  delete?: Maybe<OrdersFields_DeliveryData_CompanyName_Delete>;
+  read?: Maybe<OrdersFields_DeliveryData_CompanyName_Read>;
+  update?: Maybe<OrdersFields_DeliveryData_CompanyName_Update>;
+};
+
+export type OrdersFields_DeliveryData_CompanyName_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryData_CompanyName_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryData_CompanyName_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryData_CompanyName_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryData_Country = {
+  create?: Maybe<OrdersFields_DeliveryData_Country_Create>;
+  delete?: Maybe<OrdersFields_DeliveryData_Country_Delete>;
+  read?: Maybe<OrdersFields_DeliveryData_Country_Read>;
+  update?: Maybe<OrdersFields_DeliveryData_Country_Update>;
+};
+
+export type OrdersFields_DeliveryData_Country_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryData_Country_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryData_Country_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryData_Country_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryData_PostalCode = {
+  create?: Maybe<OrdersFields_DeliveryData_PostalCode_Create>;
+  delete?: Maybe<OrdersFields_DeliveryData_PostalCode_Delete>;
+  read?: Maybe<OrdersFields_DeliveryData_PostalCode_Read>;
+  update?: Maybe<OrdersFields_DeliveryData_PostalCode_Update>;
+};
+
+export type OrdersFields_DeliveryData_PostalCode_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryData_PostalCode_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryData_PostalCode_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryData_PostalCode_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryData_Street = {
+  create?: Maybe<OrdersFields_DeliveryData_Street_Create>;
+  delete?: Maybe<OrdersFields_DeliveryData_Street_Delete>;
+  read?: Maybe<OrdersFields_DeliveryData_Street_Read>;
+  update?: Maybe<OrdersFields_DeliveryData_Street_Update>;
+};
+
+export type OrdersFields_DeliveryData_Street_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryData_Street_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryData_Street_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryData_Street_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryData_VatId = {
+  create?: Maybe<OrdersFields_DeliveryData_VatId_Create>;
+  delete?: Maybe<OrdersFields_DeliveryData_VatId_Delete>;
+  read?: Maybe<OrdersFields_DeliveryData_VatId_Read>;
+  update?: Maybe<OrdersFields_DeliveryData_VatId_Update>;
+};
+
+export type OrdersFields_DeliveryData_VatId_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryData_VatId_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryData_VatId_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type OrdersFields_DeliveryData_VatId_Update = {
   permission: Scalars['Boolean']['output'];
 };
 
@@ -5311,6 +7564,8 @@ export type ProductsUpdateDocAccess = {
 
 export type Query = {
   Access?: Maybe<Access>;
+  Customer?: Maybe<Customer>;
+  Customers?: Maybe<Customers>;
   Media?: Maybe<Media>;
   Order?: Maybe<Order>;
   OrderItem?: Maybe<OrderItem>;
@@ -5325,6 +7580,7 @@ export type Query = {
   User?: Maybe<User>;
   Users?: Maybe<Users>;
   allMedia?: Maybe<AllMedia>;
+  docAccessCustomer?: Maybe<CustomersDocAccess>;
   docAccessMedia?: Maybe<MediaDocAccess>;
   docAccessOrder?: Maybe<OrdersDocAccess>;
   docAccessOrderItem?: Maybe<OrderItemsDocAccess>;
@@ -5334,6 +7590,21 @@ export type Query = {
   docAccessUser?: Maybe<UsersDocAccess>;
   initializedUser?: Maybe<Scalars['Boolean']['output']>;
   meUser?: Maybe<UsersMe>;
+};
+
+
+export type QueryCustomerArgs = {
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  id: Scalars['Int']['input'];
+};
+
+
+export type QueryCustomersArgs = {
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  where?: InputMaybe<Customer_Where>;
 };
 
 
@@ -5439,6 +7710,11 @@ export type QueryAllMediaArgs = {
   page?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
   where?: InputMaybe<Media_Where>;
+};
+
+
+export type QueryDocAccessCustomerArgs = {
+  id: Scalars['Int']['input'];
 };
 
 
@@ -6389,6 +8665,22 @@ export type AllMedia = {
   totalPages?: Maybe<Scalars['Int']['output']>;
 };
 
+export type CustomersAccess = {
+  create?: Maybe<CustomersCreateAccess>;
+  delete?: Maybe<CustomersDeleteAccess>;
+  fields?: Maybe<CustomersFields>;
+  read?: Maybe<CustomersReadAccess>;
+  update?: Maybe<CustomersUpdateAccess>;
+};
+
+export type CustomersDocAccess = {
+  create?: Maybe<CustomersCreateDocAccess>;
+  delete?: Maybe<CustomersDeleteDocAccess>;
+  fields?: Maybe<CustomersDocAccessFields>;
+  read?: Maybe<CustomersReadDocAccess>;
+  update?: Maybe<CustomersUpdateDocAccess>;
+};
+
 export type MediaAccess = {
   create?: Maybe<MediaCreateAccess>;
   delete?: Maybe<MediaDeleteAccess>;
@@ -6403,6 +8695,84 @@ export type MediaDocAccess = {
   fields?: Maybe<MediaDocAccessFields>;
   read?: Maybe<MediaReadDocAccess>;
   update?: Maybe<MediaUpdateDocAccess>;
+};
+
+export type MutationCustomerInput = {
+  address?: InputMaybe<MutationCustomer_AddressInput>;
+  averageOrderValue?: InputMaybe<Scalars['Float']['input']>;
+  billingDetails?: InputMaybe<MutationCustomer_BillingDetailsInput>;
+  createdAt?: InputMaybe<Scalars['String']['input']>;
+  currency?: InputMaybe<Scalars['String']['input']>;
+  customerName: Scalars['String']['input'];
+  email: Scalars['String']['input'];
+  orders?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  phone?: InputMaybe<Scalars['String']['input']>;
+  registrationDate?: InputMaybe<Scalars['String']['input']>;
+  totalExpenses?: InputMaybe<Scalars['Float']['input']>;
+  updatedAt?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type MutationCustomerUpdateInput = {
+  address?: InputMaybe<MutationCustomerUpdate_AddressInput>;
+  averageOrderValue?: InputMaybe<Scalars['Float']['input']>;
+  billingDetails?: InputMaybe<MutationCustomerUpdate_BillingDetailsInput>;
+  createdAt?: InputMaybe<Scalars['String']['input']>;
+  currency?: InputMaybe<Scalars['String']['input']>;
+  customerName?: InputMaybe<Scalars['String']['input']>;
+  email?: InputMaybe<Scalars['String']['input']>;
+  orders?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  phone?: InputMaybe<Scalars['String']['input']>;
+  registrationDate?: InputMaybe<Scalars['String']['input']>;
+  totalExpenses?: InputMaybe<Scalars['Float']['input']>;
+  updatedAt?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type MutationCustomerUpdate_AddressInput = {
+  deliveryAddress?: InputMaybe<MutationCustomerUpdate_Address_DeliveryAddressInput>;
+};
+
+export type MutationCustomerUpdate_Address_DeliveryAddressInput = {
+  deliveryCity?: InputMaybe<Scalars['String']['input']>;
+  deliveryCountry?: InputMaybe<Scalars['String']['input']>;
+  deliveryPostalCode?: InputMaybe<Scalars['String']['input']>;
+  deliveryStreet?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type MutationCustomerUpdate_BillingDetailsInput = {
+  deliveryData?: InputMaybe<MutationCustomerUpdate_BillingDetails_DeliveryDataInput>;
+};
+
+export type MutationCustomerUpdate_BillingDetails_DeliveryDataInput = {
+  city?: InputMaybe<Scalars['String']['input']>;
+  companyName?: InputMaybe<Scalars['String']['input']>;
+  country?: InputMaybe<Scalars['String']['input']>;
+  postalCode?: InputMaybe<Scalars['String']['input']>;
+  street?: InputMaybe<Scalars['String']['input']>;
+  vatId?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type MutationCustomer_AddressInput = {
+  deliveryAddress?: InputMaybe<MutationCustomer_Address_DeliveryAddressInput>;
+};
+
+export type MutationCustomer_Address_DeliveryAddressInput = {
+  deliveryCity?: InputMaybe<Scalars['String']['input']>;
+  deliveryCountry?: InputMaybe<Scalars['String']['input']>;
+  deliveryPostalCode?: InputMaybe<Scalars['String']['input']>;
+  deliveryStreet?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type MutationCustomer_BillingDetailsInput = {
+  deliveryData?: InputMaybe<MutationCustomer_BillingDetails_DeliveryDataInput>;
+};
+
+export type MutationCustomer_BillingDetails_DeliveryDataInput = {
+  city?: InputMaybe<Scalars['String']['input']>;
+  companyName?: InputMaybe<Scalars['String']['input']>;
+  country?: InputMaybe<Scalars['String']['input']>;
+  postalCode?: InputMaybe<Scalars['String']['input']>;
+  street?: InputMaybe<Scalars['String']['input']>;
+  vatId?: InputMaybe<Scalars['Float']['input']>;
 };
 
 export type MutationMediaInput = {
@@ -6520,6 +8890,8 @@ export type MutationMedia_Sizes_ThumbnailInput = {
 };
 
 export type MutationOrderInput = {
+  address?: InputMaybe<MutationOrder_AddressInput>;
+  billingDetails?: InputMaybe<MutationOrder_BillingDetailsInput>;
   createdAt?: InputMaybe<Scalars['String']['input']>;
   email?: InputMaybe<Scalars['String']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
@@ -6549,12 +8921,62 @@ export type MutationOrderItemUpdateInput = {
 };
 
 export type MutationOrderUpdateInput = {
+  address?: InputMaybe<MutationOrderUpdate_AddressInput>;
+  billingDetails?: InputMaybe<MutationOrderUpdate_BillingDetailsInput>;
   createdAt?: InputMaybe<Scalars['String']['input']>;
   email?: InputMaybe<Scalars['String']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
   stripeCheckoutID?: InputMaybe<Scalars['String']['input']>;
   totalAmount?: InputMaybe<Scalars['Float']['input']>;
   updatedAt?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type MutationOrderUpdate_AddressInput = {
+  deliveryAddress?: InputMaybe<MutationOrderUpdate_Address_DeliveryAddressInput>;
+};
+
+export type MutationOrderUpdate_Address_DeliveryAddressInput = {
+  deliveryCity?: InputMaybe<Scalars['String']['input']>;
+  deliveryCountry?: InputMaybe<Scalars['String']['input']>;
+  deliveryPostalCode?: InputMaybe<Scalars['String']['input']>;
+  deliveryStreet?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type MutationOrderUpdate_BillingDetailsInput = {
+  deliveryData?: InputMaybe<MutationOrderUpdate_BillingDetails_DeliveryDataInput>;
+};
+
+export type MutationOrderUpdate_BillingDetails_DeliveryDataInput = {
+  city?: InputMaybe<Scalars['String']['input']>;
+  companyName?: InputMaybe<Scalars['String']['input']>;
+  country?: InputMaybe<Scalars['String']['input']>;
+  postalCode?: InputMaybe<Scalars['String']['input']>;
+  street?: InputMaybe<Scalars['String']['input']>;
+  vatId?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type MutationOrder_AddressInput = {
+  deliveryAddress?: InputMaybe<MutationOrder_Address_DeliveryAddressInput>;
+};
+
+export type MutationOrder_Address_DeliveryAddressInput = {
+  deliveryCity?: InputMaybe<Scalars['String']['input']>;
+  deliveryCountry?: InputMaybe<Scalars['String']['input']>;
+  deliveryPostalCode?: InputMaybe<Scalars['String']['input']>;
+  deliveryStreet?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type MutationOrder_BillingDetailsInput = {
+  deliveryData?: InputMaybe<MutationOrder_BillingDetails_DeliveryDataInput>;
+};
+
+export type MutationOrder_BillingDetails_DeliveryDataInput = {
+  city?: InputMaybe<Scalars['String']['input']>;
+  companyName?: InputMaybe<Scalars['String']['input']>;
+  country?: InputMaybe<Scalars['String']['input']>;
+  postalCode?: InputMaybe<Scalars['String']['input']>;
+  street?: InputMaybe<Scalars['String']['input']>;
+  vatId?: InputMaybe<Scalars['Float']['input']>;
 };
 
 export type MutationPayloadPreferenceInput = {
@@ -6831,6 +9253,71 @@ export type CartRemoveItemMutationVariables = Exact<{
 
 export type CartRemoveItemMutation = { deleteOrderItem?: { id?: number | null } | null };
 
+export type CartUpdateMutationVariables = Exact<{
+  cartId: Scalars['Int']['input'];
+  status: Scalars['String']['input'];
+  stripeCheckoutId: Scalars['String']['input'];
+  email: Scalars['String']['input'];
+  totalAmount?: InputMaybe<Scalars['Float']['input']>;
+  address?: InputMaybe<MutationOrderUpdate_AddressInput>;
+  billingDetails?: InputMaybe<MutationOrderUpdate_BillingDetailsInput>;
+}>;
+
+
+export type CartUpdateMutation = { updateOrder?: { id?: number | null, status?: Order_Status | null, totalAmount: number, email?: string | null, address?: { deliveryAddress?: { deliveryCity?: string | null, deliveryCountry?: string | null, deliveryPostalCode?: string | null, deliveryStreet?: string | null } | null } | null, billingDetails?: { deliveryData?: { street?: string | null, postalCode?: string | null, city?: string | null, country?: string | null, companyName?: string | null, vatId?: number | null } | null } | null } | null };
+
+export type CustomerBillingDetailsFragment = { deliveryData?: { street?: string | null, postalCode?: string | null, city?: string | null, country?: string | null, companyName?: string | null, vatId?: number | null } | null };
+
+export type CustomerCreateMutationVariables = Exact<{
+  customerName: Scalars['String']['input'];
+  registrationDate: Scalars['String']['input'];
+  email: Scalars['String']['input'];
+  orders?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
+  totalExpenses?: InputMaybe<Scalars['Float']['input']>;
+  averageOrderValue?: InputMaybe<Scalars['Float']['input']>;
+  currency?: InputMaybe<Scalars['String']['input']>;
+  phone?: InputMaybe<Scalars['String']['input']>;
+  address: MutationCustomer_AddressInput;
+  billingDetails: MutationCustomer_BillingDetailsInput;
+}>;
+
+
+export type CustomerCreateMutation = { createCustomer?: { id?: number | null, email: unknown } | null };
+
+export type CustomerDeliveryAddressFragment = { deliveryAddress?: { deliveryCity?: string | null, deliveryCountry?: string | null, deliveryPostalCode?: string | null, deliveryStreet?: string | null } | null };
+
+export type CustomerFullFragment = { customerName: string, registrationDate?: unknown | null, phone?: string | null, totalExpenses?: number | null, averageOrderValue?: number | null, currency?: string | null, id?: number | null, email: unknown, address?: { deliveryAddress?: { deliveryCity?: string | null, deliveryCountry?: string | null, deliveryPostalCode?: string | null, deliveryStreet?: string | null } | null } | null, billingDetails?: { deliveryData?: { street?: string | null, postalCode?: string | null, city?: string | null, country?: string | null, companyName?: string | null, vatId?: number | null } | null } | null, orders?: Array<{ id?: number | null, status?: Order_Status | null }> | null };
+
+export type CustomerShortFragment = { id?: number | null, email: unknown };
+
+export type CustomerUpdateMutationVariables = Exact<{
+  customerId: Scalars['Int']['input'];
+  customerName?: InputMaybe<Scalars['String']['input']>;
+  registrationDate?: InputMaybe<Scalars['String']['input']>;
+  email?: InputMaybe<Scalars['String']['input']>;
+  orders?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
+  totalExpenses?: InputMaybe<Scalars['Float']['input']>;
+  averageOrderValue?: InputMaybe<Scalars['Float']['input']>;
+  currency?: InputMaybe<Scalars['String']['input']>;
+  phone?: InputMaybe<Scalars['String']['input']>;
+  address?: InputMaybe<MutationCustomerUpdate_AddressInput>;
+  billingDetails?: InputMaybe<MutationCustomerUpdate_BillingDetailsInput>;
+}>;
+
+
+export type CustomerUpdateMutation = { updateCustomer?: { customerName: string, registrationDate?: unknown | null, phone?: string | null, totalExpenses?: number | null, averageOrderValue?: number | null, currency?: string | null, id?: number | null, email: unknown, address?: { deliveryAddress?: { deliveryCity?: string | null, deliveryCountry?: string | null, deliveryPostalCode?: string | null, deliveryStreet?: string | null } | null } | null, billingDetails?: { deliveryData?: { street?: string | null, postalCode?: string | null, city?: string | null, country?: string | null, companyName?: string | null, vatId?: number | null } | null } | null, orders?: Array<{ id?: number | null, status?: Order_Status | null }> | null } | null };
+
+export type CustomersGetListQueryVariables = Exact<{
+  email?: InputMaybe<Scalars['EmailAddress']['input']>;
+}>;
+
+
+export type CustomersGetListQuery = { Customers?: { docs?: Array<{ customerName: string, registrationDate?: unknown | null, phone?: string | null, totalExpenses?: number | null, averageOrderValue?: number | null, currency?: string | null, id?: number | null, email: unknown, address?: { deliveryAddress?: { deliveryCity?: string | null, deliveryCountry?: string | null, deliveryPostalCode?: string | null, deliveryStreet?: string | null } | null } | null, billingDetails?: { deliveryData?: { street?: string | null, postalCode?: string | null, city?: string | null, country?: string | null, companyName?: string | null, vatId?: number | null } | null } | null, orders?: Array<{ id?: number | null, status?: Order_Status | null }> | null } | null> | null } | null };
+
+export type OrderBillingDetailsFragment = { deliveryData?: { street?: string | null, postalCode?: string | null, city?: string | null, country?: string | null, companyName?: string | null, vatId?: number | null } | null };
+
+export type OrderDeliveryAddressFragment = { deliveryAddress?: { deliveryCity?: string | null, deliveryCountry?: string | null, deliveryPostalCode?: string | null, deliveryStreet?: string | null } | null };
+
 export type ProductContentFullFragment = { id?: number | null, name: string, slug: string, price: number, image: { alt?: string | null, url?: string | null, height?: number | null, width?: number | null }, variants: Array<{ id?: string | null, isDefault?: boolean | null, sku: string, blockName?: string | null, blockType?: string | null, items?: Array<{ id?: string | null, color?: Array<Color_Color> | null, blockName?: string | null, blockType?: string | null } | { id?: string | null, shape?: Shape_Shape | null, blockName?: string | null, blockType?: string | null } | { id?: string | null, size?: Size_Size | null, blockName?: string | null, blockType?: string | null }> | null }> };
 
 export type ProductGetByIdQueryVariables = Exact<{
@@ -6863,6 +9350,98 @@ export class TypedDocumentString<TResult, TVariables>
     return this.value;
   }
 }
+export const CustomerShortFragmentDoc = new TypedDocumentString(`
+    fragment CustomerShort on Customer {
+  id
+  email
+}
+    `, {"fragmentName":"CustomerShort"}) as unknown as TypedDocumentString<CustomerShortFragment, unknown>;
+export const CustomerDeliveryAddressFragmentDoc = new TypedDocumentString(`
+    fragment CustomerDeliveryAddress on Customer_Address {
+  deliveryAddress {
+    deliveryCity
+    deliveryCountry
+    deliveryPostalCode
+    deliveryStreet
+  }
+}
+    `, {"fragmentName":"CustomerDeliveryAddress"}) as unknown as TypedDocumentString<CustomerDeliveryAddressFragment, unknown>;
+export const CustomerBillingDetailsFragmentDoc = new TypedDocumentString(`
+    fragment CustomerBillingDetails on Customer_BillingDetails {
+  deliveryData {
+    street
+    postalCode
+    city
+    country
+    companyName
+    vatId
+  }
+}
+    `, {"fragmentName":"CustomerBillingDetails"}) as unknown as TypedDocumentString<CustomerBillingDetailsFragment, unknown>;
+export const CustomerFullFragmentDoc = new TypedDocumentString(`
+    fragment CustomerFull on Customer {
+  ...CustomerShort
+  customerName
+  registrationDate
+  phone
+  address {
+    ...CustomerDeliveryAddress
+  }
+  billingDetails {
+    ...CustomerBillingDetails
+  }
+  orders {
+    id
+    status
+  }
+  totalExpenses
+  averageOrderValue
+  currency
+}
+    fragment CustomerBillingDetails on Customer_BillingDetails {
+  deliveryData {
+    street
+    postalCode
+    city
+    country
+    companyName
+    vatId
+  }
+}
+fragment CustomerDeliveryAddress on Customer_Address {
+  deliveryAddress {
+    deliveryCity
+    deliveryCountry
+    deliveryPostalCode
+    deliveryStreet
+  }
+}
+fragment CustomerShort on Customer {
+  id
+  email
+}`, {"fragmentName":"CustomerFull"}) as unknown as TypedDocumentString<CustomerFullFragment, unknown>;
+export const OrderBillingDetailsFragmentDoc = new TypedDocumentString(`
+    fragment OrderBillingDetails on Order_BillingDetails {
+  deliveryData {
+    street
+    postalCode
+    city
+    country
+    companyName
+    vatId
+  }
+}
+    `, {"fragmentName":"OrderBillingDetails"}) as unknown as TypedDocumentString<OrderBillingDetailsFragment, unknown>;
+export const OrderDeliveryAddressFragmentDoc = new TypedDocumentString(`
+    fragment OrderDeliveryAddress on Order_Address {
+  deliveryAddress {
+    deliveryCity
+    deliveryCountry
+    deliveryPostalCode
+    deliveryStreet
+  }
+}
+    `, {"fragmentName":"OrderDeliveryAddress"}) as unknown as TypedDocumentString<OrderDeliveryAddressFragment, unknown>;
 export const ProductGetMediaItemFragmentDoc = new TypedDocumentString(`
     fragment ProductGetMediaItem on Media {
   alt
@@ -7022,6 +9601,153 @@ export const CartRemoveItemDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<CartRemoveItemMutation, CartRemoveItemMutationVariables>;
+export const CartUpdateDocument = new TypedDocumentString(`
+    mutation CartUpdate($cartId: Int!, $status: String!, $stripeCheckoutId: String!, $email: String!, $totalAmount: Float, $address: mutationOrderUpdate_AddressInput, $billingDetails: mutationOrderUpdate_BillingDetailsInput) {
+  updateOrder(
+    id: $cartId
+    data: {status: $status, stripeCheckoutID: $stripeCheckoutId, totalAmount: $totalAmount, email: $email, address: $address, billingDetails: $billingDetails}
+  ) {
+    id
+    status
+    totalAmount
+    email
+    address {
+      ...OrderDeliveryAddress
+    }
+    billingDetails {
+      ...OrderBillingDetails
+    }
+  }
+}
+    fragment OrderBillingDetails on Order_BillingDetails {
+  deliveryData {
+    street
+    postalCode
+    city
+    country
+    companyName
+    vatId
+  }
+}
+fragment OrderDeliveryAddress on Order_Address {
+  deliveryAddress {
+    deliveryCity
+    deliveryCountry
+    deliveryPostalCode
+    deliveryStreet
+  }
+}`) as unknown as TypedDocumentString<CartUpdateMutation, CartUpdateMutationVariables>;
+export const CustomerCreateDocument = new TypedDocumentString(`
+    mutation CustomerCreate($customerName: String!, $registrationDate: String!, $email: String!, $orders: [Int], $totalExpenses: Float = 0, $averageOrderValue: Float = 0, $currency: String = "PLN", $phone: String = "", $address: mutationCustomer_AddressInput!, $billingDetails: mutationCustomer_BillingDetailsInput!) {
+  createCustomer(
+    data: {customerName: $customerName, registrationDate: $registrationDate, email: $email, orders: $orders, totalExpenses: $totalExpenses, averageOrderValue: $averageOrderValue, currency: $currency, phone: $phone, address: $address, billingDetails: $billingDetails}
+  ) {
+    ...CustomerShort
+  }
+}
+    fragment CustomerShort on Customer {
+  id
+  email
+}`) as unknown as TypedDocumentString<CustomerCreateMutation, CustomerCreateMutationVariables>;
+export const CustomerUpdateDocument = new TypedDocumentString(`
+    mutation CustomerUpdate($customerId: Int!, $customerName: String, $registrationDate: String, $email: String, $orders: [Int], $totalExpenses: Float = 0, $averageOrderValue: Float = 0, $currency: String = "PLN", $phone: String = "", $address: mutationCustomerUpdate_AddressInput, $billingDetails: mutationCustomerUpdate_BillingDetailsInput) {
+  updateCustomer(
+    id: $customerId
+    data: {customerName: $customerName, registrationDate: $registrationDate, email: $email, orders: $orders, totalExpenses: $totalExpenses, averageOrderValue: $averageOrderValue, currency: $currency, phone: $phone, address: $address, billingDetails: $billingDetails}
+  ) {
+    ...CustomerFull
+  }
+}
+    fragment CustomerBillingDetails on Customer_BillingDetails {
+  deliveryData {
+    street
+    postalCode
+    city
+    country
+    companyName
+    vatId
+  }
+}
+fragment CustomerDeliveryAddress on Customer_Address {
+  deliveryAddress {
+    deliveryCity
+    deliveryCountry
+    deliveryPostalCode
+    deliveryStreet
+  }
+}
+fragment CustomerFull on Customer {
+  ...CustomerShort
+  customerName
+  registrationDate
+  phone
+  address {
+    ...CustomerDeliveryAddress
+  }
+  billingDetails {
+    ...CustomerBillingDetails
+  }
+  orders {
+    id
+    status
+  }
+  totalExpenses
+  averageOrderValue
+  currency
+}
+fragment CustomerShort on Customer {
+  id
+  email
+}`) as unknown as TypedDocumentString<CustomerUpdateMutation, CustomerUpdateMutationVariables>;
+export const CustomersGetListDocument = new TypedDocumentString(`
+    query CustomersGetList($email: EmailAddress) {
+  Customers(where: {email: {equals: $email}}) {
+    docs {
+      ...CustomerFull
+    }
+  }
+}
+    fragment CustomerBillingDetails on Customer_BillingDetails {
+  deliveryData {
+    street
+    postalCode
+    city
+    country
+    companyName
+    vatId
+  }
+}
+fragment CustomerDeliveryAddress on Customer_Address {
+  deliveryAddress {
+    deliveryCity
+    deliveryCountry
+    deliveryPostalCode
+    deliveryStreet
+  }
+}
+fragment CustomerFull on Customer {
+  ...CustomerShort
+  customerName
+  registrationDate
+  phone
+  address {
+    ...CustomerDeliveryAddress
+  }
+  billingDetails {
+    ...CustomerBillingDetails
+  }
+  orders {
+    id
+    status
+  }
+  totalExpenses
+  averageOrderValue
+  currency
+}
+fragment CustomerShort on Customer {
+  id
+  email
+}`) as unknown as TypedDocumentString<CustomersGetListQuery, CustomersGetListQueryVariables>;
 export const ProductGetByIdDocument = new TypedDocumentString(`
     query ProductGetById($id: Int!) {
   Product(id: $id) {

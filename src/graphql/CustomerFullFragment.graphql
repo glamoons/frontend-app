@@ -1,0 +1,19 @@
+fragment CustomerFull on Customer {
+	...CustomerShort
+	customerName
+	registrationDate
+	phone
+	address {
+		...CustomerDeliveryAddress
+	}
+	billingDetails {
+		...CustomerBillingDetails
+	}
+	orders {
+		id
+		status
+	}
+	totalExpenses
+	averageOrderValue
+	currency
+}

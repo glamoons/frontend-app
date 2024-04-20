@@ -1,0 +1,8 @@
+fragment CustomerDeliveryAddress on Customer_Address {
+	deliveryAddress {
+		deliveryCity
+		deliveryCountry
+		deliveryPostalCode
+		deliveryStreet
+	}
+}

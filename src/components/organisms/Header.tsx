@@ -7,15 +7,15 @@ import { usePathname, useRouter } from "next/navigation";
 import { useMemo, useState, type ReactNode } from "react";
 import { SubmitButton } from "../atoms/SubmitButton";
 import { EmptyCart } from "../molecules/EmptyCart";
-import { CartItemInfo } from "./CartItemInfo";
-import { ShoppingCart } from "./ShoppingCart";
 import { CartItemAmount } from "./CartItemAmount";
+import { CartItemInfo } from "./CartItemInfo";
 import { useNavigationContext } from "@/app/providers/navigation-provider";
 import { LogoDark } from "@/assets/logo/LogoDark";
 import { LogoLight } from "@/assets/logo/LogoLight";
 import { Badge } from "@/components/atoms/Badge";
 import { MobileMenuHandler } from "@/components/atoms/MobileMenuHandler";
 import { SecondaryButton } from "@/components/atoms/SecondaryButton";
+import { ShoppingCart } from "@/components/molecules/ShoppingCart";
 import {
 	Dialog,
 	DialogClose,
@@ -25,16 +25,15 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from "@/components/ui/dialog";
+import { deliveryFee } from "@/config/config";
 import {
-	type OrderItem,
-	type CartGetItemsByCartIdQuery,
 	type Color,
+	type OrderItem,
 	type Shape,
 	type Size,
 	type Variant,
 } from "@/gql/graphql";
 import { calculateTotalPrice, cn, formatMoney } from "@/lib/utils";
-import { deliveryFee } from "@/config/config";
 
 export const Header = ({
 	children,
@@ -43,7 +42,7 @@ export const Header = ({
 }: {
 	children: ReactNode;
 	quantity: number;
-	cartItems: CartGetItemsByCartIdQuery["OrderItems"];
+	cartItems: OrderItem[];
 }) => {
 	const { setIsOpen, isOpen } = useNavigationContext();
 	const [dialogOpen, setDialogOpen] = useState(false);
@@ -51,7 +50,7 @@ export const Header = ({
 	const pathname = usePathname();
 
 	const totalPrice = useMemo(() => {
-		return calculateTotalPrice(cartItems?.docs as OrderItem[]);
+		return calculateTotalPrice(cartItems);
 	}, [cartItems]);
 
 	return (
@@ -92,12 +91,12 @@ export const Header = ({
 							<div
 								className={cn(
 									"mt-10 space-y-5",
-									!cartItems?.docs?.length &&
+									!cartItems.length &&
 										"mt-0 flex h-full flex-col justify-center",
 								)}
 							>
-								{cartItems && cartItems.docs && cartItems.docs.length > 0 ? (
-									cartItems.docs.map((item) => {
+								{cartItems && cartItems.length > 0 ? (
+									cartItems.map((item) => {
 										const productVariant = item?.product.variants.find(
 											(variant) => variant.id === item?.productVariantId,
 										) as Variant;
@@ -113,7 +112,7 @@ export const Header = ({
 											(attribute) => attribute.blockType === "shape",
 										) as Shape;
 
-										const cartItem = item as OrderItem;
+										const cartItem = item;
 										return (
 											<div
 												key={item?.id}
@@ -147,7 +146,7 @@ export const Header = ({
 								)}
 							</div>
 						</div>
-						{cartItems && cartItems.docs && cartItems.docs.length > 0 ? (
+						{cartItems && cartItems.length > 0 ? (
 							<DialogFooter className="flex flex-col justify-end">
 								<hr className="my-5 h-px border-0 bg-primaryLight" />
 								<div className="space-y-3">

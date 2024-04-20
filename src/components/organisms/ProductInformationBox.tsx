@@ -4,6 +4,7 @@ import {
 	IconCalendarClock,
 	IconShieldChevron,
 } from "@tabler/icons-react";
+import NextImage from "next/image";
 import { cn } from "@/lib/utils";
 
 export const ProductInformationBox = () => {
@@ -73,11 +74,50 @@ export const ProductInformationBox = () => {
 							<IconShieldChevron size={24} className="text-secondary" />
 							<div className="flex flex-col">
 								<p className="text-xs font-semibold text-secondary tablet:text-sm">
-									Dodatkowa gwarancja
+									Szybkie i bezpieczne płatności
 								</p>
-								<p className="text-xs font-normal text-secondary">
-									Na terenie całej Polski
-								</p>
+								<div className="flex flex-row items-center space-x-2">
+									<NextImage
+										priority
+										src="/images/visa.svg"
+										alt="visa"
+										width={24}
+										height={24}
+										className="h-auto w-auto"
+									/>
+									<NextImage
+										priority
+										src="/images/mastercard.svg"
+										alt="mastercard"
+										width={24}
+										height={24}
+										className="h-auto w-auto"
+									/>
+									<NextImage
+										priority
+										src="/images/blik.svg"
+										alt="blik"
+										width={24}
+										height={24}
+										className="h-auto w-auto"
+									/>
+									<NextImage
+										priority
+										src="/images/przelewy.svg"
+										alt="przelewy24"
+										width={32}
+										height={24}
+										className="h-auto w-auto"
+									/>
+									<NextImage
+										priority
+										src="/images/applepay.svg"
+										alt="applepay"
+										width={24}
+										height={24}
+										className="h-auto w-auto"
+									/>
+								</div>
 							</div>
 						</div>
 					</div>

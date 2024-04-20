@@ -1,4 +1,5 @@
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import { executeQuery } from "./api/api-config";
 import {
 	CartAddItemDocument,
@@ -7,7 +8,11 @@ import {
 	CartGetByIdDocument,
 	CartGetItemsByCartIdDocument,
 	CartRemoveItemDocument,
+	type OrderItem,
 	ProductGetByIdDocument,
+	CartUpdateDocument,
+	type Order_Address,
+	type Order_BillingDetails,
 } from "@/gql/graphql";
 
 export const getOrCreateCart = async () => {
@@ -134,11 +139,63 @@ export const updateCartItem = async ({
 	});
 };
 
-export const removeCartitem = async ({ itemId }: { itemId: number }) => {
+export const removeCartItem = async ({ itemId }: { itemId: number }) => {
 	return executeQuery({
 		query: CartRemoveItemDocument,
 		variables: {
 			itemId,
+		},
+		next: {
+			tags: ["cart"],
+		},
+		cache: "no-store",
+	});
+};
+
+export const getCart = async () => {
+	const cartId = cookies().get("cartId")?.value;
+
+	const { OrderItems: cart } = await getProductItemsFromCart({
+		cartId: Number(cartId),
+	});
+
+	if (!cart) {
+		redirect("/");
+	}
+
+	return {
+		id: cartId,
+		items: (cart.docs as OrderItem[]) || [],
+	};
+};
+
+export const cartUpdate = async ({
+	cartId,
+	status,
+	stripeCheckoutId,
+	email,
+	totalAmount,
+	address,
+	billingDetails,
+}: {
+	cartId: number;
+	status: string;
+	stripeCheckoutId: string;
+	email: string;
+	totalAmount: number;
+	address: Order_Address;
+	billingDetails: Order_BillingDetails;
+}) => {
+	return executeQuery({
+		query: CartUpdateDocument,
+		variables: {
+			cartId,
+			status,
+			stripeCheckoutId,
+			email,
+			totalAmount,
+			address,
+			billingDetails,
 		},
 		next: {
 			tags: ["cart"],

@@ -1,7 +1,7 @@
 "use client";
 
 import { IconTrash } from "@tabler/icons-react";
-import { removeItem } from "./actions";
+import { removeItem } from "../../app/cart/actions";
 import { Button } from "@/components/ui/button";
 
 export const RemoveProductFromCart = ({ itemId }: { itemId: number }) => {

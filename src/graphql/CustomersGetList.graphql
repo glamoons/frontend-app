@@ -1,0 +1,7 @@
+query CustomersGetList($email: EmailAddress) {
+	Customers(where: { email: { equals: $email } }) {
+		docs {
+			...CustomerFull
+		}
+	}
+}

@@ -1,8 +1,8 @@
 import { revalidateTag } from "next/cache";
 import NextImage from "next/image";
 import { notFound, redirect } from "next/navigation";
-import { AddToCartButton } from "./AddToCartButton";
-import { SelectProductVariant } from "./SelectProductVariant";
+import { AddToCartButton } from "@/components/organisms/AddToCartButton";
+import { SelectProductVariant } from "@/components/organisms/SelectProductVariant";
 import { DefaultText } from "@/components/atoms/DefaultText";
 import { Label } from "@/components/atoms/Label";
 import { ProductInformationBox } from "@/components/organisms/ProductInformationBox";

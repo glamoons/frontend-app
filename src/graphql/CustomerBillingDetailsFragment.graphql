@@ -1,0 +1,10 @@
+fragment CustomerBillingDetails on Customer_BillingDetails {
+	deliveryData {
+		street
+		postalCode
+		city
+		country
+		companyName
+		vatId
+	}
+}

@@ -2,6 +2,16 @@ services:
   next-app:
     image: 242912/next-app:latest
     container_name: next-app
+    env_file:
+      - .env.production
+    environment:
+      GRAPHQL_URL: ${GRAPHQL_URL}
+      NEXT_PUBLIC_BASE_URL: ${NEXT_PUBLIC_BASE_URL}
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
+      STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET}
+    volumes:
+      - ./.env.production:/app/.env.production
+    command: sh -c "stripe listen --forward-to https://dev.glamoons.com/api/webhook/stripe"
     restart: always
     ports:
       - 3000:3000

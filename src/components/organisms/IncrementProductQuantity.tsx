@@ -1,7 +1,7 @@
 "use client";
 import { IconMinus, IconPlus } from "@tabler/icons-react";
 import { useOptimistic } from "react";
-import { changeItemQuantity } from "./actions";
+import { changeItemQuantity } from "../../app/cart/actions";
 import { Button } from "@/components/ui/button";
 
 type IncrementProductQuantityProps = {
