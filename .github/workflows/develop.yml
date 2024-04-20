@@ -53,10 +53,26 @@ jobs:
           name: deployment-configuration
       - name: Deploy to VPS
         shell: bash
+        env:
+          GRAPHQL_URL: ${{ secrets.GRAPHQL_URL }}
+          NEXT_PUBLIC_BASE_URL: ${{ secrets.NEXT_PUBLIC_BASE_URL }}
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
         run: |
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
+
+
+          # Create an environment file
+          echo "GRAPHQL_URL=$GRAPHQL_URL" > .env.production
+          echo "NEXT_PUBLIC_BASE_URL=$NEXT_PUBLIC_BASE_URL" >> .env.production
+          echo "STRIPE_SECRET_KEY=$STRIPE_SECRET_KEY" >> .env.production
+          echo "STRIPE_WEBHOOK_SECRET=$STRIPE_WEBHOOK_SECRET" >> .env.production
+          # ... append other environment variables ...
+
+          # Transfer the environment file and Docker Compose file to VPS
+          scp -o StrictHostKeyChecking=no -P $SSH_PORT .env.production $SSH_USER@$SSH_HOST:~
 
           scp -o StrictHostKeyChecking=no -P $SSH_PORT docker-compose-dev-web.yaml $SSH_USER@$SSH_HOST:docker-compose-dev-web.yaml
           ssh -o StrictHostKeyChecking=no -p $SSH_PORT $SSH_USER@$SSH_HOST docker compose -f docker-compose-dev-web.yaml pull
