@@ -11,7 +11,6 @@ services:
       STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET}
     volumes:
       - ./.env.production:/app/.env.production
-    command: sh -c "stripe listen --forward-to https://dev.glamoons.com/api/webhook/stripe"
     restart: always
     ports:
       - 3000:3000
