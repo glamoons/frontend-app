@@ -39,11 +39,11 @@ jobs:
           STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
         with:
           context: .
-          args: |
-            --build-arg GRAPHQL_URL=${{ secrets.GRAPHQL_URL }}
-            --build-arg NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }}
-            --build-arg STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_KEY }}
-            --build-arg STRIPE_WEBHOOK_SECRET=${{ secrets.STRIPE_WEBHOOK_SECRET }}
+          build-args: |
+            "GRAPHQL_URL=${{ secrets.GRAPHQL_URL }}"
+            "NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }}"
+            "STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_KEY }}"
+            "STRIPE_WEBHOOK_SECRET=${{ secrets.STRIPE_WEBHOOK_SECRET }}"
           file: ./prod.Dockerfile
           push: true
           tags: ${{ env.DOCKER_HUB_REPOSITORY }}:latest
