@@ -10,7 +10,7 @@ services:
       STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
       STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET}
     volumes:
-      - ./.env:/app/.env
+      - ./.env.production:/app/.env
     restart: always
     ports:
       - 3000:3000
