@@ -40,10 +40,10 @@ jobs:
         with:
           context: .
           build-args: |
-            "GRAPHQL_URL=${{ secrets.GRAPHQL_URL }}"
+            "NEXT_PUBLIC_GRAPHQL_URL=${{ secrets.GRAPHQL_URL }}"
             "NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }}"
-            "STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_KEY }}"
-            "STRIPE_WEBHOOK_SECRET=${{ secrets.STRIPE_WEBHOOK_SECRET }}"
+            "NEXT_PUBLIC_STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_KEY }}"
+            "NEXT_PUBLIC_STRIPE_WEBHOOK_SECRET=${{ secrets.STRIPE_WEBHOOK_SECRET }}"
           file: ./prod.Dockerfile
           push: true
           tags: ${{ env.DOCKER_HUB_REPOSITORY }}:latest
@@ -64,10 +64,10 @@ jobs:
       - name: Deploy to VPS
         shell: bash
         env:
-          GRAPHQL_URL: ${{ secrets.GRAPHQL_URL }}
+          NEXT_PUBLIC_GRAPHQL_URL: ${{ secrets.GRAPHQL_URL }}
           NEXT_PUBLIC_BASE_URL: ${{ secrets.NEXT_PUBLIC_BASE_URL }}
-          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
-          STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
+          NEXT_PUBLIC_STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          NEXT_PUBLIC_STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
         run: |
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
@@ -75,10 +75,10 @@ jobs:
 
 
           # Create an environment file
-          echo "GRAPHQL_URL=$GRAPHQL_URL" > .env.production
+          echo "NEXT_PUBLIC_GRAPHQL_URL=$NEXT_PUBLIC_GRAPHQL_URL" > .env.production
           echo "NEXT_PUBLIC_BASE_URL=$NEXT_PUBLIC_BASE_URL" >> .env.production
-          echo "STRIPE_SECRET_KEY=$STRIPE_SECRET_KEY" >> .env.production
-          echo "STRIPE_WEBHOOK_SECRET=$STRIPE_WEBHOOK_SECRET" >> .env.production
+          echo "NEXT_PUBLIC_STRIPE_SECRET_KEY=$NEXT_PUBLIC_STRIPE_SECRET_KEY" >> .env.production
+          echo "NEXT_PUBLIC_STRIPE_WEBHOOK_SECRET=$NEXT_PUBLIC_STRIPE_WEBHOOK_SECRET" >> .env.production
           # ... append other environment variables ...
 
           # Transfer the environment file and Docker Compose file to VPS
