@@ -30,11 +30,11 @@ export const removeItem = async (itemId: number) => {
 };
 
 export const handleStripePaymentAction = async () => {
-	if (!process.env.STRIPE_SECRET_KEY) {
+	if (!process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY) {
 		throw new Error("Missing STRIPE_SECRET_KEY env variable");
 	}
 
-	const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+	const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY, {
 		apiVersion: "2024-04-10",
 		typescript: true,
 	});
@@ -123,8 +123,8 @@ export const handleStripePaymentAction = async () => {
 				},
 			},
 		],
-		success_url: `http://localhost:3000/cart/success?sessionId={CHECKOUT_SESSION_ID}`,
-		cancel_url: `http://localhost:3000/cart`,
+		success_url: `https://dev.glamoons.com/cart/success?sessionId={CHECKOUT_SESSION_ID}`,
+		cancel_url: `https://dev.glamoons.com/cart`,
 	});
 	if (session.url) {
 		cookies().set("cartId", "");

@@ -6,14 +6,14 @@ import { cartUpdate } from "@/services/cartApi";
 import { createCustomer } from "@/services/customerApi";
 
 export async function POST(request: NextRequest): Promise<Response> {
-	if (!process.env.STRIPE_WEBHOOK_SECRET) {
+	if (!process.env.NEXT_PUBLIC_STRIPE_WEBHOOK_SECRET) {
 		return new Response("No webhook secret", { status: 500 });
 	}
-	if (!process.env.STRIPE_SECRET_KEY) {
+	if (!process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY) {
 		throw new Error("Missing STRIPE_SECRET_KEY env variable");
 	}
 
-	const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+	const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY, {
 		apiVersion: "2024-04-10",
 		typescript: true,
 	});
@@ -26,7 +26,7 @@ export async function POST(request: NextRequest): Promise<Response> {
 	const event = stripe.webhooks.constructEvent(
 		await request.text(),
 		signature,
-		process.env.STRIPE_WEBHOOK_SECRET,
+		process.env.NEXT_PUBLIC_STRIPE_WEBHOOK_SECRET,
 	) as Stripe.DiscriminatedEvent;
 
 	switch (event.type) {
