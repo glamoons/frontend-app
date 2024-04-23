@@ -45,3 +45,42 @@ export const executeQuery = async <TResult, TVariables>({
 
 	return grapqlResponse.data;
 };
+
+export const executeNewsletterApi = async ({
+	resource,
+	method,
+	body,
+}: {
+	resource: string;
+	method: string;
+	body: BodyInit | null | undefined;
+}) => {
+	if (
+		!process.env.NEXT_PUBLIC_BREVO_API_SECRET &&
+		!process.env.NEXT_PUBLIC_BREVO_API_BASE_URL
+	) {
+		throw TypeError(
+			"NEXT_PUBLIC_BREVO_API_SECRET or NEXT_PUBLIC_BREVO_API_BASE_URL is not defined",
+		);
+	}
+	const url = `${process.env.NEXT_PUBLIC_BREVO_API_BASE_URL}/${resource}`;
+	const response = await fetch(url, {
+		method,
+		body,
+		headers: {
+			"Content-Type": "application/json",
+			"api-key": process.env.NEXT_PUBLIC_BREVO_API_SECRET || "",
+		},
+	});
+	const data = (await response.json()) as {
+		error: string | null;
+		message: string | null;
+		id: string;
+	};
+
+	if (data.error) {
+		throw new Error(data.error);
+	}
+
+	return data;
+};

@@ -56,15 +56,19 @@ export default async function SingleProductPage({
 		(attribute) => attribute.id === searchParams.vId,
 	);
 
-	const productColorAttributes = productVariantAtrributes?.items?.find(
+	if (!productVariantAtrributes) {
+		throw notFound();
+	}
+
+	const productColorAttributes = productVariantAtrributes.items?.find(
 		(attribute) => attribute.blockType === "color",
 	) as Color;
 
-	const productSizeAttributes = productVariantAtrributes?.items?.find(
+	const productSizeAttributes = productVariantAtrributes.items?.find(
 		(attribute) => attribute.blockType === "size",
 	) as Size;
 
-	const productShapeAttributes = productVariantAtrributes?.items?.find(
+	const productShapeAttributes = productVariantAtrributes.items?.find(
 		(attribute) => attribute.blockType === "shape",
 	) as Shape;
 

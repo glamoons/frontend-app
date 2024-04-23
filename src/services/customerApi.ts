@@ -1,5 +1,6 @@
 import { executeQuery } from "./api/api-config";
 import {
+	ContactCreateInNewsletterDocument,
 	CustomerCreateDocument,
 	// CustomerUpdateDocument,
 	// type Customer_Address,
@@ -45,6 +46,24 @@ export const createCustomer = async ({
 			currency,
 			phone,
 			orders,
+		},
+	});
+};
+
+export const createContactInNewsletterList = async ({
+	email,
+	listIds,
+}: {
+	email: string;
+	listIds: { listId: string; title: string }[];
+}) => {
+	return executeQuery({
+		query: ContactCreateInNewsletterDocument,
+		variables: {
+			data: {
+				email: email,
+				listIds: listIds,
+			},
 		},
 	});
 };

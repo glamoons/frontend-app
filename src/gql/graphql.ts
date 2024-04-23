@@ -28,6 +28,7 @@ export type Access = {
   canAccessAdmin: Scalars['Boolean']['output'];
   customers?: Maybe<CustomersAccess>;
   media?: Maybe<MediaAccess>;
+  newsletter?: Maybe<NewsletterAccess>;
   orderItems?: Maybe<OrderItemsAccess>;
   orders?: Maybe<OrdersAccess>;
   payload_preferences?: Maybe<Payload_PreferencesAccess>;
@@ -4028,6 +4029,7 @@ export type Media_Width_Operator = {
 export type Mutation = {
   createCustomer?: Maybe<Customer>;
   createMedia?: Maybe<Media>;
+  createNewsletter?: Maybe<Newsletter>;
   createOrder?: Maybe<Order>;
   createOrderItem?: Maybe<OrderItem>;
   createPayloadPreference?: Maybe<PayloadPreference>;
@@ -4036,6 +4038,7 @@ export type Mutation = {
   createUser?: Maybe<User>;
   deleteCustomer?: Maybe<Customer>;
   deleteMedia?: Maybe<Media>;
+  deleteNewsletter?: Maybe<Newsletter>;
   deleteOrder?: Maybe<Order>;
   deleteOrderItem?: Maybe<OrderItem>;
   deletePayloadPreference?: Maybe<PayloadPreference>;
@@ -4050,6 +4053,7 @@ export type Mutation = {
   unlockUser: Scalars['Boolean']['output'];
   updateCustomer?: Maybe<Customer>;
   updateMedia?: Maybe<Media>;
+  updateNewsletter?: Maybe<Newsletter>;
   updateOrder?: Maybe<Order>;
   updateOrderItem?: Maybe<OrderItem>;
   updatePayloadPreference?: Maybe<PayloadPreference>;
@@ -4068,6 +4072,12 @@ export type MutationCreateCustomerArgs = {
 
 export type MutationCreateMediaArgs = {
   data: MutationMediaInput;
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type MutationCreateNewsletterArgs = {
+  data: MutationNewsletterInput;
   draft?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -4114,6 +4124,11 @@ export type MutationDeleteCustomerArgs = {
 
 
 export type MutationDeleteMediaArgs = {
+  id: Scalars['Int']['input'];
+};
+
+
+export type MutationDeleteNewsletterArgs = {
   id: Scalars['Int']['input'];
 };
 
@@ -4193,6 +4208,14 @@ export type MutationUpdateMediaArgs = {
 };
 
 
+export type MutationUpdateNewsletterArgs = {
+  autosave?: InputMaybe<Scalars['Boolean']['input']>;
+  data: MutationNewsletterUpdateInput;
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  id: Scalars['Int']['input'];
+};
+
+
 export type MutationUpdateOrderArgs = {
   autosave?: InputMaybe<Scalars['Boolean']['input']>;
   data: MutationOrderUpdateInput;
@@ -4243,6 +4266,534 @@ export type MutationUpdateUserArgs = {
 
 export type MutationVerifyEmailUserArgs = {
   token?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Newsletter = {
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  email: Scalars['EmailAddress']['output'];
+  id?: Maybe<Scalars['Int']['output']>;
+  listIds: Array<Newsletter_ListIds>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export type NewsletterCreateAccess = {
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type NewsletterCreateDocAccess = {
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type NewsletterDeleteAccess = {
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type NewsletterDeleteDocAccess = {
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type NewsletterDocAccessFields = {
+  createdAt?: Maybe<NewsletterDocAccessFields_CreatedAt>;
+  email?: Maybe<NewsletterDocAccessFields_Email>;
+  listIds?: Maybe<NewsletterDocAccessFields_ListIds>;
+  updatedAt?: Maybe<NewsletterDocAccessFields_UpdatedAt>;
+};
+
+export type NewsletterDocAccessFields_CreatedAt = {
+  create?: Maybe<NewsletterDocAccessFields_CreatedAt_Create>;
+  delete?: Maybe<NewsletterDocAccessFields_CreatedAt_Delete>;
+  read?: Maybe<NewsletterDocAccessFields_CreatedAt_Read>;
+  update?: Maybe<NewsletterDocAccessFields_CreatedAt_Update>;
+};
+
+export type NewsletterDocAccessFields_CreatedAt_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterDocAccessFields_CreatedAt_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterDocAccessFields_CreatedAt_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterDocAccessFields_CreatedAt_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterDocAccessFields_Email = {
+  create?: Maybe<NewsletterDocAccessFields_Email_Create>;
+  delete?: Maybe<NewsletterDocAccessFields_Email_Delete>;
+  read?: Maybe<NewsletterDocAccessFields_Email_Read>;
+  update?: Maybe<NewsletterDocAccessFields_Email_Update>;
+};
+
+export type NewsletterDocAccessFields_Email_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterDocAccessFields_Email_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterDocAccessFields_Email_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterDocAccessFields_Email_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterDocAccessFields_ListIds = {
+  create?: Maybe<NewsletterDocAccessFields_ListIds_Create>;
+  delete?: Maybe<NewsletterDocAccessFields_ListIds_Delete>;
+  fields?: Maybe<NewsletterDocAccessFields_ListIds_Fields>;
+  read?: Maybe<NewsletterDocAccessFields_ListIds_Read>;
+  update?: Maybe<NewsletterDocAccessFields_ListIds_Update>;
+};
+
+export type NewsletterDocAccessFields_ListIds_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterDocAccessFields_ListIds_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterDocAccessFields_ListIds_Fields = {
+  id?: Maybe<NewsletterDocAccessFields_ListIds_Id>;
+  listId?: Maybe<NewsletterDocAccessFields_ListIds_ListId>;
+  title?: Maybe<NewsletterDocAccessFields_ListIds_Title>;
+};
+
+export type NewsletterDocAccessFields_ListIds_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterDocAccessFields_ListIds_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterDocAccessFields_ListIds_Id = {
+  create?: Maybe<NewsletterDocAccessFields_ListIds_Id_Create>;
+  delete?: Maybe<NewsletterDocAccessFields_ListIds_Id_Delete>;
+  read?: Maybe<NewsletterDocAccessFields_ListIds_Id_Read>;
+  update?: Maybe<NewsletterDocAccessFields_ListIds_Id_Update>;
+};
+
+export type NewsletterDocAccessFields_ListIds_Id_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterDocAccessFields_ListIds_Id_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterDocAccessFields_ListIds_Id_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterDocAccessFields_ListIds_Id_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterDocAccessFields_ListIds_ListId = {
+  create?: Maybe<NewsletterDocAccessFields_ListIds_ListId_Create>;
+  delete?: Maybe<NewsletterDocAccessFields_ListIds_ListId_Delete>;
+  read?: Maybe<NewsletterDocAccessFields_ListIds_ListId_Read>;
+  update?: Maybe<NewsletterDocAccessFields_ListIds_ListId_Update>;
+};
+
+export type NewsletterDocAccessFields_ListIds_ListId_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterDocAccessFields_ListIds_ListId_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterDocAccessFields_ListIds_ListId_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterDocAccessFields_ListIds_ListId_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterDocAccessFields_ListIds_Title = {
+  create?: Maybe<NewsletterDocAccessFields_ListIds_Title_Create>;
+  delete?: Maybe<NewsletterDocAccessFields_ListIds_Title_Delete>;
+  read?: Maybe<NewsletterDocAccessFields_ListIds_Title_Read>;
+  update?: Maybe<NewsletterDocAccessFields_ListIds_Title_Update>;
+};
+
+export type NewsletterDocAccessFields_ListIds_Title_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterDocAccessFields_ListIds_Title_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterDocAccessFields_ListIds_Title_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterDocAccessFields_ListIds_Title_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterDocAccessFields_UpdatedAt = {
+  create?: Maybe<NewsletterDocAccessFields_UpdatedAt_Create>;
+  delete?: Maybe<NewsletterDocAccessFields_UpdatedAt_Delete>;
+  read?: Maybe<NewsletterDocAccessFields_UpdatedAt_Read>;
+  update?: Maybe<NewsletterDocAccessFields_UpdatedAt_Update>;
+};
+
+export type NewsletterDocAccessFields_UpdatedAt_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterDocAccessFields_UpdatedAt_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterDocAccessFields_UpdatedAt_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterDocAccessFields_UpdatedAt_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterFields = {
+  createdAt?: Maybe<NewsletterFields_CreatedAt>;
+  email?: Maybe<NewsletterFields_Email>;
+  listIds?: Maybe<NewsletterFields_ListIds>;
+  updatedAt?: Maybe<NewsletterFields_UpdatedAt>;
+};
+
+export type NewsletterFields_CreatedAt = {
+  create?: Maybe<NewsletterFields_CreatedAt_Create>;
+  delete?: Maybe<NewsletterFields_CreatedAt_Delete>;
+  read?: Maybe<NewsletterFields_CreatedAt_Read>;
+  update?: Maybe<NewsletterFields_CreatedAt_Update>;
+};
+
+export type NewsletterFields_CreatedAt_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterFields_CreatedAt_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterFields_CreatedAt_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterFields_CreatedAt_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterFields_Email = {
+  create?: Maybe<NewsletterFields_Email_Create>;
+  delete?: Maybe<NewsletterFields_Email_Delete>;
+  read?: Maybe<NewsletterFields_Email_Read>;
+  update?: Maybe<NewsletterFields_Email_Update>;
+};
+
+export type NewsletterFields_Email_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterFields_Email_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterFields_Email_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterFields_Email_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterFields_ListIds = {
+  create?: Maybe<NewsletterFields_ListIds_Create>;
+  delete?: Maybe<NewsletterFields_ListIds_Delete>;
+  fields?: Maybe<NewsletterFields_ListIds_Fields>;
+  read?: Maybe<NewsletterFields_ListIds_Read>;
+  update?: Maybe<NewsletterFields_ListIds_Update>;
+};
+
+export type NewsletterFields_ListIds_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterFields_ListIds_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterFields_ListIds_Fields = {
+  id?: Maybe<NewsletterFields_ListIds_Id>;
+  listId?: Maybe<NewsletterFields_ListIds_ListId>;
+  title?: Maybe<NewsletterFields_ListIds_Title>;
+};
+
+export type NewsletterFields_ListIds_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterFields_ListIds_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterFields_ListIds_Id = {
+  create?: Maybe<NewsletterFields_ListIds_Id_Create>;
+  delete?: Maybe<NewsletterFields_ListIds_Id_Delete>;
+  read?: Maybe<NewsletterFields_ListIds_Id_Read>;
+  update?: Maybe<NewsletterFields_ListIds_Id_Update>;
+};
+
+export type NewsletterFields_ListIds_Id_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterFields_ListIds_Id_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterFields_ListIds_Id_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterFields_ListIds_Id_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterFields_ListIds_ListId = {
+  create?: Maybe<NewsletterFields_ListIds_ListId_Create>;
+  delete?: Maybe<NewsletterFields_ListIds_ListId_Delete>;
+  read?: Maybe<NewsletterFields_ListIds_ListId_Read>;
+  update?: Maybe<NewsletterFields_ListIds_ListId_Update>;
+};
+
+export type NewsletterFields_ListIds_ListId_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterFields_ListIds_ListId_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterFields_ListIds_ListId_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterFields_ListIds_ListId_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterFields_ListIds_Title = {
+  create?: Maybe<NewsletterFields_ListIds_Title_Create>;
+  delete?: Maybe<NewsletterFields_ListIds_Title_Delete>;
+  read?: Maybe<NewsletterFields_ListIds_Title_Read>;
+  update?: Maybe<NewsletterFields_ListIds_Title_Update>;
+};
+
+export type NewsletterFields_ListIds_Title_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterFields_ListIds_Title_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterFields_ListIds_Title_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterFields_ListIds_Title_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterFields_UpdatedAt = {
+  create?: Maybe<NewsletterFields_UpdatedAt_Create>;
+  delete?: Maybe<NewsletterFields_UpdatedAt_Delete>;
+  read?: Maybe<NewsletterFields_UpdatedAt_Read>;
+  update?: Maybe<NewsletterFields_UpdatedAt_Update>;
+};
+
+export type NewsletterFields_UpdatedAt_Create = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterFields_UpdatedAt_Delete = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterFields_UpdatedAt_Read = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterFields_UpdatedAt_Update = {
+  permission: Scalars['Boolean']['output'];
+};
+
+export type NewsletterReadAccess = {
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type NewsletterReadDocAccess = {
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type NewsletterUpdateAccess = {
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type NewsletterUpdateDocAccess = {
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type Newsletter_ListIds = {
+  id?: Maybe<Scalars['String']['output']>;
+  listId?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type Newsletter_CreatedAt_Operator = {
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  like?: InputMaybe<Scalars['DateTime']['input']>;
+  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type Newsletter_Email_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['EmailAddress']['input']>>>;
+  contains?: InputMaybe<Scalars['EmailAddress']['input']>;
+  equals?: InputMaybe<Scalars['EmailAddress']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['EmailAddress']['input']>>>;
+  like?: InputMaybe<Scalars['EmailAddress']['input']>;
+  not_equals?: InputMaybe<Scalars['EmailAddress']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['EmailAddress']['input']>>>;
+};
+
+export type Newsletter_Id_Operator = {
+  equals?: InputMaybe<Scalars['Int']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Int']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Int']['input']>;
+  less_than?: InputMaybe<Scalars['Int']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Int']['input']>;
+  not_equals?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type Newsletter_ListIds__Id_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Newsletter_ListIds__ListId_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Newsletter_ListIds__Title_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Newsletter_UpdatedAt_Operator = {
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  like?: InputMaybe<Scalars['DateTime']['input']>;
+  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type Newsletter_Where = {
+  AND?: InputMaybe<Array<InputMaybe<Newsletter_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<Newsletter_Where_Or>>>;
+  createdAt?: InputMaybe<Newsletter_CreatedAt_Operator>;
+  email?: InputMaybe<Newsletter_Email_Operator>;
+  id?: InputMaybe<Newsletter_Id_Operator>;
+  listIds__id?: InputMaybe<Newsletter_ListIds__Id_Operator>;
+  listIds__listId?: InputMaybe<Newsletter_ListIds__ListId_Operator>;
+  listIds__title?: InputMaybe<Newsletter_ListIds__Title_Operator>;
+  updatedAt?: InputMaybe<Newsletter_UpdatedAt_Operator>;
+};
+
+export type Newsletter_Where_And = {
+  AND?: InputMaybe<Array<InputMaybe<Newsletter_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<Newsletter_Where_Or>>>;
+  createdAt?: InputMaybe<Newsletter_CreatedAt_Operator>;
+  email?: InputMaybe<Newsletter_Email_Operator>;
+  id?: InputMaybe<Newsletter_Id_Operator>;
+  listIds__id?: InputMaybe<Newsletter_ListIds__Id_Operator>;
+  listIds__listId?: InputMaybe<Newsletter_ListIds__ListId_Operator>;
+  listIds__title?: InputMaybe<Newsletter_ListIds__Title_Operator>;
+  updatedAt?: InputMaybe<Newsletter_UpdatedAt_Operator>;
+};
+
+export type Newsletter_Where_Or = {
+  AND?: InputMaybe<Array<InputMaybe<Newsletter_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<Newsletter_Where_Or>>>;
+  createdAt?: InputMaybe<Newsletter_CreatedAt_Operator>;
+  email?: InputMaybe<Newsletter_Email_Operator>;
+  id?: InputMaybe<Newsletter_Id_Operator>;
+  listIds__id?: InputMaybe<Newsletter_ListIds__Id_Operator>;
+  listIds__listId?: InputMaybe<Newsletter_ListIds__ListId_Operator>;
+  listIds__title?: InputMaybe<Newsletter_ListIds__Title_Operator>;
+  updatedAt?: InputMaybe<Newsletter_UpdatedAt_Operator>;
+};
+
+export type Newsletters = {
+  docs?: Maybe<Array<Maybe<Newsletter>>>;
+  hasNextPage?: Maybe<Scalars['Boolean']['output']>;
+  hasPrevPage?: Maybe<Scalars['Boolean']['output']>;
+  limit?: Maybe<Scalars['Int']['output']>;
+  nextPage?: Maybe<Scalars['Int']['output']>;
+  offset?: Maybe<Scalars['Int']['output']>;
+  page?: Maybe<Scalars['Int']['output']>;
+  pagingCounter?: Maybe<Scalars['Int']['output']>;
+  prevPage?: Maybe<Scalars['Int']['output']>;
+  totalDocs?: Maybe<Scalars['Int']['output']>;
+  totalPages?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Order = {
@@ -7567,6 +8118,8 @@ export type Query = {
   Customer?: Maybe<Customer>;
   Customers?: Maybe<Customers>;
   Media?: Maybe<Media>;
+  Newsletter?: Maybe<Newsletter>;
+  Newsletters?: Maybe<Newsletters>;
   Order?: Maybe<Order>;
   OrderItem?: Maybe<OrderItem>;
   OrderItems?: Maybe<OrderItems>;
@@ -7582,6 +8135,7 @@ export type Query = {
   allMedia?: Maybe<AllMedia>;
   docAccessCustomer?: Maybe<CustomersDocAccess>;
   docAccessMedia?: Maybe<MediaDocAccess>;
+  docAccessNewsletter?: Maybe<NewsletterDocAccess>;
   docAccessOrder?: Maybe<OrdersDocAccess>;
   docAccessOrderItem?: Maybe<OrderItemsDocAccess>;
   docAccessPayloadPreference?: Maybe<Payload_PreferencesDocAccess>;
@@ -7611,6 +8165,21 @@ export type QueryCustomersArgs = {
 export type QueryMediaArgs = {
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   id: Scalars['Int']['input'];
+};
+
+
+export type QueryNewsletterArgs = {
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  id: Scalars['Int']['input'];
+};
+
+
+export type QueryNewslettersArgs = {
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  where?: InputMaybe<Newsletter_Where>;
 };
 
 
@@ -7719,6 +8288,11 @@ export type QueryDocAccessCustomerArgs = {
 
 
 export type QueryDocAccessMediaArgs = {
+  id: Scalars['Int']['input'];
+};
+
+
+export type QueryDocAccessNewsletterArgs = {
   id: Scalars['Int']['input'];
 };
 
@@ -8889,6 +9463,32 @@ export type MutationMedia_Sizes_ThumbnailInput = {
   width?: InputMaybe<Scalars['Float']['input']>;
 };
 
+export type MutationNewsletterInput = {
+  createdAt?: InputMaybe<Scalars['String']['input']>;
+  email: Scalars['String']['input'];
+  listIds?: InputMaybe<Array<MutationNewsletter_ListIdsInput>>;
+  updatedAt?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type MutationNewsletterUpdateInput = {
+  createdAt?: InputMaybe<Scalars['String']['input']>;
+  email?: InputMaybe<Scalars['String']['input']>;
+  listIds?: InputMaybe<Array<InputMaybe<MutationNewsletterUpdate_ListIdsInput>>>;
+  updatedAt?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type MutationNewsletterUpdate_ListIdsInput = {
+  id?: InputMaybe<Scalars['String']['input']>;
+  listId: Scalars['String']['input'];
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type MutationNewsletter_ListIdsInput = {
+  id?: InputMaybe<Scalars['String']['input']>;
+  listId: Scalars['String']['input'];
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type MutationOrderInput = {
   address?: InputMaybe<MutationOrder_AddressInput>;
   billingDetails?: InputMaybe<MutationOrder_BillingDetailsInput>;
@@ -9063,6 +9663,22 @@ export type MutationUserUpdateInput = {
   resetPasswordToken?: InputMaybe<Scalars['String']['input']>;
   salt?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type NewsletterAccess = {
+  create?: Maybe<NewsletterCreateAccess>;
+  delete?: Maybe<NewsletterDeleteAccess>;
+  fields?: Maybe<NewsletterFields>;
+  read?: Maybe<NewsletterReadAccess>;
+  update?: Maybe<NewsletterUpdateAccess>;
+};
+
+export type NewsletterDocAccess = {
+  create?: Maybe<NewsletterCreateDocAccess>;
+  delete?: Maybe<NewsletterDeleteDocAccess>;
+  fields?: Maybe<NewsletterDocAccessFields>;
+  read?: Maybe<NewsletterReadDocAccess>;
+  update?: Maybe<NewsletterUpdateDocAccess>;
 };
 
 export type OrderItemsAccess = {
@@ -9265,6 +9881,13 @@ export type CartUpdateMutationVariables = Exact<{
 
 
 export type CartUpdateMutation = { updateOrder?: { id?: number | null, status?: Order_Status | null, totalAmount: number, email?: string | null, address?: { deliveryAddress?: { deliveryCity?: string | null, deliveryCountry?: string | null, deliveryPostalCode?: string | null, deliveryStreet?: string | null } | null } | null, billingDetails?: { deliveryData?: { street?: string | null, postalCode?: string | null, city?: string | null, country?: string | null, companyName?: string | null, vatId?: number | null } | null } | null } | null };
+
+export type ContactCreateInNewsletterMutationVariables = Exact<{
+  data: MutationNewsletterInput;
+}>;
+
+
+export type ContactCreateInNewsletterMutation = { createNewsletter?: { id?: number | null, email: unknown, listIds: Array<{ id?: string | null, listId?: string | null, title?: string | null }> } | null };
 
 export type CustomerBillingDetailsFragment = { deliveryData?: { street?: string | null, postalCode?: string | null, city?: string | null, country?: string | null, companyName?: string | null, vatId?: number | null } | null };
 
@@ -9637,6 +10260,19 @@ fragment OrderDeliveryAddress on Order_Address {
     deliveryStreet
   }
 }`) as unknown as TypedDocumentString<CartUpdateMutation, CartUpdateMutationVariables>;
+export const ContactCreateInNewsletterDocument = new TypedDocumentString(`
+    mutation ContactCreateInNewsletter($data: mutationNewsletterInput!) {
+  createNewsletter(data: $data) {
+    id
+    listIds {
+      id
+      listId
+      title
+    }
+    email
+  }
+}
+    `) as unknown as TypedDocumentString<ContactCreateInNewsletterMutation, ContactCreateInNewsletterMutationVariables>;
 export const CustomerCreateDocument = new TypedDocumentString(`
     mutation CustomerCreate($customerName: String!, $registrationDate: String!, $email: String!, $orders: [Int], $totalExpenses: Float = 0, $averageOrderValue: Float = 0, $currency: String = "PLN", $phone: String = "", $address: mutationCustomer_AddressInput!, $billingDetails: mutationCustomer_BillingDetailsInput!) {
   createCustomer(

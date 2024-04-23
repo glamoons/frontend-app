@@ -1,0 +1,11 @@
+mutation ContactCreateInNewsletter($data: mutationNewsletterInput!) {
+	createNewsletter(data: $data) {
+		id
+		listIds {
+			id
+			listId
+			title
+		}
+		email
+	}
+}
