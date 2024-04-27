@@ -1,127 +1,108 @@
 "use client";
 
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import { useRef } from "react";
+import { contactAction } from "@/app/contact/conatcAction";
+import { contactSchema } from "@/app/contact/contactSchema";
+import { useTypeSafeFormState } from "@/app/contact/typesafeForm";
 import { DefaultInput } from "@/components/atoms/DefaultInput";
+import { ErrorText } from "@/components/atoms/ErrorText";
 import { Label } from "@/components/atoms/Label";
-import { cn } from "@/lib/utils";
 import { SubmitButton } from "@/components/atoms/SubmitButton";
 import { TextArea } from "@/components/atoms/TextArea";
-import { ErrorText } from "@/components/atoms/ErrorText";
 import { type HTMLElements } from "@/interfaces/base";
-
-export type FormData = {
-	name: string;
-	surname: string;
-	email: string;
-	phoneNumber?: string;
-	message: string;
-};
+import { cn } from "@/lib/utils";
 
 type ContactFormProps = {
 	className?: HTMLElements<HTMLFormElement>["className"];
 };
 
-const phoneRegExp =
-	/^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
-
-const validateMessage = {
-	required: "Ta wartość jest wymagana",
-	email: "Wprowadzony adres e-mail jest nieprawidłowy",
-	phoneNumber: "Wprowadzony numer telefonu jest nieprawidłowy",
-};
-
-const schema = yup
-	.object({
-		name: yup.string().required(validateMessage.required),
-		surname: yup.string().required(validateMessage.required),
-		email: yup
-			.string()
-			.email(validateMessage.email)
-			.required(validateMessage.required),
-		phoneNumber: yup.string().matches(phoneRegExp, {
-			message: validateMessage.phoneNumber,
-			excludeEmptyString: true,
-		}),
-		message: yup.string().required(validateMessage.required),
-	})
-	.required();
-
 export const ContactForm = ({ className }: ContactFormProps) => {
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-	} = useForm<FormData>({
-		resolver: yupResolver(schema),
+	const formRef = useRef<HTMLFormElement | null>(null);
+	const [state, action] = useTypeSafeFormState(contactSchema, async (data) => {
+		await contactAction(data);
+		formRef.current?.reset();
 	});
-
-	const onSubmit = (data: FormData) => {
-		console.log({ data });
-	};
-	console.log({ errors });
-
 	return (
-		<form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+		<form ref={formRef} action={action} className="space-y-6">
 			<fieldset className={cn("flex flex-col space-y-6", className)}>
 				<div className="flex flex-col space-y-10 laptop:flex-row laptop:space-x-10 laptop:space-y-0">
 					<p className="flex w-full flex-col space-y-2">
-						<Label htmlFor="name" className={errors.name ? "text-error" : ""}>
+						<Label
+							htmlFor="name"
+							className={state?.errors.name ? "text-error" : ""}
+						>
 							Imię
 						</Label>
 						<DefaultInput
 							id="name"
 							type="text"
-							{...register("name")}
-							aria-invalid={errors.name ? "true" : "false"}
+							name="name"
+							aria-invalid={state?.errors.name ? "true" : "false"}
 							className={
-								errors.name ? "border-error focus-visible:outline-error" : ""
+								state?.errors.name
+									? "border-error focus-visible:outline-error"
+									: ""
 							}
 						/>
-						{errors.name && <ErrorText>{errors.name.message}</ErrorText>}
+						{state?.errors.name &&
+							state.errors.name.map((error) => (
+								<ErrorText key={error}>{error}</ErrorText>
+							))}
 					</p>
 					<p className="flex w-full flex-col space-y-2">
 						<Label
 							htmlFor="surname"
-							className={errors.surname ? "text-error" : ""}
+							className={state?.errors.surname ? "text-error" : ""}
 						>
 							Nazwisko
 						</Label>
 						<DefaultInput
 							id="surname"
 							type="text"
-							{...register("surname")}
-							aria-invalid={errors.surname ? "true" : "false"}
+							name="surname"
+							aria-invalid={state?.errors.surname ? "true" : "false"}
 							className={
-								errors.surname ? "border-error focus-visible:outline-error" : ""
+								state?.errors.surname
+									? "border-error focus-visible:outline-error"
+									: ""
 							}
 						/>
-						{errors.surname && <ErrorText>{errors.surname.message}</ErrorText>}
+						{state?.errors.surname &&
+							state?.errors.surname.map((error) => (
+								<ErrorText key={error}>{error}</ErrorText>
+							))}
 					</p>
 				</div>
 				<div className="flex flex-col space-y-10 laptop:flex-row laptop:space-x-10 laptop:space-y-0">
 					<p className="flex w-full flex-col space-y-2">
-						<Label htmlFor="email" className={errors.email ? "text-error" : ""}>
+						<Label
+							htmlFor="email"
+							className={state?.errors.email ? "text-error" : ""}
+						>
 							Email
 						</Label>
 						<DefaultInput
 							id="email"
 							type="text"
-							{...register("email")}
-							aria-invalid={errors.email ? "true" : "false"}
+							name="email"
+							aria-invalid={state?.errors.email ? "true" : "false"}
 							className={
-								errors.email ? "border-error focus-visible:outline-error" : ""
+								state?.errors.email
+									? "border-error focus-visible:outline-error"
+									: ""
 							}
 						/>
-						{errors.email && <ErrorText>{errors.email.message}</ErrorText>}
+						{state?.errors.email &&
+							state?.errors.email.map((error) => (
+								<ErrorText key={error}>{error}</ErrorText>
+							))}
 					</p>
 					<div className="flex w-full flex-col space-y-2">
 						<p className="flex justify-between">
 							<Label
 								htmlFor="phoneNumber"
 								className={
-									errors.phoneNumber
+									state?.errors.phoneNumber
 										? "text-error focus-visible:outline-error"
 										: ""
 								}
@@ -138,36 +119,42 @@ export const ContactForm = ({ className }: ContactFormProps) => {
 						<DefaultInput
 							id="phoneNumber"
 							type="tel"
-							{...register("phoneNumber")}
-							aria-invalid={errors.phoneNumber ? "true" : "false"}
+							name="phoneNumber"
+							aria-invalid={state?.errors.phoneNumber ? "true" : "false"}
 							className={
-								errors.phoneNumber
+								state?.errors.phoneNumber
 									? "border-error focus-visible:outline-error"
 									: ""
 							}
 						/>
-						{errors.phoneNumber && (
-							<ErrorText>{errors.phoneNumber.message}</ErrorText>
-						)}
+						{state?.errors.phoneNumber &&
+							state?.errors.phoneNumber.map((error) => (
+								<ErrorText key={error}>{error}</ErrorText>
+							))}
 					</div>
 				</div>
 				<p className="flex flex-col space-y-2">
 					<Label
 						htmlFor="message"
-						className={errors.message ? "text-error" : ""}
+						className={state?.errors.message ? "text-error" : ""}
 					>
 						Jak moemy Ci pomóc?
 					</Label>
 					<TextArea
 						id="message"
 						rows={5}
-						{...register("message")}
-						aria-invalid={errors.message ? "true" : "false"}
+						name="message"
+						aria-invalid={state?.errors.message ? "true" : "false"}
 						className={
-							errors.message ? "border-error focus-visible:outline-error" : ""
+							state?.errors.message
+								? "border-error focus-visible:outline-error"
+								: ""
 						}
 					/>
-					{errors.message && <ErrorText>{errors.message.message}</ErrorText>}
+					{state?.errors.message &&
+						state?.errors.message.map((error) => (
+							<ErrorText key={error}>{error}</ErrorText>
+						))}
 				</p>
 			</fieldset>
 			<SubmitButton
