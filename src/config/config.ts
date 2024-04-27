@@ -1,2 +1,2 @@
-export const deliveryFee = 20;
+export const deliveryFee = 22;
 export const NEWSLETTER_ID = "4";

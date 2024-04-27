@@ -3,7 +3,11 @@
 import { type NextRequest } from "next/server";
 import Stripe from "stripe";
 import { cartUpdate } from "@/services/cartApi";
-import { createCustomer } from "@/services/customerApi";
+import {
+	createCustomer,
+	getCustomers,
+	updateCustomer,
+} from "@/services/customerApi";
 
 export async function POST(request: NextRequest): Promise<Response> {
 	if (!process.env.NEXT_PUBLIC_STRIPE_WEBHOOK_SECRET) {
@@ -31,8 +35,6 @@ export async function POST(request: NextRequest): Promise<Response> {
 
 	switch (event.type) {
 		case "checkout.session.completed": {
-			console.dir(event, { depth: 999 });
-
 			const cartId = event.data.object.metadata?.cartId;
 			const companyName = event.data.object.custom_fields
 				.map((el) => el.text?.value)
@@ -40,6 +42,20 @@ export async function POST(request: NextRequest): Promise<Response> {
 			const vatId = event.data.object.custom_fields
 				.map((el) => el.numeric?.value)
 				.join();
+			const { Customers: customers } = await getCustomers({
+				email: String(event.data.object.customer_details?.email),
+			});
+			const customerExists = customers?.docs?.find(
+				(customer) =>
+					customer?.email === String(event.data.object.customer_details?.email),
+			);
+			const stripeCustmers = await stripe.customers.list({
+				email: String(event.data.object.customer_details?.email),
+			});
+			const stripeCustomerExists = stripeCustmers.data.find(
+				(customer) =>
+					customer.email === String(event.data.object.customer_details?.email),
+			);
 			await cartUpdate({
 				cartId: Number(cartId),
 				status: "paid",
@@ -64,41 +80,147 @@ export async function POST(request: NextRequest): Promise<Response> {
 							event.data.object.customer_details?.address?.postal_code,
 						street: event.data.object.customer_details?.address?.line1,
 						companyName,
-						vatId: Number(vatId),
+						vatId,
 					},
 				},
 			});
-			await createCustomer({
-				customerName: event.data.object.customer_details?.name || "",
-				registrationDate: new Date().toISOString(),
-				email: event.data.object.customer_details?.email || "",
-				address: {
-					deliveryAddress: {
-						deliveryCity: event.data.object.shipping_details?.address?.city,
-						deliveryCountry:
-							event.data.object.shipping_details?.address?.country,
-						deliveryPostalCode:
-							event.data.object.shipping_details?.address?.postal_code,
-						deliveryStreet: event.data.object.shipping_details?.address?.line1,
+			if (!customerExists && !stripeCustomerExists) {
+				await createCustomer({
+					customerName: event.data.object.customer_details?.name || "",
+					registrationDate: new Date().toISOString(),
+					email: event.data.object.customer_details?.email || "",
+					address: {
+						deliveryAddress: {
+							deliveryCity:
+								event.data.object.shipping_details?.address?.city || "",
+							deliveryCountry:
+								event.data.object.shipping_details?.address?.country || "",
+							deliveryPostalCode:
+								event.data.object.shipping_details?.address?.postal_code || "",
+							deliveryStreet:
+								event.data.object.shipping_details?.address?.line1 || "",
+						},
 					},
-				},
-				billingDetails: {
-					deliveryData: {
-						city: event.data.object.customer_details?.address?.city,
-						country: event.data.object.customer_details?.address?.country,
-						postalCode:
-							event.data.object.customer_details?.address?.postal_code,
-						street: event.data.object.customer_details?.address?.line1,
-						companyName,
-						vatId: Number(vatId),
+					billingDetails: {
+						deliveryData: {
+							city: event.data.object.customer_details?.address?.city || "",
+							country:
+								event.data.object.customer_details?.address?.country || "",
+							postalCode:
+								event.data.object.customer_details?.address?.postal_code || "",
+							street: event.data.object.customer_details?.address?.line1 || "",
+							companyName,
+							vatId,
+						},
 					},
-				},
-				currency: event.data.object.currency?.toUpperCase(),
-				phone: event.data.object.customer_details?.phone || "",
-				totalExpenses: 0,
-				averageOrderValue: 0,
-				orders: [Number(cartId)],
-			});
+					currency: event.data.object.currency?.toUpperCase(),
+					phone: event.data.object.customer_details?.phone || "",
+					totalExpenses: (event.data.object.amount_total || 0) / 100,
+					averageOrderValue: (event.data.object.amount_total || 0) / 100,
+					orders: [Number(cartId)],
+				});
+				await stripe.customers.create({
+					name: event.data.object.customer_details?.name || "",
+					email: event.data.object.customer_details?.email || "",
+					shipping: {
+						name: event.data.object.customer_details?.name || "",
+						phone: event.data.object.customer_details?.phone || "",
+						address: {
+							city: event.data.object.shipping_details?.address?.city || "",
+							country:
+								event.data.object.shipping_details?.address?.country || "",
+							postal_code:
+								event.data.object.shipping_details?.address?.postal_code || "",
+							line1: event.data.object.shipping_details?.address?.line1 || "",
+							line2: event.data.object.shipping_details?.address?.line2 || "",
+							state: event.data.object.shipping_details?.address?.state || "",
+						},
+					},
+					address: {
+						city: event.data.object.customer_details?.address?.city || "",
+						country: event.data.object.customer_details?.address?.country || "",
+						postal_code:
+							event.data.object.customer_details?.address?.postal_code || "",
+						line1: event.data.object.customer_details?.address?.line1 || "",
+						line2: event.data.object.customer_details?.address?.line2 || "",
+						state: event.data.object.customer_details?.address?.state || "",
+					},
+					balance: event.data.object.amount_total || 0,
+				});
+			} else {
+				await updateCustomer({
+					customerId: Number(customerExists?.id),
+					customerName: event.data.object.customer_details?.name || "",
+					registrationDate: new Date().toISOString(),
+					email: event.data.object.customer_details?.email || "",
+					address: {
+						deliveryAddress: {
+							deliveryCity:
+								event.data.object.shipping_details?.address?.city || "",
+							deliveryCountry:
+								event.data.object.shipping_details?.address?.country || "",
+							deliveryPostalCode:
+								event.data.object.shipping_details?.address?.postal_code || "",
+							deliveryStreet:
+								event.data.object.shipping_details?.address?.line1 || "",
+						},
+					},
+					billingDetails: {
+						deliveryData: {
+							city: event.data.object.customer_details?.address?.city || "",
+							country:
+								event.data.object.customer_details?.address?.country || "",
+							postalCode:
+								event.data.object.customer_details?.address?.postal_code || "",
+							street: event.data.object.customer_details?.address?.line1 || "",
+							companyName,
+							vatId,
+						},
+					},
+					currency: event.data.object.currency?.toUpperCase(),
+					phone: event.data.object.customer_details?.phone || "",
+					totalExpenses:
+						((customerExists?.totalExpenses || 0) +
+							(event.data.object.amount_total || 0)) /
+						100,
+					averageOrderValue:
+						(customerExists?.totalExpenses || 0) /
+						(customerExists?.orders?.length || 1) /
+						100,
+					orders: [
+						Number(cartId),
+						...(customerExists?.orders?.map((el) => Number(el.id)) || []),
+					],
+				});
+				await stripe.customers.update(stripeCustomerExists?.id || "", {
+					name: event.data.object.customer_details?.name || "",
+					email: event.data.object.customer_details?.email || "",
+					shipping: {
+						name: event.data.object.customer_details?.name || "",
+						phone: event.data.object.customer_details?.phone || "",
+						address: {
+							city: event.data.object.shipping_details?.address?.city || "",
+							country:
+								event.data.object.shipping_details?.address?.country || "",
+							postal_code:
+								event.data.object.shipping_details?.address?.postal_code || "",
+							line1: event.data.object.shipping_details?.address?.line1 || "",
+							line2: event.data.object.shipping_details?.address?.line2 || "",
+							state: event.data.object.shipping_details?.address?.state || "",
+						},
+					},
+					address: {
+						city: event.data.object.customer_details?.address?.city || "",
+						country: event.data.object.customer_details?.address?.country || "",
+						postal_code:
+							event.data.object.customer_details?.address?.postal_code || "",
+						line1: event.data.object.customer_details?.address?.line1 || "",
+						line2: event.data.object.customer_details?.address?.line2 || "",
+						state: event.data.object.customer_details?.address?.state || "",
+					},
+					balance: event.data.object.amount_total || 0,
+				});
+			}
 		}
 		case "checkout.session.async_payment_succeeded": {
 			console.log("payment succeeded");

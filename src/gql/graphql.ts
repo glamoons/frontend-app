@@ -85,7 +85,7 @@ export type Customer_BillingDetails_DeliveryData = {
   country?: Maybe<Scalars['String']['output']>;
   postalCode?: Maybe<Scalars['String']['output']>;
   street?: Maybe<Scalars['String']['output']>;
-  vatId?: Maybe<Scalars['Float']['output']>;
+  vatId?: Maybe<Scalars['String']['output']>;
 };
 
 export type Customer_Address__DeliveryAddress__DeliveryCity_Operator = {
@@ -198,13 +198,14 @@ export type Customer_BillingDetails__DeliveryData__Street_Operator = {
 };
 
 export type Customer_BillingDetails__DeliveryData__VatId_Operator = {
-  equals?: InputMaybe<Scalars['Float']['input']>;
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
   exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Float']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  less_than?: InputMaybe<Scalars['Float']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  not_equals?: InputMaybe<Scalars['Float']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type Customer_CreatedAt_Operator = {
@@ -5351,7 +5352,7 @@ export type Order_BillingDetails_DeliveryData = {
   country?: Maybe<Scalars['String']['output']>;
   postalCode?: Maybe<Scalars['String']['output']>;
   street?: Maybe<Scalars['String']['output']>;
-  vatId?: Maybe<Scalars['Float']['output']>;
+  vatId?: Maybe<Scalars['String']['output']>;
 };
 
 export type Order_Address__DeliveryAddress__DeliveryCity_Operator = {
@@ -5454,13 +5455,14 @@ export type Order_BillingDetails__DeliveryData__Street_Operator = {
 };
 
 export type Order_BillingDetails__DeliveryData__VatId_Operator = {
-  equals?: InputMaybe<Scalars['Float']['input']>;
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
   exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Float']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  less_than?: InputMaybe<Scalars['Float']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  not_equals?: InputMaybe<Scalars['Float']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type Order_CreatedAt_Operator = {
@@ -9322,7 +9324,7 @@ export type MutationCustomerUpdate_BillingDetails_DeliveryDataInput = {
   country?: InputMaybe<Scalars['String']['input']>;
   postalCode?: InputMaybe<Scalars['String']['input']>;
   street?: InputMaybe<Scalars['String']['input']>;
-  vatId?: InputMaybe<Scalars['Float']['input']>;
+  vatId?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type MutationCustomer_AddressInput = {
@@ -9346,7 +9348,7 @@ export type MutationCustomer_BillingDetails_DeliveryDataInput = {
   country?: InputMaybe<Scalars['String']['input']>;
   postalCode?: InputMaybe<Scalars['String']['input']>;
   street?: InputMaybe<Scalars['String']['input']>;
-  vatId?: InputMaybe<Scalars['Float']['input']>;
+  vatId?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type MutationMediaInput = {
@@ -9552,7 +9554,7 @@ export type MutationOrderUpdate_BillingDetails_DeliveryDataInput = {
   country?: InputMaybe<Scalars['String']['input']>;
   postalCode?: InputMaybe<Scalars['String']['input']>;
   street?: InputMaybe<Scalars['String']['input']>;
-  vatId?: InputMaybe<Scalars['Float']['input']>;
+  vatId?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type MutationOrder_AddressInput = {
@@ -9576,7 +9578,7 @@ export type MutationOrder_BillingDetails_DeliveryDataInput = {
   country?: InputMaybe<Scalars['String']['input']>;
   postalCode?: InputMaybe<Scalars['String']['input']>;
   street?: InputMaybe<Scalars['String']['input']>;
-  vatId?: InputMaybe<Scalars['Float']['input']>;
+  vatId?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type MutationPayloadPreferenceInput = {
@@ -9880,7 +9882,7 @@ export type CartUpdateMutationVariables = Exact<{
 }>;
 
 
-export type CartUpdateMutation = { updateOrder?: { id?: number | null, status?: Order_Status | null, totalAmount: number, email?: string | null, address?: { deliveryAddress?: { deliveryCity?: string | null, deliveryCountry?: string | null, deliveryPostalCode?: string | null, deliveryStreet?: string | null } | null } | null, billingDetails?: { deliveryData?: { street?: string | null, postalCode?: string | null, city?: string | null, country?: string | null, companyName?: string | null, vatId?: number | null } | null } | null } | null };
+export type CartUpdateMutation = { updateOrder?: { id?: number | null, status?: Order_Status | null, totalAmount: number, email?: string | null, address?: { deliveryAddress?: { deliveryCity?: string | null, deliveryCountry?: string | null, deliveryPostalCode?: string | null, deliveryStreet?: string | null } | null } | null, billingDetails?: { deliveryData?: { street?: string | null, postalCode?: string | null, city?: string | null, country?: string | null, companyName?: string | null, vatId?: string | null } | null } | null } | null };
 
 export type ContactCreateInNewsletterMutationVariables = Exact<{
   data: MutationNewsletterInput;
@@ -9889,7 +9891,7 @@ export type ContactCreateInNewsletterMutationVariables = Exact<{
 
 export type ContactCreateInNewsletterMutation = { createNewsletter?: { id?: number | null, email: unknown, listIds: Array<{ id?: string | null, listId?: string | null, title?: string | null }> } | null };
 
-export type CustomerBillingDetailsFragment = { deliveryData?: { street?: string | null, postalCode?: string | null, city?: string | null, country?: string | null, companyName?: string | null, vatId?: number | null } | null };
+export type CustomerBillingDetailsFragment = { deliveryData?: { street?: string | null, postalCode?: string | null, city?: string | null, country?: string | null, companyName?: string | null, vatId?: string | null } | null };
 
 export type CustomerCreateMutationVariables = Exact<{
   customerName: Scalars['String']['input'];
@@ -9909,7 +9911,7 @@ export type CustomerCreateMutation = { createCustomer?: { id?: number | null, em
 
 export type CustomerDeliveryAddressFragment = { deliveryAddress?: { deliveryCity?: string | null, deliveryCountry?: string | null, deliveryPostalCode?: string | null, deliveryStreet?: string | null } | null };
 
-export type CustomerFullFragment = { customerName: string, registrationDate?: unknown | null, phone?: string | null, totalExpenses?: number | null, averageOrderValue?: number | null, currency?: string | null, id?: number | null, email: unknown, address?: { deliveryAddress?: { deliveryCity?: string | null, deliveryCountry?: string | null, deliveryPostalCode?: string | null, deliveryStreet?: string | null } | null } | null, billingDetails?: { deliveryData?: { street?: string | null, postalCode?: string | null, city?: string | null, country?: string | null, companyName?: string | null, vatId?: number | null } | null } | null, orders?: Array<{ id?: number | null, status?: Order_Status | null }> | null };
+export type CustomerFullFragment = { customerName: string, registrationDate?: unknown | null, phone?: string | null, totalExpenses?: number | null, averageOrderValue?: number | null, currency?: string | null, id?: number | null, email: unknown, address?: { deliveryAddress?: { deliveryCity?: string | null, deliveryCountry?: string | null, deliveryPostalCode?: string | null, deliveryStreet?: string | null } | null } | null, billingDetails?: { deliveryData?: { street?: string | null, postalCode?: string | null, city?: string | null, country?: string | null, companyName?: string | null, vatId?: string | null } | null } | null, orders?: Array<{ id?: number | null, status?: Order_Status | null }> | null };
 
 export type CustomerShortFragment = { id?: number | null, email: unknown };
 
@@ -9928,16 +9930,16 @@ export type CustomerUpdateMutationVariables = Exact<{
 }>;
 
 
-export type CustomerUpdateMutation = { updateCustomer?: { customerName: string, registrationDate?: unknown | null, phone?: string | null, totalExpenses?: number | null, averageOrderValue?: number | null, currency?: string | null, id?: number | null, email: unknown, address?: { deliveryAddress?: { deliveryCity?: string | null, deliveryCountry?: string | null, deliveryPostalCode?: string | null, deliveryStreet?: string | null } | null } | null, billingDetails?: { deliveryData?: { street?: string | null, postalCode?: string | null, city?: string | null, country?: string | null, companyName?: string | null, vatId?: number | null } | null } | null, orders?: Array<{ id?: number | null, status?: Order_Status | null }> | null } | null };
+export type CustomerUpdateMutation = { updateCustomer?: { customerName: string, registrationDate?: unknown | null, phone?: string | null, totalExpenses?: number | null, averageOrderValue?: number | null, currency?: string | null, id?: number | null, email: unknown, address?: { deliveryAddress?: { deliveryCity?: string | null, deliveryCountry?: string | null, deliveryPostalCode?: string | null, deliveryStreet?: string | null } | null } | null, billingDetails?: { deliveryData?: { street?: string | null, postalCode?: string | null, city?: string | null, country?: string | null, companyName?: string | null, vatId?: string | null } | null } | null, orders?: Array<{ id?: number | null, status?: Order_Status | null }> | null } | null };
 
 export type CustomersGetListQueryVariables = Exact<{
   email?: InputMaybe<Scalars['EmailAddress']['input']>;
 }>;
 
 
-export type CustomersGetListQuery = { Customers?: { docs?: Array<{ customerName: string, registrationDate?: unknown | null, phone?: string | null, totalExpenses?: number | null, averageOrderValue?: number | null, currency?: string | null, id?: number | null, email: unknown, address?: { deliveryAddress?: { deliveryCity?: string | null, deliveryCountry?: string | null, deliveryPostalCode?: string | null, deliveryStreet?: string | null } | null } | null, billingDetails?: { deliveryData?: { street?: string | null, postalCode?: string | null, city?: string | null, country?: string | null, companyName?: string | null, vatId?: number | null } | null } | null, orders?: Array<{ id?: number | null, status?: Order_Status | null }> | null } | null> | null } | null };
+export type CustomersGetListQuery = { Customers?: { docs?: Array<{ customerName: string, registrationDate?: unknown | null, phone?: string | null, totalExpenses?: number | null, averageOrderValue?: number | null, currency?: string | null, id?: number | null, email: unknown, address?: { deliveryAddress?: { deliveryCity?: string | null, deliveryCountry?: string | null, deliveryPostalCode?: string | null, deliveryStreet?: string | null } | null } | null, billingDetails?: { deliveryData?: { street?: string | null, postalCode?: string | null, city?: string | null, country?: string | null, companyName?: string | null, vatId?: string | null } | null } | null, orders?: Array<{ id?: number | null, status?: Order_Status | null }> | null } | null> | null } | null };
 
-export type OrderBillingDetailsFragment = { deliveryData?: { street?: string | null, postalCode?: string | null, city?: string | null, country?: string | null, companyName?: string | null, vatId?: number | null } | null };
+export type OrderBillingDetailsFragment = { deliveryData?: { street?: string | null, postalCode?: string | null, city?: string | null, country?: string | null, companyName?: string | null, vatId?: string | null } | null };
 
 export type OrderDeliveryAddressFragment = { deliveryAddress?: { deliveryCity?: string | null, deliveryCountry?: string | null, deliveryPostalCode?: string | null, deliveryStreet?: string | null } | null };
 
