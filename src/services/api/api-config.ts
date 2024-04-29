@@ -1,3 +1,4 @@
+import { type ContactFormData } from "@/app/contact/contactSchema";
 import { type TypedDocumentString } from "@/gql/graphql";
 
 type GraphQLResponse<T> =
@@ -83,4 +84,40 @@ export const executeNewsletterApi = async ({
 	}
 
 	return data;
+};
+
+export const executeEmailJsApi = async ({
+	data,
+}: {
+	data: ContactFormData;
+}) => {
+	if (
+		!process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID ||
+		!process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ||
+		!process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+	) {
+		throw TypeError(
+			"NEXT_PUBLIC_EMAILJS_SERVICE_ID, NEXT_PUBLIC_EMAILJS_TEMPLATE_ID or NEXT_PUBLIC_EMAILJS_PUBLIC_KEY is not defined",
+		);
+	}
+
+	const formData = new FormData();
+	formData.append("service_id", process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID);
+	formData.append("template_id", process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID);
+	formData.append("user_id", process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY);
+
+	for (const [key, value] of Object.entries(data)) {
+		formData.append(key, value);
+	}
+
+	const url = "https://api.emailjs.com/api/v1.0/email/send-form";
+	const response = await fetch(url, {
+		method: "POST",
+		body: formData,
+		headers: {
+			"Content-Type": "multipart/form-data",
+		},
+	});
+
+	console.log(await response.json());
 };

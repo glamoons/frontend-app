@@ -1,7 +1,7 @@
 "use client";
 
+import { send } from "@emailjs/browser";
 import { useRef } from "react";
-import { contactAction } from "@/app/contact/conatcAction";
 import { contactSchema } from "@/app/contact/contactSchema";
 import { useTypeSafeFormState } from "@/app/contact/typesafeForm";
 import { DefaultInput } from "@/components/atoms/DefaultInput";
@@ -19,7 +19,12 @@ type ContactFormProps = {
 export const ContactForm = ({ className }: ContactFormProps) => {
 	const formRef = useRef<HTMLFormElement | null>(null);
 	const [state, action] = useTypeSafeFormState(contactSchema, async (data) => {
-		await contactAction(data);
+		await send(
+			process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID ?? "",
+			process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ?? "",
+			data,
+			process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY ?? "",
+		);
 		formRef.current?.reset();
 	});
 	return (
@@ -138,7 +143,7 @@ export const ContactForm = ({ className }: ContactFormProps) => {
 						htmlFor="message"
 						className={state?.errors.message ? "text-error" : ""}
 					>
-						Jak moemy Ci pomóc?
+						Jak możemy Ci pomóc?
 					</Label>
 					<TextArea
 						id="message"
